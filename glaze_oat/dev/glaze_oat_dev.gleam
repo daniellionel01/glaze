@@ -1,4 +1,5 @@
 import glaze_oat
+import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
 import lustre/element/html
@@ -18,7 +19,7 @@ pub fn page() {
       ]),
       html.title([], "glaze_oat_dev"),
 
-      glaze_oat.head(glaze_oat.version, glaze_oat.default_theme),
+      glaze_oat.head(glaze_oat.version, theme.default_theme),
 
       html.style(
         [],

@@ -4,6 +4,7 @@
 - [x] install lustre
 - [x] gleam toml
 - [x] setup dev module
+- [ ] expand themes customization (own module): https://github.com/knadh/oat/blob/master/src/css/01-theme.css
 - [ ] hexdocs -> setup pages (link oak components docs)
 - [ ] link oak component in gleam function documentation
 - [ ] examples / server side
