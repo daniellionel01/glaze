@@ -2,7 +2,7 @@ import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-pub const version = "0.4.1"
+pub const version = "0.4.0"
 
 pub fn register(version: String) -> Element(a) {
   element.fragment([
