@@ -3,10 +3,6 @@
 //// The [`accordion`](#accordion) helpers render semantic HTML accordion markup
 //// using `<details>` and `<summary>` elements.
 ////
-//// This module is intentionally lightweight: it focuses on authoring structure,
-//// while styling and container semantics are provided by the `element` function
-//// you pass to [`accordion`](#accordion).
-////
 //// ## Anatomy
 ////
 //// An accordion built with this module has:
