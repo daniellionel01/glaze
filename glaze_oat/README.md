@@ -30,6 +30,8 @@ let my_theme = glaze_oat.default_theme()
 theme.style_tag(my_theme)
 ```
 
+For a full overview of all available theme variables, take a look at <https://github.com/knadh/oat/blob/master/src/css/01-theme.css>.
+
 In a real project this might look like this:
 
 ```gleam
@@ -53,11 +55,7 @@ pub fn layout() {
 
 You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
 
-## Theming
-
-
-
-### FAQs
+## FAQs
 
 ### Tailwind?
 
