@@ -9,15 +9,21 @@ gleam add glaze_oat@1
 
 ## Getting Started
 
-```gleam
+- **Step 1:** `glaze_oat.register(glaze_oat.version)`
+- **Step 2:** `theme.style_tag(YOUR_THEME)`
+- **Step 3:** Done!
 
 ```gleam
 import glaze_oat
+import glaze_oat/theme
 
 pub fn layout() {
   html.html([
     html.head([
+      // ...
       
+      glaze_oat.register(glaze_oat.version),
+      theme.style_tag(theme.default_theme),
     ]),
     html.body([
       // ...
