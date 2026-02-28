@@ -38,6 +38,22 @@ pub fn open_dialog(
   )
 }
 
+pub fn close_dialog(
+  dialog element_id: String,
+  attrs attrs: List(Attribute(msg)),
+  children children: List(Element(msg)),
+) -> Element(msg) {
+  instance(
+    html.button,
+    [
+      attribute("commandfor", element_id),
+      attribute("command", "close"),
+      ..attrs
+    ],
+    children,
+  )
+}
+
 pub fn link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

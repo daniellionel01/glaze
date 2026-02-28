@@ -112,16 +112,10 @@ pub fn page() {
                 [html.text("Open Dialog")],
               ),
               dialog("dialog", [dialog.closed_by_any()], [
-                html.header([], [html.h3([], [html.text("Title")])]),
+                dialog.header([], [html.h3([], [html.text("Title")])]),
                 html.p([], [html.text("Lorem Ipsum!")]),
-                html.footer([], [
-                  button(
-                    [
-                      attribute("commandfor", "dialog"),
-                      attribute("command", "close"),
-                    ],
-                    [html.text("close")],
-                  ),
+                dialog.footer([], [
+                  button.close_dialog("dialog", [], [html.text("close")]),
                 ]),
               ]),
 
