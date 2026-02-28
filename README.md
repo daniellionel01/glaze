@@ -1,7 +1,7 @@
 # 🍩 Glaze
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
-- [glaze_oat](https://github.com/daniellionel01/glaze/tree/main/glaze_oat)
+- [glaze_oat](https://hexdocs.pm/glaze_oat/)
 
 <br />
 
