@@ -1305,7 +1305,22 @@ pub fn page() {
         ]),
         html.section([attribute.class("section mt-6")], [
           html.h3([], [html.text("Sidebar")]),
-          sidebar.sidebar(html.div, [], [
+          sidebar.sidebar_always(html.div, [], [
+            sidebar.topnav(
+              [
+                attribute.class("hstack justify-between"),
+                attribute(
+                  "style",
+                  "padding: var(--space-3); border-bottom: 1px solid var(--border);",
+                ),
+              ],
+              [
+                sidebar.toggle([button.outline()], [
+                  html.text("☰"),
+                ]),
+                html.strong([], [html.text("Acme Console")]),
+              ],
+            ),
             sidebar.aside([], [
               sidebar.nav([], [
                 html.ul([], [

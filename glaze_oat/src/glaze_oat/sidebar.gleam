@@ -38,7 +38,7 @@ pub fn topnav(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.header([attribute("data-topnav", ""), ..attrs], children)
+  html.nav([attribute("data-topnav", ""), ..attrs], children)
 }
 
 pub fn aside(
