@@ -11,6 +11,7 @@ import glaze_oat/form.{form}
 import glaze_oat/meter.{meter}
 import glaze_oat/pagination.{pagination}
 import glaze_oat/progress.{progress}
+import glaze_oat/skeleton
 import glaze_oat/spinner
 import glaze_oat/theme
 import gleam/list
@@ -1294,43 +1295,13 @@ pub fn page() {
         ]),
         card.instance(html.section, [], [
           html.h5([], [html.text("Loading placeholder")]),
-          html.div(
-            [
-              attribute("style", "width: 100%;"),
-              attribute.class("skeleton line"),
-              attribute.role("status"),
-            ],
-            [],
-          ),
-          html.div(
-            [
-              attribute("style", "width: 80%;"),
-              attribute.class("skeleton line"),
-              attribute.role("status"),
-            ],
-            [],
-          ),
-          html.div(
-            [
-              attribute("style", "width: 60%;"),
-              attribute.class("skeleton line"),
-              attribute.role("status"),
-            ],
-            [],
-          ),
+          skeleton.line([attribute("style", "width: 100%;")]),
+          skeleton.line([attribute("style", "width: 80%;")]),
+          skeleton.line([attribute("style", "width: 60%;")]),
           html.div([attribute.class("hstack mt-4")], [
-            html.div(
-              [attribute.class("skeleton box"), attribute.role("status")],
-              [],
-            ),
-            html.div(
-              [attribute.class("skeleton box"), attribute.role("status")],
-              [],
-            ),
-            html.div(
-              [attribute.class("skeleton box"), attribute.role("status")],
-              [],
-            ),
+            skeleton.box([]),
+            skeleton.box([]),
+            skeleton.box([]),
           ]),
         ]),
       ]),
