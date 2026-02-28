@@ -8,6 +8,7 @@
 - [ ] link oak component in gleam function documentation
 - [ ] examples / server side
 - [ ] examples / client side
+- [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
 
 ## Basecoat
 - [x] install lustre
@@ -17,3 +18,4 @@
 - [ ] link basecoat component in gleam function documentation
 - [ ] examples / server side
 - [ ] examples / client side
+- [ ] Migrate Basecoat Kitchensink to Glaze (https://basecoatui.com/kitchen-sink/)
