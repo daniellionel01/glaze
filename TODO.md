@@ -36,5 +36,4 @@
 - [x] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
 - [x] Document latest supported version
 - [x] README.md
-- [ ] notification if new oat version drops?
-- [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
+- [x] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
