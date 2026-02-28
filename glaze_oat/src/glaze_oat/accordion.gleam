@@ -69,6 +69,7 @@
 ////   )
 //// }
 //// ```
+////
 
 import gleam/list
 import gleam/option.{type Option, None, Some}
@@ -84,6 +85,7 @@ import lustre/element/html
 /// - [`group`](#group): a named collection of nested items.
 ///
 /// This type is opaque to keep rendering rules internal and predictable.
+///
 pub opaque type Item(msg) {
   Item(label: Element(msg), content: List(Element(msg)))
   Group(name: String, items: List(Item(msg)))
@@ -105,6 +107,7 @@ pub opaque type Item(msg) {
 ///
 /// Grouped items include a shared `name` attribute on `<details>` to enable
 /// browser-native single-open behavior within that group.
+///
 pub fn accordion(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attrs: List(Attribute(msg)),
@@ -138,6 +141,7 @@ fn do_item_to_html(item: Item(msg), group: Option(String)) -> List(Element(msg))
 /// the browser to manage them as a mutually-exclusive set.
 ///
 /// Use distinct names for separate groups.
+///
 pub fn group(name: String, items: List(Item(msg))) -> Item(msg) {
   Group(name:, items:)
 }
@@ -148,6 +152,7 @@ pub fn group(name: String, items: List(Item(msg))) -> Item(msg) {
 /// body of the corresponding `<details>`.
 ///
 /// Keep the label concise and descriptive for accessibility and scanning.
+///
 pub fn item(
   label label: Element(msg),
   content content: List(Element(msg)),

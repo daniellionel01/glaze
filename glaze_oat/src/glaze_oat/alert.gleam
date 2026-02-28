@@ -62,6 +62,7 @@
 //// - [`warning`](#warning)
 //// - [`error`](#error)
 //// - [`danger`](#danger)
+////
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
@@ -71,6 +72,7 @@ import lustre/element/html
 ///
 /// This is a convenience wrapper around [`instance`](#instance) using `html.div`.
 /// The element includes `role="alert"` for accessible announcement behavior.
+///
 pub fn alert(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -84,6 +86,7 @@ pub fn alert(
 /// while keeping the same alert role behavior.
 ///
 /// The returned element always includes `role="alert"`.
+///
 pub fn instance(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attrs: List(Attribute(msg)),
@@ -95,6 +98,7 @@ pub fn instance(
 /// Render alert title content using `<strong>`.
 ///
 /// Use this for short, high-signal summary text at the start of the alert.
+///
 pub fn title(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -105,6 +109,7 @@ pub fn title(
 /// Render alert supporting content using `<span>`.
 ///
 /// Use this for additional detail or explanation beneath/alongside the title.
+///
 pub fn message(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -115,6 +120,7 @@ pub fn message(
 /// Set `data-variant="success"` on an alert.
 ///
 /// Intended for positive confirmations such as completed actions.
+///
 pub fn success() -> Attribute(msg) {
   attribute.data("variant", "success")
 }
@@ -122,6 +128,7 @@ pub fn success() -> Attribute(msg) {
 /// Set `data-variant="warning"` on an alert.
 ///
 /// Intended for cautionary states that may need user attention.
+///
 pub fn warning() -> Attribute(msg) {
   attribute.data("variant", "warning")
 }
@@ -129,6 +136,7 @@ pub fn warning() -> Attribute(msg) {
 /// Set `data-variant="error"` on an alert.
 ///
 /// Intended for failures or invalid states.
+///
 pub fn error() -> Attribute(msg) {
   attribute.data("variant", "error")
 }
@@ -136,6 +144,7 @@ pub fn error() -> Attribute(msg) {
 /// Set `data-variant="danger"` on an alert.
 ///
 /// Intended for destructive or high-severity states.
+///
 pub fn danger() -> Attribute(msg) {
   attribute.data("variant", "danger")
 }
