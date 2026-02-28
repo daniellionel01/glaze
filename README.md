@@ -18,6 +18,20 @@ I do not have a personal preference for [Oat](https://oat.ink/) or [Basecoat](ht
 
 I think [DaisyUI](https://daisyui.com/) is a great candidate for this repo!
 
+## Development
+
+For both packages, there is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
+
+```sh
+cd glaze_basecoat
+gleam dev
+open basecoat.html
+# or
+cd glaze_oat
+gleam dev
+open oat.html
+```
+
 ## Inspiration
 
 Most of this API was inspired by [Lustre UI](https://github.com/lustre-labs/ui) and [shadcn/ui](https://ui.shadcn.com/).
