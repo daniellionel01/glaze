@@ -1,8 +1,11 @@
 # 🍩 Glaze
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
-- [glaze_basecoat](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat) | Basecoat: [GitHub](https://github.com/hunvreus/basecoat), [Website](https://basecoatui.com/)
-- [glaze_oat](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | Oat: [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
+- [glaze_basecoat](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat)
+- [glaze_oat](https://github.com/daniellionel01/glaze/tree/main/glaze_oat)
+
+**Basecoat:** [GitHub](https://github.com/hunvreus/basecoat), [Website](https://basecoatui.com/)
+**Oat:** [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
 
 ## About this Project
 

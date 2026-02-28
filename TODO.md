@@ -5,13 +5,16 @@
 - [x] gleam toml
 - [x] setup dev module
 - [x] Add light dark mode toggle to dev module demo
-- [ ] expand themes customization (own module): https://github.com/knadh/oat/blob/master/src/css/01-theme.css
+- [ ] refine theme api
+- [ ] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
 - [ ] hexdocs -> setup pages (link oak components docs)
 - [ ] link oak component in gleam function documentation
+- [ ] more extensive documentation
 - [ ] examples / server side
 - [ ] examples / client side
 - [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
 - [ ] Document latest supported version
+- [ ] notification if new oat version drops?
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
 - [ ] think about toast javascript (ffi? use @target? does it still compile to erlang?)
 - [ ] README.md
