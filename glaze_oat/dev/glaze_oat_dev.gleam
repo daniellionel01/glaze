@@ -7,7 +7,9 @@ import glaze_oat/button.{button}
 import glaze_oat/card.{card}
 import glaze_oat/dialog.{dialog}
 import glaze_oat/dropdown.{dropdown}
+import glaze_oat/form.{form}
 import glaze_oat/theme
+import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element.{element}
 import lustre/element/html
@@ -105,7 +107,10 @@ pub fn page() {
             ]),
             html.div([attribute.class("hstack")], [
               button(
-                [button.small(), button.outline(), ..dialog.open_for("dialog")],
+                list.append(
+                  [button.small(), button.outline()],
+                  dialog.open_for("dialog"),
+                ),
                 [html.text("Open Dialog")],
               ),
               dialog([dialog.id("dialog"), dialog.closed_by_any()], [
@@ -798,12 +803,10 @@ pub fn page() {
                           html.text("View"),
                         ]),
                         button(
-                          [
-                            button.danger(),
-                            button.ghost(),
-                            button.small(),
-                            ..dialog.open_for("delete-dialog")
-                          ],
+                          list.append(
+                            [button.danger(), button.ghost(), button.small()],
+                            dialog.open_for("delete-dialog"),
+                          ),
                           [html.text("Delete")],
                         ),
                       ]),
@@ -855,11 +858,10 @@ pub fn page() {
                 ]),
                 html.footer([], [
                   button(
-                    [
-                      button.outline(),
-                      attribute.type_("button"),
-                      ..dialog.close_for("delete-dialog")
-                    ],
+                    list.append(
+                      [button.outline(), attribute.type_("button")],
+                      dialog.close_for("delete-dialog"),
+                    ),
                     [html.text("Cancel")],
                   ),
                   button([attribute.value("confirm"), button.danger()], [
@@ -1060,7 +1062,7 @@ pub fn page() {
                 html.text("Manage your profile and preferences."),
               ]),
             ]),
-            html.form(
+            form(
               [
                 attribute(
                   "onsubmit",
@@ -1070,9 +1072,9 @@ pub fn page() {
               [
                 html.div([attribute.class("row")], [
                   html.div([attribute.class("col-6")], [
-                    html.label([attribute("data-field", "")], [
+                    form.label([form.field()], [
                       html.text(" Full Name "),
-                      html.input([
+                      form.input([
                         attribute.value("Jane Doe"),
                         attribute.placeholder("Jane Doe"),
                         attribute.type_("text"),
@@ -1080,13 +1082,13 @@ pub fn page() {
                     ]),
                   ]),
                   html.div([attribute.class("col-6")], [
-                    html.div([attribute("data-field", "error")], [
-                      html.label([attribute.for("settings-email")], [
+                    html.div([form.field_error()], [
+                      form.label([attribute.for("settings-email")], [
                         html.text("Email"),
                       ]),
-                      html.input([
-                        attribute("aria-describedby", "email-err"),
-                        attribute("aria-invalid", "true"),
+                      form.input([
+                        form.described_by("email-err"),
+                        form.invalid(),
                         attribute.value("jane@"),
                         attribute.id("settings-email"),
                         attribute.type_("email"),
@@ -1094,7 +1096,7 @@ pub fn page() {
                       html.div(
                         [
                           attribute.role("status"),
-                          attribute.class("error"),
+                          form.error(),
                           attribute.id("email-err"),
                         ],
                         [html.text("Please enter a valid email address.")],
@@ -1104,31 +1106,31 @@ pub fn page() {
                 ]),
                 html.div([attribute.class("row")], [
                   html.div([attribute.class("col-6")], [
-                    html.label([attribute("data-field", "")], [
+                    form.label([form.field()], [
                       html.text(" Password "),
-                      html.input([
+                      form.input([
                         attribute.placeholder("••••••••"),
                         attribute.type_("password"),
                       ]),
-                      html.small([attribute("data-hint", "")], [
+                      html.small([form.hint()], [
                         html.text("Minimum 8 characters with one number."),
                       ]),
                     ]),
                   ]),
                   html.div([attribute.class("col-6")], [
-                    html.div([attribute("data-field", "")], [
-                      html.label([attribute.for("settings-role")], [
+                    html.div([form.field()], [
+                      form.label([attribute.for("settings-role")], [
                         html.text("Role"),
                       ]),
-                      html.select(
+                      form.select(
                         [
                           attribute("aria-label", "Select a role"),
                           attribute.id("settings-role"),
                         ],
                         [
-                          html.option([], "Administrator"),
-                          html.option([], "Editor"),
-                          html.option([], "Viewer"),
+                          form.option([], "Administrator"),
+                          form.option([], "Editor"),
+                          form.option([], "Viewer"),
                         ],
                       ),
                     ]),
@@ -1136,18 +1138,18 @@ pub fn page() {
                 ]),
                 html.div([attribute.class("row")], [
                   html.div([attribute.class("col-6")], [
-                    html.label([attribute("data-field", "")], [
+                    form.label([form.field()], [
                       html.text(" Start Date "),
-                      html.input([
+                      form.input([
                         attribute.value("2025-01-15"),
                         attribute.type_("date"),
                       ]),
                     ]),
                   ]),
                   html.div([attribute.class("col-6")], [
-                    html.label([attribute("data-field", "")], [
+                    form.label([form.field()], [
                       html.text(" Next Review "),
-                      html.input([
+                      form.input([
                         attribute.value("2025-06-15T09:00"),
                         attribute.type_("datetime-local"),
                       ]),
@@ -1156,36 +1158,36 @@ pub fn page() {
                 ]),
                 html.div([attribute.class("row")], [
                   html.div([attribute.class("col-6")], [
-                    html.label([attribute("data-field", "")], [
+                    form.label([form.field()], [
                       html.text(" Avatar "),
-                      html.input([
+                      form.input([
                         attribute("accept", "image/*"),
                         attribute.type_("file"),
                       ]),
                     ]),
                   ]),
                   html.div([attribute.class("col-6")], [
-                    html.label([attribute("data-field", "")], [
+                    form.label([form.field()], [
                       html.text(" Brand Color "),
-                      html.input([
+                      form.input([
                         attribute.value("#6366f1"),
                         attribute.type_("color"),
                       ]),
                     ]),
                   ]),
                 ]),
-                html.label([attribute("data-field", "")], [
+                form.label([form.field()], [
                   html.text(" Notification Volume "),
-                  html.input([
+                  form.input([
                     attribute.value("65"),
                     attribute.max("100"),
                     attribute.min("0"),
                     attribute.type_("range"),
                   ]),
                 ]),
-                html.label([attribute("data-field", "")], [
+                form.label([form.field()], [
                   html.text(" Bio "),
-                  html.textarea(
+                  form.textarea(
                     [
                       attribute.placeholder("Tell us about yourself…"),
                       attribute.rows(3),
@@ -1193,14 +1195,14 @@ pub fn page() {
                     "This entire dashboard is built with Oat.",
                   ),
                 ]),
-                html.fieldset(
+                form.fieldset(
                   [
                     attribute("style", "max-width: 500px;"),
-                    attribute.class("group"),
+                    form.group(),
                   ],
                   [
-                    html.legend([], [html.text("Website")]),
-                    html.input([
+                    form.legend([], [html.text("Website")]),
+                    form.input([
                       attribute.value("janedoe.dev"),
                       attribute.placeholder("yoursite.com"),
                       attribute.type_("url"),
@@ -1210,47 +1212,47 @@ pub fn page() {
                     ]),
                   ],
                 ),
-                html.fieldset([attribute.class("mt-4")], [
-                  html.legend([], [html.text("Email Preferences")]),
-                  html.label([], [
-                    html.input([
+                form.fieldset([attribute.class("mt-4")], [
+                  form.legend([], [html.text("Email Preferences")]),
+                  form.label([], [
+                    form.input([
                       attribute.checked(True),
                       attribute.type_("checkbox"),
                     ]),
                     html.text(" Product updates"),
                   ]),
-                  html.label([], [
-                    html.input([attribute.type_("checkbox")]),
+                  form.label([], [
+                    form.input([attribute.type_("checkbox")]),
                     html.text(" Marketing emails"),
                   ]),
-                  html.label([], [
-                    html.input([
+                  form.label([], [
+                    form.input([
                       attribute.checked(True),
                       attribute.type_("checkbox"),
                     ]),
                     html.text(" Security alerts"),
                   ]),
                 ]),
-                html.fieldset([attribute.class("hstack mt-4")], [
-                  html.legend([], [html.text("Theme")]),
-                  html.label([], [
-                    html.input([
+                form.fieldset([attribute.class("hstack mt-4")], [
+                  form.legend([], [html.text("Theme")]),
+                  form.label([], [
+                    form.input([
                       attribute.value("light"),
                       attribute.name("theme"),
                       attribute.type_("radio"),
                     ]),
                     html.text(" Light"),
                   ]),
-                  html.label([], [
-                    html.input([
+                  form.label([], [
+                    form.input([
                       attribute.value("dark"),
                       attribute.name("theme"),
                       attribute.type_("radio"),
                     ]),
                     html.text(" Dark"),
                   ]),
-                  html.label([], [
-                    html.input([
+                  form.label([], [
+                    form.input([
                       attribute.checked(True),
                       attribute.value("auto"),
                       attribute.name("theme"),
@@ -1260,17 +1262,17 @@ pub fn page() {
                   ]),
                 ]),
                 html.div([attribute.class("mt-4 vstack gap-2")], [
-                  html.label([], [
-                    html.input([
+                  form.label([], [
+                    form.input([
                       attribute.checked(True),
-                      attribute.role("switch"),
+                      form.as_switch(),
                       attribute.type_("checkbox"),
                     ]),
                     html.text(" Enable two-factor authentication "),
                   ]),
-                  html.label([], [
-                    html.input([
-                      attribute.role("switch"),
+                  form.label([], [
+                    form.input([
+                      form.as_switch(),
                       attribute.type_("checkbox"),
                     ]),
                     html.text(" Enable API access "),
