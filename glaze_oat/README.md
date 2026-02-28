@@ -1,4 +1,4 @@
-# glaze_oat
+# 🍩 Glaze Oat
 
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
