@@ -5,11 +5,10 @@
 ////
 //// ## Anatomy
 ////
-//// An accordion built with this module has:
-////
-//// - A container element provided to [`accordion`](#accordion). (**required**)
-//// - One or more [`item`](#item) values, each rendered as `<details>`. (**required**)
-//// - Optional [`group`](#group) values to coordinate item open-state. (**optional**)
+//// An accordion is a container of collapsible sections rendered as
+//// `<details><summary>...</summary>...</details>`.
+//// Most apps compose it from `item` entries, with optional `group` wrappers
+//// when you want browser-native single-open behavior per group.
 ////
 //// ## Group behaviour
 ////

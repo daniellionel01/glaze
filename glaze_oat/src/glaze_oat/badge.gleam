@@ -8,10 +8,9 @@
 ////
 //// ## Anatomy
 ////
-//// A badge is made up of:
-////
-//// - A container from [`badge`](#badge) or [`instance`](#instance). (**required**)
-//// - Usually a short text label, but icons also work. (**optional**)
+//// A badge is a compact inline container for short labels.
+//// In practice this is usually a single word or short phrase, sometimes with
+//// an icon.
 ////
 //// ## Recipes
 ////

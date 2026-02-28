@@ -5,12 +5,9 @@
 ////
 //// ## Anatomy
 ////
-//// A breadcrumb usually contains:
-////
-//// - A [`breadcrumb`](#breadcrumb) container. (**required**)
-//// - One or more linked items via [`link`](#link). (**required**)
-//// - Separators such as [`slash`](#slash) or [`chevron`](#chevron). (**optional**)
-//// - A non-interactive [`current`](#current) item for the current page. (**optional**)
+//// A breadcrumb is a nav wrapper with list items for each path segment.
+//// Most apps render linked ancestors followed by a non-linked current page
+//// item. Separators are presentational and hidden from assistive tech.
 ////
 //// ## Recipes
 ////

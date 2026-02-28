@@ -5,11 +5,9 @@
 ////
 //// ## Anatomy
 ////
-//// An alert built with this module typically has:
-////
-//// - A container from [`alert`](#alert) or [`instance`](#instance). (**required**)
-//// - A [`title`](#title) for concise summary text. (**optional**)
-//// - A [`message`](#message) for supporting detail. (**optional**)
+//// An alert is usually a container with short, high-signal text.
+//// Most uses combine a `title` for the main message and an optional `message`
+//// for supporting detail.
 ////
 //// ## Recipes
 ////
@@ -38,20 +36,6 @@
 ////     alert.message([], [
 ////       html.text("Delete unused files or upgrade your plan."),
 ////     ]),
-////   ])
-//// }
-//// ```
-////
-//// ### Render as a different container element
-////
-//// ```gleam
-//// import glaze_oat/alert
-//// import lustre/element/html
-////
-//// fn inline_error() {
-////   alert.instance(html.section, [alert.error()], [
-////     alert.title([], [html.text("Could not save")]),
-////     alert.message([], [html.text("Please try again in a moment.")]),
 ////   ])
 //// }
 //// ```
