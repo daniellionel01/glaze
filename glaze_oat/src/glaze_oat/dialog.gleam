@@ -56,6 +56,15 @@
 //// - [`closed_by_any`](#closed_by_any)
 //// - [`closed_by_none`](#closed_by_none)
 //// - [`closed_by_close_request`](#closed_by_close_request)
+////
+//// ## Browser references
+////
+//// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
+//// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
+//// - MDN `<form>` `method` attribute (`method="dialog"`):
+////   <https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form#method>
+//// - MDN Invoker Commands (`command`/`commandfor` on dialog controls):
+////   <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
 
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
