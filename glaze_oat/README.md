@@ -13,6 +13,8 @@ gleam add glaze_oat@1
 - **Step 2:** `theme.style_tag(YOUR_THEME)`
 - **Step 3:** Done!
 
+In a real project this might look like this:
+
 ```gleam
 import glaze_oat
 import glaze_oat/theme
