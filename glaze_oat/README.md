@@ -9,7 +9,7 @@ It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_element
 
 For a full list of components, take a look at <https://hexdocs.pm/glaze_oat> or <https://oat.ink/components/>
 
-Latest supported version is [Oat v0.4.0](https://github.com/knadh/oat/releases/tag/v0.4.0). This library will be updated for future versions when they get released.
+Latest supported version is [Oat v0.4.1](https://github.com/knadh/oat/releases/tag/v0.4.1). This library will be updated for future versions when they get released.
 
 ## Getting Started
 
