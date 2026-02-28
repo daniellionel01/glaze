@@ -8,6 +8,10 @@ import glaze_oat/card.{card}
 import glaze_oat/dialog.{dialog}
 import glaze_oat/dropdown.{dropdown}
 import glaze_oat/form.{form}
+import glaze_oat/meter.{meter}
+import glaze_oat/pagination.{pagination}
+import glaze_oat/progress.{progress}
+import glaze_oat/spinner
 import glaze_oat/theme
 import gleam/list
 import lustre/attribute.{attribute}
@@ -200,10 +204,10 @@ pub fn page() {
                   ]),
                 ]),
                 card.footer([], [
-                  html.progress(
-                    [attribute.max("100"), attribute.value("72")],
-                    [],
-                  ),
+                  progress([
+                    progress.max_int(100),
+                    progress.value_int(72),
+                  ]),
                 ]),
               ]),
             ]),
@@ -220,10 +224,10 @@ pub fn page() {
                   ]),
                 ]),
                 card.footer([], [
-                  html.progress(
-                    [attribute.max("100"), attribute.value("58")],
-                    [],
-                  ),
+                  progress([
+                    progress.max_int(100),
+                    progress.value_int(58),
+                  ]),
                 ]),
               ]),
             ]),
@@ -240,17 +244,14 @@ pub fn page() {
                   ]),
                 ]),
                 card.footer([], [
-                  html.meter(
-                    [
-                      attribute("optimum", "1"),
-                      attribute("high", "0.7"),
-                      attribute("low", "0.3"),
-                      attribute.max("1"),
-                      attribute.min("0"),
-                      attribute.value("0.65"),
-                    ],
-                    [],
-                  ),
+                  meter([
+                    meter.optimum_int(1),
+                    meter.high_float(0.7),
+                    meter.low_float(0.3),
+                    meter.max_int(1),
+                    meter.min_int(0),
+                    meter.value_float(0.65),
+                  ]),
                 ]),
               ]),
             ]),
@@ -270,17 +271,14 @@ pub fn page() {
                   ]),
                 ]),
                 card.footer([], [
-                  html.meter(
-                    [
-                      attribute("optimum", "1"),
-                      attribute("high", "0.99"),
-                      attribute("low", "0.95"),
-                      attribute.max("1"),
-                      attribute.min("0"),
-                      attribute.value("0.9998"),
-                    ],
-                    [],
-                  ),
+                  meter([
+                    meter.optimum_int(1),
+                    meter.high_float(0.99),
+                    meter.low_float(0.95),
+                    meter.max_int(1),
+                    meter.min_int(0),
+                    meter.value_float(0.9998),
+                  ]),
                 ]),
               ]),
             ]),
@@ -363,8 +361,8 @@ pub fn page() {
               html.div([attribute.role("tabpanel")], [
                 html.article(
                   [
-                    attribute("data-spinner", "large overlay"),
-                    attribute("aria-busy", "true"),
+                    spinner.size_overlay(spinner.Large),
+                    spinner.busy(),
                     attribute.class("card"),
                   ],
                   [
@@ -376,18 +374,18 @@ pub fn page() {
                       html.div([attribute.class("col-6")], [
                         html.strong([], [html.text("Avg Response")]),
                         html.p([], [html.text("142 ms")]),
-                        html.progress(
-                          [attribute.max("100"), attribute.value("14")],
-                          [],
-                        ),
+                        progress([
+                          progress.max_int(100),
+                          progress.value_int(14),
+                        ]),
                       ]),
                       html.div([attribute.class("col-6")], [
                         html.strong([], [html.text("Error Rate")]),
                         html.p([], [html.text("0.03%")]),
-                        html.progress(
-                          [attribute.max("100"), attribute.value("3")],
-                          [],
-                        ),
+                        progress([
+                          progress.max_int(100),
+                          progress.value_int(3),
+                        ]),
                       ]),
                     ]),
                   ],
@@ -520,8 +518,8 @@ pub fn page() {
                   html.small([attribute.class("text-light hstack gap-2")], [
                     html.span(
                       [
-                        attribute("data-spinner", "small"),
-                        attribute("aria-busy", "true"),
+                        spinner.size(spinner.Small),
+                        spinner.busy(),
                       ],
                       [],
                     ),
@@ -536,10 +534,10 @@ pub fn page() {
                         html.text("Normal"),
                       ]),
                     ]),
-                    html.progress(
-                      [attribute.max("100"), attribute.value("42")],
-                      [],
-                    ),
+                    progress([
+                      progress.max_int(100),
+                      progress.value_int(42),
+                    ]),
                     html.small([attribute.class("text-lighter")], [
                       html.text("42% — 8 cores"),
                     ]),
@@ -551,10 +549,10 @@ pub fn page() {
                         html.text("High"),
                       ]),
                     ]),
-                    html.progress(
-                      [attribute.max("100"), attribute.value("78")],
-                      [],
-                    ),
+                    progress([
+                      progress.max_int(100),
+                      progress.value_int(78),
+                    ]),
                     html.small([attribute.class("text-lighter")], [
                       html.text("12.5 / 16 GB used"),
                     ]),
@@ -566,17 +564,14 @@ pub fn page() {
                         html.text("Normal"),
                       ]),
                     ]),
-                    html.meter(
-                      [
-                        attribute("optimum", "0"),
-                        attribute("high", "0.7"),
-                        attribute("low", "0.3"),
-                        attribute.max("1"),
-                        attribute.min("0"),
-                        attribute.value("0.35"),
-                      ],
-                      [],
-                    ),
+                    meter([
+                      meter.optimum_int(0),
+                      meter.high_float(0.7),
+                      meter.low_float(0.3),
+                      meter.max_int(1),
+                      meter.min_int(0),
+                      meter.value_float(0.35),
+                    ]),
                     html.small([attribute.class("text-lighter")], [
                       html.text("Read: 145 MB/s — Write: 82 MB/s"),
                     ]),
@@ -588,26 +583,20 @@ pub fn page() {
                         html.p([attribute("style", "margin:0;")], [
                           html.text("1.2 Gbps"),
                         ]),
-                        html.progress(
-                          [
-                            attribute.max("100"),
-                            attribute.value("60"),
-                          ],
-                          [],
-                        ),
+                        progress([
+                          progress.max_int(100),
+                          progress.value_int(60),
+                        ]),
                       ]),
                       html.div([attribute.class("col-6")], [
                         html.strong([], [html.text("Network Out")]),
                         html.p([attribute("style", "margin:0;")], [
                           html.text("840 Mbps"),
                         ]),
-                        html.progress(
-                          [
-                            attribute.max("100"),
-                            attribute.value("42"),
-                          ],
-                          [],
-                        ),
+                        progress([
+                          progress.max_int(100),
+                          progress.value_int(42),
+                        ]),
                       ]),
                     ]),
                   ]),
@@ -824,15 +813,24 @@ pub fn page() {
                 html.small([attribute.class("text-light")], [
                   html.text("Showing 1–5 of 243"),
                 ]),
-                button.group([], [
-                  button(
-                    [attribute.disabled(True), button.outline(), button.small()],
+                pagination([], [
+                  pagination.prev(
+                    [
+                      attribute("aria-disabled", "true"),
+                      attribute.href("#orders"),
+                    ],
                     [html.text("← Prev")],
                   ),
-                  button([button.outline(), button.small()], [html.text("1")]),
-                  button([button.outline(), button.small()], [html.text("2")]),
-                  button([button.outline(), button.small()], [html.text("3")]),
-                  button([button.outline(), button.small()], [
+                  pagination.page_link([attribute.href("#orders")], [
+                    html.text("1"),
+                  ]),
+                  pagination.page_link([attribute.href("#orders")], [
+                    html.text("2"),
+                  ]),
+                  pagination.current_page([attribute.href("#orders")], [
+                    html.text("3"),
+                  ]),
+                  pagination.next([attribute.href("#orders")], [
                     html.text("Next →"),
                   ]),
                 ]),
