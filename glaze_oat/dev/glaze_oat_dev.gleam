@@ -18,6 +18,7 @@ import glaze_oat/switch.{switch}
 import glaze_oat/table
 import glaze_oat/tabs
 import glaze_oat/theme
+import glaze_oat/tooltip
 import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element
@@ -114,10 +115,9 @@ pub fn page() {
             ],
             [html.text("Toggle Theme")],
           ),
-          button(
-            [attribute("data-tooltip", "Refresh data now"), button.small()],
-            [html.text("↻")],
-          ),
+          button([tooltip.tooltip("Refresh data now"), button.small()], [
+            html.text("↻"),
+          ]),
         ]),
       ]),
       sidebar.aside([], [
@@ -222,7 +222,7 @@ pub fn page() {
                 ]),
                 button(
                   [
-                    attribute("data-tooltip", "Refresh data now"),
+                    tooltip.tooltip("Refresh data now"),
                     button.small(),
                   ],
                   [html.text(" ↻ Refresh ")],
@@ -359,7 +359,7 @@ pub fn page() {
                   html.div([attribute.class("faux-bar-chart")], [
                     html.div(
                       [
-                        attribute("data-tooltip", "Mon: 1,204"),
+                        tooltip.tooltip("Mon: 1,204"),
                         attribute("style", "height: 45%;"),
                         attribute.class("faux-bar"),
                       ],
@@ -367,7 +367,7 @@ pub fn page() {
                     ),
                     html.div(
                       [
-                        attribute("data-tooltip", "Tue: 1,659"),
+                        tooltip.tooltip("Tue: 1,659"),
                         attribute("style", "height: 62%;"),
                         attribute.class("faux-bar"),
                       ],
@@ -375,7 +375,7 @@ pub fn page() {
                     ),
                     html.div(
                       [
-                        attribute("data-tooltip", "Wed: 2,087"),
+                        tooltip.tooltip("Wed: 2,087"),
                         attribute("style", "height: 78%;"),
                         attribute.class("faux-bar"),
                       ],
@@ -383,7 +383,7 @@ pub fn page() {
                     ),
                     html.div(
                       [
-                        attribute("data-tooltip", "Thu: 1,472"),
+                        tooltip.tooltip("Thu: 1,472"),
                         attribute("style", "height: 55%;"),
                         attribute.class("faux-bar"),
                       ],
@@ -391,7 +391,7 @@ pub fn page() {
                     ),
                     html.div(
                       [
-                        attribute("data-tooltip", "Fri: 2,411"),
+                        tooltip.tooltip("Fri: 2,411"),
                         attribute("style", "height: 90%;"),
                         attribute.class("faux-bar"),
                       ],
@@ -399,7 +399,7 @@ pub fn page() {
                     ),
                     html.div(
                       [
-                        attribute("data-tooltip", "Sat: 1,874"),
+                        tooltip.tooltip("Sat: 1,874"),
                         attribute("style", "height: 70%;"),
                         attribute.class("faux-bar"),
                       ],
@@ -407,7 +407,7 @@ pub fn page() {
                     ),
                     html.div(
                       [
-                        attribute("data-tooltip", "Sun: 1,071"),
+                        tooltip.tooltip("Sun: 1,071"),
                         attribute("style", "height: 40%;"),
                         attribute.class("faux-bar"),
                       ],
