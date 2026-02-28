@@ -72,32 +72,22 @@ pub fn instance(
   element([attribute.class("badge"), ..attrs], children)
 }
 
-/// Apply the secondary badge variant class.
-///
 pub fn secondary() -> Attribute(msg) {
   attribute.class("secondary")
 }
 
-/// Apply the outline badge variant class.
-///
 pub fn outline() -> Attribute(msg) {
   attribute.class("outline")
 }
 
-/// Apply the success badge variant class.
-///
 pub fn success() -> Attribute(msg) {
   attribute.class("success")
 }
 
-/// Apply the warning badge variant class.
-///
 pub fn warning() -> Attribute(msg) {
   attribute.class("warning")
 }
 
-/// Apply the danger badge variant class.
-///
 pub fn danger() -> Attribute(msg) {
   attribute.class("danger")
 }

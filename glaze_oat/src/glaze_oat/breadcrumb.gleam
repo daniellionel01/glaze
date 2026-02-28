@@ -94,14 +94,10 @@ pub fn separator(
   )
 }
 
-/// Render a `/` separator.
-///
 pub fn slash(attributes: List(Attribute(msg))) -> Element(msg) {
   separator(attributes, html.text("/"))
 }
 
-/// Render a `>` separator.
-///
 pub fn chevron(attributes: List(Attribute(msg))) -> Element(msg) {
   separator(attributes, html.text(">"))
 }

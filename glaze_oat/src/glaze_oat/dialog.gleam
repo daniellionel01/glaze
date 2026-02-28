@@ -134,8 +134,6 @@ pub fn closed_by_close_request() -> Attribute(msg) {
   attribute("closedby", "closerequest")
 }
 
-/// Render a dialog header region.
-///
 pub fn header(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -143,8 +141,6 @@ pub fn header(
   html.header(attrs, children)
 }
 
-/// Render a dialog title.
-///
 pub fn title(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -152,8 +148,6 @@ pub fn title(
   html.h3(attrs, children)
 }
 
-/// Render a dialog footer region.
-///
 pub fn footer(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

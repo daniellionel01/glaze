@@ -119,44 +119,30 @@ pub fn instance(
   element([attribute.role("button"), ..attrs], children)
 }
 
-/// Apply the primary button variant.
-///
 pub fn primary() -> Attribute(msg) {
   attribute.data("data-variant", "primary")
 }
 
-/// Apply the secondary button variant.
-///
 pub fn secondary() -> Attribute(msg) {
   attribute.data("data-variant", "secondary")
 }
 
-/// Apply the danger button variant.
-///
 pub fn danger() -> Attribute(msg) {
   attribute.data("data-variant", "danger")
 }
 
-/// Apply the outline button style.
-///
 pub fn outline() -> Attribute(msg) {
   attribute.class("outline")
 }
 
-/// Apply the ghost button style.
-///
 pub fn ghost() -> Attribute(msg) {
   attribute.class("ghost")
 }
 
-/// Apply the small button size.
-///
 pub fn small() -> Attribute(msg) {
   attribute.class("small")
 }
 
-/// Apply the large button size.
-///
 pub fn large() -> Attribute(msg) {
   attribute.class("large")
 }

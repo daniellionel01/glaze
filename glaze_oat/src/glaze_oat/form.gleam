@@ -102,14 +102,10 @@ pub fn label(
   html.label(attrs, children)
 }
 
-/// Render an input control.
-///
 pub fn input(attrs: List(Attribute(msg))) -> Element(msg) {
   html.input(attrs)
 }
 
-/// Render a select control.
-///
 pub fn select(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -117,14 +113,10 @@ pub fn select(
   html.select(attrs, children)
 }
 
-/// Render an option inside a select.
-///
 pub fn option(attrs: List(Attribute(msg)), label: String) -> Element(msg) {
   html.option(attrs, label)
 }
 
-/// Render a textarea control.
-///
 pub fn textarea(attrs: List(Attribute(msg)), value: String) -> Element(msg) {
   html.textarea(attrs, value)
 }
@@ -147,14 +139,10 @@ pub fn hint() -> Attribute(msg) {
   attribute("data-hint", "")
 }
 
-/// Apply grouped control styling.
-///
 pub fn group() -> Attribute(msg) {
   attribute.class("group")
 }
 
-/// Apply error text styling.
-///
 pub fn error() -> Attribute(msg) {
   attribute.class("error")
 }

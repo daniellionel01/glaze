@@ -65,8 +65,6 @@ pub fn instance(
   element([attribute.class("card"), ..attrs], children)
 }
 
-/// Render the header region of a card.
-///
 pub fn header(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -74,8 +72,6 @@ pub fn header(
   html.header(attrs, children)
 }
 
-/// Render the main content region of a card.
-///
 pub fn content(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -83,8 +79,6 @@ pub fn content(
   html.main(attrs, children)
 }
 
-/// Render the footer region of a card.
-///
 pub fn footer(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
