@@ -27,6 +27,13 @@ pub fn toggle(
   html.button([attribute("data-sidebar-toggle", ""), ..attrs], children)
 }
 
+pub fn nav(
+  attrs: List(Attribute(msg)),
+  children: List(Element(msg)),
+) -> Element(msg) {
+  html.nav(attrs, children)
+}
+
 pub fn topnav(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
