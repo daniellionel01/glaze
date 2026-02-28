@@ -7,7 +7,7 @@
 //// Choose a [`Variant`](#variant), configure [`Options`](#options), and call
 //// [`toast`](#toast) to trigger a notification from application code.
 ////
-//// ## Recipe
+//// ## Recipes
 ////
 //// ```gleam
 //// import glaze_oat/toast
@@ -18,6 +18,28 @@
 ////   |> toast.with_duration_ms(3000)
 ////
 //// toast.toast("Saved", "Your changes were stored.", options)
+//// ```
+////
+//// ```gleam
+//// import glaze_oat/toast
+//// import lustre/attribute
+//// import lustre/element/html
+////
+//// let options =
+////   toast.default_options(toast.Info)
+////   |> toast.with_duration_ms(2500)
+////
+//// html.button([
+////   attribute.type_("button"),
+////   attribute(
+////     "onclick",
+////     toast.toast_eval_string(
+////       "Build complete",
+////       "All checks passed.",
+////       options,
+////     ),
+////   ),
+//// ], [html.text("Show toast")])
 //// ```
 ////
 //// ## Notes
