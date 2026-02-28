@@ -1,10 +1,81 @@
-//// Oat documentation: https://oat.ink/components/button/
+//// Oat documentation: <https://oat.ink/components/button/>
+////
+//// The [`button`](#button) helpers style interactive actions and links with a
+//// consistent API.
+////
+//// Use regular buttons for in-page actions, and use [`link`](#link) when the
+//// interaction navigates to a different location.
+////
+//// ## Anatomy
+////
+//// A button setup usually has one interactive element and optional button groups.
+//// `group` wraps multiple actions in a semantic menu/list structure so spacing
+//// and alignment stay consistent.
+////
+//// ## Recipes
+////
+//// ### A primary action button
+////
+//// ```gleam
+//// import glaze_oat/button
+//// import lustre/element/html
+////
+//// fn save_button() {
+////   button.button([button.primary()], [html.text("Save")])
+//// }
+//// ```
+////
+//// ### A grouped action row
+////
+//// ```gleam
+//// import glaze_oat/button
+//// import lustre/element/html
+////
+//// fn actions() {
+////   button.group([], [
+////     button.button([button.secondary()], [html.text("Cancel")]),
+////     button.button([button.primary()], [html.text("Continue")]),
+////   ])
+//// }
+//// ```
+////
+//// ### A link styled as button
+////
+//// ```gleam
+//// import glaze_oat/button
+//// import lustre/attribute
+//// import lustre/element/html
+////
+//// fn docs_link() {
+////   button.link([attribute.href("/docs"), button.outline()], [
+////     html.text("Read docs"),
+////   ])
+//// }
+//// ```
+////
+//// ## Variants
+////
+//// - [`primary`](#primary)
+//// - [`secondary`](#secondary)
+//// - [`danger`](#danger)
+//// - [`outline`](#outline)
+//// - [`ghost`](#ghost)
+////
+//// ## Sizes
+////
+//// - [`small`](#small)
+//// - [`large`](#large)
 
 import gleam/list
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
+/// Render a group of buttons.
+///
+/// Children are wrapped in `<li>` items inside a `<menu>` to keep grouped button
+/// markup semantic and consistent.
+///
 pub fn group(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -15,6 +86,11 @@ pub fn group(
   })
 }
 
+/// Render a standard `<button>` element with button styling.
+///
+/// This is the default helper for action buttons that update local page state,
+/// submit forms, or trigger commands.
+///
 pub fn button(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -22,6 +98,10 @@ pub fn button(
   instance(html.button, attrs, children)
 }
 
+/// Render a link (`<a>`) styled like a button.
+///
+/// Use this for navigation actions rather than state-changing actions.
+///
 pub fn link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -29,6 +109,10 @@ pub fn link(
   instance(html.a, [attribute.class("button"), ..attrs], children)
 }
 
+/// Render a custom element with button semantics.
+///
+/// Adds `role="button"` and applies provided attributes and children.
+///
 pub fn instance(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attrs: List(Attribute(msg)),
@@ -37,30 +121,44 @@ pub fn instance(
   element([attribute.role("button"), ..attrs], children)
 }
 
+/// Apply the primary button variant.
+///
 pub fn primary() -> Attribute(msg) {
   attribute.data("data-variant", "primary")
 }
 
+/// Apply the secondary button variant.
+///
 pub fn secondary() -> Attribute(msg) {
   attribute.data("data-variant", "secondary")
 }
 
+/// Apply the danger button variant.
+///
 pub fn danger() -> Attribute(msg) {
   attribute.data("data-variant", "danger")
 }
 
+/// Apply the outline button style.
+///
 pub fn outline() -> Attribute(msg) {
   attribute.class("outline")
 }
 
+/// Apply the ghost button style.
+///
 pub fn ghost() -> Attribute(msg) {
   attribute.class("ghost")
 }
 
+/// Apply the small button size.
+///
 pub fn small() -> Attribute(msg) {
   attribute.class("small")
 }
 
+/// Apply the large button size.
+///
 pub fn large() -> Attribute(msg) {
-  attribute.class("small")
+  attribute.class("large")
 }
