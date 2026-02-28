@@ -1,4 +1,32 @@
-//// Oat documentation: https://oat.ink/components/meter/
+//// Oat documentation: <https://oat.ink/components/meter/>
+////
+//// Meter helpers for scalar values within a known range.
+////
+//// ## Anatomy
+////
+//// Use [`meter`](#meter) with [`value`](#value), [`min`](#min), and [`max`](#max)
+//// to represent measurements such as usage, score, or temperature. Optional
+//// [`low`](#low), [`high`](#high), and [`optimum`](#optimum) set qualitative
+//// thresholds.
+////
+//// ## Recipe
+////
+//// ```gleam
+//// import glaze_oat/meter
+////
+//// meter.meter([
+////   meter.value_int(68),
+////   meter.min_int(0),
+////   meter.max_int(100),
+////   meter.low_int(30),
+////   meter.high_int(80),
+////   meter.optimum_int(70),
+//// ])
+//// ```
+////
+//// ## References
+////
+//// - MDN `<meter>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter>
 
 import gleam/float
 import gleam/int
@@ -6,10 +34,14 @@ import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
+/// Render a meter element.
+///
 pub fn meter(attrs: List(Attribute(msg))) -> Element(msg) {
   html.meter(attrs, [])
 }
 
+/// Set the current meter value.
+///
 pub fn value(amount: String) -> Attribute(msg) {
   attribute.value(amount)
 }
@@ -22,6 +54,8 @@ pub fn value_float(amount: Float) -> Attribute(msg) {
   value(float.to_string(amount))
 }
 
+/// Set the lower bound.
+///
 pub fn min(amount: String) -> Attribute(msg) {
   attribute.min(amount)
 }
@@ -34,6 +68,8 @@ pub fn min_float(amount: Float) -> Attribute(msg) {
   min(float.to_string(amount))
 }
 
+/// Set the upper bound.
+///
 pub fn max(amount: String) -> Attribute(msg) {
   attribute.max(amount)
 }
@@ -46,6 +82,8 @@ pub fn max_float(amount: Float) -> Attribute(msg) {
   max(float.to_string(amount))
 }
 
+/// Set the low threshold.
+///
 pub fn low(amount: String) -> Attribute(msg) {
   attribute("low", amount)
 }
@@ -58,6 +96,8 @@ pub fn low_float(amount: Float) -> Attribute(msg) {
   low(float.to_string(amount))
 }
 
+/// Set the high threshold.
+///
 pub fn high(amount: String) -> Attribute(msg) {
   attribute("high", amount)
 }
@@ -70,6 +110,8 @@ pub fn high_float(amount: Float) -> Attribute(msg) {
   high(float.to_string(amount))
 }
 
+/// Set the optimum value.
+///
 pub fn optimum(amount: String) -> Attribute(msg) {
   attribute("optimum", amount)
 }

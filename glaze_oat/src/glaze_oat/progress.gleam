@@ -1,4 +1,26 @@
-//// Oat documentation: https://oat.ink/components/progress/
+//// Oat documentation: <https://oat.ink/components/progress/>
+////
+//// Progress helpers for linear completion indicators.
+////
+//// ## Anatomy
+////
+//// Use [`progress`](#progress) with [`value`](#value) and [`max`](#max) to show
+//// task completion. Typed helpers are available for `Int` and `Float` values.
+////
+//// ## Recipe
+////
+//// ```gleam
+//// import glaze_oat/progress
+////
+//// progress.progress([
+////   progress.value_int(32),
+////   progress.max_int(100),
+//// ])
+//// ```
+////
+//// ## References
+////
+//// - MDN `<progress>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress>
 
 import gleam/float
 import gleam/int
@@ -6,10 +28,14 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
+/// Render a progress element.
+///
 pub fn progress(attrs: List(Attribute(msg))) -> Element(msg) {
   html.progress(attrs, [])
 }
 
+/// Set the current progress value.
+///
 pub fn value(amount: String) -> Attribute(msg) {
   attribute.value(amount)
 }
@@ -22,6 +48,8 @@ pub fn value_float(amount: Float) -> Attribute(msg) {
   value(float.to_string(amount))
 }
 
+/// Set the maximum progress value.
+///
 pub fn max(amount: String) -> Attribute(msg) {
   attribute.max(amount)
 }
