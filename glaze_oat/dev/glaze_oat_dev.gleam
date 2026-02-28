@@ -3,6 +3,7 @@ import glaze_oat/accordion.{accordion}
 import glaze_oat/alert.{alert}
 import glaze_oat/badge.{badge}
 import glaze_oat/breadcrumb.{breadcrumb}
+import glaze_oat/button.{button}
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -100,9 +101,10 @@ pub fn page() {
               badge([badge.secondary()], [html.text("v1.0.0")]),
             ]),
             html.div([attribute.class("hstack")], [
-              html.button(
+              button(
                 [
-                  attribute.class("outline small"),
+                  button.small(),
+                  button.outline(),
                   attribute("onclick", "toggleTheme()"),
                 ],
                 [html.text("Toggle Theme")],
@@ -122,9 +124,10 @@ pub fn page() {
                 ],
               ),
               element("ot-dropdown", [], [
-                html.button(
+                button(
                   [
-                    attribute.class("outline small"),
+                    button.outline(),
+                    button.small(),
                     attribute("popovertarget", "export-menu"),
                   ],
                   [html.text(" Export ▾ ")],
@@ -132,14 +135,14 @@ pub fn page() {
                 html.menu(
                   [attribute.id("export-menu"), attribute("popover", "")],
                   [
-                    html.button([attribute.role("menuitem")], [
+                    button([attribute.role("menuitem")], [
                       html.text("Export as CSV"),
                     ]),
-                    html.button([attribute.role("menuitem")], [
+                    button([attribute.role("menuitem")], [
                       html.text("Export as JSON"),
                     ]),
                     html.hr([]),
-                    html.button([attribute.role("menuitem")], [
+                    button([attribute.role("menuitem")], [
                       html.text("Print report"),
                     ]),
                   ],
@@ -275,9 +278,9 @@ pub fn page() {
           html.article([attribute.class("card")], [
             element("ot-tabs", [], [
               html.div([attribute.role("tablist")], [
-                html.button([attribute.role("tab")], [html.text("Overview")]),
-                html.button([attribute.role("tab")], [html.text("Performance")]),
-                html.button([attribute.role("tab")], [html.text("Reports")]),
+                button([attribute.role("tab")], [html.text("Overview")]),
+                button([attribute.role("tab")], [html.text("Performance")]),
+                button([attribute.role("tab")], [html.text("Reports")]),
               ]),
               html.div([attribute.role("tabpanel")], [
                 html.h4([], [html.text("Weekly Traffic")]),
@@ -616,26 +619,20 @@ pub fn page() {
                     attribute.placeholder("Search orders…"),
                     attribute.type_("search"),
                   ]),
-                  html.button([attribute.class("outline")], [
+                  button([button.outline()], [
                     html.text("Search"),
                   ]),
                 ],
               ),
-              html.menu([attribute.class("buttons")], [
-                html.li([], [
-                  html.button([attribute.class("ghost small")], [
-                    html.text("All"),
-                  ]),
+              button.group([], [
+                button([button.ghost(), button.small()], [
+                  html.text("All"),
                 ]),
-                html.li([], [
-                  html.button([attribute.class("outline small")], [
-                    html.text("Pending"),
-                  ]),
+                button([button.outline(), button.small()], [
+                  html.text("Pending"),
                 ]),
-                html.li([], [
-                  html.button([attribute.class("outline small")], [
-                    html.text("Shipped"),
-                  ]),
+                button([button.outline(), button.small()], [
+                  html.text("Shipped"),
                 ]),
               ]),
             ]),
@@ -677,16 +674,12 @@ pub fn page() {
                       ]),
                     ]),
                     html.td([], [
-                      html.menu([attribute.class("buttons")], [
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("View"),
-                          ]),
+                      button.group([], [
+                        button([button.ghost(), button.small()], [
+                          html.text("View"),
                         ]),
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("Edit"),
-                          ]),
+                        button([button.ghost(), button.small()], [
+                          html.text("Edit"),
                         ]),
                       ]),
                     ]),
@@ -711,12 +704,12 @@ pub fn page() {
                     html.td([], [
                       html.menu([attribute.class("buttons")], [
                         html.li([], [
-                          html.button([attribute.class("ghost small")], [
+                          button([button.ghost(), button.small()], [
                             html.text("View"),
                           ]),
                         ]),
                         html.li([], [
-                          html.button([attribute.class("ghost small")], [
+                          button([button.ghost(), button.small()], [
                             html.text("Edit"),
                           ]),
                         ]),
@@ -741,16 +734,12 @@ pub fn page() {
                       ]),
                     ]),
                     html.td([], [
-                      html.menu([attribute.class("buttons")], [
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("View"),
-                          ]),
+                      button.group([], [
+                        button([button.ghost(), button.small()], [
+                          html.text("View"),
                         ]),
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("Edit"),
-                          ]),
+                        button([button.ghost(), button.small()], [
+                          html.text("Edit"),
                         ]),
                       ]),
                     ]),
