@@ -8,9 +8,9 @@
 
 There are a lot of framework-agnostic UI Libraries out there. [DaisyUI](https://daisyui.com/), [Oat](https://oat.ink/), [Basecoat](https://basecoatui.com/), [Bootstrap](https://getbootstrap.com/), ...
 
-Framework-agnostic in this case means that they are not tied to a particular JavaScript Framework ([React](https://react.dev/), [Vue](https://vuejs.org/), [Svelte](https://svelte.dev/), ...), such as [shadcn/ui](https://ui.shadcn.com/), [Vuetify](https://vuetifyjs.com/en/) or [Skeleton](https://www.skeleton.dev/). Instead, they are "purely" CSS and vanilla JavaScript.
+Framework-agnostic in this case means that they are not tied to a particular JavaScript Framework ([React](https://react.dev/), [Vue](https://vuejs.org/), [Svelte](https://svelte.dev/), ...), such as [shadcn/ui](https://ui.shadcn.com/), [Vuetify](https://vuetifyjs.com/en/) or [Skeleton](https://www.skeleton.dev/). Instead, they are purely CSS and vanilla JavaScript.
 
-These framework-agnostic UI Libraries are already relatively low friction to get started with. Meaning that they are mostly "just" css classes and some custom data attributes. However I think providing dedicated APIs in Gleam for things like theming and constructing the elements with best practices has a lot of benefits as you build more complex interfaces.
+These framework-agnostic UI Libraries are already relatively low friction to get started with. Meaning that they are mostly just css classes and some custom data attributes. However I think providing dedicated APIs in Gleam for things like theming and constructing the elements with best practices has a lot of benefits as you build more complex interfaces.
 
 I do not have a personal preference for [Oat](https://oat.ink/) or [Basecoat](https://basecoatui.com/). I picked them, because I was familiar with both of them. I am sure there are plenty of other libraries out there. Feel free to fork, contribute or do whatever with this code!
 
