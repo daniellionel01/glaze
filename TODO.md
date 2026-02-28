@@ -1,0 +1,54 @@
+# TODO
+
+## Oak
+- [x] install lustre
+- [x] gleam toml
+- [x] setup dev module
+- [x] Add light dark mode toggle to dev module demo
+- [x] think about toast javascript (ffi? use @target? does it still compile to erlang?)
+- [x] oat components
+  - [x] typography
+  - [x] alert
+  - [x] accordion
+  - [x] badge
+  - [x] breadcrumb
+  - [x] button
+  - [x] card
+  - [x] dialog
+  - [x] dropdown
+  - [x] form elements
+  - [x] meter
+  - [x] pagination
+  - [x] progress
+  - [x] spinner
+  - [x] skeleton
+  - [x] sidebar
+  - [x] switch
+  - [x] table
+  - [x] tabs
+  - [x] tooltip
+  - [x] toast
+- [ ] refine theme api
+- [ ] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
+- [ ] hexdocs -> setup pages (link oak components docs)
+- [ ] link oak component in gleam function documentation
+- [ ] more extensive documentation
+- [ ] examples / server side
+- [ ] examples / client side
+- [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
+- [ ] Document latest supported version
+- [ ] notification if new oat version drops?
+- [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
+- [ ] README.md
+
+## Basecoat
+- [x] install lustre
+- [x] gleam toml
+- [ ] setup dev module
+- [ ] hexdocs -> setup pages (link basecoat components docs)
+- [ ] link basecoat component in gleam function documentation
+- [ ] examples / server side
+- [ ] examples / client side
+- [ ] Migrate Basecoat Kitchensink to Glaze (https://basecoatui.com/kitchen-sink/)
+- [ ] Document latest supported version
+- [ ] README.md
