@@ -148,11 +148,8 @@ pub fn page() {
                   ],
                 ),
               ]),
-              html.button(
-                [
-                  attribute("data-tooltip", "Refresh data now"),
-                  attribute.class("small"),
-                ],
+              button(
+                [attribute("data-tooltip", "Refresh data now"), button.small()],
                 [html.text(" ↻ Refresh ")],
               ),
             ]),
@@ -702,16 +699,12 @@ pub fn page() {
                       ]),
                     ]),
                     html.td([], [
-                      html.menu([attribute.class("buttons")], [
-                        html.li([], [
-                          button([button.ghost(), button.small()], [
-                            html.text("View"),
-                          ]),
+                      button.group([], [
+                        button([button.ghost(), button.small()], [
+                          html.text("View"),
                         ]),
-                        html.li([], [
-                          button([button.ghost(), button.small()], [
-                            html.text("Edit"),
-                          ]),
+                        button([button.ghost(), button.small()], [
+                          html.text("Edit"),
                         ]),
                       ]),
                     ]),
@@ -762,16 +755,12 @@ pub fn page() {
                       ]),
                     ]),
                     html.td([], [
-                      html.menu([attribute.class("buttons")], [
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("View"),
-                          ]),
+                      button.group([], [
+                        button([button.ghost(), button.small()], [
+                          html.text("View"),
                         ]),
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("Edit"),
-                          ]),
+                        button([button.ghost(), button.small()], [
+                          html.text("Edit"),
                         ]),
                       ]),
                     ]),
@@ -794,23 +783,20 @@ pub fn page() {
                       ]),
                     ]),
                     html.td([], [
-                      html.menu([attribute.class("buttons")], [
-                        html.li([], [
-                          html.button([attribute.class("ghost small")], [
-                            html.text("View"),
-                          ]),
+                      button.group([], [
+                        button([button.ghost(), button.small()], [
+                          html.text("View"),
                         ]),
-                        html.li([], [
-                          html.button(
-                            [
-                              attribute("data-variant", "danger"),
-                              attribute("command", "show-modal"),
-                              attribute("commandfor", "delete-dialog"),
-                              attribute.class("ghost small"),
-                            ],
-                            [html.text("Delete")],
-                          ),
-                        ]),
+                        button(
+                          [
+                            button.danger(),
+                            button.ghost(),
+                            button.small(),
+                            attribute("command", "show-modal"),
+                            attribute("commandfor", "delete-dialog"),
+                          ],
+                          [html.text("Delete")],
+                        ),
                       ]),
                     ]),
                   ]),
@@ -826,35 +812,16 @@ pub fn page() {
                 html.small([attribute.class("text-light")], [
                   html.text("Showing 1–5 of 243"),
                 ]),
-                html.menu([attribute.class("buttons")], [
-                  html.li([], [
-                    html.button(
-                      [
-                        attribute.disabled(True),
-                        attribute.class("outline small"),
-                      ],
-                      [html.text("← Prev")],
-                    ),
-                  ]),
-                  html.li([], [
-                    html.button([attribute.class("outline small")], [
-                      html.text("1"),
-                    ]),
-                  ]),
-                  html.li([], [
-                    html.button([attribute.class("outline small")], [
-                      html.text("2"),
-                    ]),
-                  ]),
-                  html.li([], [
-                    html.button([attribute.class("outline small")], [
-                      html.text("3"),
-                    ]),
-                  ]),
-                  html.li([], [
-                    html.button([attribute.class("outline small")], [
-                      html.text("Next →"),
-                    ]),
+                button.group([], [
+                  button(
+                    [attribute.disabled(True), button.outline(), button.small()],
+                    [html.text("← Prev")],
+                  ),
+                  button([button.outline(), button.small()], [html.text("1")]),
+                  button([button.outline(), button.small()], [html.text("2")]),
+                  button([button.outline(), button.small()], [html.text("3")]),
+                  button([button.outline(), button.small()], [
+                    html.text("Next →"),
                   ]),
                 ]),
               ],
@@ -878,22 +845,18 @@ pub fn page() {
                   ]),
                 ]),
                 html.footer([], [
-                  html.button(
+                  button(
                     [
-                      attribute.class("outline"),
+                      button.outline(),
                       attribute("command", "close"),
                       attribute("commandfor", "delete-dialog"),
                       attribute.type_("button"),
                     ],
                     [html.text("Cancel")],
                   ),
-                  html.button(
-                    [
-                      attribute.value("confirm"),
-                      attribute("data-variant", "danger"),
-                    ],
-                    [html.text("Delete Order")],
-                  ),
+                  button([attribute.value("confirm"), button.danger()], [
+                    html.text("Delete Order"),
+                  ]),
                 ]),
               ]),
             ],
@@ -937,45 +900,46 @@ pub fn page() {
                 html.hr([]),
                 html.h4([], [html.text("Toast Notifications")]),
                 html.div([attribute.class("hstack mt-4")], [
-                  html.button(
+                  button(
                     [
+                      button.small(),
                       attribute(
                         "onclick",
                         "ot.toast('Deployment completed.', 'Success', { variant: 'success' })",
                       ),
-                      attribute.class("small"),
                     ],
                     [html.text("Success toast")],
                   ),
-                  html.button(
+                  button(
                     [
+                      button.small(),
+                      button.outline(),
                       attribute(
                         "onclick",
                         "ot.toast('Disk usage at 89%.', 'Warning', { variant: 'warning', placement: 'top-left' })",
                       ),
-                      attribute.class("small outline"),
                     ],
                     [html.text("Warning toast")],
                   ),
-                  html.button(
+                  button(
                     [
+                      button.small(),
+                      button.danger(),
                       attribute(
                         "onclick",
                         "ot.toast('Connection lost.', 'Error', { variant: 'danger', placement: 'bottom-right' })",
                       ),
-                      attribute("data-variant", "danger"),
-                      attribute.class("small"),
                     ],
                     [html.text("Error toast")],
                   ),
-                  html.button(
+                  button(
                     [
+                      button.small(),
+                      button.secondary(),
                       attribute(
                         "onclick",
                         "ot.toast('Build #1847 started.', 'Info')",
                       ),
-                      attribute("data-variant", "secondary"),
-                      attribute.class("small"),
                     ],
                     [html.text("Info toast")],
                   ),
@@ -1233,10 +1197,9 @@ pub fn page() {
                       attribute.placeholder("yoursite.com"),
                       attribute.type_("url"),
                     ]),
-                    html.button(
-                      [attribute.class("outline"), attribute.type_("button")],
-                      [html.text("Verify")],
-                    ),
+                    button([button.outline(), attribute.type_("button")], [
+                      html.text("Verify"),
+                    ]),
                   ],
                 ),
                 html.fieldset([attribute.class("mt-4")], [
@@ -1306,19 +1269,14 @@ pub fn page() {
                   ]),
                 ]),
                 html.footer([attribute.class("hstack mt-6")], [
-                  html.button([attribute.type_("submit")], [
+                  button([attribute.type_("submit")], [
                     html.text("Save Changes"),
                   ]),
-                  html.button(
-                    [attribute.class("outline"), attribute.type_("button")],
-                    [html.text("Cancel")],
-                  ),
-                  html.button(
-                    [
-                      attribute("data-variant", "danger"),
-                      attribute.class("ghost"),
-                      attribute.type_("button"),
-                    ],
+                  button([button.outline(), attribute.type_("button")], [
+                    html.text("Cancel"),
+                  ]),
+                  button(
+                    [button.danger(), button.ghost(), attribute.type_("button")],
                     [html.text("Delete Account")],
                   ),
                 ]),
