@@ -49,6 +49,7 @@
 ////   ])
 //// }
 //// ```
+////
 
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
@@ -60,6 +61,7 @@ import lustre/element/html
 ///
 /// - `<nav aria-label="breadcrumb">`
 /// - inner ordered list `<ol>` containing breadcrumb items
+///
 pub fn breadcrumb(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -80,6 +82,7 @@ pub fn breadcrumb(
 ///
 /// Use this when you want a custom separator glyph or icon.
 /// For accessibility, separators are hidden from assistive tech.
+///
 pub fn separator(
   attributes: List(Attribute(msg)),
   content: Element(msg),
@@ -95,11 +98,13 @@ pub fn separator(
 }
 
 /// Render a `/` separator.
+///
 pub fn slash(attributes: List(Attribute(msg))) -> Element(msg) {
   separator(attributes, html.text("/"))
 }
 
 /// Render a `>` separator.
+///
 pub fn chevron(attributes: List(Attribute(msg))) -> Element(msg) {
   separator(attributes, html.text(">"))
 }
@@ -113,6 +118,7 @@ pub fn chevron(attributes: List(Attribute(msg))) -> Element(msg) {
 /// - `aria-current="page"`
 ///
 /// Use this for the last breadcrumb segment.
+///
 pub fn current(
   attributes: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -132,6 +138,7 @@ pub fn current(
 ///
 /// This wraps an anchor in a list item so it participates correctly in the
 /// ordered breadcrumb structure.
+///
 pub fn link(attrs: List(Attribute(msg)), children: List(Element(msg))) {
   html.li([], [html.a([attribute.class("unstyled"), ..attrs], children)])
 }
