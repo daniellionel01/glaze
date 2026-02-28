@@ -143,7 +143,7 @@ fn variant_to_string(variant: Variant) -> String {
   }
 }
 
-/// Oat documentation: https://oat.ink/components/#alert
+/// Oat documentation: https://oat.ink/components/alert
 ///
 pub fn alert(
   variant: Variant,

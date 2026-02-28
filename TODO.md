@@ -12,6 +12,10 @@
 - [ ] Document latest supported version
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
 - [ ] README.md
+- [ ] oat components
+  - [ ] typography
+  - [ ] accordion
+  - [x] alert
 
 ## Basecoat
 - [x] install lustre
