@@ -136,7 +136,7 @@ pub type Variant {
 
 fn variant_to_string(variant: Variant) -> String {
   case variant {
-    Default -> "default"
+    Default -> ""
     Success -> "success"
     Warning -> "warning"
     Error -> "error"
@@ -150,12 +150,11 @@ pub fn alert(
   attrs: List(Attribute(a)),
   children: List(Element(a)),
 ) -> Element(a) {
-  html.div(
-    [
-      attribute.role("alert"),
-      attribute.data("variant", variant_to_string(variant)),
-      ..attrs
-    ],
-    children,
-  )
+  // In case the variant is `Default` we do not want the `data-variant` attribute set at all
+  // to avoid the borderless css that it in the `alert.css` (https://github.com/knadh/oat/blob/master/src/css/alert.css)
+  let attrs = case variant {
+    Default -> attrs
+    _ -> [attribute.data("variant", variant_to_string(variant)), ..attrs]
+  }
+  html.div([attribute.role("alert"), ..attrs], children)
 }
