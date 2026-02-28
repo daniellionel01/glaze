@@ -1,4 +1,4 @@
-//// Theme tokens and <style> generation for Oat UI.
+//// Theme tokens and \<style\> generation for Oat UI.
 ////
 //// ### Example
 ////

@@ -8,13 +8,24 @@
 //// Use [`busy`](#busy) for accessibility state and one of the size helpers to
 //// control presentation.
 ////
-//// ## Recipe
+//// ## Recipes
 ////
 //// ```gleam
 //// import glaze_oat/spinner
 //// import lustre/element/html
 ////
 //// html.div([spinner.busy(), spinner.size(spinner.Large)], [])
+//// ```
+////
+//// ```gleam
+//// import glaze_oat/spinner
+//// import lustre/attribute
+//// import lustre/element/html
+////
+//// html.div([attribute.class("relative")], [
+////   html.div([], [html.text("Loading profile...")]),
+////   html.div([spinner.busy(), spinner.size_overlay(spinner.Small)], []),
+//// ])
 //// ```
 ////
 //// ## References
