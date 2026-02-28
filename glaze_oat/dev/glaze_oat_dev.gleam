@@ -1,6 +1,8 @@
 import glaze_oat
+import glaze_oat/accordion.{accordion}
 import glaze_oat/alert.{alert}
 import glaze_oat/badge.{badge}
+import glaze_oat/breadcrumb.{breadcrumb}
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -153,6 +155,19 @@ pub fn page() {
             ]),
           ]),
         ]),
+
+        breadcrumb([], [
+          breadcrumb.link([attribute.href("#")], [html.text("Home")]),
+          breadcrumb.slash([]),
+          breadcrumb.link([attribute.href("#")], [html.text("Projects")]),
+          breadcrumb.slash([]),
+          breadcrumb.link([attribute.href("#")], [html.text("Oat Docs")]),
+          breadcrumb.slash([]),
+          breadcrumb.link([attribute.href("#")], [
+            html.strong([], [html.text("Breadcrumb")]),
+          ]),
+        ]),
+
         html.section([attribute.class("section")], [
           html.div([attribute.class("row")], [
             html.div([attribute.class("col-3")], [
@@ -981,86 +996,95 @@ pub fn page() {
             html.div([attribute.class("col-6")], [
               html.article([attribute.class("card")], [
                 html.header([], [html.h3([], [html.text("FAQ")])]),
-                html.details([attribute.name("faq")], [
-                  html.summary([], [html.text("How do I reset my password?")]),
-                  html.p([], [
-                    html.text("Navigate to "),
-                    html.strong([], [html.text("Settings → Security")]),
-                    html.text(" and click "),
-                    html.em([], [html.text("\"Reset password\"")]),
-                    html.text(
-                      ". You'll receive a confirmation email with a link.",
+                accordion(html.div, [], [
+                  accordion.group("faq", [
+                    accordion.item(
+                      label: html.text("How do I reset my password?"),
+                      content: [
+                        html.p([], [
+                          html.text("Navigate to "),
+                          html.strong([], [html.text("Settings → Security")]),
+                          html.text(" and click "),
+                          html.em([], [html.text("\"Reset password\"")]),
+                          html.text(
+                            ". You'll receive a confirmation email with a link.",
+                          ),
+                        ]),
+                        html.blockquote([], [
+                          html.text("Note: Password reset links expire after "),
+                          html.mark([], [html.text("24 hours")]),
+                          html.text("."),
+                        ]),
+                      ],
                     ),
-                  ]),
-                  html.blockquote([], [
-                    html.text("Note: Password reset links expire after "),
-                    html.mark([], [html.text("24 hours")]),
-                    html.text("."),
-                  ]),
-                ]),
-                html.details([attribute.name("faq")], [
-                  html.summary([], [
-                    html.text("What export formats are supported?"),
-                  ]),
-                  html.p([], [html.text("We support the following formats:")]),
-                  html.ul([], [
-                    html.li([], [
-                      html.code([], [html.text("CSV")]),
-                      html.text(" — Comma-separated values"),
-                    ]),
-                    html.li([], [
-                      html.code([], [html.text("JSON")]),
-                      html.text(" — JavaScript Object Notation"),
-                    ]),
-                    html.li([], [
-                      html.code([], [html.text("XLSX")]),
-                      html.text(" — Microsoft Excel"),
-                    ]),
-                  ]),
-                ]),
-                html.details([attribute.name("faq")], [
-                  html.summary([], [html.text("How is billing calculated?")]),
-                  html.p([], [
-                    html.text("Billing is based on "),
-                    html.strong([], [html.text("active users")]),
-                    html.text(" per month:"),
-                  ]),
-                  html.ol([], [
-                    html.li([], [
-                      html.text("Base plan includes up to "),
-                      html.mark([], [html.text("50 users")]),
-                    ]),
-                    html.li([], [
-                      html.text("Each additional user is "),
-                      html.code([], [html.text("$2/month")]),
-                    ]),
-                    html.li([], [
-                      html.text("Enterprise pricing available on request"),
-                    ]),
-                  ]),
-                ]),
-                html.details([attribute.name("faq")], [
-                  html.summary([], [
-                    html.text("Can I integrate with third-party services?"),
-                  ]),
-                  html.p([], [
-                    html.text("Yes! We offer integrations via our "),
-                    html.strong([], [html.text("REST API")]),
-                    html.text(" and "),
-                    html.em([], [html.text("webhooks")]),
-                    html.text(". See the "),
-                    html.a([attribute.href("#")], [
-                      html.text("API documentation"),
-                    ]),
-                    html.text(" for details."),
-                  ]),
-                  html.pre([], [
-                    html.code([], [
-                      html.text(
-                        "curl -X POST https://api.example.com/webhooks \\
-      -H \"Authorization: Bearer TOKEN\"",
+                    accordion.item(
+                      label: html.text("What export formats are supported?"),
+                      content: [
+                        html.p([], [
+                          html.text("Navigate to "),
+                          html.strong([], [html.text("Settings → Security")]),
+                          html.text(" and click "),
+                          html.em([], [html.text("\"Reset password\"")]),
+                          html.text(
+                            ". You'll receive a confirmation email with a link.",
+                          ),
+                        ]),
+                        html.blockquote([], [
+                          html.text("Note: Password reset links expire after "),
+                          html.mark([], [html.text("24 hours")]),
+                          html.text("."),
+                        ]),
+                      ],
+                    ),
+                    accordion.item(
+                      label: html.text("How is billing calculated?"),
+                      content: [
+                        html.p([], [
+                          html.text("Billing is based on "),
+                          html.strong([], [html.text("active users")]),
+                          html.text(" per month:"),
+                        ]),
+                        html.ol([], [
+                          html.li([], [
+                            html.text("Base plan includes up to "),
+                            html.mark([], [html.text("50 users")]),
+                          ]),
+                          html.li([], [
+                            html.text("Each additional user is "),
+                            html.code([], [html.text("$2/month")]),
+                          ]),
+                          html.li([], [
+                            html.text("Enterprise pricing available on request"),
+                          ]),
+                        ]),
+                      ],
+                    ),
+                    accordion.item(
+                      label: html.text(
+                        "Can I integrate with third-party services?",
                       ),
-                    ]),
+                      content: [
+                        html.p([], [
+                          html.text("Yes! We offer integrations via our "),
+                          html.strong([], [html.text("REST API")]),
+                          html.text(" and "),
+                          html.em([], [html.text("webhooks")]),
+                          html.text(". See the "),
+                          html.a([attribute.href("#")], [
+                            html.text("API documentation"),
+                          ]),
+                          html.text(" for details."),
+                        ]),
+                        html.pre([], [
+                          html.code([], [
+                            html.text(
+                              "curl -X POST https://api.example.com/webhooks \\
+                              -H \"Authorization: Bearer TOKEN\"",
+                            ),
+                          ]),
+                        ]),
+                      ],
+                    ),
                   ]),
                 ]),
               ]),

@@ -22,6 +22,18 @@ pub fn head(version: String, theme: Theme) -> Element(a) {
       ],
       "",
     ),
+    html.style(
+      [],
+      "
+      @layer utilities {
+        :is(ul, ol, a).unstyled {
+          list-style: none;
+          text-decoration: none;
+          padding: 0;
+        }
+      }
+    ",
+    ),
     theme_to_css_style_tag(theme),
   ])
 }
