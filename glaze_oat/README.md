@@ -6,19 +6,20 @@
 
 ## Getting Started
 
-**Step 1**
+### Step 1: Installation
+
 ```sh
 gleam add glaze_oat@1
 ```
 
-**Step 2**
-Register `<style>` and `<script>` tags:
+### Step 2: Register `<style>` and `<script>` tags
 
 ```gleam
 glaze_oat.register(glaze_oat.version)
 ```
 
-**Step 3**
+### Step 3: Register your theme
+
 ```gleam
 let my_theme = glaze_oat.default_theme()
 theme.style_tag(my_theme)
