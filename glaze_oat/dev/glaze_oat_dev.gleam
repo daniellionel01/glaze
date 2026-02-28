@@ -1,4 +1,6 @@
 import glaze_oat
+import glaze_oat/alert.{alert}
+import glaze_oat/badge.{badge}
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -92,10 +94,8 @@ pub fn page() {
           html.div([attribute.class("hstack justify-between mb-6")], [
             html.div([attribute.class("hstack")], [
               html.h2([attribute("style", "margin: 0;")], [html.text("Demo")]),
-              html.span([attribute.class("badge success")], [html.text("Live")]),
-              html.span([attribute.class("badge secondary")], [
-                html.text("v1.0.0"),
-              ]),
+              badge([badge.success()], [html.text("Live")]),
+              badge([badge.secondary()], [html.text("v1.0.0")]),
             ]),
             html.div([attribute.class("hstack")], [
               html.button(
@@ -165,9 +165,7 @@ pub fn page() {
                     html.text("$42,128"),
                   ]),
                   html.small([attribute.class("text-light")], [
-                    html.span([attribute.class("badge success")], [
-                      html.text("+12.5%"),
-                    ]),
+                    badge([badge.success()], [html.text("+12.5%")]),
                     html.text(" vs last month"),
                   ]),
                 ]),
@@ -187,9 +185,7 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("stat-value")], [html.text("2,847")]),
                   html.small([attribute.class("text-light")], [
-                    html.span([attribute.class("badge warning")], [
-                      html.text("-3.2%"),
-                    ]),
+                    badge([badge.warning()], [html.text("-3.2%")]),
                     html.text(" vs last month"),
                   ]),
                 ]),
@@ -209,9 +205,7 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("stat-value")], [html.text("3.24%")]),
                   html.small([attribute.class("text-light")], [
-                    html.span([attribute.class("badge success")], [
-                      html.text("+0.8%"),
-                    ]),
+                    badge([badge.success()], [html.text("+0.8%")]),
                     html.text(" vs last month"),
                   ]),
                 ]),
@@ -240,7 +234,9 @@ pub fn page() {
                     html.text("99.99%"),
                   ]),
                   html.small([attribute.class("text-light")], [
-                    html.span([attribute.class("badge")], [html.text("Healthy")]),
+                    badge([], [
+                      html.text("Healthy"),
+                    ]),
                   ]),
                 ]),
                 html.footer([], [
@@ -383,7 +379,7 @@ pub fn page() {
                         html.td([], [html.text("Page views")]),
                         html.td([], [html.text("1,234,567")]),
                         html.td([], [
-                          html.span([attribute.class("badge success")], [
+                          badge([badge.success()], [
                             html.text("+8%"),
                           ]),
                         ]),
@@ -392,7 +388,7 @@ pub fn page() {
                         html.td([], [html.text("Bounce rate")]),
                         html.td([], [html.text("42.3%")]),
                         html.td([], [
-                          html.span([attribute.class("badge danger")], [
+                          badge([badge.danger()], [
                             html.text("+2.1%"),
                           ]),
                         ]),
@@ -401,7 +397,7 @@ pub fn page() {
                         html.td([], [html.text("Avg session")]),
                         html.td([], [html.text("4m 12s")]),
                         html.td([], [
-                          html.span([attribute.class("badge success")], [
+                          badge([badge.success()], [
                             html.text("+15s"),
                           ]),
                         ]),
@@ -421,7 +417,7 @@ pub fn page() {
                 html.div([attribute.class("vstack gap-4")], [
                   html.div([attribute.class("activity-item")], [
                     html.div([attribute.class("hstack")], [
-                      html.span([attribute.class("badge success")], [
+                      badge([badge.success()], [
                         html.text("Deploy"),
                       ]),
                       html.strong([], [html.text("Production deploy #1847")]),
@@ -433,7 +429,7 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("activity-item")], [
                     html.div([attribute.class("hstack")], [
-                      html.span([attribute.class("badge warning")], [
+                      badge([badge.warning()], [
                         html.text("Alert"),
                       ]),
                       html.strong([], [
@@ -447,7 +443,9 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("activity-item")], [
                     html.div([attribute.class("hstack")], [
-                      html.span([attribute.class("badge")], [html.text("Merge")]),
+                      badge([], [
+                        html.text("Merge"),
+                      ]),
                       html.strong([], [
                         html.text("PR #392: Update auth middleware"),
                       ]),
@@ -459,7 +457,7 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("activity-item")], [
                     html.div([attribute.class("hstack")], [
-                      html.span([attribute.class("badge danger")], [
+                      badge([badge.danger()], [
                         html.text("Incident"),
                       ]),
                       html.strong([], [
@@ -472,7 +470,7 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("activity-item")], [
                     html.div([attribute.class("hstack")], [
-                      html.span([attribute.class("badge secondary")], [
+                      badge([badge.secondary()], [
                         html.text("Config"),
                       ]),
                       html.strong([], [html.text("Updated rate limits")]),
@@ -504,7 +502,7 @@ pub fn page() {
                   html.div([], [
                     html.div([attribute.class("hstack justify-between")], [
                       html.strong([], [html.text("CPU Usage")]),
-                      html.span([attribute.class("badge success")], [
+                      badge([badge.success()], [
                         html.text("Normal"),
                       ]),
                     ]),
@@ -519,7 +517,7 @@ pub fn page() {
                   html.div([], [
                     html.div([attribute.class("hstack justify-between")], [
                       html.strong([], [html.text("Memory")]),
-                      html.span([attribute.class("badge warning")], [
+                      badge([badge.warning()], [
                         html.text("High"),
                       ]),
                     ]),
@@ -534,7 +532,7 @@ pub fn page() {
                   html.div([], [
                     html.div([attribute.class("hstack justify-between")], [
                       html.strong([], [html.text("Disk I/O")]),
-                      html.span([attribute.class("badge success")], [
+                      badge([badge.success()], [
                         html.text("Normal"),
                       ]),
                     ]),
@@ -659,7 +657,7 @@ pub fn page() {
                     html.td([], [html.text("Alice Johnson")]),
                     html.td([], [html.text("$249.00")]),
                     html.td([], [
-                      html.span([attribute.class("badge success")], [
+                      badge([badge.success()], [
                         html.text("Delivered"),
                       ]),
                     ]),
@@ -691,7 +689,7 @@ pub fn page() {
                     html.td([], [html.text("Bob Chen")]),
                     html.td([], [html.text("$1,450.00")]),
                     html.td([], [
-                      html.span([attribute.class("badge warning")], [
+                      badge([badge.warning()], [
                         html.text("Pending"),
                       ]),
                     ]),
@@ -723,7 +721,7 @@ pub fn page() {
                     html.td([], [html.text("Carol Davis")]),
                     html.td([], [html.text("$89.50")]),
                     html.td([], [
-                      html.span([attribute.class("badge")], [
+                      badge([], [
                         html.text("Processing"),
                       ]),
                     ]),
@@ -755,7 +753,7 @@ pub fn page() {
                     html.td([], [html.text("David Park")]),
                     html.td([], [html.text("$672.00")]),
                     html.td([], [
-                      html.span([attribute.class("badge outline")], [
+                      badge([badge.outline()], [
                         html.text("Shipped"),
                       ]),
                     ]),
@@ -787,7 +785,7 @@ pub fn page() {
                     html.td([], [html.text("Emma Wilson")]),
                     html.td([], [html.text("$34.99")]),
                     html.td([], [
-                      html.span([attribute.class("badge danger")], [
+                      badge([badge.danger()], [
                         html.text("Cancelled"),
                       ]),
                     ]),
@@ -904,25 +902,33 @@ pub fn page() {
                 html.header([], [
                   html.h3([], [html.text("System Notifications")]),
                 ]),
-                glaze_oat.alert(glaze_oat.Default, [attribute.class("mb-4")], [
-                  html.strong([], [html.text("Info:")]),
-                  html.text(
-                    " System maintenance scheduled for Sunday 2:00 AM UTC. ",
-                  ),
+                alert([attribute.class("mb-4")], [
+                  alert.title([], [html.text("Info:")]),
+                  alert.message([], [
+                    html.text(
+                      " System maintenance scheduled for Sunday 2:00 AM UTC.",
+                    ),
+                  ]),
                 ]),
-                glaze_oat.alert(glaze_oat.Success, [attribute.class("mb-4")], [
-                  html.strong([], [html.text("Success:")]),
-                  html.text(" All backups completed successfully. "),
+                alert([alert.success(), attribute.class("mb-4")], [
+                  alert.title([], [html.text("Success:")]),
+                  alert.message([], [
+                    html.text(" All backups completed successfully. "),
+                  ]),
                 ]),
-                glaze_oat.alert(glaze_oat.Warning, [attribute.class("mb-4")], [
-                  html.strong([], [html.text("Warning:")]),
-                  html.text(" SSL certificate expires in 7 days. "),
+                alert([alert.warning(), attribute.class("mb-4")], [
+                  alert.title([], [html.text("Warning:")]),
+                  alert.message([], [
+                    html.text(" SSL certificate expires in 7 days. "),
+                  ]),
                 ]),
-                glaze_oat.alert(glaze_oat.Error, [attribute.class("mb-4")], [
-                  html.strong([], [html.text("Error:")]),
-                  html.text(
-                    " Payment gateway timeout — 3 transactions affected. ",
-                  ),
+                alert([alert.error(), attribute.class("mb-4")], [
+                  alert.title([], [html.text("Error:")]),
+                  alert.message([], [
+                    html.text(
+                      " Payment gateway timeout — 3 transactions affected. ",
+                    ),
+                  ]),
                 ]),
                 html.hr([]),
                 html.h4([], [html.text("Toast Notifications")]),

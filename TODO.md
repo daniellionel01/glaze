@@ -4,20 +4,23 @@
 - [x] install lustre
 - [x] gleam toml
 - [x] setup dev module
+- [x] Add light dark mode toggle to dev module demo
 - [ ] expand themes customization (own module): https://github.com/knadh/oat/blob/master/src/css/01-theme.css
 - [ ] hexdocs -> setup pages (link oak components docs)
 - [ ] link oak component in gleam function documentation
 - [ ] examples / server side
 - [ ] examples / client side
 - [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
-- [ ] Add light dark mode toggle to dev module demo
 - [ ] Document latest supported version
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
 - [ ] README.md
 - [ ] oat components
-  - [ ] typography
+  - [x] typography
+  - [ ] alert
   - [ ] accordion
-  - [x] alert
+  - [ ] badge
+  - [ ] breadcrumb
+  - [ ] button
 
 ## Basecoat
 - [x] install lustre
