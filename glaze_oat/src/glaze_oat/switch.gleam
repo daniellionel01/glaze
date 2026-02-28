@@ -1,4 +1,29 @@
-//// Oat documentation: https://oat.ink/components/switch/
+//// Oat documentation: <https://oat.ink/components/switch/>
+////
+//// Switch helpers for binary on/off controls.
+////
+//// ## Anatomy
+////
+//// A switch UI is usually a checkbox input rendered with `role="switch"` and a
+//// nearby label.
+////
+//// ## Recipe
+////
+//// ```gleam
+//// import glaze_oat/switch
+//// import lustre/attribute
+//// import lustre/element/html
+////
+//// switch.label([], [
+////   switch.switch([attribute.checked(True)]),
+////   html.text("Enable notifications"),
+//// ])
+//// ```
+////
+//// ## References
+////
+//// - MDN ARIA `switch` role:
+////   <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

@@ -29,6 +29,8 @@ open oat.html
 
 I think [Basecoat](https://basecoatui.com/) and [DaisyUI](https://daisyui.com/) are great candidates for this repo!
 
+[Oat](https://oak.ink/) also has [extensions](https://oat.ink/extensions/), which could be interesting to include in this library.
+
 ## Inspiration
 
 Most of this API was inspired by [Lustre UI](https://github.com/lustre-labs/ui) and [shadcn/ui](https://ui.shadcn.com/).

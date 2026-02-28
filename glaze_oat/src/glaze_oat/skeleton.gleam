@@ -1,4 +1,28 @@
-//// Oat documentation: https://oat.ink/components/skeleton/
+//// Oat documentation: <https://oat.ink/components/skeleton/>
+////
+//// Skeleton placeholders for loading layouts.
+////
+//// ## Anatomy
+////
+//// Use [`line`](#line) for text placeholders and [`box`](#box) for block
+//// placeholders. Both are convenience helpers built on [`skeleton`](#skeleton).
+////
+//// ## Recipe
+////
+//// ```gleam
+//// import glaze_oat/skeleton
+////
+//// [
+////   skeleton.line([]),
+////   skeleton.line([]),
+////   skeleton.box([]),
+//// ]
+//// ```
+////
+//// ## References
+////
+//// - MDN ARIA `status` role:
+////   <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

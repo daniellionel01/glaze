@@ -28,27 +28,13 @@
   - [x] tabs
   - [x] tooltip
   - [x] toast
-- [ ] refine theme api
-- [ ] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
-- [ ] hexdocs -> setup pages (link oak components docs)
-- [ ] link oak component in gleam function documentation
-- [ ] more extensive documentation
-- [ ] examples / server side
-- [ ] examples / client side
-- [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
-- [ ] Document latest supported version
+- [x] refine theme api
+- [x] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
+- [x] hexdocs -> setup pages (link oak components docs)
+- [x] link oak component in gleam function documentation
+- [x] more extensive documentation
+- [x] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
+- [x] Document latest supported version
+- [x] README.md
 - [ ] notification if new oat version drops?
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
-- [ ] README.md
-
-## Basecoat
-- [x] install lustre
-- [x] gleam toml
-- [ ] setup dev module
-- [ ] hexdocs -> setup pages (link basecoat components docs)
-- [ ] link basecoat component in gleam function documentation
-- [ ] examples / server side
-- [ ] examples / client side
-- [ ] Migrate Basecoat Kitchensink to Glaze (https://basecoatui.com/kitchen-sink/)
-- [ ] Document latest supported version
-- [ ] README.md

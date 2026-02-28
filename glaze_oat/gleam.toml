@@ -5,6 +5,10 @@ description = "🍩 Lustre Bindings to Oat UI Components"
 licences = ["MIT"]
 repository = { type = "github", user = "daniellionel01", repo = "glaze" }
 
+links = [
+  { title = "Oat", href = "https://oat.ink/" },
+]
+
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"
 lustre = ">= 5.6.0 and < 6.0.0"

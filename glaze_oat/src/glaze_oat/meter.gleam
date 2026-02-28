@@ -1,4 +1,32 @@
-//// Oat documentation: https://oat.ink/components/meter/
+//// Oat documentation: <https://oat.ink/components/meter/>
+////
+//// Meter helpers for scalar values within a known range.
+////
+//// ## Anatomy
+////
+//// Use [`meter`](#meter) with [`value`](#value), [`min`](#min), and [`max`](#max)
+//// to represent measurements such as usage, score, or temperature. Optional
+//// [`low`](#low), [`high`](#high), and [`optimum`](#optimum) set qualitative
+//// thresholds.
+////
+//// ## Recipe
+////
+//// ```gleam
+//// import glaze_oat/meter
+////
+//// meter.meter([
+////   meter.value_int(68),
+////   meter.min_int(0),
+////   meter.max_int(100),
+////   meter.low_int(30),
+////   meter.high_int(80),
+////   meter.optimum_int(70),
+//// ])
+//// ```
+////
+//// ## References
+////
+//// - MDN `<meter>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter>
 
 import gleam/float
 import gleam/int

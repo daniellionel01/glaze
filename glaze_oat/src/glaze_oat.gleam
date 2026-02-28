@@ -1,11 +1,10 @@
-import glaze_oat/theme.{type Theme, theme_to_css_style_tag}
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
 pub const version = "0.4.1"
 
-pub fn head(version: String, theme: Theme) -> Element(a) {
+pub fn register(version: String) -> Element(a) {
   element.fragment([
     html.link([
       attribute.rel("stylesheet"),
@@ -22,6 +21,7 @@ pub fn head(version: String, theme: Theme) -> Element(a) {
       ],
       "",
     ),
+    // Workaround until new version of Oat UI is released, since current documentation is out of date with version on unpkg.com
     html.style(
       [],
       "
@@ -34,6 +34,5 @@ pub fn head(version: String, theme: Theme) -> Element(a) {
       }
     ",
     ),
-    theme_to_css_style_tag(theme),
   ])
 }
