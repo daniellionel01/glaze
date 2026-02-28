@@ -6,7 +6,7 @@ import glaze_oat/breadcrumb.{breadcrumb}
 import glaze_oat/button.{button}
 import glaze_oat/card.{card}
 import glaze_oat/dialog.{dialog}
-import glaze_oat/dropdown
+import glaze_oat/dropdown.{dropdown}
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -138,7 +138,7 @@ pub fn page() {
                   html.text(" Auto-refresh "),
                 ],
               ),
-              dropdown.dropdown([], [
+              dropdown([], [
                 button(
                   [
                     button.outline(),

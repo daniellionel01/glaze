@@ -26,7 +26,7 @@
   - [x] breadcrumb
   - [x] button
   - [x] card
-  - [ ] dialog
+  - [x] dialog
   - [ ] dropdown
   - [ ] form elements
   - [ ] meter
