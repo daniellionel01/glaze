@@ -1364,65 +1364,6 @@ pub fn page() {
             ]),
           ]),
         ]),
-
-        html.section([attribute.class("section mt-6")], [
-          html.div([attribute("data-sidebar-layout", "")], [
-            html.aside([attribute("data-sidebar", "")], [
-              html.nav([], [
-                html.ul([], [
-                  html.li([], [
-                    html.a(
-                      [
-                        attribute("aria-current", "page"),
-                        attribute.href("#sidebar"),
-                      ],
-                      [html.text("Home")],
-                    ),
-                  ]),
-                  html.li([], [
-                    html.a([attribute.href("#sidebar")], [html.text("Users")]),
-                  ]),
-                  html.li([], [
-                    html.details([attribute("open", "")], [
-                      html.summary([], [html.text("Settings")]),
-                      html.ul([], [
-                        html.li([], [
-                          html.a([attribute.href("#sidebar")], [
-                            html.text("General"),
-                          ]),
-                        ]),
-                        html.li([], [
-                          html.a([attribute.href("#sidebar")], [
-                            html.text("Security"),
-                          ]),
-                        ]),
-                        html.li([], [
-                          html.a([attribute.href("#sidebar")], [
-                            html.text("Billing"),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                ]),
-              ]),
-              html.footer([], [
-                html.button(
-                  [
-                    attribute("style", "width: 100%;"),
-                    attribute.class("outline"),
-                  ],
-                  [html.text("Logout")],
-                ),
-              ]),
-            ]),
-            html.main([], [
-              html.div([attribute("style", "padding: var(--space-3)")], [
-                html.text("Main content area. Scrolls with the page body."),
-              ]),
-            ]),
-          ]),
-        ]),
       ]),
     ]),
   ])
