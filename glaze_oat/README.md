@@ -3,6 +3,11 @@
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
 
+This is a collection of components mapped 1:1 from [Oat UI](https://oat.ink/).
+
+It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_elements.asp), is very small (~8KB CSS and JS) and themable.
+
+For a full list of components, take a look at <https://hexdocs.pm/glaze_oat> or <https://oat.ink/components/>
 
 ## Getting Started
 
@@ -47,6 +52,10 @@ pub fn layout() {
 ```
 
 You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
+
+## Theming
+
+
 
 ### FAQs
 

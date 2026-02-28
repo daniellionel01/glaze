@@ -48,7 +48,7 @@ pub fn page() {
       html.title([], "Glaze / Oat UI"),
 
       glaze_oat.register(glaze_oat.version),
-      theme.style_tag(theme.default_theme),
+      theme.style_tag(theme.default_theme()),
 
       html.style(
         [],
