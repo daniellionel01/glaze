@@ -1,6 +1,7 @@
 import gleam/int
 
 pub type Variant {
+  Info
   Success
   Danger
   Warning
@@ -8,6 +9,7 @@ pub type Variant {
 
 fn variant_to_string(variant: Variant) -> String {
   case variant {
+    Info -> "info"
     Success -> "success"
     Danger -> "danger"
     Warning -> "warning"

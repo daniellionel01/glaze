@@ -32,14 +32,12 @@ import simplifile
 /// - https://github.com/knadh/oat/blob/master/docs/templates/demo.html
 ///
 pub fn page() {
-  // ot.toast('Settings saved!', 'Success', { variant: 'success' });
   let settings_saved_toast_javascript =
     toast.toast_eval_string(
       "Settings saved!",
       "Success",
       toast.default_options(toast.Success),
     )
-  echo settings_saved_toast_javascript
 
   html.html([attribute("lang", "en")], [
     html.head([], [
@@ -995,7 +993,11 @@ pub fn page() {
                         button.small(),
                         attribute(
                           "onclick",
-                          "ot.toast('Deployment completed.', 'Success', { variant: 'success' })",
+                          toast.toast_eval_string(
+                            "Deployment completed.",
+                            "Success",
+                            toast.default_options(toast.Success),
+                          ),
                         ),
                       ],
                       [html.text("Success toast")],
@@ -1006,7 +1008,12 @@ pub fn page() {
                         button.outline(),
                         attribute(
                           "onclick",
-                          "ot.toast('Disk usage at 89%.', 'Warning', { variant: 'warning', placement: 'top-left' })",
+                          toast.toast_eval_string(
+                            "Disk usage at 89%",
+                            "Warning",
+                            toast.default_options(toast.Warning)
+                              |> toast.with_placement(toast.TopLeft),
+                          ),
                         ),
                       ],
                       [html.text("Warning toast")],
@@ -1017,7 +1024,12 @@ pub fn page() {
                         button.danger(),
                         attribute(
                           "onclick",
-                          "ot.toast('Connection lost.', 'Error', { variant: 'danger', placement: 'bottom-right' })",
+                          toast.toast_eval_string(
+                            "Connection lost.",
+                            "Error",
+                            toast.default_options(toast.Danger)
+                              |> toast.with_placement(toast.BottomRight),
+                          ),
                         ),
                       ],
                       [html.text("Error toast")],
@@ -1028,7 +1040,11 @@ pub fn page() {
                         button.secondary(),
                         attribute(
                           "onclick",
-                          "ot.toast('Build #1847 started.', 'Info')",
+                          toast.toast_eval_string(
+                            "Build #1847 started.",
+                            "Info",
+                            toast.default_options(toast.Info),
+                          ),
                         ),
                       ],
                       [html.text("Info toast")],
