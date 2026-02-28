@@ -9,6 +9,8 @@
 - [ ] examples / server side
 - [ ] examples / client side
 - [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
+- [ ] Document latest supported version
+- [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
 
 ## Basecoat
 - [x] install lustre
@@ -19,3 +21,4 @@
 - [ ] examples / server side
 - [ ] examples / client side
 - [ ] Migrate Basecoat Kitchensink to Glaze (https://basecoatui.com/kitchen-sink/)
+- [ ] Document latest supported version
