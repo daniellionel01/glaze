@@ -14,10 +14,13 @@ import glaze_oat/progress.{progress}
 import glaze_oat/sidebar
 import glaze_oat/skeleton
 import glaze_oat/spinner
+import glaze_oat/switch.{switch}
+import glaze_oat/table
+import glaze_oat/tabs
 import glaze_oat/theme
 import gleam/list
 import lustre/attribute.{attribute}
-import lustre/element.{element}
+import lustre/element
 import lustre/element/html
 import simplifile
 
@@ -183,16 +186,14 @@ pub fn page() {
                   ]),
                 ]),
 
-                html.label(
+                switch.label(
                   [
                     attribute("style", "margin: 0;"),
                     attribute.class("hstack gap-2"),
                   ],
                   [
-                    html.input([
+                    switch([
                       attribute.checked(True),
-                      attribute.role("switch"),
-                      attribute.type_("checkbox"),
                     ]),
                     html.text(" Auto-refresh "),
                   ],
@@ -347,13 +348,13 @@ pub fn page() {
           ]),
           html.section([attribute.class("section")], [
             card([], [
-              element("ot-tabs", [], [
-                html.div([attribute.role("tablist")], [
-                  button([attribute.role("tab")], [html.text("Overview")]),
-                  button([attribute.role("tab")], [html.text("Performance")]),
-                  button([attribute.role("tab")], [html.text("Reports")]),
+              tabs.tabs([], [
+                tabs.tablist([], [
+                  tabs.tab([], [html.text("Overview")]),
+                  tabs.tab([], [html.text("Performance")]),
+                  tabs.tab([], [html.text("Reports")]),
                 ]),
-                html.div([attribute.role("tabpanel")], [
+                tabs.tabpanel([], [
                   html.h4([], [html.text("Weekly Traffic")]),
                   html.div([attribute.class("faux-bar-chart")], [
                     html.div(
@@ -419,7 +420,7 @@ pub fn page() {
                     ),
                   ]),
                 ]),
-                html.div([attribute.role("tabpanel")], [
+                tabs.tabpanel([], [
                   html.article(
                     [
                       spinner.size_overlay(spinner.Large),
@@ -452,40 +453,40 @@ pub fn page() {
                     ],
                   ),
                 ]),
-                html.div([attribute.role("tabpanel")], [
+                tabs.tabpanel([], [
                   html.h4([], [html.text("Monthly Summary")]),
-                  html.div([attribute.class("table")], [
-                    html.table([], [
-                      html.thead([], [
-                        html.tr([], [
-                          html.th([], [html.text("Metric")]),
-                          html.th([], [html.text("Value")]),
-                          html.th([], [html.text("Change")]),
+                  table.container([], [
+                    table.table([], [
+                      table.thead([], [
+                        table.tr([], [
+                          table.th([], [html.text("Metric")]),
+                          table.th([], [html.text("Value")]),
+                          table.th([], [html.text("Change")]),
                         ]),
                       ]),
-                      html.tbody([], [
-                        html.tr([], [
-                          html.td([], [html.text("Page views")]),
-                          html.td([], [html.text("1,234,567")]),
-                          html.td([], [
+                      table.tbody([], [
+                        table.tr([], [
+                          table.td([], [html.text("Page views")]),
+                          table.td([], [html.text("1,234,567")]),
+                          table.td([], [
                             badge([badge.success()], [
                               html.text("+8%"),
                             ]),
                           ]),
                         ]),
-                        html.tr([], [
-                          html.td([], [html.text("Bounce rate")]),
-                          html.td([], [html.text("42.3%")]),
-                          html.td([], [
+                        table.tr([], [
+                          table.td([], [html.text("Bounce rate")]),
+                          table.td([], [html.text("42.3%")]),
+                          table.td([], [
                             badge([badge.danger()], [
                               html.text("+2.1%"),
                             ]),
                           ]),
                         ]),
-                        html.tr([], [
-                          html.td([], [html.text("Avg session")]),
-                          html.td([], [html.text("4m 12s")]),
-                          html.td([], [
+                        table.tr([], [
+                          table.td([], [html.text("Avg session")]),
+                          table.td([], [html.text("4m 12s")]),
+                          table.td([], [
                             badge([badge.success()], [
                               html.text("+15s"),
                             ]),
@@ -704,11 +705,11 @@ pub fn page() {
                   ]),
                 ]),
               ]),
-              html.div([attribute.class("table")], [
-                html.table([], [
-                  html.thead([], [
-                    html.tr([], [
-                      html.th([], [
+              table.container([], [
+                table.table([], [
+                  table.thead([], [
+                    table.tr([], [
+                      table.th([], [
                         html.label([], [
                           html.input([
                             attribute("aria-label", "Select all"),
@@ -716,16 +717,16 @@ pub fn page() {
                           ]),
                         ]),
                       ]),
-                      html.th([], [html.text("Order")]),
-                      html.th([], [html.text("Customer")]),
-                      html.th([], [html.text("Amount")]),
-                      html.th([], [html.text("Status")]),
-                      html.th([], [html.text("Actions")]),
+                      table.th([], [html.text("Order")]),
+                      table.th([], [html.text("Customer")]),
+                      table.th([], [html.text("Amount")]),
+                      table.th([], [html.text("Status")]),
+                      table.th([], [html.text("Actions")]),
                     ]),
                   ]),
-                  html.tbody([], [
-                    html.tr([], [
-                      html.td([], [
+                  table.tbody([], [
+                    table.tr([], [
+                      table.td([], [
                         html.label([], [
                           html.input([
                             attribute("aria-label", "Select order"),
@@ -733,15 +734,15 @@ pub fn page() {
                           ]),
                         ]),
                       ]),
-                      html.td([], [html.code([], [html.text("#ORD-7291")])]),
-                      html.td([], [html.text("Alice Johnson")]),
-                      html.td([], [html.text("$249.00")]),
-                      html.td([], [
+                      table.td([], [html.code([], [html.text("#ORD-7291")])]),
+                      table.td([], [html.text("Alice Johnson")]),
+                      table.td([], [html.text("$249.00")]),
+                      table.td([], [
                         badge([badge.success()], [
                           html.text("Delivered"),
                         ]),
                       ]),
-                      html.td([], [
+                      table.td([], [
                         button.group([], [
                           button([button.ghost(), button.small()], [
                             html.text("View"),
@@ -752,8 +753,8 @@ pub fn page() {
                         ]),
                       ]),
                     ]),
-                    html.tr([], [
-                      html.td([], [
+                    table.tr([], [
+                      table.td([], [
                         html.label([], [
                           html.input([
                             attribute("aria-label", "Select order"),
@@ -761,15 +762,15 @@ pub fn page() {
                           ]),
                         ]),
                       ]),
-                      html.td([], [html.code([], [html.text("#ORD-7292")])]),
-                      html.td([], [html.text("Bob Chen")]),
-                      html.td([], [html.text("$1,450.00")]),
-                      html.td([], [
+                      table.td([], [html.code([], [html.text("#ORD-7292")])]),
+                      table.td([], [html.text("Bob Chen")]),
+                      table.td([], [html.text("$1,450.00")]),
+                      table.td([], [
                         badge([badge.warning()], [
                           html.text("Pending"),
                         ]),
                       ]),
-                      html.td([], [
+                      table.td([], [
                         button.group([], [
                           button([button.ghost(), button.small()], [
                             html.text("View"),
@@ -780,8 +781,8 @@ pub fn page() {
                         ]),
                       ]),
                     ]),
-                    html.tr([], [
-                      html.td([], [
+                    table.tr([], [
+                      table.td([], [
                         html.label([], [
                           html.input([
                             attribute("aria-label", "Select order"),
@@ -789,15 +790,15 @@ pub fn page() {
                           ]),
                         ]),
                       ]),
-                      html.td([], [html.code([], [html.text("#ORD-7293")])]),
-                      html.td([], [html.text("Carol Davis")]),
-                      html.td([], [html.text("$89.50")]),
-                      html.td([], [
+                      table.td([], [html.code([], [html.text("#ORD-7293")])]),
+                      table.td([], [html.text("Carol Davis")]),
+                      table.td([], [html.text("$89.50")]),
+                      table.td([], [
                         badge([], [
                           html.text("Processing"),
                         ]),
                       ]),
-                      html.td([], [
+                      table.td([], [
                         button.group([], [
                           button([button.ghost(), button.small()], [
                             html.text("View"),
@@ -808,8 +809,8 @@ pub fn page() {
                         ]),
                       ]),
                     ]),
-                    html.tr([], [
-                      html.td([], [
+                    table.tr([], [
+                      table.td([], [
                         html.label([], [
                           html.input([
                             attribute("aria-label", "Select order"),
@@ -817,15 +818,15 @@ pub fn page() {
                           ]),
                         ]),
                       ]),
-                      html.td([], [html.code([], [html.text("#ORD-7294")])]),
-                      html.td([], [html.text("David Park")]),
-                      html.td([], [html.text("$672.00")]),
-                      html.td([], [
+                      table.td([], [html.code([], [html.text("#ORD-7294")])]),
+                      table.td([], [html.text("David Park")]),
+                      table.td([], [html.text("$672.00")]),
+                      table.td([], [
                         badge([badge.outline()], [
                           html.text("Shipped"),
                         ]),
                       ]),
-                      html.td([], [
+                      table.td([], [
                         button.group([], [
                           button([button.ghost(), button.small()], [
                             html.text("View"),
@@ -836,8 +837,8 @@ pub fn page() {
                         ]),
                       ]),
                     ]),
-                    html.tr([], [
-                      html.td([], [
+                    table.tr([], [
+                      table.td([], [
                         html.label([], [
                           html.input([
                             attribute("aria-label", "Select order"),
@@ -845,15 +846,15 @@ pub fn page() {
                           ]),
                         ]),
                       ]),
-                      html.td([], [html.code([], [html.text("#ORD-7295")])]),
-                      html.td([], [html.text("Emma Wilson")]),
-                      html.td([], [html.text("$34.99")]),
-                      html.td([], [
+                      table.td([], [html.code([], [html.text("#ORD-7295")])]),
+                      table.td([], [html.text("Emma Wilson")]),
+                      table.td([], [html.text("$34.99")]),
+                      table.td([], [
                         badge([badge.danger()], [
                           html.text("Cancelled"),
                         ]),
                       ]),
-                      html.td([], [
+                      table.td([], [
                         button.group([], [
                           button([button.ghost(), button.small()], [
                             html.text("View"),

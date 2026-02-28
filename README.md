@@ -1,12 +1,9 @@
 # 🍩 Glaze
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
-- [glaze_basecoat](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat)
 - [glaze_oat](https://github.com/daniellionel01/glaze/tree/main/glaze_oat)
 
 <br />
-
-**Basecoat:** [GitHub](https://github.com/hunvreus/basecoat), [Website](https://basecoatui.com/)
 
 **Oat:** [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
 
@@ -18,19 +15,11 @@ Framework-agnostic in this case means that they are not tied to a particular Jav
 
 These framework-agnostic UI Libraries are already relatively low friction to get started with. Meaning that they are mostly just css classes and some custom data attributes. However I think providing dedicated APIs in Gleam for things like theming and constructing the elements with best practices has a lot of benefits as you build more complex interfaces.
 
-I do not have a personal preference for [Oat](https://oat.ink/) or [Basecoat](https://basecoatui.com/). I picked them, because I was familiar with both of them. I am sure there are plenty of other libraries out there. Feel free to fork, contribute or do whatever with this code!
-
 ## Development
 
-For both packages, there is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
+In each package, there is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
 
 ```sh
-cd glaze_basecoat
-gleam dev
-open basecoat.html
-
-# or
-
 cd glaze_oat
 gleam dev
 open oat.html
@@ -38,7 +27,7 @@ open oat.html
 
 ## Future Work
 
-I think [DaisyUI](https://daisyui.com/) is a great candidate for this repo!
+I think [Basecoat](https://basecoatui.com/) and [DaisyUI](https://daisyui.com/) are great candidates for this repo!
 
 ## Inspiration
 
