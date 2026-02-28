@@ -5,11 +5,22 @@ import lustre/element.{type Element}
 import lustre/element/html
 
 pub fn dialog(
-  name: String,
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.dialog([attribute.id(name), ..attrs], children)
+  html.dialog(attrs, children)
+}
+
+pub fn id(name: String) -> Attribute(msg) {
+  attribute.id(name)
+}
+
+pub fn open_for(name: String) -> List(Attribute(msg)) {
+  [attribute("commandfor", name), attribute("command", "show-modal")]
+}
+
+pub fn close_for(name: String) -> List(Attribute(msg)) {
+  [attribute("commandfor", name), attribute("command", "close")]
 }
 
 pub fn form(
@@ -21,6 +32,14 @@ pub fn form(
 
 pub fn closed_by_any() -> Attribute(msg) {
   attribute("closedby", "any")
+}
+
+pub fn closed_by_none() -> Attribute(msg) {
+  attribute("closedby", "none")
+}
+
+pub fn closed_by_close_request() -> Attribute(msg) {
+  attribute("closedby", "closerequest")
 }
 
 pub fn header(

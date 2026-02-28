@@ -104,19 +104,15 @@ pub fn page() {
               badge([badge.secondary()], [html.text("v1.0.0")]),
             ]),
             html.div([attribute.class("hstack")], [
-              button.open_dialog(
-                "dialog",
-                [
-                  button.small(),
-                  button.outline(),
-                ],
+              button(
+                [button.small(), button.outline(), ..dialog.open_for("dialog")],
                 [html.text("Open Dialog")],
               ),
-              dialog("dialog", [dialog.closed_by_any()], [
+              dialog([dialog.id("dialog"), dialog.closed_by_any()], [
                 dialog.header([], [html.h3([], [html.text("Title")])]),
                 html.p([], [html.text("Lorem Ipsum!")]),
                 dialog.footer([], [
-                  button.close_dialog("dialog", [], [html.text("close")]),
+                  button(dialog.close_for("dialog"), [html.text("close")]),
                 ]),
               ]),
 
@@ -806,8 +802,7 @@ pub fn page() {
                             button.danger(),
                             button.ghost(),
                             button.small(),
-                            attribute("command", "show-modal"),
-                            attribute("commandfor", "delete-dialog"),
+                            ..dialog.open_for("delete-dialog")
                           ],
                           [html.text("Delete")],
                         ),
@@ -862,9 +857,8 @@ pub fn page() {
                   button(
                     [
                       button.outline(),
-                      attribute("command", "close"),
-                      attribute("commandfor", "delete-dialog"),
                       attribute.type_("button"),
+                      ..dialog.close_for("delete-dialog")
                     ],
                     [html.text("Cancel")],
                   ),
