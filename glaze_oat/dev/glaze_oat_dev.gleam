@@ -1305,25 +1305,10 @@ pub fn page() {
         ]),
         html.section([attribute.class("section mt-6")], [
           html.h3([], [html.text("Sidebar")]),
-          sidebar.sidebar_always(card, [], [
-            sidebar.topnav(
-              [
-                attribute.class("hstack justify-between"),
-                attribute(
-                  "style",
-                  "padding: var(--space-3); border-bottom: 1px solid var(--border);",
-                ),
-              ],
-              [
-                sidebar.toggle([button.outline(), button.small()], [
-                  html.text("☰"),
-                ]),
-                html.strong([], [html.text("Acme Console")]),
-              ],
-            ),
-            sidebar.aside([attribute("style", "padding: var(--space-3);")], [
-              html.nav([], [
-                html.ul([attribute.class("unstyled vstack gap-2")], [
+          sidebar.sidebar(html.div, [], [
+            sidebar.aside([], [
+              sidebar.nav([], [
+                html.ul([], [
                   html.li([], [
                     html.a(
                       [
@@ -1362,22 +1347,78 @@ pub fn page() {
                   ]),
                 ]),
               ]),
-              html.footer([attribute.class("mt-4")], [
-                button(
+              html.footer([], [
+                html.button(
                   [
-                    button.outline(),
-                    button.small(),
                     attribute("style", "width: 100%;"),
+                    attribute.class("outline"),
                   ],
                   [html.text("Logout")],
                 ),
               ]),
             ]),
-            html.main([attribute("style", "padding: var(--space-4);")], [
-              html.p([], [
-                html.text(
-                  "Main content area. Scrolls with page content while the sidebar remains pinned.",
+            html.main([], [
+              html.div([attribute("style", "padding: var(--space-3)")], [
+                html.text("Main content area. Scrolls with the page body."),
+              ]),
+            ]),
+          ]),
+        ]),
+
+        html.section([attribute.class("section mt-6")], [
+          html.div([attribute("data-sidebar-layout", "")], [
+            html.aside([attribute("data-sidebar", "")], [
+              html.nav([], [
+                html.ul([], [
+                  html.li([], [
+                    html.a(
+                      [
+                        attribute("aria-current", "page"),
+                        attribute.href("#sidebar"),
+                      ],
+                      [html.text("Home")],
+                    ),
+                  ]),
+                  html.li([], [
+                    html.a([attribute.href("#sidebar")], [html.text("Users")]),
+                  ]),
+                  html.li([], [
+                    html.details([attribute("open", "")], [
+                      html.summary([], [html.text("Settings")]),
+                      html.ul([], [
+                        html.li([], [
+                          html.a([attribute.href("#sidebar")], [
+                            html.text("General"),
+                          ]),
+                        ]),
+                        html.li([], [
+                          html.a([attribute.href("#sidebar")], [
+                            html.text("Security"),
+                          ]),
+                        ]),
+                        html.li([], [
+                          html.a([attribute.href("#sidebar")], [
+                            html.text("Billing"),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+              html.footer([], [
+                html.button(
+                  [
+                    attribute("style", "width: 100%;"),
+                    attribute.class("outline"),
+                  ],
+                  [html.text("Logout")],
                 ),
+              ]),
+            ]),
+            html.main([], [
+              html.div([attribute("style", "padding: var(--space-3)")], [
+                html.text("Main content area. Scrolls with the page body."),
               ]),
             ]),
           ]),
