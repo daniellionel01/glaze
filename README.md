@@ -26,7 +26,9 @@ For both packages, there is a `dev` module, that constructs a Demo with all avai
 cd glaze_basecoat
 gleam dev
 open basecoat.html
+
 # or
+
 cd glaze_oat
 gleam dev
 open oat.html
