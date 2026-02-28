@@ -21,7 +21,7 @@
   - [x] accordion
   - [x] badge
   - [x] breadcrumb
-  - [ ] button
+  - [x] button
   - [ ] card
   - [ ] dialog
   - [ ] dropdown
