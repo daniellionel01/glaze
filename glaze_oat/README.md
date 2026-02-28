@@ -48,9 +48,17 @@ pub fn layout() {
 
 You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
 
-## Tailwind?
+### FAQs
+
+### Tailwind?
 
 [Oat](https://oat.ink/) does not use or need [Tailwind](https://tailwindcss.com/). However it does not clash with it in anyway, so you can use it along this library with no problems!
+
+### Client vs Server?
+
+This library constructs HTML elements the same way on the client or on the server, so it is compatible in both environments.
+
+The only exception is the [toast](./src/glaze_oat/toast.gleam) component. In the browser, it uses FFI to call the `ot.toast` function directly, but on Erlang, it generates a javascript string, that you can embed into your html directly (f.e. via `onclick` or in a `<script>` tag).
 
 ## Development
 
