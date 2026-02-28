@@ -36,6 +36,10 @@ pub fn layout() {
 
 You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
 
+## Tailwind?
+
+[Oat](https://oat.ink/) does not use or need [Tailwind](https://tailwindcss.com/). However it does not clash with it in anyway, so you can use it along this library with no problems!
+
 ## Development
 
 There is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
