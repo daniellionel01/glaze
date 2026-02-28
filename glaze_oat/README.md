@@ -6,11 +6,23 @@
 ```sh
 gleam add glaze_oat@1
 ```
+
+## Getting Started
+
+```gleam
+
 ```gleam
 import glaze_oat
 
-pub fn main() -> Nil {
-  // TODO: An example of the project in use
+pub fn layout() {
+  html.html([
+    html.head([
+      
+    ]),
+    html.body([
+      // ...
+    ])
+  ])
 }
 ```
 
@@ -18,7 +30,9 @@ Further documentation can be found at <https://hexdocs.pm/glaze_oat>.
 
 ## Development
 
+There is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
+
 ```sh
-gleam run   # Run the project
-gleam test  # Run the tests
+gleam dev
+open oat.html
 ```

@@ -69,7 +69,7 @@ pub const default_theme = LightDarkTheme(
   ),
 )
 
-pub fn theme_to_css_style_tag(theme: Theme) -> element.Element(a) {
+pub fn style_tag(theme: Theme) -> element.Element(a) {
   case theme {
     SingleTheme(_) -> {
       html.style([], ":root { " <> theme_to_css_variables(theme) <> "}")

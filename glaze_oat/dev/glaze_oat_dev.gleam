@@ -45,9 +45,10 @@ pub fn page() {
         attribute.name("viewport"),
         attribute.content("width=device-width, initial-scale=1"),
       ]),
-      html.title([], "glaze_oat_dev"),
+      html.title([], "Glaze / Oat UI"),
 
-      glaze_oat.head(glaze_oat.version, theme.default_theme),
+      glaze_oat.register(glaze_oat.version),
+      theme.style_tag(theme.default_theme),
 
       html.style(
         [],
