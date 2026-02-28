@@ -34,7 +34,7 @@ pub fn layout() {
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/glaze_oat>.
+You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
 
 ## Development
 
