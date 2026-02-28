@@ -33,8 +33,6 @@ import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render the pagination navigation container.
-///
 pub fn pagination(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -44,8 +42,6 @@ pub fn pagination(
   ])
 }
 
-/// Render a regular page link.
-///
 pub fn page_link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

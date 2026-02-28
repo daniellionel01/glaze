@@ -29,14 +29,10 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a switch input.
-///
 pub fn switch(attrs: List(Attribute(msg))) -> Element(msg) {
   html.input([attribute.type_("checkbox"), attribute.role("switch"), ..attrs])
 }
 
-/// Render a label for switch content.
-///
 pub fn label(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

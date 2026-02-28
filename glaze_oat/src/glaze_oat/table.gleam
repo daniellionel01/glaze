@@ -44,8 +44,6 @@ pub fn container(
   html.div([attribute.class("table"), ..attrs], children)
 }
 
-/// Render a table element.
-///
 pub fn table(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

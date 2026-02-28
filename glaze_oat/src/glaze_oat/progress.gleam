@@ -28,14 +28,10 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a progress element.
-///
 pub fn progress(attrs: List(Attribute(msg))) -> Element(msg) {
   html.progress(attrs, [])
 }
 
-/// Set the current progress value.
-///
 pub fn value(amount: String) -> Attribute(msg) {
   attribute.value(amount)
 }
@@ -48,8 +44,6 @@ pub fn value_float(amount: Float) -> Attribute(msg) {
   value(float.to_string(amount))
 }
 
-/// Set the maximum progress value.
-///
 pub fn max(amount: String) -> Attribute(msg) {
   attribute.max(amount)
 }

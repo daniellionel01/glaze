@@ -34,14 +34,10 @@ import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a meter element.
-///
 pub fn meter(attrs: List(Attribute(msg))) -> Element(msg) {
   html.meter(attrs, [])
 }
 
-/// Set the current meter value.
-///
 pub fn value(amount: String) -> Attribute(msg) {
   attribute.value(amount)
 }
@@ -54,8 +50,6 @@ pub fn value_float(amount: Float) -> Attribute(msg) {
   value(float.to_string(amount))
 }
 
-/// Set the lower bound.
-///
 pub fn min(amount: String) -> Attribute(msg) {
   attribute.min(amount)
 }
@@ -68,8 +62,6 @@ pub fn min_float(amount: Float) -> Attribute(msg) {
   min(float.to_string(amount))
 }
 
-/// Set the upper bound.
-///
 pub fn max(amount: String) -> Attribute(msg) {
   attribute.max(amount)
 }
@@ -82,8 +74,6 @@ pub fn max_float(amount: Float) -> Attribute(msg) {
   max(float.to_string(amount))
 }
 
-/// Set the low threshold.
-///
 pub fn low(amount: String) -> Attribute(msg) {
   attribute("low", amount)
 }
@@ -96,8 +86,6 @@ pub fn low_float(amount: Float) -> Attribute(msg) {
   low(float.to_string(amount))
 }
 
-/// Set the high threshold.
-///
 pub fn high(amount: String) -> Attribute(msg) {
   attribute("high", amount)
 }
@@ -110,8 +98,6 @@ pub fn high_float(amount: Float) -> Attribute(msg) {
   high(float.to_string(amount))
 }
 
-/// Set the optimum value.
-///
 pub fn optimum(amount: String) -> Attribute(msg) {
   attribute("optimum", amount)
 }

@@ -29,6 +29,8 @@ import lustre/element/html
 
 /// Render a responsive sidebar layout wrapper.
 ///
+/// Use this for layouts that collapse to a toggleable sidebar on small screens.
+///
 pub fn sidebar(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attrs: List(Attribute(msg)),
@@ -39,6 +41,8 @@ pub fn sidebar(
 
 /// Render a sidebar layout that is always visible.
 ///
+/// Use this for desktop-first layouts where the sidebar should never collapse.
+///
 pub fn sidebar_always(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attrs: List(Attribute(msg)),
@@ -47,8 +51,6 @@ pub fn sidebar_always(
   element([attribute("data-sidebar-layout", "always"), ..attrs], children)
 }
 
-/// Render a sidebar toggle control.
-///
 pub fn toggle(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -56,8 +58,6 @@ pub fn toggle(
   html.button([attribute("data-sidebar-toggle", ""), ..attrs], children)
 }
 
-/// Render navigation content.
-///
 pub fn nav(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -65,8 +65,6 @@ pub fn nav(
   html.nav(attrs, children)
 }
 
-/// Render top navigation content.
-///
 pub fn topnav(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -74,8 +72,6 @@ pub fn topnav(
   html.nav([attribute("data-topnav", ""), ..attrs], children)
 }
 
-/// Render the sidebar panel.
-///
 pub fn aside(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
