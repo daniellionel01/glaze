@@ -132,6 +132,7 @@ pub type Variant {
   Success
   Warning
   Error
+  Danger
 }
 
 fn variant_to_string(variant: Variant) -> String {
@@ -140,6 +141,7 @@ fn variant_to_string(variant: Variant) -> String {
     Success -> "success"
     Warning -> "warning"
     Error -> "error"
+    Danger -> "danger"
   }
 }
 
