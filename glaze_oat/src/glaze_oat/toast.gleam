@@ -7,7 +7,7 @@ pub type Variant {
   Warning
 }
 
-fn variant_to_string(variant: Variant) -> String {
+pub fn variant_to_string(variant: Variant) -> String {
   case variant {
     Info -> "info"
     Success -> "success"
@@ -25,7 +25,7 @@ pub type Placement {
   BottomCenter
 }
 
-fn placement_to_string(placement: Placement) -> String {
+pub fn placement_to_string(placement: Placement) -> String {
   case placement {
     TopRight -> "top-right"
     TopLeft -> "top-left"
