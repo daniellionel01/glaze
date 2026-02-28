@@ -16,9 +16,7 @@ I do not have a personal preference for [Oat](https://oat.ink/) or [Basecoat](ht
 
 ## Future Work
 
-I think [DaisyUI](https://daisyui.com/) is a great candidate for this!
-
-If anyone knows 
+I think [DaisyUI](https://daisyui.com/) is a great candidate for this repo!
 
 ## Inspiration
 
