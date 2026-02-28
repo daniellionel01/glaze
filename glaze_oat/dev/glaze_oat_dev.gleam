@@ -18,8 +18,7 @@ pub fn page() {
       ]),
       html.title([], "glaze_oat_dev"),
 
-      glaze_oat.stylesheet(glaze_oat.version),
-      glaze_oat.script(glaze_oat.version),
+      glaze_oat.setup(glaze_oat.version, glaze_oat.default_theme),
 
       html.style(
         [],
