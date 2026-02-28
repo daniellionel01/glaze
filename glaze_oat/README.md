@@ -55,6 +55,8 @@ pub fn layout() {
 
 You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
 
+Take a look at the [dev module](./dev/glaze_oat_dev.gleam) for a kitchen sink of all components and how you might use them!
+
 ## FAQs
 
 ### Tailwind?

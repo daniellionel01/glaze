@@ -28,9 +28,9 @@
   - [x] tabs
   - [x] tooltip
   - [x] toast
-- [ ] refine theme api
-- [ ] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
-- [ ] hexdocs -> setup pages (link oak components docs)
+- [x] refine theme api
+- [x] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
+- [x] hexdocs -> setup pages (link oak components docs)
 - [ ] link oak component in gleam function documentation
 - [ ] more extensive documentation
 - [ ] examples / server side
