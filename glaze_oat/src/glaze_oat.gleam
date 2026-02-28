@@ -1,3 +1,4 @@
+import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
@@ -79,68 +80,30 @@ pub fn theme_to_css(theme: Theme) -> String {
     ring: ring,
   ) = theme
 
-  "--background: "
-  <> background
-  <> ";\n"
-  <> "--foreground: "
-  <> foreground
-  <> ";\n"
-  <> "--card: "
-  <> card
-  <> ";\n"
-  <> "--card-foreground: "
-  <> card_foreground
-  <> ";\n"
-  <> "--primary: "
-  <> primary
-  <> ";\n"
-  <> "--primary-foreground: "
-  <> primary_foreground
-  <> ";\n"
-  <> "--secondary: "
-  <> secondary
-  <> ";\n"
-  <> "--secondary-foreground: "
-  <> secondary_foreground
-  <> ";\n"
-  <> "--muted: "
-  <> muted
-  <> ";\n"
-  <> "--muted-foreground: "
-  <> muted_foreground
-  <> ";\n"
-  <> "--faint: "
-  <> faint
-  <> ";\n"
-  <> "--accent: "
-  <> accent
-  <> ";\n"
-  <> "--danger: "
-  <> danger
-  <> ";\n"
-  <> "--danger-foreground: "
-  <> danger_foreground
-  <> ";\n"
-  <> "--success: "
-  <> success
-  <> ";\n"
-  <> "--success-foreground: "
-  <> success_foreground
-  <> ";\n"
-  <> "--warning: "
-  <> warning
-  <> ";\n"
-  <> "--warning-foreground: "
-  <> warning_foreground
-  <> ";\n"
-  <> "--border: "
-  <> border
-  <> ";\n"
-  <> "--input: "
-  <> input
-  <> ";\n"
-  <> "--ring: "
-  <> ring
+  [
+    #("--background", background),
+    #("--foreground", foreground),
+    #("--card", card),
+    #("--card_foreground", card_foreground),
+    #("--primary", primary),
+    #("--primary_foreground", primary_foreground),
+    #("--secondary", secondary),
+    #("--secondary_foreground", secondary_foreground),
+    #("--muted", muted),
+    #("--muted_foreground", muted_foreground),
+    #("--faint", faint),
+    #("--accent", accent),
+    #("--danger", danger),
+    #("--danger_foreground", danger_foreground),
+    #("--success", success),
+    #("--success_foreground", success_foreground),
+    #("--warning", warning),
+    #("--warning_foreground", warning_foreground),
+    #("--border", border),
+    #("--input", input),
+    #("--ring", ring),
+  ]
+  |> list.fold("", fn(acc, cur) { acc <> "\n" <> cur.0 <> ": " <> cur.1 <> ";" })
 }
 
 pub fn setup(version: String, theme: Theme) {
