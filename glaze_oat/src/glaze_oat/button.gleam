@@ -1,7 +1,7 @@
 //// Oat documentation: https://oat.ink/components/button/
 
 import gleam/list
-import lustre/attribute.{type Attribute}
+import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -20,6 +20,22 @@ pub fn button(
   children: List(Element(msg)),
 ) -> Element(msg) {
   instance(html.button, attrs, children)
+}
+
+pub fn open_dialog(
+  dialog element_id: String,
+  attrs attrs: List(Attribute(msg)),
+  children children: List(Element(msg)),
+) -> Element(msg) {
+  instance(
+    html.button,
+    [
+      attribute("commandfor", element_id),
+      attribute("command", "show-modal"),
+      ..attrs
+    ],
+    children,
+  )
 }
 
 pub fn link(

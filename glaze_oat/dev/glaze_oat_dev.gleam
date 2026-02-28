@@ -5,6 +5,7 @@ import glaze_oat/badge.{badge}
 import glaze_oat/breadcrumb.{breadcrumb}
 import glaze_oat/button.{button}
 import glaze_oat/card.{card}
+import glaze_oat/dialog.{dialog}
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -102,6 +103,28 @@ pub fn page() {
               badge([badge.secondary()], [html.text("v1.0.0")]),
             ]),
             html.div([attribute.class("hstack")], [
+              button.open_dialog(
+                "dialog",
+                [
+                  button.small(),
+                  button.outline(),
+                ],
+                [html.text("Open Dialog")],
+              ),
+              dialog("dialog", [dialog.closed_by_any()], [
+                html.header([], [html.h3([], [html.text("Title")])]),
+                html.p([], [html.text("Lorem Ipsum!")]),
+                html.footer([], [
+                  button(
+                    [
+                      attribute("commandfor", "dialog"),
+                      attribute("command", "close"),
+                    ],
+                    [html.text("close")],
+                  ),
+                ]),
+              ]),
+
               button(
                 [
                   button.small(),
@@ -160,12 +183,10 @@ pub fn page() {
         breadcrumb([], [
           breadcrumb.link([attribute.href("#")], [html.text("Home")]),
           breadcrumb.slash([]),
-          breadcrumb.link([attribute.href("#")], [html.text("Projects")]),
-          breadcrumb.slash([]),
-          breadcrumb.link([attribute.href("#")], [html.text("Oat Docs")]),
+          breadcrumb.link([attribute.href("#")], [html.text("Gleam")]),
           breadcrumb.slash([]),
           breadcrumb.link([attribute.href("#")], [
-            html.strong([], [html.text("Breadcrumb")]),
+            html.strong([], [html.text("Demo")]),
           ]),
         ]),
 

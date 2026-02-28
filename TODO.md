@@ -25,7 +25,7 @@
   - [x] badge
   - [x] breadcrumb
   - [x] button
-  - [ ] card
+  - [x] card
   - [ ] dialog
   - [ ] dropdown
   - [ ] form elements
