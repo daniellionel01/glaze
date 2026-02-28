@@ -51,4 +51,5 @@
 - [ ] examples / client side
 - [ ] Migrate Basecoat Kitchensink to Glaze (https://basecoatui.com/kitchen-sink/)
 - [ ] Document latest supported version
+- [ ] notification if new basecoat version drops?
 - [ ] README.md
