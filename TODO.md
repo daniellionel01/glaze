@@ -5,6 +5,29 @@
 - [x] gleam toml
 - [x] setup dev module
 - [x] Add light dark mode toggle to dev module demo
+- [x] think about toast javascript (ffi? use @target? does it still compile to erlang?)
+- [x] oat components
+  - [x] typography
+  - [x] alert
+  - [x] accordion
+  - [x] badge
+  - [x] breadcrumb
+  - [x] button
+  - [x] card
+  - [x] dialog
+  - [x] dropdown
+  - [x] form elements
+  - [x] meter
+  - [x] pagination
+  - [x] progress
+  - [x] spinner
+  - [x] skeleton
+  - [x] sidebar
+  - [x] switch
+  - [x] table
+  - [x] tabs
+  - [x] tooltip
+  - [x] toast
 - [ ] refine theme api
 - [ ] expand themes customization: https://github.com/knadh/oat/blob/master/src/css/01-theme.css
 - [ ] hexdocs -> setup pages (link oak components docs)
@@ -16,31 +39,7 @@
 - [ ] Document latest supported version
 - [ ] notification if new oat version drops?
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
-- [ ] think about toast javascript (ffi? use @target? does it still compile to erlang?)
 - [ ] README.md
-- [ ] oat components
-  - [x] typography
-  - [x] alert
-  - [x] accordion
-  - [x] badge
-  - [x] breadcrumb
-  - [x] button
-  - [x] card
-  - [x] dialog
-  - [ ] dropdown
-  - [ ] form elements
-  - [ ] meter
-  - [ ] pagination
-  - [ ] progress
-  - [ ] spinner
-  - [ ] skeleton
-  - [ ] sidebar
-  - [ ] switch
-  - [ ] table
-  - [ ] tabs
-  - [ ] tooltip
-  - [ ] toast
-  - [ ] utilities
 
 ## Basecoat
 - [x] install lustre
