@@ -49,10 +49,9 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a badge as a `<span>`.
+/// Render a badge.
 ///
-/// This is the default badge helper and wraps [`instance`](#instance) with
-/// `html.span`.
+/// Use this for compact labels such as "New", "Beta", or status text.
 ///
 pub fn badge(
   attrs: List(Attribute(msg)),
@@ -61,10 +60,9 @@ pub fn badge(
   instance(html.span, attrs, children)
 }
 
-/// Render a badge with a custom element.
+/// Render badge styling on a custom element.
 ///
-/// Use this when you want badge styling on another semantic element such as
-/// `html.button`, `html.a`, or `html.small`.
+/// This is useful when your markup needs a different wrapper tag.
 ///
 pub fn instance(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),

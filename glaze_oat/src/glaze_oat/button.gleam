@@ -71,10 +71,9 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a group of buttons.
+/// Render buttons as an action group.
 ///
-/// Children are wrapped in `<li>` items inside a `<menu>` to keep grouped button
-/// markup semantic and consistent.
+/// Use this when actions are related and should be visually grouped.
 ///
 pub fn group(
   attrs: List(Attribute(msg)),
@@ -86,10 +85,9 @@ pub fn group(
   })
 }
 
-/// Render a standard `<button>` element with button styling.
+/// Render a button for in-page actions.
 ///
-/// This is the default helper for action buttons that update local page state,
-/// submit forms, or trigger commands.
+/// Use this for actions like submit, save, open, or confirm.
 ///
 pub fn button(
   attrs: List(Attribute(msg)),
@@ -109,9 +107,9 @@ pub fn link(
   instance(html.a, [attribute.class("button"), ..attrs], children)
 }
 
-/// Render a custom element with button semantics.
+/// Render button styling on a custom element.
 ///
-/// Adds `role="button"` and applies provided attributes and children.
+/// This is mostly useful in advanced cases.
 ///
 pub fn instance(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),

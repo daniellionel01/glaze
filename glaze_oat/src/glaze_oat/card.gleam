@@ -42,10 +42,9 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a card container as an `<article>`.
+/// Render a card container.
 ///
-/// This is the default card helper and wraps [`instance`](#instance) with
-/// `html.article`.
+/// Use this for grouped content blocks such as summaries and settings panels.
 ///
 pub fn card(
   attrs: List(Attribute(msg)),
@@ -54,9 +53,9 @@ pub fn card(
   instance(html.article, attrs, children)
 }
 
-/// Render a card using a custom container element.
+/// Render card styling on a custom container element.
 ///
-/// Use this when you need card styling on a different semantic wrapper.
+/// Use this when your layout needs a different wrapper tag.
 ///
 pub fn instance(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
@@ -66,7 +65,7 @@ pub fn instance(
   element([attribute.class("card"), ..attrs], children)
 }
 
-/// Render a card header region using `<header>`.
+/// Render the header region of a card.
 ///
 pub fn header(
   attrs: List(Attribute(msg)),
@@ -75,7 +74,7 @@ pub fn header(
   html.header(attrs, children)
 }
 
-/// Render a card content region using `<main>`.
+/// Render the main content region of a card.
 ///
 pub fn content(
   attrs: List(Attribute(msg)),
@@ -84,7 +83,7 @@ pub fn content(
   html.main(attrs, children)
 }
 
-/// Render a card footer region using `<footer>`.
+/// Render the footer region of a card.
 ///
 pub fn footer(
   attrs: List(Attribute(msg)),
