@@ -1,8 +1,38 @@
+//// Theme tokens and <style> generation for Oat UI.
+////
+//// ### Example
+////
+//// ```gleam
+//// import glaze_oat
+//// import glaze_oat/theme
+////
+//// let my_theme =
+////   theme.default_theme()
+////   |> theme.set(theme.Primary, "light-dark(#334155, #e2e8f0)")
+////   |> theme.set(theme.RadiusLarge, "0.875rem")
+////
+//// html.head([], [
+////   glaze_oat.register(glaze_oat.version),
+////   theme.style_tag(my_theme),
+//// ])
+//// ```
+////
+//// ## CSS values
+////
+//// Any valid CSS value may be used (`#hex`, `rgb()`, `var(...)`, `clamp(...)`,
+//// `light-dark(...)`, unit values such as `rem`, etc).
+////
+
 import gleam/dict
 import gleam/list
 import lustre/element
 import lustre/element/html
 
+/// A typed design token used as a key in a `Theme`.
+///
+/// Tokens are converted to CSS custom properties (for example `Background -> --background`)
+/// when rendering style output.
+///
 pub type Token {
   Background
   Foreground
@@ -68,10 +98,18 @@ pub type Token {
   ZModal
 }
 
+/// A mapping from `Token` to CSS value.
+///
 pub opaque type Theme {
   Theme(values: dict.Dict(Token, String))
 }
 
+/// Returns Oats default theme.
+///
+/// This includes sensible defaults for spacing, radius, typography, shadows, transitions, and z-index values.
+///
+/// Start with this, even if you want to later change all of the colors.
+///
 pub fn default_theme() -> Theme {
   [
     #(Background, "light-dark(#fff, #09090b)"),
@@ -146,6 +184,19 @@ pub fn default_theme() -> Theme {
   |> from_list
 }
 
+/// Construct a `Theme` from a list of token-value pairs.
+///
+/// If the same token appears multiple times, the last value overrides previous ones.
+///
+/// ### Example
+///
+/// ```gleam
+/// let t = theme.from_list([
+///   #(theme.Primary, "oklch(0.205 0 0)"),
+///   #(theme.PrimaryForeground, "oklch(0.985 0 0)"),
+/// ])
+/// ```
+///
 pub fn from_list(tokens: List(#(Token, String))) -> Theme {
   let values =
     list.fold(tokens, dict.new(), fn(acc, cur) {
@@ -155,6 +206,8 @@ pub fn from_list(tokens: List(#(Token, String))) -> Theme {
   Theme(values: values)
 }
 
+/// Convert a `Theme` into token-value pairs.
+///
 pub fn to_list(theme: Theme) -> List(#(Token, String)) {
   let Theme(values:) = theme
   dict.to_list(values)
@@ -180,6 +233,42 @@ pub fn set_many(theme: Theme, updates: List(#(Token, String))) -> Theme {
   })
 }
 
+/// Function to update all color-related tokens in one call.
+///
+/// This is useful when defining a complete palette while keeping spacing,
+/// typography, and motion defaults unchanged.
+///
+/// ### Example
+///
+/// ```gleam
+/// let palette =
+///   theme.default_theme()
+///   |> theme.set_colors(
+///     background: "light-dark(#ffffff, #09090b)",
+///     foreground: "light-dark(#09090b, #fafafa)",
+///     card: "light-dark(#ffffff, #18181b)",
+///     card_foreground: "light-dark(#09090b, #fafafa)",
+///     primary: "light-dark(#334155, #e2e8f0)",
+///     primary_foreground: "light-dark(#ffffff, #0f172a)",
+///     secondary: "light-dark(#f1f5f9, #1f2937)",
+///     secondary_foreground: "light-dark(#0f172a, #f8fafc)",
+///     muted: "light-dark(#f8fafc, #27272a)",
+///     muted_foreground: "light-dark(#64748b, #a1a1aa)",
+///     faint: "light-dark(#fafafa, #1e1e21)",
+///     faint_foreground: "light-dark(#a1a1aa, #71717a)",
+///     accent: "light-dark(#e2e8f0, #334155)",
+///     danger: "light-dark(#d32f2f, #f4807b)",
+///     danger_foreground: "light-dark(#fafafa, #18181b)",
+///     success: "light-dark(#008032, #6cc070)",
+///     success_foreground: "light-dark(#fafafa, #18181b)",
+///     warning: "light-dark(#a65b00, #f0a030)",
+///     warning_foreground: "#09090b",
+///     border: "light-dark(#d4d4d8, #52525b)",
+///     input: "light-dark(#d4d4d8, #52525b)",
+///     ring: "light-dark(#574747, #d4d4d8)",
+///   )
+/// ```
+///
 pub fn set_colors(
   on theme: Theme,
   background background: String,
@@ -231,10 +320,23 @@ pub fn set_colors(
   ])
 }
 
+/// Render a `<style>` tag that sets all CSS variables from the theme.
+///
 pub fn style_tag(theme: Theme) -> element.Element(a) {
   style_tag_with_color_scheme(theme, "light dark")
 }
 
+/// Render a `<style>` tag that sets all CSS variables from the theme with a custom `color-scheme`.
+///
+/// For a full list of options for `color_scheme` refer to https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
+///
+/// ### Example
+///
+/// ```gleam
+/// theme.style_tag_with_color_scheme(light_theme, "light")
+/// theme.style_tag_with_color_scheme(dark_theme, "dark")
+/// ```
+///
 pub fn style_tag_with_color_scheme(
   theme: Theme,
   color_scheme: String,
