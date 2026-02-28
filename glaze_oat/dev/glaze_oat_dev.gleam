@@ -6,6 +6,7 @@ import glaze_oat/breadcrumb.{breadcrumb}
 import glaze_oat/button.{button}
 import glaze_oat/card.{card}
 import glaze_oat/dialog.{dialog}
+import glaze_oat/dropdown
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -141,30 +142,27 @@ pub fn page() {
                   html.text(" Auto-refresh "),
                 ],
               ),
-              element("ot-dropdown", [], [
+              dropdown.dropdown([], [
                 button(
                   [
                     button.outline(),
                     button.small(),
-                    attribute("popovertarget", "export-menu"),
+                    dropdown.trigger_for("export-menu"),
                   ],
                   [html.text(" Export ▾ ")],
                 ),
-                html.menu(
-                  [attribute.id("export-menu"), attribute("popover", "")],
-                  [
-                    button([attribute.role("menuitem")], [
-                      html.text("Export as CSV"),
-                    ]),
-                    button([attribute.role("menuitem")], [
-                      html.text("Export as JSON"),
-                    ]),
-                    html.hr([]),
-                    button([attribute.role("menuitem")], [
-                      html.text("Print report"),
-                    ]),
-                  ],
-                ),
+                dropdown.menu("export-menu", [], [
+                  dropdown.item([], [
+                    html.text("Export as CSV"),
+                  ]),
+                  dropdown.item([], [
+                    html.text("Export as JSON"),
+                  ]),
+                  html.hr([]),
+                  dropdown.item([], [
+                    html.text("Print report"),
+                  ]),
+                ]),
               ]),
               button(
                 [attribute("data-tooltip", "Refresh data now"), button.small()],
