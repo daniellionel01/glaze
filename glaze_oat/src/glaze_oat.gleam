@@ -1,6 +1,7 @@
+import gleam/dynamic/decode
 import gleam/list
-import lustre/attribute.{attribute}
-import lustre/element
+import lustre/attribute.{type Attribute, attribute}
+import lustre/element.{type Element}
 import lustre/element/html
 
 pub const version = "0.4.1"
@@ -125,4 +126,37 @@ pub fn head(version: String, theme: Theme) {
     ),
     html.style([], theme_to_css(theme)),
   ])
+}
+
+pub type Variant {
+  Default
+  Success
+  Warning
+  Error
+}
+
+fn variant_to_string(variant: Variant) -> String {
+  case variant {
+    Default -> "default"
+    Success -> "success"
+    Warning -> "warning"
+    Error -> "error"
+  }
+}
+
+/// Oat documentation: https://oat.ink/components/#alert
+///
+pub fn alert(
+  variant: Variant,
+  attrs: List(Attribute(a)),
+  children: List(Element(a)),
+) -> Element(a) {
+  html.div(
+    [
+      attribute.role("alert"),
+      attribute.data("data-variant", variant_to_string(variant)),
+      ..attrs
+    ],
+    children,
+  )
 }

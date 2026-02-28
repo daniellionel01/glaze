@@ -881,7 +881,7 @@ pub fn page() {
                 html.header([], [
                   html.h3([], [html.text("System Notifications")]),
                 ]),
-                html.div([attribute.class("mb-4"), attribute.role("alert")], [
+                glaze_oat.alert(glaze_oat.Default, [attribute.class("mb-4")], [
                   html.strong([], [html.text("Info:")]),
                   html.text(
                     " System maintenance scheduled for Sunday 2:00 AM UTC. ",
