@@ -4,6 +4,8 @@
 - [glaze_basecoat](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat)
 - [glaze_oat](https://github.com/daniellionel01/glaze/tree/main/glaze_oat)
 
+<br />
+
 **Basecoat:** [GitHub](https://github.com/hunvreus/basecoat), [Website](https://basecoatui.com/)
 
 **Oat:** [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
