@@ -42,32 +42,34 @@ pub fn light_dark_theme(variables: Variables(#(String, String))) -> Theme {
   LightDarkTheme(variables)
 }
 
-pub const default_theme = LightDarkTheme(
-  Variables(
-    background: #("#fff", "#09090b"),
-    foreground: #("#09090b", "#fafafa"),
-    card: #("#fff", "#18181b"),
-    card_foreground: #("#09090b", "#fafafa"),
-    primary: #("#574747", "#fafafa"),
-    primary_foreground: #("#fafafa", "#18181b"),
-    secondary: #("#f4f4f5", "#27272a"),
-    secondary_foreground: #("#574747", "#fafafa"),
-    muted: #("#f4f4f5", "#27272a"),
-    muted_foreground: #("#71717a", "#a1a1aa"),
-    faint: #("#fafafa", "#1e1e21"),
-    faint_foreground: #("#a1a1aa", "#71717a"),
-    accent: #("#f4f4f5", "#27272a"),
-    danger: #("#df514c", "#f4807b"),
-    danger_foreground: #("#fafafa", "#18181b"),
-    success: #("#4caf50", "#6cc070"),
-    success_foreground: #("#fafafa", "#18181b"),
-    warning: #("#ff8c00", "#f0a030"),
-    warning_foreground: #("#09090b", "#09090b"),
-    border: #("#d4d4d8", "#52525b"),
-    input: #("#d4d4d8", "#52525b"),
-    ring: #("#574747", "#d4d4d8"),
-  ),
-)
+pub fn default_theme() -> Theme {
+  LightDarkTheme(
+    Variables(
+      background: #("#fff", "#09090b"),
+      foreground: #("#09090b", "#fafafa"),
+      card: #("#fff", "#18181b"),
+      card_foreground: #("#09090b", "#fafafa"),
+      primary: #("#574747", "#fafafa"),
+      primary_foreground: #("#fafafa", "#18181b"),
+      secondary: #("#f4f4f5", "#27272a"),
+      secondary_foreground: #("#574747", "#fafafa"),
+      muted: #("#f4f4f5", "#27272a"),
+      muted_foreground: #("#71717a", "#a1a1aa"),
+      faint: #("#fafafa", "#1e1e21"),
+      faint_foreground: #("#a1a1aa", "#71717a"),
+      accent: #("#f4f4f5", "#27272a"),
+      danger: #("#df514c", "#f4807b"),
+      danger_foreground: #("#fafafa", "#18181b"),
+      success: #("#4caf50", "#6cc070"),
+      success_foreground: #("#fafafa", "#18181b"),
+      warning: #("#ff8c00", "#f0a030"),
+      warning_foreground: #("#09090b", "#09090b"),
+      border: #("#d4d4d8", "#52525b"),
+      input: #("#d4d4d8", "#52525b"),
+      ring: #("#574747", "#d4d4d8"),
+    ),
+  )
+}
 
 pub fn style_tag(theme: Theme) -> element.Element(a) {
   case theme {

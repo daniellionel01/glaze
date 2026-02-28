@@ -3,15 +3,26 @@
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
 
+
+## Getting Started
+
+**Step 1**
 ```sh
 gleam add glaze_oat@1
 ```
 
-## Getting Started
+**Step 2**
+Register `<style>` and `<script>` tags:
 
-- **Step 1:** `glaze_oat.register(glaze_oat.version)`
-- **Step 2:** `theme.style_tag(YOUR_THEME)`
-- **Step 3:** Done!
+```gleam
+glaze_oat.register(glaze_oat.version)
+```
+
+**Step 3**
+```gleam
+let my_theme = glaze_oat.default_theme()
+theme.style_tag(my_theme)
+```
 
 In a real project this might look like this:
 
