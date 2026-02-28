@@ -14,10 +14,6 @@ These framework-agnostic UI Libraries are already relatively low friction to get
 
 I do not have a personal preference for [Oat](https://oat.ink/) or [Basecoat](https://basecoatui.com/). I picked them, because I was familiar with both of them. I am sure there are plenty of other libraries out there. Feel free to fork, contribute or do whatever with this code!
 
-## Future Work
-
-I think [DaisyUI](https://daisyui.com/) is a great candidate for this repo!
-
 ## Development
 
 For both packages, there is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
@@ -33,6 +29,10 @@ cd glaze_oat
 gleam dev
 open oat.html
 ```
+
+## Future Work
+
+I think [DaisyUI](https://daisyui.com/) is a great candidate for this repo!
 
 ## Inspiration
 
