@@ -180,6 +180,57 @@ pub fn set_many(theme: Theme, updates: List(#(Token, String))) -> Theme {
   })
 }
 
+pub fn set_colors(
+  on theme: Theme,
+  background background: String,
+  foreground foreground: String,
+  card card: String,
+  card_foreground card_foreground: String,
+  primary primary: String,
+  primary_foreground primary_foreground: String,
+  secondary secondary: String,
+  secondary_foreground secondary_foreground: String,
+  muted muted: String,
+  muted_foreground muted_foreground: String,
+  faint faint: String,
+  faint_foreground faint_foreground: String,
+  accent accent: String,
+  danger danger: String,
+  danger_foreground danger_foreground: String,
+  success success: String,
+  success_foreground success_foreground: String,
+  warning warning: String,
+  warning_foreground warning_foreground: String,
+  border border: String,
+  input input: String,
+  ring ring: String,
+) -> Theme {
+  set_many(theme, [
+    #(Background, background),
+    #(Foreground, foreground),
+    #(Card, card),
+    #(CardForeground, card_foreground),
+    #(Primary, primary),
+    #(PrimaryForeground, primary_foreground),
+    #(Secondary, secondary),
+    #(SecondaryForeground, secondary_foreground),
+    #(Muted, muted),
+    #(MutedForeground, muted_foreground),
+    #(Faint, faint),
+    #(FaintForeground, faint_foreground),
+    #(Accent, accent),
+    #(Danger, danger),
+    #(DangerForeground, danger_foreground),
+    #(Success, success),
+    #(SuccessForeground, success_foreground),
+    #(Warning, warning),
+    #(WarningForeground, warning_foreground),
+    #(Border, border),
+    #(Input, input),
+    #(Ring, ring),
+  ])
+}
+
 pub fn style_tag(theme: Theme) -> element.Element(a) {
   style_tag_with_color_scheme(theme, "light dark")
 }
