@@ -1,6 +1,6 @@
 name = "glaze_basecoat"
 version = "1.0.0"
-description = "Lustre Bindings to Basecoat UI Components"
+description = "🍩 Lustre Bindings to Basecoat UI Components"
 
 licences = ["MIT"]
 repository = { type = "github", user = "daniellionel01", repo = "glaze" }
