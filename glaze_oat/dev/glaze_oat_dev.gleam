@@ -70,6 +70,21 @@ pub fn page() {
         }
       ",
       ),
+
+      // source: https://github.com/knadh/oat/blob/835552bece6cde8abaf692ce7412f7d0707e7754/docs/static/main.js#L130
+      html.script(
+        [],
+        "
+      function toggleTheme() {
+        var cs = document.documentElement.style.colorScheme;
+        var isDark = cs === 'dark' || (!cs && matchMedia('(prefers-color-scheme: dark)').matches);
+        var theme = isDark ? 'light' : 'dark';
+        document.documentElement.style.colorScheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      }
+      ",
+      ),
     ]),
     html.body([attribute.class("demo")], [
       html.main([attribute.class("container")], [
@@ -83,6 +98,13 @@ pub fn page() {
               ]),
             ]),
             html.div([attribute.class("hstack")], [
+              html.button(
+                [
+                  attribute.class("outline small"),
+                  attribute("onclick", "toggleTheme()"),
+                ],
+                [html.text("Toggle Theme")],
+              ),
               html.label(
                 [
                   attribute("style", "margin: 0;"),

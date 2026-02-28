@@ -10,6 +10,7 @@
 - [ ] examples / server side
 - [ ] examples / client side
 - [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
+- [ ] Add light dark mode toggle to dev module demo
 - [ ] Document latest supported version
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
 - [ ] README.md
