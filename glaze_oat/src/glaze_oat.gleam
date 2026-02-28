@@ -106,7 +106,7 @@ pub fn theme_to_css(theme: Theme) -> String {
   |> list.fold("", fn(acc, cur) { acc <> "\n" <> cur.0 <> ": " <> cur.1 <> ";" })
 }
 
-pub fn setup(version: String, theme: Theme) {
+pub fn head(version: String, theme: Theme) {
   element.fragment([
     html.link([
       attribute.rel("stylesheet"),
