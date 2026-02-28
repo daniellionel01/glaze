@@ -4,6 +4,7 @@ import glaze_oat/alert.{alert}
 import glaze_oat/badge.{badge}
 import glaze_oat/breadcrumb.{breadcrumb}
 import glaze_oat/button.{button}
+import glaze_oat/card.{card}
 import glaze_oat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{element}
@@ -171,8 +172,8 @@ pub fn page() {
         html.section([attribute.class("section")], [
           html.div([attribute.class("row")], [
             html.div([attribute.class("col-3")], [
-              html.article([attribute.class("card")], [
-                html.header([], [
+              card([], [
+                card.header([], [
                   html.small([attribute.class("text-light")], [
                     html.text("Revenue"),
                   ]),
@@ -184,7 +185,7 @@ pub fn page() {
                     html.text(" vs last month"),
                   ]),
                 ]),
-                html.footer([], [
+                card.footer([], [
                   html.progress(
                     [attribute.max("100"), attribute.value("72")],
                     [],
@@ -193,8 +194,8 @@ pub fn page() {
               ]),
             ]),
             html.div([attribute.class("col-3")], [
-              html.article([attribute.class("card")], [
-                html.header([], [
+              card([], [
+                card.header([], [
                   html.small([attribute.class("text-light")], [
                     html.text("Active Users"),
                   ]),
@@ -204,7 +205,7 @@ pub fn page() {
                     html.text(" vs last month"),
                   ]),
                 ]),
-                html.footer([], [
+                card.footer([], [
                   html.progress(
                     [attribute.max("100"), attribute.value("58")],
                     [],
@@ -213,8 +214,8 @@ pub fn page() {
               ]),
             ]),
             html.div([attribute.class("col-3")], [
-              html.article([attribute.class("card")], [
-                html.header([], [
+              card([], [
+                card.header([], [
                   html.small([attribute.class("text-light")], [
                     html.text("Retention"),
                   ]),
@@ -224,7 +225,7 @@ pub fn page() {
                     html.text(" vs last month"),
                   ]),
                 ]),
-                html.footer([], [
+                card.footer([], [
                   html.meter(
                     [
                       attribute("optimum", "1"),
@@ -240,8 +241,8 @@ pub fn page() {
               ]),
             ]),
             html.div([attribute.class("col-3")], [
-              html.article([attribute.class("card")], [
-                html.header([], [
+              card([], [
+                card.header([], [
                   html.small([attribute.class("text-light")], [
                     html.text("Uptime"),
                   ]),
@@ -254,7 +255,7 @@ pub fn page() {
                     ]),
                   ]),
                 ]),
-                html.footer([], [
+                card.footer([], [
                   html.meter(
                     [
                       attribute("optimum", "1"),
@@ -272,7 +273,7 @@ pub fn page() {
           ]),
         ]),
         html.section([attribute.class("section")], [
-          html.article([attribute.class("card")], [
+          card([], [
             element("ot-tabs", [], [
               html.div([attribute.role("tablist")], [
                 button([attribute.role("tab")], [html.text("Overview")]),
@@ -427,8 +428,8 @@ pub fn page() {
         html.section([attribute.class("section")], [
           html.div([attribute.class("row")], [
             html.div([attribute.class("col-6")], [
-              html.article([attribute.class("card")], [
-                html.header([], [html.h3([], [html.text("Recent Activity")])]),
+              card([], [
+                card.header([], [html.h3([], [html.text("Recent Activity")])]),
                 html.div([attribute.class("vstack gap-4")], [
                   html.div([attribute.class("activity-item")], [
                     html.div([attribute.class("hstack")], [
@@ -499,8 +500,8 @@ pub fn page() {
               ]),
             ]),
             html.div([attribute.class("col-6")], [
-              html.article([attribute.class("card")], [
-                html.header([], [
+              card([], [
+                card.header([], [
                   html.h3([], [html.text("Server Status")]),
                   html.small([attribute.class("text-light hstack gap-2")], [
                     html.span(
@@ -602,8 +603,8 @@ pub fn page() {
           ]),
         ]),
         html.section([attribute.class("section")], [
-          html.article([attribute.class("card")], [
-            html.header([], [html.h3([], [html.text("Recent Orders")])]),
+          card([], [
+            card.header([], [html.h3([], [html.text("Recent Orders")])]),
             html.div([attribute.class("hstack justify-between mb-4")], [
               html.fieldset(
                 [
@@ -865,8 +866,8 @@ pub fn page() {
         html.section([attribute.class("section")], [
           html.div([attribute.class("row")], [
             html.div([attribute.class("col-6")], [
-              html.article([attribute.class("card")], [
-                html.header([], [
+              card([], [
+                card.header([], [
                   html.h3([], [html.text("System Notifications")]),
                 ]),
                 alert([attribute.class("mb-4")], [
@@ -947,8 +948,8 @@ pub fn page() {
               ]),
             ]),
             html.div([attribute.class("col-6")], [
-              html.article([attribute.class("card")], [
-                html.header([], [html.h3([], [html.text("FAQ")])]),
+              card([], [
+                card.header([], [html.h3([], [html.text("FAQ")])]),
                 accordion(html.div, [], [
                   accordion.group("faq", [
                     accordion.item(
@@ -1045,8 +1046,8 @@ pub fn page() {
           ]),
         ]),
         html.section([attribute.class("section")], [
-          html.article([attribute.class("card")], [
-            html.header([], [
+          card([], [
+            card.header([], [
               html.h3([], [html.text("Account Settings")]),
               html.p([attribute.class("text-light")], [
                 html.text("Manage your profile and preferences."),
@@ -1284,7 +1285,7 @@ pub fn page() {
             ),
           ]),
         ]),
-        html.section([attribute.class("card")], [
+        card.instance(html.section, [], [
           html.h5([], [html.text("Loading placeholder")]),
           html.div(
             [
