@@ -13,14 +13,31 @@
 - [ ] Migrate Oat Demo to Glaze (https://oat.ink/demo/)
 - [ ] Document latest supported version
 - [ ] think about [libs](https://oat.ink/other-libs/) and [extensions](https://oat.ink/extensions/)
+- [ ] think about toast javascript (ffi? use @target? does it still compile to erlang?)
 - [ ] README.md
 - [ ] oat components
   - [x] typography
-  - [ ] alert
-  - [ ] accordion
-  - [ ] badge
-  - [ ] breadcrumb
+  - [x] alert
+  - [x] accordion
+  - [x] badge
+  - [x] breadcrumb
   - [ ] button
+  - [ ] card
+  - [ ] dialog
+  - [ ] dropdown
+  - [ ] form elements
+  - [ ] meter
+  - [ ] pagination
+  - [ ] progress
+  - [ ] spinner
+  - [ ] skeleton
+  - [ ] sidebar
+  - [ ] switch
+  - [ ] table
+  - [ ] tabs
+  - [ ] tooltip
+  - [ ] toast
+  - [ ] utilities
 
 ## Basecoat
 - [x] install lustre
