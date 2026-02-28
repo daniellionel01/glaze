@@ -57,7 +57,7 @@
 //// - [`closed_by_none`](#closed_by_none)
 //// - [`closed_by_close_request`](#closed_by_close_request)
 ////
-//// ## Browser references
+//// ## References
 ////
 //// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
 //// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>

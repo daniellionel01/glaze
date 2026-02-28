@@ -69,6 +69,11 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<details>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details>
+//// - MDN `<summary>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary>
+////
 
 import gleam/list
 import gleam/option.{type Option, None, Some}

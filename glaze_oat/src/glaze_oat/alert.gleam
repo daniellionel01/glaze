@@ -47,6 +47,11 @@
 //// - [`error`](#error)
 //// - [`danger`](#danger)
 ////
+//// ## References
+////
+//// - MDN ARIA `alert` role:
+////   <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role>
+////
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
