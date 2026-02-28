@@ -11,6 +11,7 @@ import glaze_oat/form.{form}
 import glaze_oat/meter.{meter}
 import glaze_oat/pagination.{pagination}
 import glaze_oat/progress.{progress}
+import glaze_oat/sidebar
 import glaze_oat/skeleton
 import glaze_oat/spinner
 import glaze_oat/theme
@@ -177,7 +178,6 @@ pub fn page() {
             ]),
           ]),
         ]),
-
         breadcrumb([], [
           breadcrumb.link([attribute.href("#")], [html.text("Home")]),
           breadcrumb.slash([]),
@@ -187,7 +187,6 @@ pub fn page() {
             html.strong([], [html.text("Demo")]),
           ]),
         ]),
-
         html.section([attribute.class("section")], [
           html.div([attribute.class("row")], [
             html.div([attribute.class("col-3")], [
@@ -1302,6 +1301,85 @@ pub fn page() {
             skeleton.box([]),
             skeleton.box([]),
             skeleton.box([]),
+          ]),
+        ]),
+        html.section([attribute.class("section mt-6")], [
+          html.h3([], [html.text("Sidebar")]),
+          sidebar.sidebar_always(card, [], [
+            sidebar.topnav(
+              [
+                attribute.class("hstack justify-between"),
+                attribute(
+                  "style",
+                  "padding: var(--space-3); border-bottom: 1px solid var(--border);",
+                ),
+              ],
+              [
+                sidebar.toggle([button.outline(), button.small()], [
+                  html.text("☰"),
+                ]),
+                html.strong([], [html.text("Acme Console")]),
+              ],
+            ),
+            sidebar.aside([attribute("style", "padding: var(--space-3);")], [
+              html.nav([], [
+                html.ul([attribute.class("unstyled vstack gap-2")], [
+                  html.li([], [
+                    html.a(
+                      [
+                        attribute.href("#sidebar"),
+                        attribute("aria-current", "page"),
+                      ],
+                      [html.text("Home")],
+                    ),
+                  ]),
+                  html.li([], [
+                    html.a([attribute.href("#sidebar")], [
+                      html.text("Users"),
+                    ]),
+                  ]),
+                  html.li([], [
+                    html.details([attribute.open(True)], [
+                      html.summary([], [html.text("Settings")]),
+                      html.ul([attribute.class("unstyled")], [
+                        html.li([], [
+                          html.a([attribute.href("#sidebar")], [
+                            html.text("General"),
+                          ]),
+                        ]),
+                        html.li([], [
+                          html.a([attribute.href("#sidebar")], [
+                            html.text("Security"),
+                          ]),
+                        ]),
+                        html.li([], [
+                          html.a([attribute.href("#sidebar")], [
+                            html.text("Billing"),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+              html.footer([attribute.class("mt-4")], [
+                button(
+                  [
+                    button.outline(),
+                    button.small(),
+                    attribute("style", "width: 100%;"),
+                  ],
+                  [html.text("Logout")],
+                ),
+              ]),
+            ]),
+            html.main([attribute("style", "padding: var(--space-4);")], [
+              html.p([], [
+                html.text(
+                  "Main content area. Scrolls with page content while the sidebar remains pinned.",
+                ),
+              ]),
+            ]),
           ]),
         ]),
       ]),
