@@ -6,7 +6,7 @@
 
 ## About this Project
 
-There are a lot of framework-agnostic UI Libraries out there. [DaisyUI](https://daisyui.com/), [Oat](https://oat.ink/), [Basecoat](https://basecoatui.com/), [Bootstrap](https://getbootstrap.com/), 
+There are a lot of framework-agnostic UI Libraries out there. [DaisyUI](https://daisyui.com/), [Oat](https://oat.ink/), [Basecoat](https://basecoatui.com/), [Bootstrap](https://getbootstrap.com/), ...
 
 Framework-agnostic in this case means that they are not tied to a particular JavaScript Framework ([React](https://react.dev/), [Vue](https://vuejs.org/), [Svelte](https://svelte.dev/), ...), such as [shadcn/ui](https://ui.shadcn.com/), [Vuetify](https://vuetifyjs.com/en/) or [Skeleton](https://www.skeleton.dev/). Instead, they are "purely" CSS and vanilla JavaScript.
 
