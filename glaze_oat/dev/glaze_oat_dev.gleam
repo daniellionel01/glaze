@@ -18,6 +18,7 @@ import glaze_oat/switch.{switch}
 import glaze_oat/table
 import glaze_oat/tabs
 import glaze_oat/theme
+import glaze_oat/toast
 import glaze_oat/tooltip
 import gleam/list
 import lustre/attribute.{attribute}
@@ -31,6 +32,15 @@ import simplifile
 /// - https://github.com/knadh/oat/blob/master/docs/templates/demo.html
 ///
 pub fn page() {
+  // ot.toast('Settings saved!', 'Success', { variant: 'success' });
+  let settings_saved_toast_javascript =
+    toast.toast_eval_string(
+      "Settings saved!",
+      "Success",
+      toast.default_options(toast.Success),
+    )
+  echo settings_saved_toast_javascript
+
   html.html([attribute("lang", "en")], [
     html.head([], [
       html.meta([
@@ -1146,7 +1156,7 @@ pub fn page() {
                 [
                   attribute(
                     "onsubmit",
-                    "event.preventDefault(); ot.toast('Settings saved!', 'Success', { variant: 'success' });",
+                    "event.preventDefault();" <> settings_saved_toast_javascript,
                   ),
                 ],
                 [
