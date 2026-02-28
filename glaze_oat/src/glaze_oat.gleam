@@ -153,7 +153,7 @@ pub fn alert(
   html.div(
     [
       attribute.role("alert"),
-      attribute.data("data-variant", variant_to_string(variant)),
+      attribute.data("variant", variant_to_string(variant)),
       ..attrs
     ],
     children,

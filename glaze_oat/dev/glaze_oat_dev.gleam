@@ -887,41 +887,20 @@ pub fn page() {
                     " System maintenance scheduled for Sunday 2:00 AM UTC. ",
                   ),
                 ]),
-                html.div(
-                  [
-                    attribute.class("mb-4"),
-                    attribute("data-variant", "success"),
-                    attribute.role("alert"),
-                  ],
-                  [
-                    html.strong([], [html.text("Success:")]),
-                    html.text(" All backups completed successfully. "),
-                  ],
-                ),
-                html.div(
-                  [
-                    attribute.class("mb-4"),
-                    attribute("data-variant", "warning"),
-                    attribute.role("alert"),
-                  ],
-                  [
-                    html.strong([], [html.text("Warning:")]),
-                    html.text(" SSL certificate expires in 7 days. "),
-                  ],
-                ),
-                html.div(
-                  [
-                    attribute.class("mb-4"),
-                    attribute("data-variant", "error"),
-                    attribute.role("alert"),
-                  ],
-                  [
-                    html.strong([], [html.text("Error:")]),
-                    html.text(
-                      " Payment gateway timeout — 3 transactions affected. ",
-                    ),
-                  ],
-                ),
+                glaze_oat.alert(glaze_oat.Success, [attribute.class("mb-4")], [
+                  html.strong([], [html.text("Success:")]),
+                  html.text(" All backups completed successfully. "),
+                ]),
+                glaze_oat.alert(glaze_oat.Warning, [attribute.class("mb-4")], [
+                  html.strong([], [html.text("Warning:")]),
+                  html.text(" SSL certificate expires in 7 days. "),
+                ]),
+                glaze_oat.alert(glaze_oat.Error, [attribute.class("mb-4")], [
+                  html.strong([], [html.text("Error:")]),
+                  html.text(
+                    " Payment gateway timeout — 3 transactions affected. ",
+                  ),
+                ]),
                 html.hr([]),
                 html.h4([], [html.text("Toast Notifications")]),
                 html.div([attribute.class("hstack mt-4")], [
