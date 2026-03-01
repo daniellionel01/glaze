@@ -19,9 +19,10 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/list
-import lustre/attribute.{type Attribute}
+import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element, element}
 import lustre/element/html
 
@@ -57,25 +58,21 @@ pub fn item(
               element(
                 "svg",
                 [
-                  attribute.attribute("xmlns", "http://www.w3.org/2000/svg"),
-                  attribute.attribute("width", "24"),
-                  attribute.attribute("height", "24"),
-                  attribute.attribute("viewBox", "0 0 24 24"),
-                  attribute.attribute("fill", "none"),
-                  attribute.attribute("stroke", "currentColor"),
-                  attribute.attribute("stroke-width", "2"),
-                  attribute.attribute("stroke-linecap", "round"),
-                  attribute.attribute("stroke-linejoin", "round"),
+                  attribute("xmlns", "http://www.w3.org/2000/svg"),
+                  attribute("width", "24"),
+                  attribute("height", "24"),
+                  attribute("viewBox", "0 0 24 24"),
+                  attribute("fill", "none"),
+                  attribute("stroke", "currentColor"),
+                  attribute("stroke-width", "2"),
+                  attribute("stroke-linecap", "round"),
+                  attribute("stroke-linejoin", "round"),
                   attribute.class(
                     "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open:rotate-180",
                   ),
                 ],
                 [
-                  element(
-                    "path",
-                    [attribute.attribute("d", "m6 9 6 6 6-6")],
-                    [],
-                  ),
+                  element("path", [attribute("d", "m6 9 6 6 6-6")], []),
                 ],
               ),
             ]),
@@ -115,25 +112,21 @@ pub fn item_open(
               element(
                 "svg",
                 [
-                  attribute.attribute("xmlns", "http://www.w3.org/2000/svg"),
-                  attribute.attribute("width", "24"),
-                  attribute.attribute("height", "24"),
-                  attribute.attribute("viewBox", "0 0 24 24"),
-                  attribute.attribute("fill", "none"),
-                  attribute.attribute("stroke", "currentColor"),
-                  attribute.attribute("stroke-width", "2"),
-                  attribute.attribute("stroke-linecap", "round"),
-                  attribute.attribute("stroke-linejoin", "round"),
+                  attribute("xmlns", "http://www.w3.org/2000/svg"),
+                  attribute("width", "24"),
+                  attribute("height", "24"),
+                  attribute("viewBox", "0 0 24 24"),
+                  attribute("fill", "none"),
+                  attribute("stroke", "currentColor"),
+                  attribute("stroke-width", "2"),
+                  attribute("stroke-linecap", "round"),
+                  attribute("stroke-linejoin", "round"),
                   attribute.class(
                     "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open:rotate-180",
                   ),
                 ],
                 [
-                  element(
-                    "path",
-                    [attribute.attribute("d", "m6 9 6 6 6-6")],
-                    [],
-                  ),
+                  element("path", [attribute("d", "m6 9 6 6 6-6")], []),
                 ],
               ),
             ]),
