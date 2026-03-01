@@ -82,7 +82,6 @@ Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your 
 
 | Scenario | CSS | JS | Use these functions |
 | --- | --- | --- | --- |
-| Quick start (no Tailwind setup) | Basecoat compiled CSS via CDN (`basecoat.cdn.min.css`) | All Basecoat JS via CDN (`all.min.js`) | `glaze_basecoat.register(version)`<br>`theme.style_tag(...)` |
 | Use Tailwind CDN | Tailwind CDN + Basecoat CSS via CDN | All Basecoat JS via CDN | Tailwind `<script ...@tailwindcss/browser@4>`<br>`glaze_basecoat.register(version)`<br>`theme.style_tag(...)`<br>`theme.tailwind_v4_bridge_style_tag()` |
 | Build-time Tailwind (Tailwind CLI/PostCSS/Vite) | Your Tailwind build output (with `@import "basecoat-css"`) | Basecoat JS via CDN | `glaze_basecoat.register_js(version)` <br>`theme.style_tag(...)` |
 | Manage CSS/JS separately (still CDN) | Basecoat compiled CSS via CDN | Only specific JS components via CDN | `glaze_basecoat.register_css(version)`<br>`glaze_basecoat.register_component(version, "popover")` |
