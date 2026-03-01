@@ -34,11 +34,14 @@ html.head([], [
 
 ```gleam
 import glaze_basecoat/theme
+
 let my_theme = theme.default_theme()
 theme.style_tag(my_theme)
 ```
 
 ## Example
+
+In a real project this might look like this:
 
 ```gleam
 import glaze_basecoat
@@ -66,6 +69,10 @@ pub fn layout() {
   ])
 }
 ```
+
+You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
+
+Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
 ## Tailwind CSS
 

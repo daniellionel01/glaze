@@ -38,6 +38,8 @@ theme.style_tag(my_theme)
 
 For a full overview of all available theme variables, take a look at <https://github.com/knadh/oat/blob/master/src/css/01-theme.css>.
 
+## Example
+
 In a real project this might look like this:
 
 ```gleam
@@ -59,7 +61,7 @@ pub fn layout() {
 }
 ```
 
-You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
+You can find the full documentation here: <https://hexdocs.pm/glaze_oat>.
 
 Take a look at the [dev module](./dev/glaze_oat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
