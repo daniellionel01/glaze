@@ -2,6 +2,7 @@
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
 - **glaze_oat:** [hexdocs](https://hexdocs.pm/glaze_oat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | [demo](https://daniellionel01.github.io/glaze/glaze_oat/)
+- **glaze_basecoat:** [hexdocs](https://hexdocs.pm/glaze_basecoat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat) | [demo](https://daniellionel01.github.io/glaze/glaze_basecoat/)
 
 <br />
 
@@ -19,13 +20,19 @@ In each package, there is a `dev` module that constructs a demo with all availab
 
 ```sh
 cd glaze_oat
-gleam run -m glaze_oat_dev
+gleam dev
 open ../docs/glaze_oat/index.html
+```
+
+```sh
+cd glaze_basecoat
+gleam dev
+open ../docs/glaze_basecoat/index.html
 ```
 
 ## Future Work
 
-I think [Basecoat](https://basecoatui.com/) and [DaisyUI](https://daisyui.com/) are great candidates for this repo!
+I think [DaisyUI](https://daisyui.com/) is a great candidates for this repo!
 
 [Oat](https://oak.ink/) also has [extensions](https://oat.ink/extensions/), which could be interesting to include in this library.
 

@@ -3,7 +3,7 @@ version = "1.0.0"
 description = "Lustre Bindings to Basecoat UI Components"
 
 licences = ["MIT"]
-repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_basecoat" }
+repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_basecoat", tag-prefix = "basecoat-" }
 
 links = [
   { title = "Basecoat UI", href = "https://basecoatui.com/" },
