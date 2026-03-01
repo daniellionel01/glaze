@@ -47,7 +47,7 @@ import glaze/basecoat/theme
 import glaze/basecoat/theme_switcher
 import glaze/basecoat/toast
 import lustre/attribute.{type Attribute, attribute}
-import lustre/element as lustre_element
+import lustre/element.{type Element}
 import lustre/element/html
 import simplifile
 
@@ -58,7 +58,7 @@ import simplifile
 pub fn main() {
   let html =
     page()
-    |> lustre_element.to_document_string
+    |> element.to_document_string
 
   let assert Ok(_) =
     simplifile.write(contents: html, to: "../docs/glaze_basecoat/index.html")
@@ -201,7 +201,7 @@ fn kitchen_sink_components() -> List(#(String, String, String)) {
   ]
 }
 
-fn kitchen_sink_sections() -> List(lustre_element.Element(msg)) {
+fn kitchen_sink_sections() -> List(Element(msg)) {
   [
     section_accordion(),
     section_alert(),
@@ -244,9 +244,7 @@ fn kitchen_sink_sections() -> List(lustre_element.Element(msg)) {
   ]
 }
 
-fn toc_nav(
-  items: List(#(String, String, String)),
-) -> lustre_element.Element(msg) {
+fn toc_nav(items: List(#(String, String, String))) -> Element(msg) {
   let links =
     items
     |> list.map(fn(item) {
@@ -272,8 +270,8 @@ fn sink_section(
   label: String,
   href: String,
   scroll_mt_class: String,
-  body: List(lustre_element.Element(msg)),
-) -> lustre_element.Element(msg) {
+  body: List(Element(msg)),
+) -> Element(msg) {
   let doc_link =
     html.a(
       [
@@ -311,12 +309,12 @@ fn sink_section_simple(
   id: String,
   label: String,
   href: String,
-  body: List(lustre_element.Element(msg)),
-) -> lustre_element.Element(msg) {
+  body: List(Element(msg)),
+) -> Element(msg) {
   sink_section(id, label, href, "scroll-mt-14", body)
 }
 
-fn section_accordion() -> lustre_element.Element(msg) {
+fn section_accordion() -> Element(msg) {
   sink_section_simple(
     "accordion",
     "Accordion",
@@ -377,7 +375,7 @@ fn section_accordion() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_alert() -> lustre_element.Element(msg) {
+fn section_alert() -> Element(msg) {
   sink_section_simple(
     "alert",
     "Alert",
@@ -477,7 +475,7 @@ fn section_alert() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_alert_dialog() -> lustre_element.Element(msg) {
+fn section_alert_dialog() -> Element(msg) {
   let dialog_id = "alert-dialog-demo"
 
   sink_section_simple(
@@ -511,7 +509,7 @@ fn section_alert_dialog() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_avatar() -> lustre_element.Element(msg) {
+fn section_avatar() -> Element(msg) {
   sink_section_simple(
     "avatar",
     "Avatar",
@@ -571,7 +569,7 @@ fn section_avatar() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_badge() -> lustre_element.Element(msg) {
+fn section_badge() -> Element(msg) {
   sink_section_simple(
     "badge",
     "Badge",
@@ -632,7 +630,7 @@ fn section_badge() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_breadcrumb() -> lustre_element.Element(msg) {
+fn section_breadcrumb() -> Element(msg) {
   let dd_id = "demo-breadcrumb-menu"
   let trigger_id = dd_id <> "-trigger"
   let menu_id = dd_id <> "-menu"
@@ -714,7 +712,7 @@ fn section_breadcrumb() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_button() -> lustre_element.Element(msg) {
+fn section_button() -> Element(msg) {
   sink_section_simple(
     "button",
     "Button",
@@ -809,7 +807,7 @@ fn section_button() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_card() -> lustre_element.Element(msg) {
+fn section_card() -> Element(msg) {
   sink_section_simple("card", "Card", "https://basecoatui.com/components/card", [
     html.div([attribute.class("flex flex-col items-start gap-4")], [
       card.card([attribute.class("w-full max-w-sm")], [
@@ -995,7 +993,7 @@ fn section_card() -> lustre_element.Element(msg) {
   ])
 }
 
-fn section_checkbox() -> lustre_element.Element(msg) {
+fn section_checkbox() -> Element(msg) {
   sink_section_simple(
     "checkbox",
     "Checkbox",
@@ -1047,7 +1045,7 @@ fn section_checkbox() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_command() -> lustre_element.Element(msg) {
+fn section_command() -> Element(msg) {
   let cmd_id = "demo-command"
   let search_id = cmd_id <> "-search"
   let menu_id = cmd_id <> "-menu"
@@ -1157,7 +1155,7 @@ fn section_command() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_empty() -> lustre_element.Element(msg) {
+fn section_empty() -> Element(msg) {
   sink_section_simple(
     "empty",
     "Empty",
@@ -1187,7 +1185,7 @@ fn section_empty() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_field() -> lustre_element.Element(msg) {
+fn section_field() -> Element(msg) {
   sink_section_simple(
     "field",
     "Field",
@@ -1230,7 +1228,7 @@ fn section_field() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_icon() -> lustre_element.Element(msg) {
+fn section_icon() -> Element(msg) {
   let icons = [
     #("Search", "search"),
     #("Settings", "settings"),
@@ -1283,7 +1281,7 @@ fn section_icon() -> lustre_element.Element(msg) {
   ])
 }
 
-fn section_item() -> lustre_element.Element(msg) {
+fn section_item() -> Element(msg) {
   sink_section_simple("item", "Item", "https://basecoatui.com/components/item", [
     item.group([attribute.class("gap-3")], [
       item.item([], [
@@ -1327,7 +1325,7 @@ fn section_item() -> lustre_element.Element(msg) {
   ])
 }
 
-fn section_kbd() -> lustre_element.Element(msg) {
+fn section_kbd() -> Element(msg) {
   sink_section_simple("kbd", "Kbd", "https://basecoatui.com/components/kbd", [
     html.div([attribute.class("grid gap-4")], [
       html.p([], [
@@ -1363,8 +1361,8 @@ fn basecoat_select_base(
   trigger_attrs: List(Attribute(msg)),
   popover_attrs: List(Attribute(msg)),
   listbox_attrs: List(Attribute(msg)),
-  children: List(lustre_element.Element(msg)),
-) -> lustre_element.Element(msg) {
+  children: List(Element(msg)),
+) -> Element(msg) {
   let trigger_id = id <> "-trigger"
   let listbox_id = id <> "-listbox"
   let popover_id = id <> "-popover"
@@ -1420,8 +1418,8 @@ fn basecoat_combobox(
   trigger_attrs: List(Attribute(msg)),
   popover_attrs: List(Attribute(msg)),
   empty_message: String,
-  children: List(lustre_element.Element(msg)),
-) -> lustre_element.Element(msg) {
+  children: List(Element(msg)),
+) -> Element(msg) {
   let trigger_id = id <> "-trigger"
   let listbox_id = id <> "-listbox"
   let popover_id = id <> "-popover"
@@ -1487,7 +1485,7 @@ fn basecoat_combobox(
   ])
 }
 
-fn section_combobox() -> lustre_element.Element(msg) {
+fn section_combobox() -> Element(msg) {
   sink_section_simple(
     "combobox",
     "Combobox",
@@ -1761,7 +1759,7 @@ fn section_combobox() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_dialog() -> lustre_element.Element(msg) {
+fn section_dialog() -> Element(msg) {
   let edit_id = "demo-dialog-edit-profile"
   let scroll_id = "dialog-example"
 
@@ -1890,7 +1888,7 @@ fn section_dialog() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_dropdown_menu() -> lustre_element.Element(msg) {
+fn section_dropdown_menu() -> Element(msg) {
   let dd1 = "dropdown-menu-default"
   let dd1_trigger = dd1 <> "-trigger"
   let dd1_menu = dd1 <> "-menu"
@@ -2163,7 +2161,7 @@ fn section_dropdown_menu() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_form() -> lustre_element.Element(msg) {
+fn section_form() -> Element(msg) {
   sink_section(
     "form",
     "Form",
@@ -2431,7 +2429,7 @@ fn section_form() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_input() -> lustre_element.Element(msg) {
+fn section_input() -> Element(msg) {
   sink_section_simple(
     "input",
     "Input",
@@ -2496,7 +2494,7 @@ fn section_input() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_label() -> lustre_element.Element(msg) {
+fn section_label() -> Element(msg) {
   sink_section_simple(
     "label",
     "Label",
@@ -2549,7 +2547,7 @@ fn section_label() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_pagination() -> lustre_element.Element(msg) {
+fn section_pagination() -> Element(msg) {
   sink_section_simple(
     "pagination",
     "Pagination",
@@ -2616,7 +2614,7 @@ fn section_pagination() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_popover() -> lustre_element.Element(msg) {
+fn section_popover() -> Element(msg) {
   let id = "demo-popover"
   let popover_id = id <> "-popover"
 
@@ -2704,7 +2702,7 @@ fn section_popover() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_progress() -> lustre_element.Element(msg) {
+fn section_progress() -> Element(msg) {
   sink_section_simple(
     "progress",
     "Progress",
@@ -2738,7 +2736,7 @@ fn section_progress() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_radio_group() -> lustre_element.Element(msg) {
+fn section_radio_group() -> Element(msg) {
   sink_section_simple(
     "radio-group",
     "Radio Group",
@@ -2835,7 +2833,7 @@ fn section_radio_group() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_select() -> lustre_element.Element(msg) {
+fn section_select() -> Element(msg) {
   sink_section_simple(
     "select",
     "Select",
@@ -3060,8 +3058,9 @@ fn section_select() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_sidebar() -> lustre_element.Element(msg) {
+fn section_sidebar() -> Element(msg) {
   let sidebar_id = "demo-sidebar"
+  let collapsed_bar_id = sidebar_id <> "-collapsed-bar"
 
   sink_section_simple(
     "sidebar",
@@ -3084,114 +3083,170 @@ fn section_sidebar() -> lustre_element.Element(msg) {
           ),
         ]),
         html.div([attribute.class("rounded-lg border overflow-hidden")], [
-          sidebar.sidebar(
-            sidebar_id,
-            [
-              sidebar.left(),
-              attribute(
-                "style",
-                "position: static; width: 280px; height: 360px;",
-              ),
-            ],
-            [
-              sidebar.nav_with_label("Demo sidebar", [], [
-                sidebar.header([], [
-                  html.a(
-                    [
-                      attribute.href("#"),
-                      attribute.class("btn-ghost p-2 h-12 w-full justify-start"),
-                    ],
-                    [
-                      html.div(
+          html.div([attribute.class("relative h-[360px] overflow-auto")], [
+            html.div(
+              [
+                attribute.id(collapsed_bar_id),
+                attribute.class(
+                  "hidden sticky top-0 z-20 border-b bg-background/95 backdrop-blur px-3 py-2 flex items-center justify-between",
+                ),
+              ],
+              [
+                html.div(
+                  [
+                    attribute.class(
+                      "flex items-center gap-2 text-sm font-medium",
+                    ),
+                  ],
+                  [
+                    icon.icon("panel-left-close", [attribute.class("size-4")]),
+                    html.text("Sidebar collapsed"),
+                  ],
+                ),
+                button.outline(
+                  [
+                    button.small(),
+                    attribute("onclick", sidebar.open_script(sidebar_id)),
+                  ],
+                  [icon.chevron_right([]), html.text("Expand")],
+                ),
+              ],
+            ),
+            sidebar.sidebar(
+              sidebar_id,
+              [
+                sidebar.left(),
+                attribute(
+                  "style",
+                  "position: static; width: 280px; height: 360px;",
+                ),
+              ],
+              [
+                sidebar.nav_with_label("Demo sidebar", [], [
+                  sidebar.header([], [
+                    html.div([attribute.class("flex items-center gap-1")], [
+                      html.a(
                         [
+                          attribute.href("#"),
                           attribute.class(
-                            "bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg",
+                            "btn-ghost p-2 h-12 flex-1 justify-start",
                           ),
                         ],
-                        [icon.icon("layout-grid", [attribute.class("size-4")])],
+                        [
+                          html.div(
+                            [
+                              attribute.class(
+                                "bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg",
+                              ),
+                            ],
+                            [
+                              icon.icon("layout-grid", [
+                                attribute.class("size-4"),
+                              ]),
+                            ],
+                          ),
+                          html.div(
+                            [
+                              attribute.class(
+                                "grid flex-1 text-left text-sm leading-tight",
+                              ),
+                            ],
+                            [
+                              html.span(
+                                [attribute.class("truncate font-medium")],
+                                [
+                                  html.text("Glaze Basecoat"),
+                                ],
+                              ),
+                              html.span([attribute.class("truncate text-xs")], [
+                                html.text("v" <> basecoat.version),
+                              ]),
+                            ],
+                          ),
+                        ],
                       ),
-                      html.div(
+                      button.icon_outline(
                         [
-                          attribute.class(
-                            "grid flex-1 text-left text-sm leading-tight",
-                          ),
+                          attribute("onclick", sidebar.close_script(sidebar_id)),
+                          attribute.data("tooltip", "Collapse sidebar"),
                         ],
+                        [icon.chevron_left([attribute.class("size-4")])],
+                      ),
+                    ]),
+                  ]),
+                  sidebar.section([], [
+                    sidebar.group("Getting started", [
+                      sidebar.link("#", True, [], [
+                        icon.home([attribute.class("size-4")]),
+                        html.span([], [html.text("Home")]),
+                      ]),
+                      sidebar.link("#", False, [], [
+                        icon.icon("square-terminal", [attribute.class("size-4")]),
+                        html.span([], [html.text("Playground")]),
+                      ]),
+                      sidebar.link("#", False, [], [
+                        icon.icon("settings", [attribute.class("size-4")]),
+                        html.span([], [html.text("Settings")]),
+                      ]),
+                    ]),
+                    sidebar.group("Resources", [
+                      sidebar.link("#", False, [], [
+                        icon.github([attribute.class("size-4")]),
+                        html.span([], [html.text("GitHub")]),
+                      ]),
+                      sidebar.link("#", False, [], [
+                        icon.icon("book-open", [attribute.class("size-4")]),
+                        html.span([], [html.text("Docs")]),
+                      ]),
+                    ]),
+                  ]),
+                  sidebar.footer([attribute.class("p-2 border-t")], [
+                    html.div([attribute.class("flex items-center gap-2")], [
+                      html.img([
+                        attribute.src("https://github.com/hunvreus.png"),
+                        attribute.alt("User"),
+                        attribute.class("size-8 rounded-lg"),
+                      ]),
+                      html.div(
+                        [attribute.class("grid flex-1 text-left text-sm")],
                         [
                           html.span([attribute.class("truncate font-medium")], [
-                            html.text("Glaze Basecoat"),
+                            html.text("hunvreus"),
                           ]),
-                          html.span([attribute.class("truncate text-xs")], [
-                            html.text("v" <> basecoat.version),
-                          ]),
+                          html.span(
+                            [
+                              attribute.class(
+                                "truncate text-xs text-muted-foreground",
+                              ),
+                            ],
+                            [
+                              html.text("hunvreus@example.com"),
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
-                ]),
-                sidebar.section([], [
-                  sidebar.group("Getting started", [
-                    sidebar.link("#", True, [], [
-                      icon.home([attribute.class("size-4")]),
-                      html.span([], [html.text("Home")]),
-                    ]),
-                    sidebar.link("#", False, [], [
-                      icon.icon("square-terminal", [attribute.class("size-4")]),
-                      html.span([], [html.text("Playground")]),
-                    ]),
-                    sidebar.link("#", False, [], [
-                      icon.icon("settings", [attribute.class("size-4")]),
-                      html.span([], [html.text("Settings")]),
-                    ]),
-                  ]),
-                  sidebar.group("Resources", [
-                    sidebar.link("#", False, [], [
-                      icon.github([attribute.class("size-4")]),
-                      html.span([], [html.text("GitHub")]),
-                    ]),
-                    sidebar.link("#", False, [], [
-                      icon.icon("book-open", [attribute.class("size-4")]),
-                      html.span([], [html.text("Docs")]),
+                      button.icon_outline([], [icon.more_vertical([])]),
                     ]),
                   ]),
                 ]),
-                sidebar.footer([attribute.class("p-2 border-t")], [
-                  html.div([attribute.class("flex items-center gap-2")], [
-                    html.img([
-                      attribute.src("https://github.com/hunvreus.png"),
-                      attribute.alt("User"),
-                      attribute.class("size-8 rounded-lg"),
-                    ]),
-                    html.div(
-                      [attribute.class("grid flex-1 text-left text-sm")],
-                      [
-                        html.span([attribute.class("truncate font-medium")], [
-                          html.text("hunvreus"),
-                        ]),
-                        html.span(
-                          [
-                            attribute.class(
-                              "truncate text-xs text-muted-foreground",
-                            ),
-                          ],
-                          [
-                            html.text("hunvreus@example.com"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    button.icon_outline([], [icon.more_vertical([])]),
-                  ]),
-                ]),
-              ]),
-            ],
-          ),
+              ],
+            ),
+          ]),
         ]),
+        html.script(
+          [],
+          "(() => { const sidebar = document.getElementById('"
+            <> sidebar_id
+            <> "'); const collapsedBar = document.getElementById('"
+            <> collapsed_bar_id
+            <> "'); if (!sidebar || !collapsedBar) return; const syncCollapsedState = () => { const isHidden = sidebar.getAttribute('aria-hidden') === 'true'; collapsedBar.classList.toggle('hidden', !isHidden); }; syncCollapsedState(); new MutationObserver(syncCollapsedState).observe(sidebar, { attributes: true, attributeFilter: ['aria-hidden'] }); document.addEventListener('basecoat:sidebar', () => setTimeout(syncCollapsedState, 0)); })();",
+        ),
       ]),
     ],
   )
 }
 
-fn section_skeleton() -> lustre_element.Element(msg) {
+fn section_skeleton() -> Element(msg) {
   sink_section_simple(
     "skeleton",
     "Skeleton",
@@ -3226,7 +3281,7 @@ fn section_skeleton() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_slider() -> lustre_element.Element(msg) {
+fn section_slider() -> Element(msg) {
   sink_section_simple(
     "slider",
     "Slider",
@@ -3249,7 +3304,7 @@ fn section_slider() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_spinner() -> lustre_element.Element(msg) {
+fn section_spinner() -> Element(msg) {
   sink_section_simple(
     "spinner",
     "Spinner",
@@ -3293,7 +3348,7 @@ fn section_spinner() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_switch() -> lustre_element.Element(msg) {
+fn section_switch() -> Element(msg) {
   sink_section_simple(
     "switch",
     "Switch",
@@ -3353,7 +3408,7 @@ fn section_switch() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_table() -> lustre_element.Element(msg) {
+fn section_table() -> Element(msg) {
   sink_section_simple(
     "table",
     "Table",
@@ -3426,7 +3481,7 @@ fn section_table() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_tabs() -> lustre_element.Element(msg) {
+fn section_tabs() -> Element(msg) {
   sink_section_simple("tabs", "Tabs", "https://basecoatui.com/components/tabs", [
     html.div([attribute.class("flex flex-col gap-6")], [
       tabs.tab_set(
@@ -3565,7 +3620,7 @@ fn section_tabs() -> lustre_element.Element(msg) {
   ])
 }
 
-fn section_theme_switcher() -> lustre_element.Element(msg) {
+fn section_theme_switcher() -> Element(msg) {
   sink_section_simple(
     "theme-switcher",
     "Theme Switcher",
@@ -3595,7 +3650,7 @@ fn section_theme_switcher() -> lustre_element.Element(msg) {
   )
 }
 
-fn theme_swatch(label: String, css_var: String) -> lustre_element.Element(msg) {
+fn theme_swatch(label: String, css_var: String) -> Element(msg) {
   html.div([attribute.class("grid gap-2")], [
     html.div(
       [
@@ -3613,7 +3668,7 @@ fn theme_swatch(label: String, css_var: String) -> lustre_element.Element(msg) {
   ])
 }
 
-fn section_theme() -> lustre_element.Element(msg) {
+fn section_theme() -> Element(msg) {
   sink_section_simple("theme", "Theme", "https://basecoatui.com/themes", [
     html.div([attribute.class("grid gap-4")], [
       html.p([attribute.class("text-muted-foreground text-sm")], [
@@ -3643,7 +3698,7 @@ fn section_theme() -> lustre_element.Element(msg) {
   ])
 }
 
-fn section_textarea() -> lustre_element.Element(msg) {
+fn section_textarea() -> Element(msg) {
   sink_section_simple(
     "textarea",
     "Textarea",
@@ -3700,7 +3755,7 @@ fn section_textarea() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_toast() -> lustre_element.Element(msg) {
+fn section_toast() -> Element(msg) {
   sink_section_simple(
     "toast",
     "Toast",
@@ -3749,7 +3804,7 @@ fn section_toast() -> lustre_element.Element(msg) {
   )
 }
 
-fn section_tooltip() -> lustre_element.Element(msg) {
+fn section_tooltip() -> Element(msg) {
   sink_section_simple(
     "tooltip",
     "Tooltip",
