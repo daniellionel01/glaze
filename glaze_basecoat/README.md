@@ -76,7 +76,7 @@ Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen si
 
 ## Tailwind CSS
 
-Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN (recommended for quick setup) or with your own Tailwind configuration.
+Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your own Tailwind configuration.
 
 ### CDN (Recommended)
 
