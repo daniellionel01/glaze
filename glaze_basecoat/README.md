@@ -57,8 +57,8 @@ In a real project this might look like this:
 import glaze_basecoat
 import glaze_basecoat/button
 import glaze_basecoat/card
-import glaze_basecoat/theme
 import lustre/element/html
+import glaze_basecoat/theme
 
 pub fn layout() {
   html.html([], [
