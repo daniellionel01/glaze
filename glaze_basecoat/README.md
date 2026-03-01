@@ -69,7 +69,7 @@ pub fn layout() {
       card.card([], [
         card.header([], [
           card.title([], [html.text("Welcome")]),
-          card.description([], [html.text("Hello from Glaze Basecoat!")]),
+          card.description([], [html.text("Hello!")]),
         ]),
         card.content([], [
           button.button([], [html.text("Get Started")]),
