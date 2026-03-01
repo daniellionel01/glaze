@@ -39,13 +39,14 @@ pub fn page() {
         attribute.content("width=device-width, initial-scale=1"),
       ]),
       html.title([], "Glaze / Basecoat UI"),
+      theme_switcher.init_script(),
       html.script(
         [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
         "",
       ),
       theme.tailwind_v4_bridge_style_tag(),
       glaze_basecoat.register(glaze_basecoat.version),
-      theme.style_tag(theme.default_theme()),
+      theme.style_tag_with_dark(theme.default_theme(), theme.dark_theme()),
       html.style(
         [],
         "

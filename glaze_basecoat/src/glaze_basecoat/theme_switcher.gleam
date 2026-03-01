@@ -22,7 +22,22 @@ import lustre/element/html
 pub fn init_script() -> Element(msg) {
   html.script(
     [attribute.type_("text/javascript")],
-    "(()=>{try{const t=localStorage.getItem(\"themeMode\");(t?t===\"dark\":matchMedia(\"(prefers-color-scheme: dark)\").matches)&&document.documentElement.classList.add(\"dark\")}catch{}const e=t=>{document.documentElement.classList.toggle(\"dark\",t);try{localStorage.setItem(\"themeMode\",t?\"dark\":\"light\")}catch{}};document.addEventListener(\"basecoat:theme\",t=>{const o=t.detail?.mode;e(o===\"dark\"?!0:o===\"light\"?!1:!document.documentElement.classList.contains(\"dark\"))})();",
+    "(() => {\n"
+      <> "  try {\n"
+      <> "    const stored = localStorage.getItem('themeMode');\n"
+      <> "    if (stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {\n"
+      <> "      document.documentElement.classList.add('dark');\n"
+      <> "    }\n"
+      <> "  } catch (_) {}\n\n"
+      <> "  const apply = (dark) => {\n"
+      <> "    document.documentElement.classList.toggle('dark', dark);\n"
+      <> "    try { localStorage.setItem('themeMode', dark ? 'dark' : 'light'); } catch (_) {}\n"
+      <> "  };\n\n"
+      <> "  document.addEventListener('basecoat:theme', (event) => {\n"
+      <> "    const mode = event.detail?.mode;\n"
+      <> "    apply(mode === 'dark' ? true : mode === 'light' ? false : !document.documentElement.classList.contains('dark'));\n"
+      <> "  });\n"
+      <> "})();\n",
   )
 }
 
