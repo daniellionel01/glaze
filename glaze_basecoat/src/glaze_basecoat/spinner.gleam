@@ -1,9 +1,6 @@
 //// Basecoat documentation: <https://basecoatui.com/components/spinner/>
 ////
-//// Loading spinners for inline and overlay states.
-////
-//// Use [`spinner`](#spinner) for inline loading indicators, and [`overlay`](#overlay)
-//// when you want to block interaction with existing content.
+//// Spinner attribute helpers for loading states.
 ////
 //// ## Recipe
 ////

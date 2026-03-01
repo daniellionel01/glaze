@@ -1,9 +1,7 @@
 //// Basecoat documentation: <https://basecoatui.com/components/form/>
 ////
-//// Form layout helpers.
-////
-//// Use these helpers to style a `<form>` and to create consistent spacing and
-//// grouping around controls.
+//// The [`form`](#form) helpers provide a compact set of primitives for building
+//// accessible form layouts with native HTML elements.
 ////
 //// ## Recipe
 ////

@@ -1,8 +1,6 @@
 //// Basecoat documentation: <https://basecoatui.com/components/pagination/>
 ////
-//// Pagination helpers for lists split across pages.
-////
-//// These helpers render a navigation landmark with page links.
+//// Pagination helpers for multi-page lists and tables.
 ////
 //// ## Recipe
 ////

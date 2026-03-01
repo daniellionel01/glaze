@@ -2,9 +2,6 @@
 ////
 //// Table helpers for data grids and record lists.
 ////
-//// Use [`scrollable`](#scrollable) to wrap wide tables and keep them usable on
-//// smaller screens.
-////
 //// ## Recipe
 ////
 //// ```gleam

@@ -1,8 +1,10 @@
 //// Basecoat documentation: <https://basecoatui.com/components/badge/>
 ////
-//// Badge helpers for short status labels (sometimes called "tags").
+//// The [`badge`](#badge) element, sometimes called a "tag", is used to attach
+//// short contextual information to nearby content.
 ////
-//// Use badges for "New", "Beta", "Paid", and similar short context.
+//// Common examples include labels like "New", "Beta", "Paid", or status chips
+//// in lists and cards.
 ////
 //// ## Variants
 ////

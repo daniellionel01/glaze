@@ -1,6 +1,7 @@
 //// Basecoat documentation: <https://basecoatui.com/components/card/>
 ////
-//// The [`card`](#card) helpers build card containers with header, content, and footer.
+//// The [`card`](#card) helpers compose grouped content blocks such as summaries,
+//// settings sections, and dashboard tiles.
 ////
 //// ## Anatomy
 ////

@@ -1,6 +1,7 @@
 //// Basecoat documentation: <https://basecoatui.com/components/dropdown-menu/>
 ////
-//// Dropdown menu helpers for small action lists.
+//// The [`dropdown`](#dropdown) helpers compose trigger and menu markup for
+//// small action lists and contextual menus.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////

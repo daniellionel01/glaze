@@ -1,6 +1,6 @@
 //// Basecoat documentation: <https://basecoatui.com/components/tabs/>
 ////
-//// Tabs helpers for switching between related content views.
+//// Tabs helpers for grouped content views.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////

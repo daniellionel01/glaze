@@ -2,9 +2,6 @@
 ////
 //// Skeleton placeholders for loading layouts.
 ////
-//// Basecoat skeletons are just styled blocks; size them with your own
-//// width/height classes.
-////
 //// ## Recipe
 ////
 //// ```gleam

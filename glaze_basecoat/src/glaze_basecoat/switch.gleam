@@ -2,8 +2,6 @@
 ////
 //// Switch helpers for binary on/off controls.
 ////
-//// These helpers render a checkbox input with `role="switch"`.
-////
 //// ## Recipe
 ////
 //// ```gleam

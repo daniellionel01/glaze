@@ -1,6 +1,6 @@
 //// Basecoat documentation: <https://basecoatui.com/components/toast/>
 ////
-//// Toast helpers for short, temporary notifications.
+//// Programmatic toast notifications.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////

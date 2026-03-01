@@ -1,9 +1,7 @@
 //// Basecoat documentation: <https://basecoatui.com/components/breadcrumb/>
 ////
-//// Breadcrumb helpers for showing the current location in a hierarchy.
-////
-//// Breadcrumbs work best as a short list of links, with the current page
-//// rendered as plain text.
+//// The [`breadcrumb`](#breadcrumb) helpers render hierarchical navigation for
+//// showing where a user is in the app and how to move back up.
 ////
 //// ## Anatomy
 ////

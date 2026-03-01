@@ -1,6 +1,6 @@
 //// Basecoat documentation: <https://basecoatui.com/components/tooltip/>
 ////
-//// Tooltip helpers for short helper text on hover/focus.
+//// Tooltip helpers for short helper text on interactive elements.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////

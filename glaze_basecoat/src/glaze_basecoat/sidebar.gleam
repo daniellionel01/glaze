@@ -1,6 +1,6 @@
 //// Basecoat documentation: <https://basecoatui.com/components/sidebar/>
 ////
-//// Sidebar helpers for app navigation.
+//// Sidebar layout helpers for responsive app navigation.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////

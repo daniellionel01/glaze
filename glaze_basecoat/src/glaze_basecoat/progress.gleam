@@ -2,8 +2,6 @@
 ////
 //// Progress helpers for linear completion indicators.
 ////
-//// This module styles the native `<progress>` element.
-////
 //// ## Recipe
 ////
 //// ```gleam
