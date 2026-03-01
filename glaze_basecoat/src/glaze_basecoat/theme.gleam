@@ -262,6 +262,7 @@ pub fn tailwind_v4_bridge_style_tag() -> element.Element(a) {
 /// The Tailwind v4 `@theme` mapping used by Basecoat.
 ///
 /// This matches the `@theme` block in Basecoat's `src/css/basecoat.css`.
+///
 pub fn tailwind_v4_bridge_css() -> String {
   "@theme {\n"
   <> "  --color-background: var(--background);\n"
