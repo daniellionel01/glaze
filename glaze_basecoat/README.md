@@ -106,10 +106,24 @@ html.head([], [
 
 ### With Your Tailwind Setup
 
-Use `glaze_basecoat.register_js()` to only include the JavaScript and configure Tailwind yourself.
 ```css
 @import "tailwindcss";
 @import "basecoat-css";
+```
+
+In this case you should not use `glaze_basecoat.register()`, since it also includes a `<style>` tag.
+Use `glaze_basecoat.register_js()` to only include the JavaScript and configure Tailwind yourself.
+
+```gleam
+import glaze_basecoat
+import glaze_basecoat/theme
+import lustre/attribute.{attribute}
+import lustre/element/html
+
+html.head([], [
+  glaze_basecoat.register_js(glaze_basecoat.version),
+  theme.style_tag(theme.default_theme()),
+])
 ```
 
 ## Theming
