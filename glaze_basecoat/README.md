@@ -21,10 +21,10 @@ gleam add glaze_basecoat@1
 
 ```gleam
 import glaze_basecoat
+import lustre/element/html
+import glaze_basecoat/icon
 import glaze_basecoat/theme
 import glaze_basecoat/theme_switcher
-import glaze_basecoat/icon
-import lustre/element/html
 
 html.head([], [
   // (Optional) Register Tailwind (if not already coming from your build-tool)
