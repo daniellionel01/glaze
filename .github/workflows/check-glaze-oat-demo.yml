@@ -16,13 +16,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Erlang/OTP
+      - name: Setup Erlang/OTP + Gleam
         uses: erlef/setup-beam@v1
         with:
           otp-version: "27"
-
-      - name: Setup Gleam
-        uses: gleam-lang/setup-gleam@v1
+          gleam-version: "1.14.0"
+          rebar3-version: "3"
 
       - name: Generate demo HTML
         working-directory: glaze_oat
