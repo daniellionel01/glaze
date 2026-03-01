@@ -1,0 +1,96 @@
+//// Basecoat documentation: <https://basecoatui.com/components/switch/>
+////
+//// The [`switch`](#switch) helpers display toggle switch inputs.
+////
+//// ## Usage
+////
+//// ```gleam
+//// import glaze_basecoat/switch
+//// import lustre/attribute
+////
+//// fn airplane_mode() {
+////   switch.switch([
+////     attribute.id("airplane-mode"),
+////   ])
+//// }
+//// ```
+
+import lustre/attribute.{type Attribute, attribute}
+import lustre/element.{type Element}
+import lustre/element/html
+
+/// Render a switch input.
+///
+pub fn switch(attrs: List(Attribute(msg))) -> Element(msg) {
+  html.input([
+    attribute.type_("checkbox"),
+    attribute.class("input"),
+    attribute("role", "switch"),
+    ..attrs
+  ])
+}
+
+/// Render a switch with a label.
+///
+pub fn with_label(
+  id: String,
+  label_text: String,
+  attrs: List(Attribute(msg)),
+) -> Element(msg) {
+  html.label([attribute.class("label")], [
+    switch([attribute.id(id), ..attrs]),
+    html.text(label_text),
+  ])
+}
+
+/// Render a switch with label and description.
+///
+pub fn with_description(
+  id: String,
+  label_text: String,
+  description: String,
+  attrs: List(Attribute(msg)),
+) -> Element(msg) {
+  html.div(
+    [
+      attribute.class(
+        "flex flex-row items-start justify-between rounded-lg border p-4 shadow-xs gap-2",
+      ),
+    ],
+    [
+      html.div([attribute.class("flex flex-col gap-0.5")], [
+        html.label([attribute.for(id), attribute.class("leading-normal")], [
+          html.text(label_text),
+        ]),
+        html.p([attribute.class("text-muted-foreground text-sm")], [
+          html.text(description),
+        ]),
+      ]),
+      switch([attribute.id(id), ..attrs]),
+    ],
+  )
+}
+
+/// Mark switch as checked.
+///
+pub fn checked() -> Attribute(msg) {
+  attribute.checked(True)
+}
+
+/// Mark switch as disabled.
+///
+pub fn disabled() -> Attribute(msg) {
+  attribute.disabled(True)
+}
+
+/// Set the switch name.
+///
+pub fn name(n: String) -> Attribute(msg) {
+  attribute.name(n)
+}
+
+/// Set the switch id.
+///
+pub fn id(id: String) -> Attribute(msg) {
+  attribute.id(id)
+}
