@@ -82,6 +82,6 @@ The only exception is the [toast](./src/glaze_oat/toast.gleam) component. In the
 There is a `dev` module that constructs a demo with all available elements and writes it to the GitHub Pages artifact at `docs/glaze_oat/index.html`.
 
 ```sh
-gleam run -m glaze_oat_dev
+gleam dev
 open ../docs/glaze_oat/index.html
 ```

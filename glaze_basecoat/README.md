@@ -159,6 +159,6 @@ This library constructs HTML elements the same way on a client or on a server, s
 
 There is a `dev` module that constructs a Demo with all available elements and writes it to a `.html` file:
 ```sh
-gleam run -m glaze_basecoat_dev
-open basecoat.html
+gleam dev
+open ../docs/glaze_basecoat/index.html
 ```
