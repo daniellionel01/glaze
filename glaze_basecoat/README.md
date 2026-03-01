@@ -192,7 +192,6 @@ icon.search([])
 ### Option 2: CDN (no bundler)
 
 If you are not bundling JavaScript, include Lucide via CDN and call `lucide.createIcons()`.
-Lucide recommends pinning a specific version instead of using `@latest`.
 
 ```gleam
 import glaze_basecoat/icon
