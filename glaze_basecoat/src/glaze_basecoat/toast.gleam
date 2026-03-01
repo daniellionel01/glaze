@@ -22,10 +22,11 @@
 ////   toast.show(toast.Config("success", "Success", "Saved!", None, None))
 //// }
 //// ```
+////
 
 import gleam/list
 import gleam/option.{type Option, None, Some}
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -70,7 +71,7 @@ pub fn toaster_aligned(
       [
         attribute.id("toaster"),
         attribute.class("toaster"),
-        attribute("data-align", align),
+        attribute.data("align", align),
       ],
       attrs,
     ),
@@ -87,8 +88,8 @@ pub fn toast(
       [
         attribute.class("toast"),
         attribute.role("status"),
-        attribute("aria-atomic", "true"),
-        attribute("aria-hidden", "false"),
+        attribute.aria_atomic(True),
+        attribute.aria_hidden(False),
       ],
       attrs,
     ),
@@ -99,23 +100,23 @@ pub fn toast(
 }
 
 pub fn success() -> Attribute(msg) {
-  attribute("data-category", "success")
+  attribute.data("category", "success")
 }
 
 pub fn info() -> Attribute(msg) {
-  attribute("data-category", "info")
+  attribute.data("category", "info")
 }
 
 pub fn warning() -> Attribute(msg) {
-  attribute("data-category", "warning")
+  attribute.data("category", "warning")
 }
 
 pub fn error() -> Attribute(msg) {
-  attribute("data-category", "error")
+  attribute.data("category", "error")
 }
 
 pub fn duration(ms: Int) -> Attribute(msg) {
-  attribute("data-duration", int.to_string(ms))
+  attribute.data("duration", int.to_string(ms))
 }
 
 pub fn title(
@@ -152,7 +153,7 @@ pub fn action_button(label: String, attrs: List(Attribute(msg))) -> Element(msg)
       [
         attribute.type_("button"),
         attribute.class("btn"),
-        attribute("data-toast-action", ""),
+        attribute.data("toast-action", ""),
       ],
       attrs,
     ),

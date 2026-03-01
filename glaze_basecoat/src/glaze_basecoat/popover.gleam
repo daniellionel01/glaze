@@ -20,7 +20,7 @@
 //// ```
 
 import gleam/list
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -71,9 +71,9 @@ pub fn content(
     list.append(
       [
         attribute.id(popover_id),
-        attribute("popover", ""),
-        attribute("data-popover", ""),
-        attribute("aria-hidden", "true"),
+        attribute.popover(""),
+        attribute.data("popover", ""),
+        attribute.aria_hidden(True),
       ],
       attrs,
     ),
@@ -90,9 +90,9 @@ pub fn content_with_id(
     list.append(
       [
         attribute.id(popover_id),
-        attribute("popover", ""),
-        attribute("data-popover", ""),
-        attribute("aria-hidden", "true"),
+        attribute.popover(""),
+        attribute.data("popover", ""),
+        attribute.aria_hidden(True),
       ],
       attrs,
     ),
@@ -101,11 +101,11 @@ pub fn content_with_id(
 }
 
 pub fn side(s: String) -> Attribute(msg) {
-  attribute("data-side", s)
+  attribute.data("side", s)
 }
 
 pub fn align(a: String) -> Attribute(msg) {
-  attribute("data-align", a)
+  attribute.data("align", a)
 }
 
 pub fn side_top() -> Attribute(msg) {

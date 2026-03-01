@@ -21,6 +21,7 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}
@@ -39,12 +40,9 @@ pub fn alert_dialog(
       [
         attribute.class("alert-dialog"),
         attribute.id(id),
-        attribute("aria-labelledby", title_id),
-        attribute("aria-describedby", desc_id),
-        attribute.attribute(
-          "onclick",
-          "if (event.target === this) this.close()",
-        ),
+        attribute.aria_labelledby(title_id),
+        attribute.aria_describedby(desc_id),
+        attribute("onclick", "if (event.target === this) this.close()"),
       ],
       attrs,
     ),
@@ -79,12 +77,9 @@ pub fn alert_dialog_with_text(
       [
         attribute.class("alert-dialog"),
         attribute.id(id),
-        attribute("aria-labelledby", title_id),
-        attribute("aria-describedby", desc_id),
-        attribute.attribute(
-          "onclick",
-          "if (event.target === this) this.close()",
-        ),
+        attribute.aria_labelledby(title_id),
+        attribute.aria_describedby(desc_id),
+        attribute("onclick", "if (event.target === this) this.close()"),
       ],
       attrs,
     ),
@@ -159,7 +154,7 @@ pub fn cancel(
       [
         attribute.type_("button"),
         attribute.class("btn-outline"),
-        attribute.attribute("onclick", "this.closest('dialog').close()"),
+        attribute("onclick", "this.closest('dialog').close()"),
       ],
       attrs,
     ),
@@ -176,7 +171,7 @@ pub fn destructive(
       [
         attribute.type_("button"),
         attribute.class("btn-destructive"),
-        attribute.attribute("onclick", "this.closest('dialog').close()"),
+        attribute("onclick", "this.closest('dialog').close()"),
       ],
       attrs,
     ),
@@ -201,7 +196,7 @@ pub fn trigger_button(
     list.append(
       [
         attribute.type_("button"),
-        attribute.attribute("onclick", open_script(dialog_id)),
+        attribute("onclick", open_script(dialog_id)),
       ],
       attrs,
     ),

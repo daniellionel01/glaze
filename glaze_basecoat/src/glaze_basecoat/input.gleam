@@ -15,8 +15,9 @@
 ////   ])
 //// }
 //// ```
+////
 
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -71,7 +72,7 @@ pub fn time(attrs: List(Attribute(msg))) -> Element(msg) {
 /// Mark input as invalid.
 ///
 pub fn invalid() -> Attribute(msg) {
-  attribute("aria-invalid", "true")
+  attribute.aria_invalid("true")
 }
 
 /// Mark input as disabled.

@@ -24,9 +24,10 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/list
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -46,9 +47,9 @@ pub fn trigger(
       [
         attribute.type_("button"),
         attribute.id(trigger_id),
-        attribute("aria-haspopup", "menu"),
-        attribute("aria-controls", menu_id),
-        attribute("aria-expanded", "false"),
+        attribute.aria_haspopup("menu"),
+        attribute.aria_controls(menu_id),
+        attribute.aria_expanded(False),
         attribute.popovertarget(popover_id),
       ],
       attrs,
@@ -69,9 +70,9 @@ pub fn trigger_with_ids(
       [
         attribute.type_("button"),
         attribute.id(trigger_id),
-        attribute("aria-haspopup", "menu"),
-        attribute("aria-controls", menu_id),
-        attribute("aria-expanded", "false"),
+        attribute.aria_haspopup("menu"),
+        attribute.aria_controls(menu_id),
+        attribute.aria_expanded(False),
         attribute.popovertarget(popover_id),
       ],
       attrs,
@@ -91,8 +92,8 @@ pub fn content(
     list.append(
       [
         attribute.id(popover_id),
-        attribute("data-popover", ""),
-        attribute("aria-hidden", "true"),
+        attribute.data("popover", ""),
+        attribute.aria_hidden(True),
       ],
       attrs,
     ),
@@ -101,7 +102,7 @@ pub fn content(
         [
           attribute.role("menu"),
           attribute.id(menu_id),
-          attribute("aria-labelledby", trigger_id),
+          attribute.aria_labelledby(trigger_id),
         ],
         children,
       ),
@@ -120,8 +121,8 @@ pub fn content_with_ids(
     list.append(
       [
         attribute.id(popover_id),
-        attribute("data-popover", ""),
-        attribute("aria-hidden", "true"),
+        attribute.data("popover", ""),
+        attribute.aria_hidden(True),
       ],
       attrs,
     ),
@@ -130,7 +131,7 @@ pub fn content_with_ids(
         [
           attribute.role("menu"),
           attribute.id(menu_id),
-          attribute("aria-labelledby", trigger_id),
+          attribute.aria_labelledby(trigger_id),
         ],
         children,
       ),
@@ -171,8 +172,8 @@ pub fn checkbox_item(
   children: List(Element(msg)),
 ) -> Element(msg) {
   let checked_attr = case is_checked {
-    True -> [attribute("aria-checked", "true")]
-    False -> [attribute("aria-checked", "false")]
+    True -> [attribute.aria_checked("true")]
+    False -> [attribute.aria_checked("false")]
   }
   html.div(
     list.append(
@@ -189,8 +190,8 @@ pub fn radio_item(
   children: List(Element(msg)),
 ) -> Element(msg) {
   let checked_attr = case is_checked {
-    True -> [attribute("aria-checked", "true")]
-    False -> [attribute("aria-checked", "false")]
+    True -> [attribute.aria_checked("true")]
+    False -> [attribute.aria_checked("false")]
   }
   html.div(
     list.append(
@@ -204,7 +205,7 @@ pub fn radio_item(
 pub fn group(label: String, items: List(Element(msg))) -> Element(msg) {
   let label_id = "group-" <> label
   html.div(
-    [attribute.role("group"), attribute("aria-labelledby", label_id)],
+    [attribute.role("group"), attribute.aria_labelledby(label_id)],
     list.append(
       [
         html.div([attribute.role("heading"), attribute.id(label_id)], [
@@ -232,7 +233,7 @@ pub fn heading(
 }
 
 pub fn disabled() -> Attribute(msg) {
-  attribute("aria-disabled", "true")
+  attribute.aria_disabled(True)
 }
 
 pub fn min_width(width: String) -> Attribute(msg) {
@@ -240,9 +241,9 @@ pub fn min_width(width: String) -> Attribute(msg) {
 }
 
 pub fn side(s: String) -> Attribute(msg) {
-  attribute("data-side", s)
+  attribute.data("side", s)
 }
 
 pub fn align(a: String) -> Attribute(msg) {
-  attribute("data-align", a)
+  attribute.data("align", a)
 }

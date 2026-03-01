@@ -16,6 +16,7 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/int
 import gleam/list
@@ -45,7 +46,7 @@ pub fn tab_list(
   html.nav(
     [
       attribute.role("tablist"),
-      attribute("aria-orientation", "horizontal"),
+      attribute.aria_orientation("horizontal"),
       attribute.class("w-full"),
       ..attrs
     ],
@@ -62,22 +63,16 @@ pub fn tab_trigger(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  let selected_attr = case is_selected {
-    True -> [attribute("aria-selected", "true")]
-    False -> [attribute("aria-selected", "false")]
-  }
-
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.role("tab"),
-        attribute.id(id),
-        attribute("aria-controls", panel_id),
-        attribute.tabindex(0),
-      ],
-      list.append(selected_attr, attrs),
-    ),
+    [
+      attribute.type_("button"),
+      attribute.role("tab"),
+      attribute.id(id),
+      attribute("aria-controls", panel_id),
+      attribute.tabindex(0),
+      attribute.aria_selected(is_selected),
+      ..attrs
+    ],
     children,
   )
 }
@@ -92,8 +87,8 @@ pub fn tab_panel(
   children: List(Element(msg)),
 ) -> Element(msg) {
   let selected_attr = case is_selected {
-    True -> [attribute("aria-selected", "true")]
-    False -> [attribute("aria-selected", "false"), attribute.hidden(True)]
+    True -> [attribute.aria_selected(True)]
+    False -> [attribute.aria_selected(False), attribute.hidden(True)]
   }
 
   html.div(
@@ -101,7 +96,7 @@ pub fn tab_panel(
       [
         attribute.role("tabpanel"),
         attribute.id(id),
-        attribute("aria-labelledby", tab_id),
+        attribute.aria_labelledby(tab_id),
         attribute.tabindex(-1),
       ],
       list.append(selected_attr, attrs),

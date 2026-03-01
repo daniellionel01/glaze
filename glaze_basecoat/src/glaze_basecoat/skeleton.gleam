@@ -11,6 +11,7 @@
 ////   skeleton.skeleton([attribute.class("h-4 w-full")])
 //// }
 //// ```
+////
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

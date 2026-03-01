@@ -12,6 +12,7 @@
 ////   label.label([attribute.for("email")], [html.text("Email")])
 //// }
 //// ```
+////
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

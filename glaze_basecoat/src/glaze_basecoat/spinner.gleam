@@ -11,6 +11,7 @@
 ////   spinner.spinner([])
 //// }
 //// ```
+////
 
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element, element}
@@ -22,26 +23,22 @@ pub fn spinner(attrs: List(Attribute(msg))) -> Element(msg) {
   element(
     "svg",
     [
-      attribute.attribute("xmlns", "http://www.w3.org/2000/svg"),
-      attribute.attribute("width", "24"),
-      attribute.attribute("height", "24"),
-      attribute.attribute("viewBox", "0 0 24 24"),
-      attribute.attribute("fill", "none"),
-      attribute.attribute("stroke", "currentColor"),
-      attribute.attribute("stroke-width", "2"),
-      attribute.attribute("stroke-linecap", "round"),
-      attribute.attribute("stroke-linejoin", "round"),
+      attribute("xmlns", "http://www.w3.org/2000/svg"),
+      attribute("width", "24"),
+      attribute("height", "24"),
+      attribute("viewBox", "0 0 24 24"),
+      attribute("fill", "none"),
+      attribute("stroke", "currentColor"),
+      attribute("stroke-width", "2"),
+      attribute("stroke-linecap", "round"),
+      attribute("stroke-linejoin", "round"),
       attribute.role("status"),
-      attribute("aria-label", "Loading"),
+      attribute.aria_label("Loading"),
       attribute.class("animate-spin size-4"),
       ..attrs
     ],
     [
-      element(
-        "path",
-        [attribute.attribute("d", "M21 12a9 9 0 1 1-6.219-8.56")],
-        [],
-      ),
+      element("path", [attribute("d", "M21 12a9 9 0 1 1-6.219-8.56")], []),
     ],
   )
 }

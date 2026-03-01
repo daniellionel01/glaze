@@ -21,6 +21,7 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}
@@ -39,7 +40,7 @@ pub fn dialog(
       [
         attribute.class("dialog"),
         attribute.id(id),
-        attribute("aria-labelledby", title_id),
+        attribute.aria_labelledby(title_id),
       ],
       attrs,
     ),
@@ -73,8 +74,8 @@ pub fn dialog_with_description(
       [
         attribute.class("dialog"),
         attribute.id(id),
-        attribute("aria-labelledby", title_id),
-        attribute("aria-describedby", desc_id),
+        attribute.aria_labelledby(title_id),
+        attribute.aria_describedby(desc_id),
       ],
       attrs,
     ),
@@ -131,8 +132,8 @@ pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
     list.append(
       [
         attribute.type_("button"),
-        attribute("aria-label", "Close dialog"),
-        attribute.attribute("onclick", "this.closest('dialog').close()"),
+        attribute.aria_label("Close dialog"),
+        attribute("onclick", "this.closest('dialog').close()"),
       ],
       attrs,
     ),
@@ -140,19 +141,19 @@ pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
       element(
         "svg",
         [
-          attribute.attribute("xmlns", "http://www.w3.org/2000/svg"),
-          attribute.attribute("width", "24"),
-          attribute.attribute("height", "24"),
-          attribute.attribute("viewBox", "0 0 24 24"),
-          attribute.attribute("fill", "none"),
-          attribute.attribute("stroke", "currentColor"),
-          attribute.attribute("stroke-width", "2"),
-          attribute.attribute("stroke-linecap", "round"),
-          attribute.attribute("stroke-linejoin", "round"),
+          attribute("xmlns", "http://www.w3.org/2000/svg"),
+          attribute("width", "24"),
+          attribute("height", "24"),
+          attribute("viewBox", "0 0 24 24"),
+          attribute("fill", "none"),
+          attribute("stroke", "currentColor"),
+          attribute("stroke-width", "2"),
+          attribute("stroke-linecap", "round"),
+          attribute("stroke-linejoin", "round"),
         ],
         [
-          element("path", [attribute.attribute("d", "M18 6 6 18")], []),
-          element("path", [attribute.attribute("d", "m6 6 12 12")], []),
+          element("path", [attribute("d", "M18 6 6 18")], []),
+          element("path", [attribute("d", "m6 6 12 12")], []),
         ],
       ),
     ],
@@ -176,7 +177,7 @@ pub fn responsive_width(width: String) -> Attribute(msg) {
 }
 
 pub fn close_on_backdrop() -> Attribute(msg) {
-  attribute.attribute("onclick", "if (event.target === this) this.close()")
+  attribute("onclick", "if (event.target === this) this.close()")
 }
 
 pub fn open_script(dialog_id: String) -> String {
@@ -196,7 +197,7 @@ pub fn trigger_button(
     list.append(
       [
         attribute.type_("button"),
-        attribute.attribute("onclick", open_script(dialog_id)),
+        attribute("onclick", open_script(dialog_id)),
       ],
       attrs,
     ),

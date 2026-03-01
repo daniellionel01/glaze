@@ -19,7 +19,7 @@
 //// ```
 
 import gleam/list
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -36,7 +36,7 @@ pub fn trigger(
     list.append(
       [
         attribute.type_("button"),
-        attribute("aria-describedby", tooltip_id),
+        attribute.aria_describedby(tooltip_id),
       ],
       attrs,
     ),
@@ -53,7 +53,7 @@ pub fn trigger_with_id(
     list.append(
       [
         attribute.type_("button"),
-        attribute("aria-describedby", tooltip_id),
+        attribute.aria_describedby(tooltip_id),
       ],
       attrs,
     ),
@@ -71,8 +71,8 @@ pub fn content(
       [
         attribute.id(tooltip_id),
         attribute.role("tooltip"),
-        attribute("data-popover", ""),
-        attribute("aria-hidden", "true"),
+        attribute.data("popover", ""),
+        attribute.aria_hidden(True),
       ],
       attrs,
     ),
@@ -90,8 +90,8 @@ pub fn content_with_id(
       [
         attribute.id(tooltip_id),
         attribute.role("tooltip"),
-        attribute("data-popover", ""),
-        attribute("aria-hidden", "true"),
+        attribute.data("popover", ""),
+        attribute.aria_hidden(True),
       ],
       attrs,
     ),
@@ -100,11 +100,11 @@ pub fn content_with_id(
 }
 
 pub fn side(s: String) -> Attribute(msg) {
-  attribute("data-side", s)
+  attribute.data("side", s)
 }
 
 pub fn align(a: String) -> Attribute(msg) {
-  attribute("data-align", a)
+  attribute.data("align", a)
 }
 
 pub fn side_top() -> Attribute(msg) {

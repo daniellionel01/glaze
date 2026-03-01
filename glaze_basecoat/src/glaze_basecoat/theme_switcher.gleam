@@ -13,6 +13,7 @@
 ////   theme_switcher.button([])
 //// }
 //// ```
+////
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}
@@ -60,8 +61,8 @@ pub fn button(attrs: List(Attribute(msg))) -> Element(msg) {
     list.append(
       [
         attribute.type_("button"),
-        attribute("aria-label", "Toggle dark mode"),
-        attribute.attribute("onclick", toggle_script()),
+        attribute.aria_label("Toggle dark mode"),
+        attribute("onclick", toggle_script()),
         attribute.class("btn-icon-outline size-8"),
       ],
       attrs,
@@ -81,10 +82,10 @@ pub fn button_with_tooltip(
     list.append(
       [
         attribute.type_("button"),
-        attribute("aria-label", "Toggle dark mode"),
-        attribute("data-tooltip", "Toggle dark mode"),
-        attribute("data-side", tooltip_side),
-        attribute.attribute("onclick", toggle_script()),
+        attribute.aria_label("Toggle dark mode"),
+        attribute.data("tooltip", "Toggle dark mode"),
+        attribute.data("side", tooltip_side),
+        attribute("onclick", toggle_script()),
         attribute.class("btn-icon-outline size-8"),
       ],
       attrs,
@@ -100,34 +101,34 @@ fn sun_icon() -> Element(msg) {
   element(
     "svg",
     [
-      attribute.attribute("xmlns", "http://www.w3.org/2000/svg"),
-      attribute.attribute("width", "24"),
-      attribute.attribute("height", "24"),
-      attribute.attribute("viewBox", "0 0 24 24"),
-      attribute.attribute("fill", "none"),
-      attribute.attribute("stroke", "currentColor"),
-      attribute.attribute("stroke-width", "2"),
-      attribute.attribute("stroke-linecap", "round"),
-      attribute.attribute("stroke-linejoin", "round"),
+      attribute("xmlns", "http://www.w3.org/2000/svg"),
+      attribute("width", "24"),
+      attribute("height", "24"),
+      attribute("viewBox", "0 0 24 24"),
+      attribute("fill", "none"),
+      attribute("stroke", "currentColor"),
+      attribute("stroke-width", "2"),
+      attribute("stroke-linecap", "round"),
+      attribute("stroke-linejoin", "round"),
     ],
     [
       element(
         "circle",
         [
-          attribute.attribute("cx", "12"),
-          attribute.attribute("cy", "12"),
-          attribute.attribute("r", "4"),
+          attribute("cx", "12"),
+          attribute("cy", "12"),
+          attribute("r", "4"),
         ],
         [],
       ),
-      element("path", [attribute.attribute("d", "M12 2v2")], []),
-      element("path", [attribute.attribute("d", "M12 20v2")], []),
-      element("path", [attribute.attribute("d", "m4.93 4.93 1.41 1.41")], []),
-      element("path", [attribute.attribute("d", "m17.66 17.66 1.41 1.41")], []),
-      element("path", [attribute.attribute("d", "M2 12h2")], []),
-      element("path", [attribute.attribute("d", "M20 12h2")], []),
-      element("path", [attribute.attribute("d", "m6.34 17.66-1.41 1.41")], []),
-      element("path", [attribute.attribute("d", "m19.07 4.93-1.41 1.41")], []),
+      element("path", [attribute("d", "M12 2v2")], []),
+      element("path", [attribute("d", "M12 20v2")], []),
+      element("path", [attribute("d", "m4.93 4.93 1.41 1.41")], []),
+      element("path", [attribute("d", "m17.66 17.66 1.41 1.41")], []),
+      element("path", [attribute("d", "M2 12h2")], []),
+      element("path", [attribute("d", "M20 12h2")], []),
+      element("path", [attribute("d", "m6.34 17.66-1.41 1.41")], []),
+      element("path", [attribute("d", "m19.07 4.93-1.41 1.41")], []),
     ],
   )
 }
@@ -136,20 +137,20 @@ fn moon_icon() -> Element(msg) {
   element(
     "svg",
     [
-      attribute.attribute("xmlns", "http://www.w3.org/2000/svg"),
-      attribute.attribute("width", "24"),
-      attribute.attribute("height", "24"),
-      attribute.attribute("viewBox", "0 0 24 24"),
-      attribute.attribute("fill", "none"),
-      attribute.attribute("stroke", "currentColor"),
-      attribute.attribute("stroke-width", "2"),
-      attribute.attribute("stroke-linecap", "round"),
-      attribute.attribute("stroke-linejoin", "round"),
+      attribute("xmlns", "http://www.w3.org/2000/svg"),
+      attribute("width", "24"),
+      attribute("height", "24"),
+      attribute("viewBox", "0 0 24 24"),
+      attribute("fill", "none"),
+      attribute("stroke", "currentColor"),
+      attribute("stroke-width", "2"),
+      attribute("stroke-linecap", "round"),
+      attribute("stroke-linejoin", "round"),
     ],
     [
       element(
         "path",
-        [attribute.attribute("d", "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z")],
+        [attribute("d", "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z")],
         [],
       ),
     ],

@@ -14,9 +14,9 @@
 ////   ], "")
 //// }
 //// ```
+////
 
-import gleam/int
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -29,7 +29,7 @@ pub fn textarea(attrs: List(Attribute(msg)), content: String) -> Element(msg) {
 /// Mark textarea as invalid.
 ///
 pub fn invalid() -> Attribute(msg) {
-  attribute("aria-invalid", "true")
+  attribute.aria_invalid("true")
 }
 
 /// Mark textarea as disabled.
@@ -59,5 +59,5 @@ pub fn id(id: String) -> Attribute(msg) {
 /// Set number of visible rows.
 ///
 pub fn rows(n: Int) -> Attribute(msg) {
-  attribute.attribute("rows", int.to_string(n))
+  attribute.rows(n)
 }

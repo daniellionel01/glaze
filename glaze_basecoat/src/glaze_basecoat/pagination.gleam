@@ -16,9 +16,10 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/int
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -31,7 +32,7 @@ pub fn pagination(
   html.nav(
     [
       attribute.role("navigation"),
-      attribute("aria-label", "pagination"),
+      attribute.aria_label("pagination"),
       attribute.class("mx-auto flex w-full justify-center"),
       ..attrs
     ],

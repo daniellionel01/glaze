@@ -66,6 +66,7 @@
 ////
 //// - [`small`](#small) - Small button
 //// - [`large`](#large) - Large button
+////
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

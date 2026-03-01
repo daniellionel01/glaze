@@ -23,9 +23,10 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/list
-import lustre/attribute.{type Attribute, attribute}
+import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
@@ -44,7 +45,7 @@ pub fn sidebar(
       [
         attribute.class("sidebar"),
         attribute.id(id),
-        attribute("aria-hidden", "false"),
+        attribute.aria_hidden(False),
       ],
       attrs,
     ),
@@ -53,19 +54,19 @@ pub fn sidebar(
 }
 
 pub fn left() -> Attribute(msg) {
-  attribute("data-side", "left")
+  attribute.data("side", "left")
 }
 
 pub fn right() -> Attribute(msg) {
-  attribute("data-side", "right")
+  attribute.data("side", "right")
 }
 
 pub fn hidden() -> Attribute(msg) {
-  attribute("aria-hidden", "true")
+  attribute.aria_hidden(True)
 }
 
 pub fn visible() -> Attribute(msg) {
-  attribute("aria-hidden", "false")
+  attribute.aria_hidden(False)
 }
 
 pub fn nav(
@@ -80,7 +81,7 @@ pub fn nav_with_label(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.nav(list.append([attribute("aria-label", label)], attrs), children)
+  html.nav(list.append([attribute.aria_label(label)], attrs), children)
 }
 
 pub fn header(
@@ -102,7 +103,7 @@ pub fn group(label: String, items: List(Element(msg))) -> Element(msg) {
   html.div(
     [
       attribute.role("group"),
-      attribute("aria-labelledby", label_id),
+      attribute.aria_labelledby(label_id),
     ],
     [
       html.h3([attribute.id(label_id), attribute.class("text-sm font-medium")], [
@@ -123,7 +124,7 @@ pub fn group_with_attrs(
     list.append(
       [
         attribute.role("group"),
-        attribute("aria-labelledby", label_id),
+        attribute.aria_labelledby(label_id),
       ],
       attrs,
     ),
@@ -143,7 +144,7 @@ pub fn link(
   children: List(Element(msg)),
 ) -> Element(msg) {
   let current_attr = case is_current {
-    True -> [attribute("aria-current", "page")]
+    True -> [attribute.aria_current("page")]
     False -> []
   }
   html.li([], [
@@ -160,7 +161,7 @@ pub fn button(
   children: List(Element(msg)),
 ) -> Element(msg) {
   let current_attr = case is_current {
-    True -> [attribute("aria-current", "page")]
+    True -> [attribute.aria_current("page")]
     False -> []
   }
   html.li([], [
@@ -185,7 +186,7 @@ pub fn submenu(
 ) -> Element(msg) {
   html.li([], [
     html.details(list.append([attribute.id(id)], attrs), [
-      html.summary([attribute("aria-controls", id <> "-content")], [
+      html.summary([attribute.aria_controls(id <> "-content")], [
         html.text(label),
       ]),
       html.ul([attribute.id(id <> "-content")], items),
@@ -202,7 +203,7 @@ pub fn submenu_with_icon(
 ) -> Element(msg) {
   html.li([], [
     html.details(list.append([attribute.id(id)], attrs), [
-      html.summary([attribute("aria-controls", id <> "-content")], [
+      html.summary([attribute.aria_controls(id <> "-content")], [
         icon,
         html.text(label),
       ]),

@@ -18,6 +18,7 @@
 ////   ])
 //// }
 //// ```
+////
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}
@@ -34,7 +35,7 @@ pub fn command(
       [
         attribute.id(id),
         attribute.class("command"),
-        attribute("aria-label", "Command menu"),
+        attribute.aria_label("Command menu"),
       ],
       attrs,
     ),
@@ -52,7 +53,7 @@ pub fn command_styled(
       [
         attribute.id(id),
         attribute.class("command rounded-lg border shadow-md"),
-        attribute("aria-label", "Command menu"),
+        attribute.aria_label("Command menu"),
       ],
       attrs,
     ),
@@ -70,11 +71,8 @@ pub fn dialog(
       [
         attribute.id(id),
         attribute.class("command-dialog"),
-        attribute("aria-label", "Command menu"),
-        attribute.attribute(
-          "onclick",
-          "if (event.target === this) this.close()",
-        ),
+        attribute.aria_label("Command menu"),
+        attribute("onclick", "if (event.target === this) this.close()"),
       ],
       attrs,
     ),
@@ -100,13 +98,13 @@ pub fn search_input(
       attribute.type_("text"),
       attribute.id(id),
       attribute.placeholder(placeholder),
-      attribute.attribute("autocomplete", "off"),
-      attribute.attribute("autocorrect", "off"),
-      attribute.attribute("spellcheck", "false"),
-      attribute("aria-autocomplete", "list"),
+      attribute.autocomplete("off"),
+      attribute.autocorrect(False),
+      attribute.spellcheck(False),
+      attribute.aria_autocomplete("list"),
       attribute.role("combobox"),
-      attribute("aria-expanded", "true"),
-      attribute("aria-controls", menu_id),
+      attribute.aria_expanded(True),
+      attribute.aria_controls(menu_id),
     ],
     attrs,
   ))
@@ -122,7 +120,7 @@ pub fn menu(
       [
         attribute.id(id),
         attribute.role("menu"),
-        attribute("aria-orientation", "vertical"),
+        attribute.aria_orientation("vertical"),
         attribute.class("scrollbar"),
       ],
       attrs,
@@ -142,8 +140,8 @@ pub fn menu_with_empty(
       [
         attribute.id(id),
         attribute.role("menu"),
-        attribute("aria-orientation", "vertical"),
-        attribute("data-empty", empty_message),
+        attribute.aria_orientation("vertical"),
+        attribute.data("empty", empty_message),
         attribute.class("scrollbar"),
       ],
       attrs,
@@ -185,7 +183,7 @@ pub fn item_disabled(
 ) -> Element(msg) {
   html.div(
     list.append(
-      [attribute.role("menuitem"), attribute("aria-disabled", "true")],
+      [attribute.role("menuitem"), attribute.aria_disabled(True)],
       attrs,
     ),
     children,
@@ -206,7 +204,7 @@ pub fn item_link(
 pub fn group(label: String, items: List(Element(msg))) -> Element(msg) {
   let label_id = "group-label-" <> label
   html.div(
-    [attribute.role("group"), attribute("aria-labelledby", label_id)],
+    [attribute.role("group"), attribute.aria_labelledby(label_id)],
     list.append(
       [
         html.span([attribute.role("heading"), attribute.id(label_id)], [
@@ -223,19 +221,19 @@ pub fn separator() -> Element(msg) {
 }
 
 pub fn disabled() -> Attribute(msg) {
-  attribute("aria-disabled", "true")
+  attribute.aria_disabled(True)
 }
 
 pub fn filter(text: String) -> Attribute(msg) {
-  attribute("data-filter", text)
+  attribute.data("filter", text)
 }
 
 pub fn keywords(text: String) -> Attribute(msg) {
-  attribute("data-keywords", text)
+  attribute.data("keywords", text)
 }
 
 pub fn force_show() -> Attribute(msg) {
-  attribute("data-force", "")
+  attribute.data("force", "")
 }
 
 pub fn open_script(dialog_id: String) -> String {
