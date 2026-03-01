@@ -144,7 +144,7 @@ pub fn register_css(v: String) -> Element(a) {
 ///
 /// html.body([], [
 ///   // Your content...
-///   glaze_basecoat.toaster(),
+///   basecoat.toaster(),
 /// ])
 /// ```
 ///
