@@ -1,9 +1,9 @@
 name = "glaze_oat"
-version = "1.0.0"
+version = "1.0.1"
 description = "🍩 Lustre Bindings to Oat UI Components"
 
 licences = ["MIT"]
-repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_oat" }
+repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_oat", tag_prefix = "oat-" }
 
 links = [
   { title = "Oat", href = "https://oat.ink/" },
