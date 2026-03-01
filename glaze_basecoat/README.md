@@ -87,6 +87,8 @@ Use `glaze_basecoat.register()` to include everything via CDN.
 If you use Tailwind's CDN (<https://tailwindcss.com/docs/installation/play-cdn>), you also need Basecoat's Tailwind v4
 `@theme` mapping so utilities like `bg-accent` exist.
 
+If you have a build-time Tailwind setup, you do not need this bridge (it comes from `@import "basecoat-css"`).
+
 ```gleam
 import glaze_basecoat
 import glaze_basecoat/theme
@@ -106,13 +108,19 @@ html.head([], [
 
 ### With Your Tailwind Setup
 
+If you have a build-time Tailwind setup (Tailwind CLI/PostCSS/Vite/etc) and you install Basecoat from npm, you can import Basecoat directly in your Tailwind entry CSS.
+
+```sh
+npm install basecoat-css
+```
+
 ```css
 @import "tailwindcss";
 @import "basecoat-css";
 ```
 
-In this case you should not use `glaze_basecoat.register()`, since it also includes a `<style>` tag.
-Use `glaze_basecoat.register_js()` to only include the JavaScript and configure Tailwind yourself.
+In this case you should not use `glaze_basecoat.register()`, since it also includes Basecoat's CSS from the CDN.
+Use `glaze_basecoat.register_js()` (or `glaze_basecoat.register_component()`) to only include the JavaScript and let your Tailwind build produce the CSS.
 
 ```gleam
 import glaze_basecoat
