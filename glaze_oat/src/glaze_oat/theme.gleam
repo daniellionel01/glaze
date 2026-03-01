@@ -25,6 +25,7 @@
 
 import gleam/dict
 import gleam/list
+import gleam/string
 import lustre/element
 import lustre/element/html
 
@@ -355,6 +356,11 @@ fn theme_to_css_variables(theme: Theme) -> String {
   let Theme(values:) = theme
   values
   |> dict.to_list
+  |> list.sort(by: fn(a, b) {
+    let #(token_a, _) = a
+    let #(token_b, _) = b
+    string.compare(token_css_var(token_a), token_css_var(token_b))
+  })
   |> list.fold("", fn(acc, cur) {
     let #(token, value) = cur
     case value {

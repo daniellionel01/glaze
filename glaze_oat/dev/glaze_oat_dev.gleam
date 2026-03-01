@@ -1,3 +1,16 @@
+//// Generates a static HTML demo page for `glaze_oat`.
+////
+//// Running this module writes the GitHub Pages demo file directly to
+//// `docs/glaze_oat/index.html` at the repository root:
+////
+//// ```sh
+//// gleam run -m glaze_oat_dev
+//// ```
+////
+//// A GitHub Workflow check keeps the file from going stale by regenerating the demo and
+//// failing if `docs/glaze_oat/index.html` has changed.
+////
+
 import glaze_oat
 import glaze_oat/accordion.{accordion}
 import glaze_oat/alert.{alert}
@@ -25,6 +38,19 @@ import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
 import simplifile
+
+/// Generates `docs/glaze_oat/index.html` (GitHub Pages artifact).
+///
+/// This is the entry point used by `gleam run -m glaze_oat_dev`.
+///
+pub fn main() {
+  let html =
+    page()
+    |> element.to_document_string
+
+  let assert Ok(_) =
+    simplifile.write(contents: html, to: "../docs/glaze_oat/index.html")
+}
 
 /// Demo page ported from https://oat.ink/demo/
 /// Sources:
@@ -1426,11 +1452,4 @@ pub fn page() {
       ]),
     ]),
   ])
-}
-
-pub fn main() {
-  let html =
-    page()
-    |> element.to_document_string
-  let assert Ok(_) = simplifile.write(contents: html, to: "./oat.html")
 }

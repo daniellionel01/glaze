@@ -1,11 +1,9 @@
 # 🍩 Glaze
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
-- [glaze_oat](https://hexdocs.pm/glaze_oat/)
+- **glaze_oat:** [hexdocs](https://hexdocs.pm/glaze_oat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | [demo](https://daniellionel01.github.io/glaze/glaze_oat/)
 
 <br />
-
-**Oat:** [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
 
 ## About this Project
 
@@ -17,12 +15,12 @@ These framework-agnostic UI Libraries are already relatively low friction to get
 
 ## Development
 
-In each package, there is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
+In each package, there is a `dev` module that constructs a demo with all available elements and writes it to a static `.html` file that you can open in your browser and (optionally) publish via GitHub Pages.
 
 ```sh
 cd glaze_oat
-gleam dev
-open oat.html
+gleam run -m glaze_oat_dev
+open ../docs/glaze_oat/index.html
 ```
 
 ## Future Work

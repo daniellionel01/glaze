@@ -1,0 +1,39 @@
+name: Check glaze_oat demo is up to date
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  check-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Erlang/OTP + Gleam
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27"
+          gleam-version: "1.14.0"
+          rebar3-version: "3"
+
+      - name: Ensure docs output directory exists
+        run: |
+          mkdir -p docs/glaze_oat
+
+      - name: Generate demo HTML
+        working-directory: glaze_oat
+        run: |
+          gleam deps download
+          gleam run -m glaze_oat_dev
+
+      - name: Verify GitHub Pages demo is current
+        run: |
+          git ls-files --error-unmatch docs/glaze_oat/index.html >/dev/null
+          git diff --exit-code -- docs/glaze_oat/index.html

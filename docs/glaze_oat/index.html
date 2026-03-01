@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta content="width=device-width, initial-scale=1" name="viewport"><title>Glaze / Oat UI</title><!-- lustre:fragment --><link href="https://unpkg.com/@knadh/oat@0.4.1/oat.min.css" rel="stylesheet"><script defer="defer" src="https://unpkg.com/@knadh/oat@0.4.1/oat.min.js"></script><style>
+      @layer utilities {
+        :is(ul, ol, a).unstyled {
+          list-style: none;
+          text-decoration: none;
+          padding: 0;
+        }
+      }
+    </style><!-- /lustre:fragment --><style>:root { color-scheme: light dark; 
+--accent: light-dark(#f4f4f5, #27272a);
+--background: light-dark(#fff, #09090b);
+--bar-height: 0.5rem;
+--border: light-dark(#d4d4d8, #52525b);
+--card: light-dark(#fff, #18181b);
+--card-foreground: light-dark(#09090b, #fafafa);
+--danger: light-dark(#d32f2f, #f4807b);
+--danger-foreground: light-dark(#fafafa, #18181b);
+--faint: light-dark(#fafafa, #1e1e21);
+--faint-foreground: light-dark(#a1a1aa, #71717a);
+--font-bold: 600;
+--font-medium: 500;
+--font-mono: ui-monospace, Consolas, monospace;
+--font-normal: 400;
+--font-sans: system-ui, sans-serif;
+--font-semibold: 600;
+--foreground: light-dark(#09090b, #fafafa);
+--input: light-dark(#d4d4d8, #52525b);
+--leading-normal: 1.5;
+--muted: light-dark(#f4f4f5, #27272a);
+--muted-foreground: light-dark(#71717a, #a1a1aa);
+--primary: light-dark(#574747, #fafafa);
+--primary-foreground: light-dark(#fafafa, #18181b);
+--radius-full: 9999px;
+--radius-large: 0.75rem;
+--radius-medium: 0.375rem;
+--radius-small: 0.125rem;
+--ring: light-dark(#574747, #d4d4d8);
+--secondary: light-dark(#f4f4f5, #27272a);
+--secondary-foreground: light-dark(#574747, #fafafa);
+--shadow-large: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+--shadow-medium: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+--shadow-small: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+--space-1: 0.25rem;
+--space-10: 2.5rem;
+--space-12: 3rem;
+--space-14: 3.5rem;
+--space-16: 4rem;
+--space-18: 4.5rem;
+--space-2: 0.5rem;
+--space-3: 0.75rem;
+--space-4: 1rem;
+--space-5: 1.25rem;
+--space-6: 1.5rem;
+--space-8: 2rem;
+--success: light-dark(#008032, #6cc070);
+--success-foreground: light-dark(#fafafa, #18181b);
+--text-1: clamp(1.75rem, 1.5rem + 1.1vw, 2.25rem);
+--text-2: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+--text-3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+--text-4: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+--text-5: 1.125rem;
+--text-6: 1rem;
+--text-7: 0.875rem;
+--text-8: 0.75rem;
+--text-regular: var(--text-6);
+--transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+--transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+--warning: light-dark(#a65b00, #f0a030);
+--warning-foreground: #09090b;
+--z-dropdown: 50;
+--z-modal: 200;}</style><style>
+        body.demo {
+          .section {
+            margin-bottom: var(--space-8);
+          }
+
+          .container {
+            max-width: 1200px;
+          }
+
+          .stat-value {
+            font-size: var(--text-1);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+          }
+
+          .faux-bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: var(--space-2);
+            height: 120px;
+          }
+
+          .faux-bar {
+            flex: 1;
+            background: var(--primary);
+            border-radius: var(--radius-small) var(--radius-small) 0 0;
+            min-width: 0;
+          }
+
+          .activity-item {
+            padding-bottom: var(--space-3);
+            border-bottom: 1px solid var(--border);
+
+            &:last-child {
+              border-bottom: none;
+              padding-bottom: 0;
+            }
+          }
+        }
+      </style><script>
+      function toggleTheme() {
+        var cs = document.documentElement.style.colorScheme;
+        var isDark = cs === 'dark' || (!cs && matchMedia('(prefers-color-scheme: dark)').matches);
+        var theme = isDark ? 'light' : 'dark';
+        document.documentElement.style.colorScheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      }
+      </script></head><body class="demo" data-sidebar-layout="always"><nav class="hstack justify-between" data-topnav><button class="outline small" data-sidebar-toggle>☰</button><strong>Oat Component Demo</strong><div class="hstack gap-2"><button class="small outline" onclick="toggleTheme()" role="button">Toggle Theme</button><button class="small" data-tooltip="Refresh data now" role="button">↻</button></div></nav><aside data-sidebar><nav><ul><li><a aria-current="page" href="#dashboard">Dashboard</a></li><li><a href="#data">Data &amp; Tables</a></li><li><a href="#feedback">Feedback</a></li><li><a href="#forms">Forms</a></li><li><a href="#loading">Loading</a></li></ul></nav><footer><button class="outline small" role="button" style="width: 100%;">Logout</button></footer></aside><main><div class="container"><section class="section"><div class="hstack justify-between mb-6"><div class="hstack"><h2 style="margin: 0;">Demo</h2><span class="badge success">Live</span><span class="badge secondary">v1.0.0</span></div><div class="hstack"><button class="small outline" command="show-modal" commandfor="dialog" role="button">Open Dialog</button><dialog closedby="any" id="dialog"><header><h3>Title</h3></header><p>Lorem Ipsum!</p><footer><button command="close" commandfor="dialog" role="button">close</button></footer></dialog><label class="hstack gap-2" style="margin: 0;"><input checked role="switch" type="checkbox"> Auto-refresh </label><ot-dropdown><button class="outline small" popovertarget="export-menu" role="button"> Export ▾ </button><menu id="export-menu" popover><button role="menuitem">Export as CSV</button><button role="menuitem">Export as JSON</button><hr><button role="menuitem">Print report</button></menu></ot-dropdown><button class="small" data-tooltip="Refresh data now" role="button"> ↻ Refresh </button></div></div></section><nav aria-label="breadcrumb"><ol class="unstyled hstack" style="font-size:var(--text-7);"><li><a class="unstyled" href="#">Home</a></li><li aria-hidden="true" role="presentation">/</li><li><a class="unstyled" href="#">Gleam</a></li><li aria-hidden="true" role="presentation">/</li><li><a class="unstyled" href="#"><strong>Demo</strong></a></li></ol></nav><section class="section" id="dashboard"><h2>Dashboard</h2><p class="text-light">Metrics, trends, tabs, and operational activity.</p></section><section class="section"><div class="row"><div class="col-3"><article class="card"><header><small class="text-light">Revenue</small><div class="stat-value">$42,128</div><small class="text-light"><span class="badge success">+12.5%</span> vs last month</small></header><footer><progress max="100" value="72"></progress></footer></article></div><div class="col-3"><article class="card"><header><small class="text-light">Active Users</small><div class="stat-value">2,847</div><small class="text-light"><span class="badge warning">-3.2%</span> vs last month</small></header><footer><progress max="100" value="58"></progress></footer></article></div><div class="col-3"><article class="card"><header><small class="text-light">Retention</small><div class="stat-value">3.24%</div><small class="text-light"><span class="badge success">+0.8%</span> vs last month</small></header><footer><meter high="0.7" low="0.3" max="1" min="0" optimum="1" value="0.65"></meter></footer></article></div><div class="col-3"><article class="card"><header><small class="text-light">Uptime</small><div class="stat-value">99.99%</div><small class="text-light"><span class="badge">Healthy</span></small></header><footer><meter high="0.99" low="0.95" max="1" min="0" optimum="1" value="0.9998"></meter></footer></article></div></div></section><section class="section"><article class="card"><ot-tabs><div role="tablist"><button role="tab">Overview</button><button role="tab">Performance</button><button role="tab">Reports</button></div><div role="tabpanel"><h4>Weekly Traffic</h4><div class="faux-bar-chart"><div class="faux-bar" data-tooltip="Mon: 1,204" style="height: 45%;"></div><div class="faux-bar" data-tooltip="Tue: 1,659" style="height: 62%;"></div><div class="faux-bar" data-tooltip="Wed: 2,087" style="height: 78%;"></div><div class="faux-bar" data-tooltip="Thu: 1,472" style="height: 55%;"></div><div class="faux-bar" data-tooltip="Fri: 2,411" style="height: 90%;"></div><div class="faux-bar" data-tooltip="Sat: 1,874" style="height: 70%;"></div><div class="faux-bar" data-tooltip="Sun: 1,071" style="height: 40%;"></div></div><blockquote>This dummy kitchensink dashboard page shows various UI components and layouts built with Oat.</blockquote></div><div role="tabpanel"><article aria-busy="true" class="card" data-data-spinner="large overlay"><header><h4>Performance Metrics</h4></header><p>Fetching latest benchmark data…</p><div class="row mt-4"><div class="col-6"><strong>Avg Response</strong><p>142 ms</p><progress max="100" value="14"></progress></div><div class="col-6"><strong>Error Rate</strong><p>0.03%</p><progress max="100" value="3"></progress></div></div></article></div><div role="tabpanel"><h4>Monthly Summary</h4><div class="table"><table><thead><tr><th>Metric</th><th>Value</th><th>Change</th></tr></thead><tbody><tr><td>Page views</td><td>1,234,567</td><td><span class="badge success">+8%</span></td></tr><tr><td>Bounce rate</td><td>42.3%</td><td><span class="badge danger">+2.1%</span></td></tr><tr><td>Avg session</td><td>4m 12s</td><td><span class="badge success">+15s</span></td></tr></tbody></table></div></div></ot-tabs></article></section><section class="section"><div class="row"><div class="col-6"><article class="card"><header><h3>Recent Activity</h3></header><div class="vstack gap-4"><div class="activity-item"><div class="hstack"><span class="badge success">Deploy</span><strong>Production deploy #1847</strong></div><small class="text-lighter">2 minutes ago by <strong>alice</strong></small></div><div class="activity-item"><div class="hstack"><span class="badge warning">Alert</span><strong>High memory usage on worker-3</strong></div><small class="text-lighter">18 minutes ago — <em>auto-resolved</em></small></div><div class="activity-item"><div class="hstack"><span class="badge">Merge</span><strong>PR #392: Update auth middleware</strong></div><small class="text-lighter">1 hour ago by <strong>bob</strong></small></div><div class="activity-item"><div class="hstack"><span class="badge danger">Incident</span><strong>API latency spike (resolved)</strong></div><small class="text-lighter">3 hours ago — duration: 4m 22s</small></div><div class="activity-item"><div class="hstack"><span class="badge secondary">Config</span><strong>Updated rate limits</strong></div><small class="text-lighter">5 hours ago by <strong>carol</strong></small></div></div></article></div><div class="col-6"><article class="card"><header><h3>Server Status</h3><small class="text-light hstack gap-2"><span aria-busy="true" data-data-spinner="small"></span> Monitoring </small></header><div class="vstack gap-4"><div><div class="hstack justify-between"><strong>CPU Usage</strong><span class="badge success">Normal</span></div><progress max="100" value="42"></progress><small class="text-lighter">42% — 8 cores</small></div><div><div class="hstack justify-between"><strong>Memory</strong><span class="badge warning">High</span></div><progress max="100" value="78"></progress><small class="text-lighter">12.5 / 16 GB used</small></div><div><div class="hstack justify-between"><strong>Disk I/O</strong><span class="badge success">Normal</span></div><meter high="0.7" low="0.3" max="1" min="0" optimum="0" value="0.35"></meter><small class="text-lighter">Read: 145 MB/s — Write: 82 MB/s</small></div><div><div class="row"><div class="col-6"><strong>Network In</strong><p style="margin:0;">1.2 Gbps</p><progress max="100" value="60"></progress></div><div class="col-6"><strong>Network Out</strong><p style="margin:0;">840 Mbps</p><progress max="100" value="42"></progress></div></div></div></div></article></div></div></section><section class="section"><h2 id="data">Data &amp; Tables</h2><p class="text-light mb-4">Interactive table patterns, row actions, and pagination.</p><article class="card"><header><h3>Recent Orders</h3></header><div class="hstack justify-between mb-4"><fieldset class="group" style="margin: 0; max-width: 300px;"><input aria-label="Search orders" placeholder="Search orders…" type="search"><button class="outline" role="button">Search</button></fieldset><menu class="buttons"><li><button class="ghost small" role="button">All</button></li><li><button class="outline small" role="button">Pending</button></li><li><button class="outline small" role="button">Shipped</button></li></menu></div><div class="table"><table><thead><tr><th><label><input aria-label="Select all" type="checkbox"></label></th><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td><label><input aria-label="Select order" type="checkbox"></label></td><td><code>#ORD-7291</code></td><td>Alice Johnson</td><td>$249.00</td><td><span class="badge success">Delivered</span></td><td><menu class="buttons"><li><button class="ghost small" role="button">View</button></li><li><button class="ghost small" role="button">Edit</button></li></menu></td></tr><tr><td><label><input aria-label="Select order" type="checkbox"></label></td><td><code>#ORD-7292</code></td><td>Bob Chen</td><td>$1,450.00</td><td><span class="badge warning">Pending</span></td><td><menu class="buttons"><li><button class="ghost small" role="button">View</button></li><li><button class="ghost small" role="button">Edit</button></li></menu></td></tr><tr><td><label><input aria-label="Select order" type="checkbox"></label></td><td><code>#ORD-7293</code></td><td>Carol Davis</td><td>$89.50</td><td><span class="badge">Processing</span></td><td><menu class="buttons"><li><button class="ghost small" role="button">View</button></li><li><button class="ghost small" role="button">Edit</button></li></menu></td></tr><tr><td><label><input aria-label="Select order" type="checkbox"></label></td><td><code>#ORD-7294</code></td><td>David Park</td><td>$672.00</td><td><span class="badge outline">Shipped</span></td><td><menu class="buttons"><li><button class="ghost small" role="button">View</button></li><li><button class="ghost small" role="button">Edit</button></li></menu></td></tr><tr><td><label><input aria-label="Select order" type="checkbox"></label></td><td><code>#ORD-7295</code></td><td>Emma Wilson</td><td>$34.99</td><td><span class="badge danger">Cancelled</span></td><td><menu class="buttons"><li><button class="ghost small" role="button">View</button></li><li><button class="ghost small" command="show-modal" commandfor="delete-dialog" data-data-variant="danger" role="button">Delete</button></li></menu></td></tr></tbody></table></div><div class="hstack mt-4" style="justify-content: flex-end;"><small class="text-light">Showing 1–5 of 243</small><nav aria-label="Pagination"><menu class="buttons"><li><a aria-disabled="true" class="button outline small" href="#orders" role="button">← Prev</a></li><li><a class="button outline small" href="#orders" role="button">1</a></li><li><a class="button outline small" href="#orders" role="button">2</a></li><li><a aria-current="page" class="button small" href="#orders" role="button">3</a></li><li><a class="button outline small" href="#orders" role="button">Next →</a></li></menu></nav></div></article><dialog closedby="any" id="delete-dialog"><form method="dialog"><header><h3>Confirm Deletion</h3><p>This action cannot be undone.</p></header><div><p>Are you sure you want to delete order <strong>#ORD-7295</strong>? This will permanently remove it from the system.</p></div><footer><button class="outline" command="close" commandfor="delete-dialog" role="button" type="button">Cancel</button><button data-data-variant="danger" role="button" value="confirm">Delete Order</button></footer></form></dialog></section><section class="section"><h2 id="feedback">Feedback</h2><p class="text-light mb-4">Alerts, toasts, and status-focused UI communication.</p><div class="row"><div class="col-6"><article class="card"><header><h3>System Notifications</h3></header><div class="mb-4" role="alert"><strong>Info:</strong><span> System maintenance scheduled for Sunday 2:00 AM UTC.</span></div><div class="mb-4" data-variant="success" role="alert"><strong>Success:</strong><span> All backups completed successfully. </span></div><div class="mb-4" data-variant="warning" role="alert"><strong>Warning:</strong><span> SSL certificate expires in 7 days. </span></div><div class="mb-4" data-variant="error" role="alert"><strong>Error:</strong><span> Payment gateway timeout — 3 transactions affected. </span></div><hr><h4>Toast Notifications</h4><div class="hstack mt-4"><button class="small" onclick="ot.toast(`Deployment completed.`, `Success`, {variant: &quot;success&quot;, placement: &quot;top-right&quot;, duration: 4000});" role="button">Success toast</button><button class="small outline" onclick="ot.toast(`Disk usage at 89%`, `Warning`, {variant: &quot;warning&quot;, placement: &quot;top-left&quot;, duration: 4000});" role="button">Warning toast</button><button class="small" data-data-variant="danger" onclick="ot.toast(`Connection lost.`, `Error`, {variant: &quot;danger&quot;, placement: &quot;bottom-right&quot;, duration: 4000});" role="button">Error toast</button><button class="small" data-data-variant="secondary" onclick="ot.toast(`Build #1847 started.`, `Info`, {variant: &quot;info&quot;, placement: &quot;top-right&quot;, duration: 4000});" role="button">Info toast</button></div></article></div><div class="col-6"><article class="card"><header><h3>FAQ</h3></header><div><details name="faq"><summary>How do I reset my password?</summary><p>Navigate to <strong>Settings → Security</strong> and click <em>&quot;Reset password&quot;</em>. You&#39;ll receive a confirmation email with a link.</p><blockquote>Note: Password reset links expire after <mark>24 hours</mark>.</blockquote></details><details name="faq"><summary>What export formats are supported?</summary><p>Navigate to <strong>Settings → Security</strong> and click <em>&quot;Reset password&quot;</em>. You&#39;ll receive a confirmation email with a link.</p><blockquote>Note: Password reset links expire after <mark>24 hours</mark>.</blockquote></details><details name="faq"><summary>How is billing calculated?</summary><p>Billing is based on <strong>active users</strong> per month:</p><ol><li>Base plan includes up to <mark>50 users</mark></li><li>Each additional user is <code>$2/month</code></li><li>Enterprise pricing available on request</li></ol></details><details name="faq"><summary>Can I integrate with third-party services?</summary><p>Yes! We offer integrations via our <strong>REST API</strong> and <em>webhooks</em>. See the <a href="#">API documentation</a> for details.</p><pre><code>curl -X POST https://api.example.com/webhooks \
+                              -H &quot;Authorization: Bearer TOKEN&quot;</code></pre></details></div></article></div></div></section><section class="section"><h2 id="forms">Forms</h2><p class="text-light mb-4">Inputs, validation, field grouping, and preferences.</p><article class="card"><header><h3>Account Settings</h3><p class="text-light">Manage your profile and preferences.</p></header><form onsubmit="event.preventDefault();ot.toast(`Settings saved!`, `Success`, {variant: &quot;success&quot;, placement: &quot;top-right&quot;, duration: 4000});"><div class="row"><div class="col-6"><label data-field> Full Name <input placeholder="Jane Doe" type="text" value="Jane Doe"></label></div><div class="col-6"><div data-field="error"><label for="settings-email">Email</label><input aria-describedby="email-err" aria-invalid="true" id="settings-email" type="email" value="jane@"><div class="error" id="email-err" role="status">Please enter a valid email address.</div></div></div></div><div class="row"><div class="col-6"><label data-field> Password <input placeholder="••••••••" type="password"><small data-hint>Minimum 8 characters with one number.</small></label></div><div class="col-6"><div data-field><label for="settings-role">Role</label><select aria-label="Select a role" id="settings-role"><option>Administrator</option><option>Editor</option><option>Viewer</option></select></div></div></div><div class="row"><div class="col-6"><label data-field> Start Date <input type="date" value="2025-01-15"></label></div><div class="col-6"><label data-field> Next Review <input type="datetime-local" value="2025-06-15T09:00"></label></div></div><div class="row"><div class="col-6"><label data-field> Avatar <input accept="image/*" type="file"></label></div><div class="col-6"><label data-field> Brand Color <input type="color" value="#6366f1"></label></div></div><label data-field> Notification Volume <input max="100" min="0" type="range" value="65"></label><label data-field> Bio <textarea placeholder="Tell us about yourself…" rows="3">This entire dashboard is built with Oat.</textarea></label><fieldset class="group" style="max-width: 500px;"><legend>Website</legend><input placeholder="yoursite.com" type="url" value="janedoe.dev"><button class="outline" role="button" type="button">Verify</button></fieldset><fieldset class="mt-4"><legend>Email Preferences</legend><label><input checked type="checkbox"> Product updates</label><label><input type="checkbox"> Marketing emails</label><label><input checked type="checkbox"> Security alerts</label></fieldset><fieldset class="hstack mt-4"><legend>Theme</legend><label><input name="theme" type="radio" value="light"> Light</label><label><input name="theme" type="radio" value="dark"> Dark</label><label><input checked name="theme" type="radio" value="auto"> System</label></fieldset><div class="mt-4 vstack gap-2"><label><input checked role="switch" type="checkbox"> Enable two-factor authentication </label><label><input role="switch" type="checkbox"> Enable API access </label></div><footer class="hstack mt-6"><button role="button" type="submit">Save Changes</button><button class="outline" role="button" type="button">Cancel</button><button class="ghost" data-data-variant="danger" role="button" type="button">Delete Account</button></footer></form></article></section><section class="section" id="loading"><h2>Loading</h2><p class="text-light">Skeleton and busy-state component examples.</p><div class="card"><h5>Loading placeholder</h5><div class="skeleton line" role="status" style="width: 100%;"></div><div class="skeleton line" role="status" style="width: 80%;"></div><div class="skeleton line" role="status" style="width: 60%;"></div><div class="hstack mt-4"><div class="skeleton box" role="status"></div><div class="skeleton box" role="status"></div><div class="skeleton box" role="status"></div></div></div></section></div></main></body></html>
