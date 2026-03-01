@@ -27,7 +27,7 @@ pub fn skeleton(attrs: List(Attribute(msg))) -> Element(msg) {
 /// Render a skeleton that matches text size.
 ///
 pub fn text(attrs: List(Attribute(msg))) -> Element(msg) {
-  skeleton([attribute.class("h-4 w-full"), ..attrs])
+  skeleton([attribute.class("h-4"), ..attrs])
 }
 
 /// Render a skeleton that matches a circle (avatar).
