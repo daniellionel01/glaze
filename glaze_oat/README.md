@@ -30,6 +30,8 @@ glaze_oat.register(glaze_oat.version)
 ### Step 3: Register your theme
 
 ```gleam
+import glaze_basecoat/theme
+
 let my_theme = glaze_oat.default_theme()
 theme.style_tag(my_theme)
 ```

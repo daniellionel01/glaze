@@ -30,7 +30,7 @@ html.head([], [
 ])
 ```
 
-### Step 3: Add Theme (Optional)
+### Step 3: Register your theme
 
 ```gleam
 import glaze_basecoat/theme
