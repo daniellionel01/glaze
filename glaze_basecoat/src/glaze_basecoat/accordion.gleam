@@ -1,9 +1,7 @@
 //// Basecoat documentation: <https://basecoatui.com/components/accordion/>
 ////
-//// Accordion helpers built on `<details>` and `<summary>`.
-////
-//// Use accordions to progressively reveal content while keeping the page
-//// scannable.
+//// The [`accordion`](#accordion) helpers render semantic HTML accordion markup
+//// using `<details>` and `<summary>` elements.
 ////
 //// ## Anatomy
 ////

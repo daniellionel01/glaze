@@ -1,9 +1,7 @@
 //// Basecoat documentation: <https://basecoatui.com/components/alert/>
 ////
-//// Alert callouts for status, warnings, and short messages.
-////
-//// Use alerts to draw attention to a change in state or to provide contextual
-//// information near a form, list, or page section.
+//// The [`alert`](#alert) element, sometimes called a "callout", is used to draw
+//// attention to important information without interrupting page flow.
 ////
 //// ## Anatomy
 ////
