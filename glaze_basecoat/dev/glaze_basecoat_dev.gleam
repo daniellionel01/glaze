@@ -208,16 +208,39 @@ pub fn page() {
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Progress")]),
           html.div([attribute.class("demo-panel")], [
-            progress.progress([progress.value(60), progress.max(100)]),
+            html.div([attribute.class("grid gap-3")], [
+              html.div([attribute.class("grid gap-1")], [
+                html.small([attribute.class("text-muted-foreground")], [
+                  html.text("Upload - 60%"),
+                ]),
+                progress.progress([
+                  progress.value(60),
+                  progress.max(100),
+                  attribute.class("w-full"),
+                ]),
+              ]),
+              html.div([attribute.class("grid gap-1")], [
+                html.small([attribute.class("text-muted-foreground")], [
+                  html.text("Indexing - 25%"),
+                ]),
+                progress.progress([
+                  progress.value(25),
+                  progress.max(100),
+                  attribute.class("w-full"),
+                ]),
+              ]),
+            ]),
           ]),
         ]),
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Skeleton")]),
           html.div([attribute.class("demo-panel grid gap-3")], [
-            skeleton.skeleton([attribute.class("h-4 w-[60%]")]),
-            skeleton.skeleton([attribute.class("h-4 w-[90%]")]),
-            skeleton.skeleton([attribute.class("h-4 w-[75%]")]),
+            html.div([attribute.class("grid gap-2")], [
+              skeleton.text([attribute.class("w-[60%]")]),
+              skeleton.text([attribute.class("w-[90%]")]),
+              skeleton.text([attribute.class("w-[75%]")]),
+            ]),
           ]),
         ]),
 
