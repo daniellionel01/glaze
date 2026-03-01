@@ -9,42 +9,43 @@
 ////
 //// A GitHub Workflow check keeps the file from going stale by regenerating the demo and
 //// failing if `docs/glaze_basecoat/index.html` has changed.
+////
 
 import gleam/int
 import gleam/list
 import gleam/option.{None}
 
-import glaze_basecoat
-import glaze_basecoat/accordion
-import glaze_basecoat/alert
-import glaze_basecoat/alert_dialog
-import glaze_basecoat/avatar
-import glaze_basecoat/badge
-import glaze_basecoat/button
-import glaze_basecoat/card
-import glaze_basecoat/checkbox
-import glaze_basecoat/command
-import glaze_basecoat/dialog
-import glaze_basecoat/dropdown_menu
-import glaze_basecoat/empty
-import glaze_basecoat/field
-import glaze_basecoat/form
-import glaze_basecoat/icon
-import glaze_basecoat/input
-import glaze_basecoat/item
-import glaze_basecoat/kbd
-import glaze_basecoat/label
-import glaze_basecoat/popover
-import glaze_basecoat/progress
-import glaze_basecoat/sidebar
-import glaze_basecoat/skeleton
-import glaze_basecoat/spinner
-import glaze_basecoat/table
-import glaze_basecoat/tabs
-import glaze_basecoat/textarea
-import glaze_basecoat/theme
-import glaze_basecoat/theme_switcher
-import glaze_basecoat/toast
+import glaze/basecoat
+import glaze/basecoat/accordion
+import glaze/basecoat/alert
+import glaze/basecoat/alert_dialog
+import glaze/basecoat/avatar
+import glaze/basecoat/badge
+import glaze/basecoat/button
+import glaze/basecoat/card
+import glaze/basecoat/checkbox
+import glaze/basecoat/command
+import glaze/basecoat/dialog
+import glaze/basecoat/dropdown_menu
+import glaze/basecoat/empty
+import glaze/basecoat/field
+import glaze/basecoat/form
+import glaze/basecoat/icon
+import glaze/basecoat/input
+import glaze/basecoat/item
+import glaze/basecoat/kbd
+import glaze/basecoat/label
+import glaze/basecoat/popover
+import glaze/basecoat/progress
+import glaze/basecoat/sidebar
+import glaze/basecoat/skeleton
+import glaze/basecoat/spinner
+import glaze/basecoat/table
+import glaze/basecoat/tabs
+import glaze/basecoat/textarea
+import glaze/basecoat/theme
+import glaze/basecoat/theme_switcher
+import glaze/basecoat/toast
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element as lustre_element
 import lustre/element/html
@@ -81,7 +82,7 @@ pub fn page() {
       ),
       theme.tailwind_v4_bridge_style_tag(),
 
-      glaze_basecoat.register(glaze_basecoat.version),
+      basecoat.register(basecoat.version),
       theme.style_tag_light_dark(theme.default_theme(), theme.dark_theme()),
     ]),
     html.body([], [
@@ -3120,7 +3121,7 @@ fn section_sidebar() -> lustre_element.Element(msg) {
                             html.text("Glaze Basecoat"),
                           ]),
                           html.span([attribute.class("truncate text-xs")], [
-                            html.text("v" <> glaze_basecoat.version),
+                            html.text("v" <> basecoat.version),
                           ]),
                         ],
                       ),

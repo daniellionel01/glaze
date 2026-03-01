@@ -11,28 +11,28 @@
 //// failing if `docs/glaze_oat/index.html` has changed.
 ////
 
-import glaze_oat
-import glaze_oat/accordion.{accordion}
-import glaze_oat/alert.{alert}
-import glaze_oat/badge.{badge}
-import glaze_oat/breadcrumb.{breadcrumb}
-import glaze_oat/button.{button}
-import glaze_oat/card.{card}
-import glaze_oat/dialog.{dialog}
-import glaze_oat/dropdown.{dropdown}
-import glaze_oat/form.{form}
-import glaze_oat/meter.{meter}
-import glaze_oat/pagination.{pagination}
-import glaze_oat/progress.{progress}
-import glaze_oat/sidebar
-import glaze_oat/skeleton
-import glaze_oat/spinner
-import glaze_oat/switch.{switch}
-import glaze_oat/table
-import glaze_oat/tabs
-import glaze_oat/theme
-import glaze_oat/toast
-import glaze_oat/tooltip
+import glaze/oat
+import glaze/oat/accordion.{accordion}
+import glaze/oat/alert.{alert}
+import glaze/oat/badge.{badge}
+import glaze/oat/breadcrumb.{breadcrumb}
+import glaze/oat/button.{button}
+import glaze/oat/card.{card}
+import glaze/oat/dialog.{dialog}
+import glaze/oat/dropdown.{dropdown}
+import glaze/oat/form.{form}
+import glaze/oat/meter.{meter}
+import glaze/oat/pagination.{pagination}
+import glaze/oat/progress.{progress}
+import glaze/oat/sidebar
+import glaze/oat/skeleton
+import glaze/oat/spinner
+import glaze/oat/switch.{switch}
+import glaze/oat/table
+import glaze/oat/tabs
+import glaze/oat/theme
+import glaze/oat/toast
+import glaze/oat/tooltip
 import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element
@@ -73,7 +73,7 @@ pub fn page() {
       ]),
       html.title([], "Glaze / Oat UI"),
 
-      glaze_oat.register(glaze_oat.version),
+      oat.register(oat.version),
       theme.style_tag(theme.default_theme()),
 
       html.style(
