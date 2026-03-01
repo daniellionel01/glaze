@@ -3,10 +3,6 @@
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
 - **glaze_oat:** [hexdocs](https://hexdocs.pm/glaze_oat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | [demo](https://daniellionel01.github.io/glaze/glaze_oat/)
 
-<br />
-
-**Oat:** [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
-
 ## About this Project
 
 There are a lot of framework-agnostic UI Libraries out there. [DaisyUI](https://daisyui.com/), [Oat](https://oat.ink/), [Basecoat](https://basecoatui.com/), [Bootstrap](https://getbootstrap.com/), ...
