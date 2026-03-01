@@ -23,12 +23,6 @@ gleam run -m glaze_oat_dev
 open ../docs/glaze_oat/index.html
 ```
 
-To update the GitHub Pages demo artifact from the repository root:
-
-```sh
-./scripts/update-glaze-oat-demo.sh
-```
-
 ## Future Work
 
 I think [Basecoat](https://basecoatui.com/) and [DaisyUI](https://daisyui.com/) are great candidates for this repo!
