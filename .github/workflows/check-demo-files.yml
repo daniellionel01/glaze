@@ -1,4 +1,4 @@
-name: Check glaze_oat demo is up to date
+name: Check demos are up to date
 
 on:
   pull_request:
@@ -26,14 +26,24 @@ jobs:
       - name: Ensure docs output directory exists
         run: |
           mkdir -p docs/glaze_oat
+          mkdir -p docs/glaze_basecoat
 
-      - name: Generate demo HTML
+      - name: Generate glaze_oat demo HTML
         working-directory: glaze_oat
         run: |
           gleam deps download
           gleam run -m glaze_oat_dev
 
-      - name: Verify GitHub Pages demo is current
+      - name: Generate glaze_basecoat demo HTML
+        working-directory: glaze_basecoat
+        run: |
+          gleam deps download
+          gleam run -m glaze_basecoat_dev
+
+      - name: Verify GitHub Pages demos are current
         run: |
           git ls-files --error-unmatch docs/glaze_oat/index.html >/dev/null
           git diff --exit-code -- docs/glaze_oat/index.html
+
+          git ls-files --error-unmatch docs/glaze_basecoat/index.html >/dev/null
+          git diff --exit-code -- docs/glaze_basecoat/index.html

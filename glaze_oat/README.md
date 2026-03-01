@@ -3,7 +3,7 @@
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
 
-This is a collection of components mapped 1:1 from [Oat UI](https://oat.ink/).
+This is a collection of Lustre components mapped from [Oat UI](https://oat.ink/).
 
 It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_elements.asp), is very small (~8KB CSS and JS) and themable.
 
@@ -30,11 +30,15 @@ glaze_oat.register(glaze_oat.version)
 ### Step 3: Register your theme
 
 ```gleam
+import glaze_basecoat/theme
+
 let my_theme = glaze_oat.default_theme()
 theme.style_tag(my_theme)
 ```
 
 For a full overview of all available theme variables, take a look at <https://github.com/knadh/oat/blob/master/src/css/01-theme.css>.
+
+## Example
 
 In a real project this might look like this:
 
@@ -57,7 +61,7 @@ pub fn layout() {
 }
 ```
 
-You can find the full documentatio here: <https://hexdocs.pm/glaze_oat>.
+You can find the full documentation here: <https://hexdocs.pm/glaze_oat>.
 
 Take a look at the [dev module](./dev/glaze_oat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
@@ -78,6 +82,6 @@ The only exception is the [toast](./src/glaze_oat/toast.gleam) component. In the
 There is a `dev` module that constructs a demo with all available elements and writes it to the GitHub Pages artifact at `docs/glaze_oat/index.html`.
 
 ```sh
-gleam run -m glaze_oat_dev
+gleam dev
 open ../docs/glaze_oat/index.html
 ```

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en"><head><meta content="width=device-width, initial-scale=1" name="viewport"><title>Glaze / Basecoat UI</title><script type="text/javascript">(() => {
+      try {
+        const stored = localStorage.getItem('themeMode');
+        if (stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (_) {}
+
+      const apply = (dark) => {
+        document.documentElement.classList.toggle('dark', dark);
+        try { localStorage.setItem('themeMode', dark ? 'dark' : 'light'); } catch (_) {}
+      };
+
+      document.addEventListener('basecoat:theme', (event) => {
+        const mode = event.detail?.mode;
+        apply(mode === 'dark' ? true : mode === 'light' ? false : !document.documentElement.classList.contains('dark'));
+      });
+    })();</script><!-- lustre:fragment --><script defer="defer" src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script><script>window.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script><!-- /lustre:fragment --><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style type="text/tailwindcss">@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+</style><!-- lustre:fragment --><link href="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.cdn.min.css" rel="stylesheet"><script defer="defer" src="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js"></script><!-- /lustre:fragment --><style>:root {
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(1 0 0);
+  --border: oklch(0.922 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --foreground: oklch(0.145 0 0);
+  --input: oklch(0.922 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --radius: 0.5rem;
+  --ring: oklch(0.708 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --accent: oklch(0.371 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.145 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --foreground: oklch(0.985 0 0);
+  --input: oklch(1 0 0 / 15%);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --radius: 0.5rem;
+  --ring: oklch(0.556 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}</style><style>
+        body { font-family: system-ui, sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section { margin-bottom: 2rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .flex-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+        .demo-panel { border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; background: var(--card); }
+        </style></head><body><div class="container"><header class="section"><div class="flex-wrap"><h1>Glaze Basecoat</h1><div class="flex-wrap"><i class="lucide" data-lucide="search"></i><i class="lucide" data-lucide="plus"></i><i class="lucide" data-lucide="settings"></i><i class="lucide" data-lucide="github"></i></div><button aria-label="Toggle dark mode" class="btn-icon-outline size-8" onclick="document.dispatchEvent(new CustomEvent(&#39;basecoat:theme&#39;))" type="button"><span class="hidden dark:block"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></span><span class="block dark:hidden"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></span></button></div><p>Lustre bindings for Basecoat UI - A components library built with Tailwind CSS.</p></header><section class="section"><h2>Button</h2><div class="flex-wrap"><button class="btn" type="button">Primary</button><button class="btn-secondary" type="button">Secondary</button><button class="btn-destructive" type="button">Destructive</button><button class="btn-outline" type="button">Outline</button><button class="btn-ghost" type="button">Ghost</button><button class="btn-link" type="button">Link</button></div></section><section class="section"><h2>Badge</h2><div class="flex-wrap"><span class="badge">Primary</span><span class="badge-secondary">Secondary</span><span class="badge-outline">Outline</span><span class="badge-destructive">Destructive</span></div></section><section class="section"><h2>Card</h2><div class="card"><header><h2 class="text-lg font-semibold">Card Title</h2><p class="text-sm text-muted-foreground">Card description text.</p></header><section>Card content goes here.</section><footer><button class="btn btn-sm" type="button">Action</button></footer></div></section><section class="section"><h2>Alert</h2><div class="alert"><h2>Success!</h2><section>Your changes have been saved.</section></div></section><section class="section"><h2>Avatar</h2><div class="flex-wrap"><img alt="User" class="size-8 shrink-0 object-cover rounded-full" src="https://github.com/hunvreus.png"><span class="size-8 shrink-0 rounded-full bg-muted flex items-center justify-center text-sm font-medium">JD</span></div></section><section class="section"><h2>Accordion</h2><section class="accordion"><details class="group border-b last:border-b-0"><summary class="w-full focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-all outline-none rounded-md"><h2 class="flex flex-1 items-start justify-between gap-4 py-4 text-left text-sm font-medium hover:underline">Is it accessible?<svg class="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open:rotate-180" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg></h2></summary><section class="pb-4"><p>Yes. It adheres to the WAI-ARIA design pattern.</p></section></details><details class="group border-b last:border-b-0"><summary class="w-full focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-all outline-none rounded-md"><h2 class="flex flex-1 items-start justify-between gap-4 py-4 text-left text-sm font-medium hover:underline">Is it styled?<svg class="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open:rotate-180" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg></h2></summary><section class="pb-4"><p>Yes. It comes with default styles.</p></section></details></section></section><section class="section"><h2>Breadcrumb</h2><ol class="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"><li class="inline-flex items-center gap-1.5"><a class="hover:text-foreground transition-colors" href="#">Home</a></li><li><span class="size-3.5">›</span></li><li class="inline-flex items-center gap-1.5"><a class="hover:text-foreground transition-colors" href="#">Products</a></li><li><span class="size-3.5">›</span></li><li class="inline-flex items-center gap-1.5"><span class="text-foreground font-normal">Details</span></li></ol></section><section class="section"><h2>Input</h2><input class="input" placeholder="Enter text..." type="text"></section><section class="section"><h2>Textarea</h2><textarea class="textarea" placeholder="Enter description..."></textarea></section><section class="section"><h2>Checkbox</h2><label class="label gap-3"><input class="input" id="terms" type="checkbox">Accept terms</label></section><section class="section"><h2>Switch</h2><label class="label"><input class="input" id="notifications" role="switch" type="checkbox">Enable notifications</label></section><section class="section"><h2>Radio Group</h2><fieldset class="grid gap-3"><label class="label"><input class="input" name="plan" type="radio" value="free">Free</label><label class="label"><input checked class="input" name="plan" type="radio" value="pro">Pro</label><label class="label"><input class="input" name="plan" type="radio" value="enterprise">Enterprise</label></fieldset></section><section class="section"><h2>Select</h2><select class="select" name="fruit"><optgroup label="Fruits"><option selected value="apple">Apple</option><option value="banana">Banana</option></optgroup></select></section><section class="section"><h2>Slider</h2><div class="demo-panel"><input class="slider" max="100" min="0" type="range" value="50"></div></section><section class="section"><h2>Progress</h2><div class="demo-panel"><div class="grid gap-3"><div class="grid gap-1"><small class="text-muted-foreground">Upload - 60%</small><progress class="progress w-full" max="100" value="60"></progress></div><div class="grid gap-1"><small class="text-muted-foreground">Indexing - 25%</small><progress class="progress w-full" max="100" value="25"></progress></div></div></div></section><section class="section"><h2>Skeleton</h2><div class="demo-panel grid gap-3"><div class="grid gap-2"><div class="bg-accent animate-pulse rounded-md h-4 w-[60%]"></div><div class="bg-accent animate-pulse rounded-md h-4 w-[90%]"></div><div class="bg-accent animate-pulse rounded-md h-4 w-[75%]"></div></div></div></section><section class="section"><h2>Spinner</h2><div class="demo-panel flex-wrap"><div class="grid gap-2 justify-items-center"><svg aria-label="Loading" class="animate-spin size-4 size-3" fill="none" height="24" role="status" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg><small>Small</small></div><div class="grid gap-2 justify-items-center"><svg aria-label="Loading" class="animate-spin size-4" fill="none" height="24" role="status" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg><small>Default</small></div><div class="grid gap-2 justify-items-center"><svg aria-label="Loading" class="animate-spin size-4 size-8" fill="none" height="24" role="status" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg><small>Large</small></div></div></section><section class="section"><h2>Kbd</h2><span><kbd class="kbd">⌘</kbd> + <kbd class="kbd">K</kbd></span></section><section class="section"><h2>Label</h2><div class="demo-panel"><div class="grid gap-2"><label class="label" for="email">Email</label><input class="input" id="email" placeholder="you@example.com" type="email" type="text"></div></div></section><section class="section"><h2>Pagination</h2><nav aria-label="pagination" class="mx-auto flex w-full justify-center" role="navigation"><ul class="flex flex-row items-center gap-1"><li><a class="btn-ghost" href="#"> Previous</a></li><li><a class="btn-icon-outline" href="#">1</a></li><li><a class="btn-icon-ghost" href="#">2</a></li><li><a class="btn-icon-ghost" href="#">3</a></li><li><a class="btn-ghost" href="#">Next </a></li></ul></nav></section><section class="section"><h2>Table</h2><table class="table"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody><tr><td>John Doe</td><td>john@example.com</td></tr><tr><td>Jane Smith</td><td>jane@example.com</td></tr></tbody></table></section><section class="section"><h2>Tabs</h2><div class="tabs w-full" id="demo-tabs"><nav aria-orientation="horizontal" class="w-full" role="tablist"><button aria-controls="demo-tabs-panel-0" aria-selected="true" id="demo-tabs-tab-0" role="tab" tabindex="0" type="button">Account</button><button aria-controls="demo-tabs-panel-1" aria-selected="false" id="demo-tabs-tab-1" role="tab" tabindex="0" type="button">Password</button></nav><div aria-labelledby="demo-tabs-tab-0" aria-selected="true" id="demo-tabs-panel-0" role="tabpanel" tabindex="-1"><p>Account settings here.</p></div><div aria-labelledby="demo-tabs-tab-1" aria-selected="false" hidden id="demo-tabs-panel-1" role="tabpanel" tabindex="-1"><p>Password settings here.</p></div></div></section><section class="section"><h2>Empty</h2><div class="demo-panel"><div class="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"><h3 class="text-lg font-medium tracking-tight">No items found</h3><p class="text-muted-foreground text-sm/relaxed">Try adjusting your search.</p></div></div></section><section class="section"><h2>Item</h2><article class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"><div class="flex flex-1 flex-col gap-1"><h3 class="flex w-fit items-center gap-2 text-sm leading-snug font-medium">Item Title</h3><p class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance">Item description goes here.</p></div></article></section><footer class="section"><p>Built with <a href="https://basecoatui.com/">Basecoat UI</a> and <a href="https://lustre.build/">Lustre</a></p></footer></div></body></html>
