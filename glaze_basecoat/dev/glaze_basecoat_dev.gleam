@@ -50,9 +50,10 @@ pub fn page() {
         "
         body { font-family: system-ui, sans-serif; }
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .section { margin-bottom: 3rem; }
+        .section { margin-bottom: 2rem; }
         .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .flex-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+        .demo-panel { border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; background: color-mix(in oklab, var(--card) 90%, var(--muted) 10%); }
         ",
       ),
     ]),
@@ -195,29 +196,46 @@ pub fn page() {
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Slider")]),
-          slider.slider([
-            attribute("min", "0"),
-            attribute("max", "100"),
-            attribute("value", "50"),
+          html.div([attribute.class("demo-panel")], [
+            slider.slider([
+              attribute("min", "0"),
+              attribute("max", "100"),
+              attribute("value", "50"),
+            ]),
           ]),
         ]),
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Progress")]),
-          progress.progress([progress.value(60), progress.max(100)]),
+          html.div([attribute.class("demo-panel")], [
+            progress.progress([progress.value(60), progress.max(100)]),
+          ]),
         ]),
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Skeleton")]),
-          skeleton.skeleton([attribute.class("h-4 w-full")]),
+          html.div([attribute.class("demo-panel grid gap-3")], [
+            skeleton.skeleton([attribute.class("h-4 w-[60%]")]),
+            skeleton.skeleton([attribute.class("h-4 w-[90%]")]),
+            skeleton.skeleton([attribute.class("h-4 w-[75%]")]),
+          ]),
         ]),
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Spinner")]),
-          html.div([attribute.class("flex-wrap")], [
-            spinner.spinner([spinner.small()]),
-            spinner.spinner([]),
-            spinner.spinner([spinner.large()]),
+          html.div([attribute.class("demo-panel flex-wrap")], [
+            html.div([attribute.class("grid gap-2 justify-items-center")], [
+              spinner.spinner([spinner.small()]),
+              html.small([], [html.text("Small")]),
+            ]),
+            html.div([attribute.class("grid gap-2 justify-items-center")], [
+              spinner.spinner([]),
+              html.small([], [html.text("Default")]),
+            ]),
+            html.div([attribute.class("grid gap-2 justify-items-center")], [
+              spinner.spinner([spinner.large()]),
+              html.small([], [html.text("Large")]),
+            ]),
           ]),
         ]),
 
@@ -228,7 +246,12 @@ pub fn page() {
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Label")]),
-          label.with_input("email", "Email", [attribute.type_("email")]),
+          html.div([attribute.class("demo-panel")], [
+            label.with_input("email", "Email", [
+              attribute.type_("email"),
+              attribute.placeholder("you@example.com"),
+            ]),
+          ]),
         ]),
 
         html.section([attribute.class("section")], [
@@ -288,9 +311,11 @@ pub fn page() {
 
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Empty")]),
-          empty.empty([], [
-            empty.title([], [html.text("No items found")]),
-            empty.description([], [html.text("Try adjusting your search.")]),
+          html.div([attribute.class("demo-panel")], [
+            empty.empty([], [
+              empty.title([], [html.text("No items found")]),
+              empty.description([], [html.text("Try adjusting your search.")]),
+            ]),
           ]),
         ]),
 
