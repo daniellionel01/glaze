@@ -20,11 +20,11 @@ gleam add glaze_basecoat@1
 ```
 
 ```gleam
-import glaze_basecoat
+import glaze/basecoat
+import glaze/basecoat/icon
+import glaze/basecoat/theme
+import glaze/basecoat/theme_switcher
 import lustre/element/html
-import glaze_basecoat/icon
-import glaze_basecoat/theme
-import glaze_basecoat/theme_switcher
 
 html.head([], [
   // (Optional) Register Tailwind (if not already coming from your build-tool)
@@ -36,7 +36,7 @@ html.head([], [
   theme.tailwind_v4_bridge_style_tag(),
   
   // Register Basecoat Components
-  glaze_basecoat.register(glaze_basecoat.version),
+  basecoat.register(basecoat.version),
   
   // Register your theme
   theme.style_tag(theme.default_theme()),
@@ -54,11 +54,11 @@ html.head([], [
 In a real project this might look like this:
 
 ```gleam
-import glaze_basecoat
-import glaze_basecoat/button
-import glaze_basecoat/card
+import glaze/basecoat
+import glaze/basecoat/button
+import glaze/basecoat/card
+import glaze/basecoat/theme
 import lustre/element/html
-import glaze_basecoat/theme
 
 pub fn layout() {
   html.html([], [
@@ -74,7 +74,7 @@ pub fn layout() {
       ),
       theme.tailwind_v4_bridge_style_tag(),
       
-      glaze_basecoat.register(glaze_basecoat.version),
+      basecoat.register(basecoat.version),
       theme.style_tag(theme.default_theme()),
     ]),
     html.body([], [
@@ -110,7 +110,7 @@ Basecoat UI ships Tailwind-based styles. You can either use the CDN for a fast s
 
 ### Option 1: Full CDN
 
-Use `glaze_basecoat.register()` to include Basecoat's compiled CSS and all Basecoat JavaScript via CDN.
+Use `basecoat.register()` to include Basecoat's compiled CSS and all Basecoat JavaScript via CDN.
 
 ### Option 2: Tailwind Play CDN
 
@@ -120,8 +120,8 @@ If you use Tailwind's CDN (<https://tailwindcss.com/docs/installation/play-cdn>)
 If you have a build-time Tailwind setup, you do not need this bridge (it comes from `@import "basecoat-css"`).
 
 ```gleam
-import glaze_basecoat
-import glaze_basecoat/theme
+import glaze/basecoat
+import glaze/basecoat/theme
 import lustre/attribute.{attribute}
 import lustre/element/html
 
@@ -130,7 +130,7 @@ html.head([], [
     [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
     "",
   ),
-  glaze_basecoat.register(glaze_basecoat.version),
+  basecoat.register(basecoat.version),
   theme.style_tag(theme.default_theme()),
   theme.tailwind_v4_bridge_style_tag(),
 ])
@@ -149,17 +149,17 @@ npm install basecoat-css
 @import "basecoat-css";
 ```
 
-In this case you should not use `glaze_basecoat.register()`, since it also includes Basecoat's CSS from the CDN.
-Use `glaze_basecoat.register_js()` (or `glaze_basecoat.register_component()`) to only include the JavaScript and let your Tailwind build produce the CSS.
+In this case you should not use `basecoat.register()`, since it also includes Basecoat's CSS from the CDN.
+Use `basecoat.register_js()` (or `basecoat.register_component()`) to only include the JavaScript and let your Tailwind build produce the CSS.
 
 ```gleam
-import glaze_basecoat
-import glaze_basecoat/theme
+import glaze/basecoat
+import glaze/basecoat/theme
 import lustre/attribute.{attribute}
 import lustre/element/html
 
 html.head([], [
-  glaze_basecoat.register_js(glaze_basecoat.version),
+  basecoat.register_js(basecoat.version),
   theme.style_tag(theme.default_theme()),
 ])
 ```
@@ -169,13 +169,13 @@ html.head([], [
 If you want to manage CSS and JavaScript separately (still via CDN), register the compiled CSS and only the JS components you use.
 
 ```gleam
-import glaze_basecoat
-import glaze_basecoat/theme
+import glaze/basecoat
+import glaze/basecoat/theme
 import lustre/element/html
 
 html.head([], [
-  glaze_basecoat.register_css(glaze_basecoat.version),
-  glaze_basecoat.register_component(glaze_basecoat.version, "popover"),
+  basecoat.register_css(basecoat.version),
+  basecoat.register_component(basecoat.version, "popover"),
   theme.style_tag(theme.default_theme()),
 ])
 ```
@@ -185,7 +185,7 @@ html.head([], [
 Basecoat uses shadcn/ui compatible CSS variables. You can customize the theme:
 
 ```gleam
-import glaze_basecoat/theme
+import glaze/basecoat/theme
 
 let custom_theme =
   theme.default_theme()
@@ -201,7 +201,7 @@ You can also use tools like <https://tweakcn.com/editor/theme>!
 
 Basecoat uses [Lucide icons](https://lucide.dev).
 
-The icon helpers in `glaze_basecoat/icon` render placeholders like `<i class="lucide" data-lucide="plus">`.
+The icon helpers in `glaze/basecoat/icon` render placeholders like `<i class="lucide" data-lucide="plus">`.
 To turn those placeholders into SVGs you must also load the Lucide runtime.
 
 Lucide docs (including the CDN snippet): <https://lucide.dev/guide/packages/lucide>
@@ -214,7 +214,7 @@ Note: `icon.init()` injects a `<script type="module">` that does `import lucide 
 That means your app must have a JS setup that can resolve the bare module specifier (bundler, import map, etc).
 
 ```gleam
-import glaze_basecoat/icon
+import glaze/basecoat/icon
 import lustre/element/html
 
 // Initialize Lucide
@@ -232,7 +232,7 @@ icon.search([])
 If you are not bundling JavaScript, include Lucide icons via CDN.
 
 ```gleam
-import glaze_basecoat/icon
+import glaze/basecoat/icon
 
 html.head([], [
   // Use a pinned version in real projects.

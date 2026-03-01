@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Order theme css variables alphabetically. This was causing issues in the GitHub Workflow to check if the glaze_oat demo HTML file is stale.
 
+- **Breaking Change:** moved gleam modules from `glaze_oat/...` -> `glaze/oat/...`.
+
+
 ## [1.0.1] - 2026-03-01
 
 - Clean up hexdocs related issues (tag prefix, monorepo path)

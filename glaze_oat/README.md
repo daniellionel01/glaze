@@ -30,9 +30,9 @@ glaze_oat.register(glaze_oat.version)
 ### Step 3: Register your theme
 
 ```gleam
-import glaze_basecoat/theme
+import glaze/oat/theme
 
-let my_theme = glaze_oat.default_theme()
+let my_theme = theme.default_theme()
 theme.style_tag(my_theme)
 ```
 
@@ -43,15 +43,15 @@ For a full overview of all available theme variables, take a look at <https://gi
 In a real project this might look like this:
 
 ```gleam
-import glaze_oat
-import glaze_oat/theme
+import glaze/oat
+import glaze/oat/theme
 
 pub fn layout() {
   html.html([
     html.head([
       // ...
       
-      glaze_oat.register(glaze_oat.version),
+      oat.register(oat.version),
       theme.style_tag(theme.default_theme),
     ]),
     html.body([
@@ -75,7 +75,7 @@ Take a look at the [dev module](./dev/glaze_oat_dev.gleam) for a kitchen sink of
 
 This library constructs HTML elements the same way on the client or on the server, so it is compatible in both environments.
 
-The only exception is the [toast](./src/glaze_oat/toast.gleam) component. In the browser, it uses FFI to call the `ot.toast` function directly, but on Erlang, it generates a javascript string, that you can embed into your html directly (f.e. via `onclick` or in a `<script>` tag).
+The only exception is the [toast](./src/glaze/oat/toast.gleam) component. In the browser, it uses FFI to call the `ot.toast` function directly, but on Erlang, it generates a javascript string, that you can embed into your html directly (f.e. via `onclick` or in a `<script>` tag).
 
 ## Development
 
