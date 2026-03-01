@@ -49,6 +49,7 @@ import glaze_basecoat/button
 import glaze_basecoat/card
 import glaze_basecoat/theme
 import lustre/element/html
+
 pub fn layout() {
   html.html([], [
     html.head([], [
