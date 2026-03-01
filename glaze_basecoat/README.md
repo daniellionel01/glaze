@@ -53,6 +53,8 @@ import lustre/element/html
 pub fn layout() {
   html.html([], [
     html.head([], [
+      // ...
+      
       theme_switcher.init_script(),
       icon.register_cdn("latest"),
       
