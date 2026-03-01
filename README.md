@@ -17,12 +17,18 @@ These framework-agnostic UI Libraries are already relatively low friction to get
 
 ## Development
 
-In each package, there is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
+In each package, there is a `dev` module that constructs a demo with all available elements and writes it to a static `.html` file that you can open in your browser and (optionally) publish via GitHub Pages.
 
 ```sh
 cd glaze_oat
-gleam dev
-open oat.html
+gleam run -m glaze_oat_dev
+open ../docs/glaze_oat/index.html
+```
+
+To update the GitHub Pages demo artifact from the repository root:
+
+```sh
+./scripts/update-glaze-oat-demo.sh
 ```
 
 ## Future Work

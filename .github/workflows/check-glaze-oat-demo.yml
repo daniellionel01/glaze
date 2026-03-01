@@ -23,6 +23,10 @@ jobs:
           gleam-version: "1.14.0"
           rebar3-version: "3"
 
+      - name: Ensure docs output directory exists
+        run: |
+          mkdir -p docs/glaze_oat
+
       - name: Generate demo HTML
         working-directory: glaze_oat
         run: |
@@ -31,16 +35,5 @@ jobs:
 
       - name: Verify GitHub Pages demo is current
         run: |
-          if ! test -f docs/glaze_oat/index.html; then
-            echo "Missing docs/glaze_oat/index.html"
-            echo "Create it by running: cd glaze_oat && gleam run -m glaze_oat_dev"
-            echo "Then copy: cp glaze_oat/oat.html docs/glaze_oat/index.html"
-            exit 1
-          fi
-
           git ls-files --error-unmatch docs/glaze_oat/index.html >/dev/null
-
-          mkdir -p docs/glaze_oat
-          cp glaze_oat/oat.html docs/glaze_oat/index.html
-
           git diff --exit-code -- docs/glaze_oat/index.html

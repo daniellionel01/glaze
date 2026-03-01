@@ -11,6 +11,8 @@ For a full list of components, take a look at <https://hexdocs.pm/glaze_oat> or 
 
 Latest supported version is [Oat v0.4.1](https://github.com/knadh/oat/releases/tag/v0.4.1). This library will be updated for future versions when they get released.
 
+GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_oat/>
+
 ## Getting Started
 
 ### Step 1: Installation
@@ -73,9 +75,15 @@ The only exception is the [toast](./src/glaze_oat/toast.gleam) component. In the
 
 ## Development
 
-There is a `dev` module, that constructs a Demo with all available elements and writes it to a `.html` file, that you can simply open in your browser and inspect.
+There is a `dev` module that constructs a demo with all available elements and writes it to the GitHub Pages artifact at `docs/glaze_oat/index.html`.
 
 ```sh
-gleam dev
-open oat.html
+gleam run -m glaze_oat_dev
+open ../docs/glaze_oat/index.html
+```
+
+From the repository root you can also run:
+
+```sh
+./scripts/update-glaze-oat-demo.sh
 ```
