@@ -76,7 +76,7 @@ Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen si
 
 ## Tailwind CSS
 
-Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your own Tailwind configuration.
+Basecoat UI ships Tailwind-based styles. You can either use the CDN for a fast setup, or integrate it into your own Tailwind build.
 
 ### TL;DR
 
@@ -86,11 +86,11 @@ Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your 
 | Build-time Tailwind (CLI/PostCSS/Vite) | Your Tailwind build output (with `@import "basecoat-css"`) | Basecoat JS via CDN | `glaze_basecoat.register_js(version)` <br>`theme.style_tag(...)` |
 | Manage CSS/JS separately (still CDN) | Basecoat compiled CSS via CDN | Only specific JS components via CDN | `glaze_basecoat.register_css(version)`<br>`glaze_basecoat.register_component(version, "popover")` |
 
-### CDN
+### Option 1: Full CDN
 
-Use `glaze_basecoat.register()` to include everything via CDN.
+Use `glaze_basecoat.register()` to include Basecoat's compiled CSS and all Basecoat JavaScript via CDN.
 
-### Tailwind CDN
+### Option 2: Tailwind Play CDN
 
 If you use Tailwind's CDN (<https://tailwindcss.com/docs/installation/play-cdn>), you also need Basecoat's Tailwind v4
 `@theme` mapping so utilities like `bg-accent` exist.
@@ -114,7 +114,7 @@ html.head([], [
 ])
 ```
 
-### With Your Tailwind Setup
+### Option 3: Build-time Tailwind
 
 If you have a build-time Tailwind setup (Tailwind CLI/PostCSS/Vite/etc) and you install Basecoat from npm, you can import Basecoat directly in your Tailwind entry CSS.
 
@@ -138,6 +138,22 @@ import lustre/element/html
 
 html.head([], [
   glaze_basecoat.register_js(glaze_basecoat.version),
+  theme.style_tag(theme.default_theme()),
+])
+```
+
+### Option 4: Split CSS and JS (CDN)
+
+If you want to manage CSS and JavaScript separately (still via CDN), register the compiled CSS and only the JS components you use.
+
+```gleam
+import glaze_basecoat
+import glaze_basecoat/theme
+import lustre/element/html
+
+html.head([], [
+  glaze_basecoat.register_css(glaze_basecoat.version),
+  glaze_basecoat.register_component(glaze_basecoat.version, "popover"),
   theme.style_tag(theme.default_theme()),
 ])
 ```
@@ -168,9 +184,9 @@ To turn those placeholders into SVGs you must also load the Lucide runtime.
 
 Lucide docs (including the CDN snippet): <https://lucide.dev/guide/packages/lucide>
 
-### Option 1: Bundled (npm/pnpm/bun)
+### Option 1: Bundled
 
-Install `lucide` and use `icon.init()`.
+Install `lucide` (npm/pnpm/bun) and use `icon.init()`.
 
 Note: `icon.init()` injects a `<script type="module">` that does `import lucide from "lucide"`.
 That means your app must have a JS setup that can resolve the bare module specifier (bundler, import map, etc).
@@ -189,7 +205,7 @@ icon.plus([])
 icon.search([])
 ```
 
-### Option 2: CDN (no bundler)
+### Option 2: CDN
 
 If you are not bundling JavaScript, include Lucide icons via CDN.
 
