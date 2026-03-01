@@ -1,23 +1,36 @@
 import glaze_basecoat
+import glaze_basecoat/accordion
 import glaze_basecoat/alert
 import glaze_basecoat/avatar
 import glaze_basecoat/badge
+import glaze_basecoat/breadcrumb
 import glaze_basecoat/button
 import glaze_basecoat/card
+import glaze_basecoat/checkbox
+import glaze_basecoat/empty
+import glaze_basecoat/input
+import glaze_basecoat/item
 import glaze_basecoat/kbd
 import glaze_basecoat/label
+import glaze_basecoat/pagination
 import glaze_basecoat/progress
+import glaze_basecoat/radio_group
+import glaze_basecoat/select
 import glaze_basecoat/skeleton
+import glaze_basecoat/slider
 import glaze_basecoat/spinner
+import glaze_basecoat/switch
+import glaze_basecoat/table
+import glaze_basecoat/tabs
+import glaze_basecoat/textarea
 import glaze_basecoat/theme
+import glaze_basecoat/theme_switcher
 import gleam/io
 import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
 import simplifile
 
-/// Kitchen sink demo showing all available components.
-///
 pub fn page() {
   html.html([attribute("lang", "en")], [
     html.head([], [
@@ -35,35 +48,21 @@ pub fn page() {
       html.style(
         [],
         "
-        body {
-          font-family: system-ui, sans-serif;
-        }
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 2rem;
-        }
-        .section {
-          margin-bottom: 3rem;
-        }
-        .grid-2 {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1rem;
-        }
-        .flex-wrap {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
+        body { font-family: system-ui, sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section { margin-bottom: 3rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .flex-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
         ",
       ),
     ]),
     html.body([], [
       html.div([attribute.class("container")], [
-        // Header
         html.header([attribute.class("section")], [
-          html.h1([], [html.text("Glaze Basecoat")]),
+          html.div([attribute.class("flex-wrap")], [
+            html.h1([], [html.text("Glaze Basecoat")]),
+            theme_switcher.button([]),
+          ]),
           html.p([], [
             html.text(
               "Lustre bindings for Basecoat UI - A components library built with Tailwind CSS.",
@@ -71,7 +70,6 @@ pub fn page() {
           ]),
         ]),
 
-        // Button Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Button")]),
           html.div([attribute.class("flex-wrap")], [
@@ -82,20 +80,8 @@ pub fn page() {
             button.ghost([], [html.text("Ghost")]),
             button.link_style([], [html.text("Link")]),
           ]),
-          html.h3([], [html.text("Sizes")]),
-          html.div([attribute.class("flex-wrap")], [
-            button.button([button.small()], [html.text("Small")]),
-            button.button([], [html.text("Default")]),
-            button.button([button.large()], [html.text("Large")]),
-          ]),
-          html.h3([], [html.text("Button Group")]),
-          button.group([], [
-            button.outline([], [html.text("Cancel")]),
-            button.button([], [html.text("Save")]),
-          ]),
         ]),
 
-        // Badge Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Badge")]),
           html.div([attribute.class("flex-wrap")], [
@@ -106,47 +92,28 @@ pub fn page() {
           ]),
         ]),
 
-        // Card Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Card")]),
-          html.div([attribute.class("grid-2")], [
-            card.card([], [
-              card.header([], [
-                card.title([], [html.text("Card Title")]),
-                card.description([], [html.text("Card description text.")]),
-              ]),
-              card.content([], [html.text("Card content goes here.")]),
-              card.footer([], [
-                button.button([button.small()], [html.text("Action")]),
-              ]),
+          card.card([], [
+            card.header([], [
+              card.title([], [html.text("Card Title")]),
+              card.description([], [html.text("Card description text.")]),
             ]),
-            card.card([], [
-              card.header([], [
-                card.title([], [html.text("Simple Card")]),
-              ]),
-              card.content([], [
-                html.text("This card has no footer."),
-              ]),
+            card.content([], [html.text("Card content goes here.")]),
+            card.footer([], [
+              button.button([button.small()], [html.text("Action")]),
             ]),
           ]),
         ]),
 
-        // Alert Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Alert")]),
           alert.alert([], [
             alert.title([], [html.text("Success!")]),
             alert.description([], [html.text("Your changes have been saved.")]),
           ]),
-          alert.destructive([], [
-            alert.title([], [html.text("Error!")]),
-            alert.description([], [
-              html.text("Something went wrong. Please try again."),
-            ]),
-          ]),
         ]),
 
-        // Avatar Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Avatar")]),
           html.div([attribute.class("flex-wrap")], [
@@ -155,44 +122,96 @@ pub fn page() {
               attribute.alt("User"),
             ]),
             avatar.initials("JD", []),
-            avatar.initials("AB", [avatar.large()]),
           ]),
-          html.h3([], [html.text("Avatar Group")]),
-          avatar.group([], [
-            avatar.avatar([
-              attribute.src("https://github.com/hunvreus.png"),
-              attribute.alt("User 1"),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Accordion")]),
+          accordion.accordion([], [
+            accordion.item("Is it accessible?", [], [
+              html.p([], [
+                html.text("Yes. It adheres to the WAI-ARIA design pattern."),
+              ]),
             ]),
-            avatar.avatar([
-              attribute.src("https://github.com/shadcn.png"),
-              attribute.alt("User 2"),
-            ]),
-            avatar.avatar([
-              attribute.src("https://github.com/adamwathan.png"),
-              attribute.alt("User 3"),
+            accordion.item("Is it styled?", [], [
+              html.p([], [html.text("Yes. It comes with default styles.")]),
             ]),
           ]),
         ]),
 
-        // Progress Section
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Breadcrumb")]),
+          breadcrumb.breadcrumb([], [
+            breadcrumb.item([attribute.href("#")], [html.text("Home")]),
+            breadcrumb.separator([]),
+            breadcrumb.item([attribute.href("#")], [html.text("Products")]),
+            breadcrumb.separator([]),
+            breadcrumb.current([], [html.text("Details")]),
+          ]),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Input")]),
+          input.input([attribute.placeholder("Enter text...")]),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Textarea")]),
+          textarea.textarea([attribute.placeholder("Enter description...")], ""),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Checkbox")]),
+          checkbox.with_label("terms", "Accept terms", []),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Switch")]),
+          switch.with_label("notifications", "Enable notifications", []),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Radio Group")]),
+          radio_group.group(
+            "plan",
+            [
+              #("free", "Free", False),
+              #("pro", "Pro", True),
+              #("enterprise", "Enterprise", False),
+            ],
+            [],
+          ),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Select")]),
+          select.select([select.name("fruit")], [
+            select.optgroup("Fruits", [
+              select.option("apple", "Apple", True),
+              select.option("banana", "Banana", False),
+            ]),
+          ]),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Slider")]),
+          slider.slider([
+            attribute("min", "0"),
+            attribute("max", "100"),
+            attribute("value", "50"),
+          ]),
+        ]),
+
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Progress")]),
-          html.p([], [html.text("25%")]),
-          progress.progress([progress.value(25), progress.max(100)]),
-          html.p([], [html.text("75%")]),
-          progress.progress([progress.value(75), progress.max(100)]),
+          progress.progress([progress.value(60), progress.max(100)]),
         ]),
 
-        // Skeleton Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Skeleton")]),
-          html.div([attribute.class("grid-2")], [
-            skeleton.skeleton([attribute.class("h-4 w-full")]),
-            skeleton.circle([]),
-          ]),
+          skeleton.skeleton([attribute.class("h-4 w-full")]),
         ]),
 
-        // Spinner Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Spinner")]),
           html.div([attribute.class("flex-wrap")], [
@@ -202,23 +221,89 @@ pub fn page() {
           ]),
         ]),
 
-        // Kbd Section
         html.section([attribute.class("section")], [
-          html.h2([], [html.text("Keyboard Shortcuts")]),
-          html.p([], [
-            html.text("Press "),
-            kbd.shortcut(["⌘", "K"], []),
-            html.text(" to open search."),
-          ]),
+          html.h2([], [html.text("Kbd")]),
+          kbd.shortcut(["⌘", "K"], []),
         ]),
 
-        // Label Section
         html.section([attribute.class("section")], [
           html.h2([], [html.text("Label")]),
           label.with_input("email", "Email", [attribute.type_("email")]),
         ]),
 
-        // Footer
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Pagination")]),
+          pagination.pagination([], [
+            pagination.prev([attribute.href("#")]),
+            pagination.page(1, True, [attribute.href("#")]),
+            pagination.page(2, False, [attribute.href("#")]),
+            pagination.page(3, False, [attribute.href("#")]),
+            pagination.next([attribute.href("#")]),
+          ]),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Table")]),
+          table.table([], [
+            table.thead([], [
+              table.tr([], [
+                table.th([], [html.text("Name")]),
+                table.th([], [html.text("Email")]),
+              ]),
+            ]),
+            table.tbody([], [
+              table.tr([], [
+                table.td([], [html.text("John Doe")]),
+                table.td([], [html.text("john@example.com")]),
+              ]),
+              table.tr([], [
+                table.td([], [html.text("Jane Smith")]),
+                table.td([], [html.text("jane@example.com")]),
+              ]),
+            ]),
+          ]),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Tabs")]),
+          tabs.tab_set(
+            "demo-tabs",
+            [
+              #(
+                "account",
+                "Account",
+                True,
+                html.p([], [html.text("Account settings here.")]),
+              ),
+              #(
+                "password",
+                "Password",
+                False,
+                html.p([], [html.text("Password settings here.")]),
+              ),
+            ],
+            [],
+          ),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Empty")]),
+          empty.empty([], [
+            empty.title([], [html.text("No items found")]),
+            empty.description([], [html.text("Try adjusting your search.")]),
+          ]),
+        ]),
+
+        html.section([attribute.class("section")], [
+          html.h2([], [html.text("Item")]),
+          item.item([], [
+            item.content([], [
+              item.title([], [html.text("Item Title")]),
+              item.description([], [html.text("Item description goes here.")]),
+            ]),
+          ]),
+        ]),
+
         html.footer([attribute.class("section")], [
           html.p([], [
             html.text("Built with "),
