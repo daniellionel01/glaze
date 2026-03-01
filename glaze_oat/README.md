@@ -3,7 +3,7 @@
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
 
-This is a collection of components mapped 1:1 from [Oat UI](https://oat.ink/).
+This is a collection of Lustre components mapped from [Oat UI](https://oat.ink/).
 
 It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_elements.asp), is very small (~8KB CSS and JS) and themable.
 
