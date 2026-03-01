@@ -33,6 +33,15 @@
 //// `lucide.createIcons()` after your HTML has been rendered (see
 //// <https://lucide.dev/guide/packages/lucide>).
 ////
+//// ```gleam
+//// import glaze_basecoat/icon
+////
+//// html.head([], [
+////   // Use a pinned version in real projects.
+////   icon.register_cdn("latest"),
+//// ])
+//// ```
+////
 //// ## Usage
 ////
 //// Use the `icon` function to create icons:
@@ -62,6 +71,34 @@ pub fn init() -> Element(a) {
     [attribute.type_("module")],
     "import lucide from 'lucide'; lucide.createIcons();",
   )
+}
+
+/// Initialize Lucide icons via CDN (no bundler).
+///
+/// This injects Lucide's UMD build from unpkg and runs `lucide.createIcons()` on
+/// `DOMContentLoaded`.
+///
+/// Lucide recommends pinning a specific version instead of using `latest`.
+/// See: <https://lucide.dev/guide/packages/lucide>
+///
+pub fn register_cdn(lucide_version: String) -> Element(a) {
+  element.fragment([
+    html.script(
+      [
+        attribute("defer", "defer"),
+        attribute.src(
+          "https://unpkg.com/lucide@"
+          <> lucide_version
+          <> "/dist/umd/lucide.min.js",
+        ),
+      ],
+      "",
+    ),
+    html.script(
+      [],
+      "window.addEventListener('DOMContentLoaded', () => lucide.createIcons());",
+    ),
+  ])
 }
 
 /// Render a Lucide icon by name.

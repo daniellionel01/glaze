@@ -196,20 +196,10 @@ Lucide recommends pinning a specific version instead of using `@latest`.
 
 ```gleam
 import glaze_basecoat/icon
-import lustre/attribute.{attribute}
-import lustre/element/html
 
 html.head([], [
-  // Lucide (UMD)
-  html.script(
-    [
-      attribute.src("https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"),
-      attribute("defer", ""),
-    ],
-    "",
-  ),
-  // Replace all <i data-lucide="..."> placeholders with SVGs
-  html.script([], "window.addEventListener('DOMContentLoaded', () => lucide.createIcons());"),
+  // Use a pinned version in real projects.
+  icon.register_cdn("latest"),
 ])
 
 // Use icons (same API)
