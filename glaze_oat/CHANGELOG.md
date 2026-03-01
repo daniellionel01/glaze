@@ -7,10 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Order theme css variables alphabetically. This was causing issues in the GitHub Workflow to check if the glaze_oat demo HTML file is stale.
+## [2.0.0] - 2026-03-02
 
 - **Breaking Change:** moved gleam modules from `glaze_oat/...` -> `glaze/oat/...`.
 
+- Order theme css variables alphabetically. This was causing issues in the GitHub Workflow to check if the glaze_oat demo HTML file is stale.
 
 ## [1.0.1] - 2026-03-01
 

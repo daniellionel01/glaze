@@ -1,5 +1,5 @@
 name = "glaze_oat"
-version = "1.0.1"
+version = "2.0.0"
 description = "🍩 Lustre Bindings to Oat UI Components"
 
 licences = ["Apache-2.0"]
