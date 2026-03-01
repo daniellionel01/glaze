@@ -82,9 +82,9 @@ Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your 
 
 Use `glaze_basecoat.register()` to include everything via CDN.
 
-Note: Basecoat's CDN includes the component classes (like `btn`, `card`, `input`, etc).
+*Basecoat's CDN includes the component classes (like `btn`, `card`, `input`, etc).
 Some patterns in Basecoat's docs (like Skeleton) are intentionally just Tailwind utilities.
-If you want those utility-only patterns, you must also include Tailwind.
+If you want those utility-only patterns, you must also include Tailwind.*
 
 ### Tailwind Play CDN
 
