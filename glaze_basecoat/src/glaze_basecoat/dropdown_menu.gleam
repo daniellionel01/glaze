@@ -171,15 +171,16 @@ pub fn checkbox_item(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  let checked_attr = case is_checked {
-    True -> [attribute.aria_checked("true")]
-    False -> [attribute.aria_checked("false")]
+  let checked_str = case is_checked {
+    True -> "true"
+    False -> "false"
   }
   html.div(
-    list.append(
-      list.append([attribute.role("menuitemcheckbox")], checked_attr),
-      attrs,
-    ),
+    [
+      attribute.role("menuitemcheckbox"),
+      attribute.aria_checked(checked_str),
+      ..attrs
+    ],
     children,
   )
 }
@@ -189,15 +190,17 @@ pub fn radio_item(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  let checked_attr = case is_checked {
-    True -> [attribute.aria_checked("true")]
-    False -> [attribute.aria_checked("false")]
+  let checked_str = case is_checked {
+    True -> "true"
+    False -> "false"
   }
+
   html.div(
-    list.append(
-      list.append([attribute.role("menuitemradio")], checked_attr),
-      attrs,
-    ),
+    [
+      attribute.role("menuitemradio"),
+      attribute.aria_checked(checked_str),
+      ..attrs
+    ],
     children,
   )
 }
