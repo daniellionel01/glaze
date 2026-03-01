@@ -4,9 +4,14 @@
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_basecoat/)
 
 This is a collection of Lustre components mapped from [Basecoat UI](https://basecoatui.com/).
+
 Basecoat UI is a Tailwind CSS-based component library inspired by shadcn/ui that works with any web stack.
+
 For a full list of components, take a look at <https://hexdocs.pm/glaze_basecoat> or <https://basecoatui.com/components/>
+
 Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basecoat).
+
+GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
 ## Getting Started
 
