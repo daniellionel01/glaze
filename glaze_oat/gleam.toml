@@ -2,7 +2,7 @@ name = "glaze_oat"
 version = "1.0.1"
 description = "🍩 Lustre Bindings to Oat UI Components"
 
-licences = ["MIT"]
+licences = ["Apache-2.0"]
 repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_oat", tag-prefix = "oat-" }
 
 links = [
