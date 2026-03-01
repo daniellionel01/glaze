@@ -43,44 +43,7 @@ pub fn page() {
         [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
         "",
       ),
-      // Tailwind Play CDN needs Basecoat token -> Tailwind theme mapping.
-      // This matches Basecoat's `@theme` block from `src/css/basecoat.css`.
-      html.style(
-        [attribute("type", "text/tailwindcss")],
-        "@theme {\n"
-          <> "  --color-background: var(--background);\n"
-          <> "  --color-foreground: var(--foreground);\n"
-          <> "  --color-card: var(--card);\n"
-          <> "  --color-card-foreground: var(--card-foreground);\n"
-          <> "  --color-popover: var(--popover);\n"
-          <> "  --color-popover-foreground: var(--popover-foreground);\n"
-          <> "  --color-primary: var(--primary);\n"
-          <> "  --color-primary-foreground: var(--primary-foreground);\n"
-          <> "  --color-secondary: var(--secondary);\n"
-          <> "  --color-secondary-foreground: var(--secondary-foreground);\n"
-          <> "  --color-muted: var(--muted);\n"
-          <> "  --color-muted-foreground: var(--muted-foreground);\n"
-          <> "  --color-accent: var(--accent);\n"
-          <> "  --color-accent-foreground: var(--accent-foreground);\n"
-          <> "  --color-destructive: var(--destructive);\n"
-          <> "  --color-border: var(--border);\n"
-          <> "  --color-input: var(--input);\n"
-          <> "  --color-ring: var(--ring);\n"
-          <> "  --color-chart-1: var(--chart-1);\n"
-          <> "  --color-chart-2: var(--chart-2);\n"
-          <> "  --color-chart-3: var(--chart-3);\n"
-          <> "  --color-chart-4: var(--chart-4);\n"
-          <> "  --color-chart-5: var(--chart-5);\n"
-          <> "  --color-sidebar: var(--sidebar);\n"
-          <> "  --color-sidebar-foreground: var(--sidebar-foreground);\n"
-          <> "  --color-sidebar-primary: var(--sidebar-primary);\n"
-          <> "  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\n"
-          <> "  --color-sidebar-accent: var(--sidebar-accent);\n"
-          <> "  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\n"
-          <> "  --color-sidebar-border: var(--sidebar-border);\n"
-          <> "  --color-sidebar-ring: var(--sidebar-ring);\n"
-          <> "}\n",
-      ),
+      theme.tailwind_v4_bridge_style_tag(),
       glaze_basecoat.register(glaze_basecoat.version),
       theme.style_tag(theme.default_theme()),
       html.style(

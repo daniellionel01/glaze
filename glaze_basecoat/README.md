@@ -95,6 +95,32 @@ pub fn layout() {
 Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN (recommended for quick setup) or with your own Tailwind configuration.
 ### CDN (Recommended)
 Use `glaze_basecoat.register()` to include everything via CDN.
+
+Note: Basecoat's CDN includes the component classes (like `btn`, `card`, `input`, etc).
+Some patterns in Basecoat's docs (like Skeleton) are intentionally just Tailwind utilities.
+If you want those utility-only patterns, you must also include Tailwind.
+
+### Tailwind Play CDN
+
+If you use Tailwind's Play CDN (`@tailwindcss/browser`), you also need Basecoat's Tailwind v4
+`@theme` mapping so utilities like `bg-accent` exist.
+
+```gleam
+import glaze_basecoat
+import glaze_basecoat/theme
+import lustre/attribute.{attribute}
+import lustre/element/html
+
+html.head([], [
+  html.script(
+    [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
+    "",
+  ),
+  glaze_basecoat.register(glaze_basecoat.version),
+  theme.style_tag(theme.default_theme()),
+  theme.tailwind_v4_bridge_style_tag(),
+])
+```
 ### With Your Tailwind Setup
 Use `glaze_basecoat.register_js()` to only include the JavaScript and configure Tailwind yourself.
 ```css

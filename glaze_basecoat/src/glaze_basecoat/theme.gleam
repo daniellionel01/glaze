@@ -28,6 +28,7 @@
 
 import gleam/dict
 import gleam/list
+import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
 
@@ -241,6 +242,60 @@ pub fn style_tag_with_dark(light: Theme, dark: Theme) -> element.Element(a) {
       <> theme_to_css_variables(dark)
       <> "}",
   )
+}
+
+/// Render a `<style type="text/tailwindcss">` tag containing Basecoat's
+/// Tailwind v4 `@theme` mapping.
+///
+/// This is only needed when using Tailwind's Play CDN (`@tailwindcss/browser`).
+/// In build-time Tailwind setups (Tailwind CLI/PostCSS/Vite/etc), this mapping
+/// comes from `@import "basecoat-css";`.
+///
+/// Basecoat defines design tokens like `--accent` and Tailwind generates utility
+/// classes like `bg-accent` from theme variables like `--color-accent`. This
+/// mapping bridges the two.
+///
+pub fn tailwind_v4_bridge_style_tag() -> element.Element(a) {
+  html.style([attribute("type", "text/tailwindcss")], tailwind_v4_bridge_css())
+}
+
+/// The Tailwind v4 `@theme` mapping used by Basecoat.
+///
+/// This matches the `@theme` block in Basecoat's `src/css/basecoat.css`.
+pub fn tailwind_v4_bridge_css() -> String {
+  "@theme {\n"
+  <> "  --color-background: var(--background);\n"
+  <> "  --color-foreground: var(--foreground);\n"
+  <> "  --color-card: var(--card);\n"
+  <> "  --color-card-foreground: var(--card-foreground);\n"
+  <> "  --color-popover: var(--popover);\n"
+  <> "  --color-popover-foreground: var(--popover-foreground);\n"
+  <> "  --color-primary: var(--primary);\n"
+  <> "  --color-primary-foreground: var(--primary-foreground);\n"
+  <> "  --color-secondary: var(--secondary);\n"
+  <> "  --color-secondary-foreground: var(--secondary-foreground);\n"
+  <> "  --color-muted: var(--muted);\n"
+  <> "  --color-muted-foreground: var(--muted-foreground);\n"
+  <> "  --color-accent: var(--accent);\n"
+  <> "  --color-accent-foreground: var(--accent-foreground);\n"
+  <> "  --color-destructive: var(--destructive);\n"
+  <> "  --color-border: var(--border);\n"
+  <> "  --color-input: var(--input);\n"
+  <> "  --color-ring: var(--ring);\n"
+  <> "  --color-chart-1: var(--chart-1);\n"
+  <> "  --color-chart-2: var(--chart-2);\n"
+  <> "  --color-chart-3: var(--chart-3);\n"
+  <> "  --color-chart-4: var(--chart-4);\n"
+  <> "  --color-chart-5: var(--chart-5);\n"
+  <> "  --color-sidebar: var(--sidebar);\n"
+  <> "  --color-sidebar-foreground: var(--sidebar-foreground);\n"
+  <> "  --color-sidebar-primary: var(--sidebar-primary);\n"
+  <> "  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\n"
+  <> "  --color-sidebar-accent: var(--sidebar-accent);\n"
+  <> "  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\n"
+  <> "  --color-sidebar-border: var(--sidebar-border);\n"
+  <> "  --color-sidebar-ring: var(--sidebar-ring);\n"
+  <> "}\n"
 }
 
 fn theme_to_css_variables(theme: Theme) -> String {
