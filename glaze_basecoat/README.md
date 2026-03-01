@@ -130,6 +130,8 @@ let custom_theme =
 
 Browse available themes at [ui.shadcn.com/themes](https://ui.shadcn.com/themes).
 
+You can also use tools like <https://tweakcn.com/editor/theme>!
+
 ## Icons
 
 Basecoat uses [Lucide icons](https://lucide.dev). Install lucide and use the icon helper:
