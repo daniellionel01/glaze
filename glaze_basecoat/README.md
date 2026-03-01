@@ -53,6 +53,15 @@ import lustre/element/html
 pub fn layout() {
   html.html([], [
     html.head([], [
+      theme_switcher.init_script(),
+      icon.register_cdn("latest"),
+      
+      html.script(
+        [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
+        "",
+      ),
+      theme.tailwind_v4_bridge_style_tag(),
+      
       glaze_basecoat.register(glaze_basecoat.version),
       theme.style_tag(theme.default_theme()),
     ]),

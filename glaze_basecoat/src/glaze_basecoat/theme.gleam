@@ -233,7 +233,7 @@ pub fn style_tag(theme: Theme) -> element.Element(a) {
 /// This generates CSS that automatically switches between themes
 /// based on the `color-scheme` or `prefers-color-scheme` media query.
 ///
-pub fn style_tag_with_dark(light: Theme, dark: Theme) -> element.Element(a) {
+pub fn style_tag_light_dark(light: Theme, dark: Theme) -> element.Element(a) {
   html.style(
     [],
     ":root {\n"

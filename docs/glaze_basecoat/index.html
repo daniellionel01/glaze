@@ -1,23 +1,22 @@
 <!doctype html>
 <html lang="en"><head><meta content="width=device-width, initial-scale=1" name="viewport"><title>Glaze / Basecoat UI</title><script type="text/javascript">(() => {
-  try {
-    const stored = localStorage.getItem('themeMode');
-    if (stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-    }
-  } catch (_) {}
+      try {
+        const stored = localStorage.getItem('themeMode');
+        if (stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (_) {}
 
-  const apply = (dark) => {
-    document.documentElement.classList.toggle('dark', dark);
-    try { localStorage.setItem('themeMode', dark ? 'dark' : 'light'); } catch (_) {}
-  };
+      const apply = (dark) => {
+        document.documentElement.classList.toggle('dark', dark);
+        try { localStorage.setItem('themeMode', dark ? 'dark' : 'light'); } catch (_) {}
+      };
 
-  document.addEventListener('basecoat:theme', (event) => {
-    const mode = event.detail?.mode;
-    apply(mode === 'dark' ? true : mode === 'light' ? false : !document.documentElement.classList.contains('dark'));
-  });
-})();
-</script><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style type="text/tailwindcss">@theme {
+      document.addEventListener('basecoat:theme', (event) => {
+        const mode = event.detail?.mode;
+        apply(mode === 'dark' ? true : mode === 'light' ? false : !document.documentElement.classList.contains('dark'));
+      });
+    })();</script><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style type="text/tailwindcss">@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

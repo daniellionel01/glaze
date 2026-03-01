@@ -67,15 +67,18 @@ pub fn page() {
         attribute.content("width=device-width, initial-scale=1"),
       ]),
       html.title([], "Glaze / Basecoat UI"),
+
       theme_switcher.init_script(),
+      icon.register_cdn("latest"),
+
       html.script(
         [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
         "",
       ),
       theme.tailwind_v4_bridge_style_tag(),
+
       glaze_basecoat.register(glaze_basecoat.version),
-      icon.register_cdn("latest"),
-      theme.style_tag_with_dark(theme.default_theme(), theme.dark_theme()),
+      theme.style_tag_light_dark(theme.default_theme(), theme.dark_theme()),
       html.style(
         [],
         "
