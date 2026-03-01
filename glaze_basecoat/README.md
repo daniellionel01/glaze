@@ -15,28 +15,36 @@ GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
 ## Getting Started
 
-### Step 1: Installation
-
 ```sh
+# Step 1: Installation
 gleam add glaze_basecoat@1
 ```
 
-### Step 2: Register CSS and JavaScript
-
 ```gleam
 import glaze_basecoat
-html.head([], [
-  glaze_basecoat.register(glaze_basecoat.version),
-])
-```
-
-### Step 3: Register your theme
-
-```gleam
 import glaze_basecoat/theme
 
-let my_theme = theme.default_theme()
-theme.style_tag(my_theme)
+html.head([], [
+  // (Optional) Register Tailwind (if not already coming from your build-tool)
+  html.script(
+    [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
+    "",
+  ),
+  // Don't forget this, if you're using Tailwind through a CDN!
+  theme.tailwind_v4_bridge_style_tag(),
+  
+  // Register Basecoat Components
+  glaze_basecoat.register(glaze_basecoat.version),
+  
+  // Register your theme
+  theme.style_tag(theme.default_theme()),
+  
+  // Register Lucide icons, required by some components
+  icon.register_cdn("latest"),
+  
+  // (Optional) Init theme switcher
+  theme_switcher.init_script(),
+])
 ```
 
 ## Example
