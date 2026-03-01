@@ -81,9 +81,3 @@ There is a `dev` module that constructs a demo with all available elements and w
 gleam run -m glaze_oat_dev
 open ../docs/glaze_oat/index.html
 ```
-
-From the repository root you can also run:
-
-```sh
-./scripts/update-glaze-oat-demo.sh
-```

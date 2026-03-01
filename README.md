@@ -1,11 +1,9 @@
 # 🍩 Glaze
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
-- [glaze_oat](https://hexdocs.pm/glaze_oat/)
+- **glaze_oat:** [hexdocs](https://hexdocs.pm/glaze_oat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | [demo](https://daniellionel01.github.io/glaze/glaze_oat/)
 
 <br />
-
-**Oat:** [GitHub](https://github.com/knadh/oat), [Website](https://oat.ink/)
 
 ## About this Project
 
@@ -23,12 +21,6 @@ In each package, there is a `dev` module that constructs a demo with all availab
 cd glaze_oat
 gleam run -m glaze_oat_dev
 open ../docs/glaze_oat/index.html
-```
-
-To update the GitHub Pages demo artifact from the repository root:
-
-```sh
-./scripts/update-glaze-oat-demo.sh
 ```
 
 ## Future Work
