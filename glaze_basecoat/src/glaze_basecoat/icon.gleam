@@ -15,7 +15,11 @@
 //// pnpm add lucide
 //// ```
 ////
-//// Then initialize Lucide in your application:
+//// Then initialize Lucide in your application.
+////
+//// Note: `init()` injects a `<script type="module">` that imports `lucide` as a
+//// bare module specifier. This requires a JS setup that can resolve `import ... from "lucide"`
+//// (bundler, import map, etc).
 ////
 //// ```gleam
 //// import glaze_basecoat/icon
@@ -24,6 +28,10 @@
 ////   icon.init(),
 //// ])
 //// ```
+////
+//// If you are not bundling JavaScript, load Lucide via CDN and call
+//// `lucide.createIcons()` after your HTML has been rendered (see
+//// <https://lucide.dev/guide/packages/lucide>).
 ////
 //// ## Usage
 ////
@@ -47,7 +55,7 @@ import lustre/element/html
 /// Initialize Lucide icons.
 ///
 /// Add this script to your `<head>` to enable Lucide icon rendering.
-/// Requires lucide to be installed via npm/bun/pnpm.
+/// Requires a JS setup that can resolve `import ... from "lucide"`.
 ///
 pub fn init() -> Element(a) {
   html.script(

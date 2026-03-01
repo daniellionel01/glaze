@@ -148,6 +148,7 @@ Basecoat uses shadcn/ui compatible CSS variables. You can customize the theme:
 
 ```gleam
 import glaze_basecoat/theme
+
 let custom_theme =
   theme.default_theme()
   |> theme.set(theme.Primary, "oklch(0.205 0 0)")
@@ -160,10 +161,23 @@ You can also use tools like <https://tweakcn.com/editor/theme>!
 
 ## Icons
 
-Basecoat uses [Lucide icons](https://lucide.dev). Install lucide and use the icon helper:
+Basecoat uses [Lucide icons](https://lucide.dev).
+
+The icon helpers in `glaze_basecoat/icon` render placeholders like `<i class="lucide" data-lucide="plus">`.
+To turn those placeholders into SVGs you must also load the Lucide runtime.
+
+Lucide docs (including the CDN snippet): <https://lucide.dev/guide/packages/lucide>
+
+### Option 1: Bundled (npm/pnpm/bun)
+
+Install `lucide` and use `icon.init()`.
+
+Note: `icon.init()` injects a `<script type="module">` that does `import lucide from "lucide"`.
+That means your app must have a JS setup that can resolve the bare module specifier (bundler, import map, etc).
 
 ```gleam
 import glaze_basecoat/icon
+import lustre/element/html
 
 // Initialize Lucide
 html.head([], [
@@ -171,6 +185,34 @@ html.head([], [
 ])
 
 // Use icons
+icon.plus([])
+icon.search([])
+```
+
+### Option 2: CDN (no bundler)
+
+If you are not bundling JavaScript, include Lucide via CDN and call `lucide.createIcons()`.
+Lucide recommends pinning a specific version instead of using `@latest`.
+
+```gleam
+import glaze_basecoat/icon
+import lustre/attribute.{attribute}
+import lustre/element/html
+
+html.head([], [
+  // Lucide (UMD)
+  html.script(
+    [
+      attribute.src("https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"),
+      attribute("defer", ""),
+    ],
+    "",
+  ),
+  // Replace all <i data-lucide="..."> placeholders with SVGs
+  html.script([], "window.addEventListener('DOMContentLoaded', () => lucide.createIcons());"),
+])
+
+// Use icons (same API)
 icon.plus([])
 icon.search([])
 ```
