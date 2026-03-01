@@ -138,10 +138,12 @@ Basecoat uses [Lucide icons](https://lucide.dev). Install lucide and use the ico
 
 ```gleam
 import glaze_basecoat/icon
+
 // Initialize Lucide
 html.head([], [
   icon.init(),
 ])
+
 // Use icons
 icon.plus([])
 icon.search([])
