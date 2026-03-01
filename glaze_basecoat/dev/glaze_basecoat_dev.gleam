@@ -26,6 +26,10 @@ pub fn page() {
         attribute.content("width=device-width, initial-scale=1"),
       ]),
       html.title([], "Glaze / Basecoat UI"),
+      html.script(
+        [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
+        "",
+      ),
       glaze_basecoat.register(glaze_basecoat.version),
       theme.style_tag(theme.default_theme()),
       html.style(
