@@ -1,0 +1,47 @@
+name: Check glaze_oat demo is up to date
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  check-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Erlang/OTP
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27"
+
+      - name: Setup Gleam
+        uses: gleam-lang/setup-gleam@v1
+
+      - name: Generate demo HTML
+        working-directory: glaze_oat
+        run: |
+          gleam deps download
+          gleam run -m glaze_oat_dev
+
+      - name: Verify GitHub Pages demo is current
+        run: |
+          if ! test -f docs/glaze_oat/index.html; then
+            echo "Missing docs/glaze_oat/index.html"
+            echo "Create it by running: cd glaze_oat && gleam run -m glaze_oat_dev"
+            echo "Then copy: cp glaze_oat/oat.html docs/glaze_oat/index.html"
+            exit 1
+          fi
+
+          git ls-files --error-unmatch docs/glaze_oat/index.html >/dev/null
+
+          mkdir -p docs/glaze_oat
+          cp glaze_oat/oat.html docs/glaze_oat/index.html
+
+          git diff --exit-code -- docs/glaze_oat/index.html

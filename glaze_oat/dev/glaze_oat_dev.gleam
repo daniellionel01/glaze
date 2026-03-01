@@ -1,3 +1,18 @@
+//// Generates a static HTML demo page for `glaze_oat`.
+////
+//// Running this module writes a standalone `oat.html` file to the `glaze_oat/`
+//// directory:
+//// ```sh
+//// gleam run -m glaze_oat_dev
+//// ```
+////
+//// This repo publishes that file on GitHub Pages by copying it to
+//// `docs/glaze_oat/index.html` at the repository root.
+////
+//// A GitHub Workflow check keeps the file from going stale by regenerating the demo and
+//// failing if `docs/glaze_oat/index.html` has changed.
+////
+
 import glaze_oat
 import glaze_oat/accordion.{accordion}
 import glaze_oat/alert.{alert}
@@ -30,7 +45,6 @@ import simplifile
 /// Sources:
 /// - https://github.com/knadh/oat/blob/master/docs/static/demo.css
 /// - https://github.com/knadh/oat/blob/master/docs/templates/demo.html
-///
 pub fn page() {
   let settings_saved_toast_javascript =
     toast.toast_eval_string(
@@ -1428,6 +1442,11 @@ pub fn page() {
   ])
 }
 
+/// Generates `oat.html` in the `glaze_oat/` directory.
+///
+/// This is the entry point used by `gleam run -m glaze_oat_dev`.
+/// For GitHub Pages in this repo, copy the generated file to
+/// `docs/glaze_oat/index.html` at the repository root.
 pub fn main() {
   let html =
     page()
