@@ -4,7 +4,7 @@
 //// `docs/glaze_oat/index.html` at the repository root:
 ////
 //// ```sh
-//// gleam run -m glaze_oat_dev
+//// gleam dev
 //// ```
 ////
 //// A GitHub Workflow check keeps the file from going stale by regenerating the demo and
@@ -41,7 +41,7 @@ import simplifile
 
 /// Generates `docs/glaze_oat/index.html` (GitHub Pages artifact).
 ///
-/// This is the entry point used by `gleam run -m glaze_oat_dev`.
+/// This is the entry point used by `gleam dev`.
 ///
 pub fn main() {
   let html =

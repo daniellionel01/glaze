@@ -1,3 +1,16 @@
+//// Generates a static HTML demo page for `glaze_basecoat`.
+////
+//// Running this module writes the GitHub Pages demo file directly to
+//// `docs/glaze_basecoat/index.html` at the repository root:
+////
+//// ```sh
+//// gleam dev
+//// ```
+////
+//// A GitHub Workflow check keeps the file from going stale by regenerating the demo and
+//// failing if `docs/glaze_basecoat/index.html` has changed.
+////asecoat
+
 import glaze_basecoat
 import glaze_basecoat/accordion
 import glaze_basecoat/alert
@@ -25,12 +38,26 @@ import glaze_basecoat/tabs
 import glaze_basecoat/textarea
 import glaze_basecoat/theme
 import glaze_basecoat/theme_switcher
-import gleam/io
 import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
 import simplifile
 
+/// Generates `docs/glaze_basecoat/index.html` (GitHub Pages artifact).
+///
+/// This is the entry point used by `gleam dev`.
+///
+pub fn main() {
+  let html =
+    page()
+    |> element.to_document_string
+
+  let assert Ok(_) =
+    simplifile.write(contents: html, to: "../docs/glaze_basecoat/index.html")
+}
+
+/// Kitchensink page ported from https://basecoatui.com/kitchen-sink/
+///
 pub fn page() {
   html.html([attribute("lang", "en")], [
     html.head([], [
@@ -369,10 +396,4 @@ pub fn page() {
       ]),
     ]),
   ])
-}
-
-pub fn main() {
-  let html_content = element.to_string(page())
-  let _ = simplifile.write("basecoat.html", html_content)
-  io.println("Generated basecoat.html")
 }
