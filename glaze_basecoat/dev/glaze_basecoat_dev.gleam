@@ -21,6 +21,7 @@ import glaze_basecoat/button
 import glaze_basecoat/card
 import glaze_basecoat/checkbox
 import glaze_basecoat/empty
+import glaze_basecoat/icon
 import glaze_basecoat/input
 import glaze_basecoat/item
 import glaze_basecoat/kbd
@@ -73,6 +74,7 @@ pub fn page() {
       ),
       theme.tailwind_v4_bridge_style_tag(),
       glaze_basecoat.register(glaze_basecoat.version),
+      icon.register_cdn("latest"),
       theme.style_tag_with_dark(theme.default_theme(), theme.dark_theme()),
       html.style(
         [],
@@ -91,6 +93,12 @@ pub fn page() {
         html.header([attribute.class("section")], [
           html.div([attribute.class("flex-wrap")], [
             html.h1([], [html.text("Glaze Basecoat")]),
+            html.div([attribute.class("flex-wrap")], [
+              icon.search([]),
+              icon.plus([]),
+              icon.settings([]),
+              icon.github([]),
+            ]),
             theme_switcher.button([]),
           ]),
           html.p([], [
