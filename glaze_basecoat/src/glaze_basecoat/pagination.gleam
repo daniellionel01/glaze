@@ -1,11 +1,14 @@
 //// Basecoat documentation: <https://basecoatui.com/components/pagination/>
 ////
-//// Pagination with page navigation, next and previous links.
+//// Pagination helpers for lists split across pages.
 ////
-//// ## Usage
+//// These helpers render a navigation landmark with page links.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/pagination
+//// import lustre/attribute
 ////
 //// fn page_nav() {
 ////   pagination.pagination([], [
@@ -17,14 +20,15 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<nav>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav>
 
 import gleam/int
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a pagination container.
-///
 pub fn pagination(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -42,24 +46,18 @@ pub fn pagination(
   )
 }
 
-/// Render a previous page link.
-///
 pub fn prev(attrs: List(Attribute(msg))) -> Element(msg) {
   html.li([], [
     html.a([attribute.class("btn-ghost"), ..attrs], [html.text(" Previous")]),
   ])
 }
 
-/// Render a next page link.
-///
 pub fn next(attrs: List(Attribute(msg))) -> Element(msg) {
   html.li([], [
     html.a([attribute.class("btn-ghost"), ..attrs], [html.text("Next ")]),
   ])
 }
 
-/// Render a page number link.
-///
 pub fn page(
   page_num: Int,
   is_active: Bool,
@@ -77,8 +75,6 @@ pub fn page(
   ])
 }
 
-/// Render an ellipsis separator.
-///
 pub fn ellipsis(attrs: List(Attribute(msg))) -> Element(msg) {
   html.li([], [
     html.div(

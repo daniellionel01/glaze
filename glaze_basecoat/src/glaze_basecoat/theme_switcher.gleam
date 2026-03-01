@@ -1,19 +1,31 @@
 //// Basecoat documentation: <https://basecoatui.com/components/theme-switcher/>
 ////
-//// A component that allows the user to switch between light and dark mode.
+//// Theme switcher helpers for toggling a light/dark class.
 ////
 //// **Note**: This component requires the theme script in the `<head>`.
 ////
-//// ## Usage
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/theme_switcher
+//// import lustre/element/html
 ////
 //// fn my_theme_switcher() {
 ////   theme_switcher.button([])
 //// }
 //// ```
 ////
+//// Add the initialization script once in your document `<head>`:
+////
+//// ```gleam
+//// html.head([], [
+////   theme_switcher.init_script(),
+//// ])
+//// ```
+////
+//// ## References
+////
+//// - MDN `prefers-color-scheme`: <https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

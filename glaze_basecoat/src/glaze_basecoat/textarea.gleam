@@ -1,8 +1,11 @@
 //// Basecoat documentation: <https://basecoatui.com/components/textarea/>
 ////
-//// The [`textarea`](#textarea) helpers display multi-line text input fields.
+//// Textarea helpers for multi-line text input.
 ////
-//// ## Usage
+//// Use `textarea` when the input is expected to span multiple lines (notes,
+//// descriptions, messages).
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/textarea
@@ -15,49 +18,39 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<textarea>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea>
+//// - MDN `aria-invalid`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a textarea.
-///
 pub fn textarea(attrs: List(Attribute(msg)), content: String) -> Element(msg) {
   html.textarea([attribute.class("textarea"), ..attrs], content)
 }
 
-/// Mark textarea as invalid.
-///
 pub fn invalid() -> Attribute(msg) {
   attribute.aria_invalid("true")
 }
 
-/// Mark textarea as disabled.
-///
 pub fn disabled() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
-/// Set placeholder text.
-///
 pub fn placeholder(text: String) -> Attribute(msg) {
   attribute.placeholder(text)
 }
 
-/// Set the textarea name.
-///
 pub fn name(n: String) -> Attribute(msg) {
   attribute.name(n)
 }
 
-/// Set the textarea id.
-///
 pub fn id(id: String) -> Attribute(msg) {
   attribute.id(id)
 }
 
-/// Set number of visible rows.
-///
 pub fn rows(n: Int) -> Attribute(msg) {
   attribute.rows(n)
 }

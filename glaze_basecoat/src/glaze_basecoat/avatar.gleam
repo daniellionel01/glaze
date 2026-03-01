@@ -1,11 +1,19 @@
 //// Basecoat documentation: <https://basecoatui.com/components/avatar/>
 ////
-//// Avatars are just `<img>` elements styled with Tailwind utility classes.
-//// This module provides helpers to render avatars with consistent styling.
+//// Avatar helpers for user/profile images.
+////
+//// These helpers style regular `<img>` elements (and a few common fallbacks)
+//// so avatars look consistent across your UI.
+////
+//// ## Anatomy
+////
+//// - [`avatar`](#avatar) / [`rounded`](#rounded): image-based avatar
+//// - [`initials`](#initials): text fallback
+//// - [`group`](#group): stacked/overlapping avatar rows
 ////
 //// ## Recipes
 ////
-//// ### User avatar
+//// ### A user avatar
 ////
 //// ```gleam
 //// import glaze_basecoat/avatar
@@ -19,10 +27,11 @@
 //// }
 //// ```
 ////
-//// ### Avatar group
+//// ### An avatar group
 ////
 //// ```gleam
 //// import glaze_basecoat/avatar
+//// import lustre/attribute
 ////
 //// fn team_avatars() {
 ////   avatar.group([], [
@@ -32,13 +41,14 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<img>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render an avatar image with default circular styling.
-///
 pub fn avatar(attrs: List(Attribute(msg))) -> Element(msg) {
   html.img([
     attribute.class("size-8 shrink-0 object-cover rounded-full"),
@@ -46,14 +56,10 @@ pub fn avatar(attrs: List(Attribute(msg))) -> Element(msg) {
   ])
 }
 
-/// Render an avatar with a square/rounded corners style.
-///
 pub fn rounded(attrs: List(Attribute(msg))) -> Element(msg) {
   html.img([attribute.class("size-8 shrink-0 object-cover rounded-lg"), ..attrs])
 }
 
-/// Render an avatar with just initials (no image).
-///
 pub fn initials(text: String, attrs: List(Attribute(msg))) -> Element(msg) {
   html.span(
     [
@@ -66,10 +72,6 @@ pub fn initials(text: String, attrs: List(Attribute(msg))) -> Element(msg) {
   )
 }
 
-/// Avatar group for stacked avatars.
-///
-/// Avatars will overlap with a ring around each.
-///
 pub fn group(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -85,20 +87,14 @@ pub fn group(
   )
 }
 
-/// Small avatar size (size-6).
-///
 pub fn small() -> Attribute(msg) {
   attribute.class("size-6")
 }
 
-/// Large avatar size (size-12).
-///
 pub fn large() -> Attribute(msg) {
   attribute.class("size-12")
 }
 
-/// Extra large avatar size (size-16).
-///
 pub fn extra_large() -> Attribute(msg) {
   attribute.class("size-16")
 }

@@ -1,15 +1,22 @@
 //// Basecoat documentation: <https://basecoatui.com/components/item/>
 ////
-//// A versatile component that you can use to display any content.
+//// Item helpers for list rows and compact content blocks.
 ////
-//// Note: There is no dedicated Item component in Basecoat.
-//// Items are pure HTML composition using Tailwind utility classes.
-//// This module provides helpers to create common item patterns.
+//// Use items for settings rows, search results, command-style lists, or any
+//// repeated row content.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// - [`item`](#item) / [`item_link`](#item_link): the row container
+//// - [`icon`](#icon), [`avatar`](#avatar), [`image`](#image): leading visuals
+//// - [`content`](#content): title/description stack
+//// - [`actions`](#actions): trailing controls
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/item
+//// import lustre/element/html
 ////
 //// fn my_item() {
 ////   item.item([], [

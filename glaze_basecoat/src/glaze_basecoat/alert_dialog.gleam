@@ -3,15 +3,17 @@
 //// A modal dialog that interrupts the user with important content and expects
 //// a response.
 ////
-//// ## Usage
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/alert_dialog
+//// import glaze_basecoat/button
+//// import lustre/element/html
 ////
 //// fn delete_confirm_dialog() {
 ////   alert_dialog.alert_dialog("delete-confirm", [
-////     alert_dialog.title("Are you sure?"),
-////     alert_dialog.description("This action cannot be undone."),
+////     alert_dialog.title([], [html.text("Are you sure?")]),
+////     alert_dialog.description([], [html.text("This action cannot be undone.")]),
 ////     alert_dialog.content([], [
 ////       alert_dialog.footer([], [
 ////         button.button([button.outline()], [html.text("Cancel")]),
@@ -22,6 +24,10 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
+//// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

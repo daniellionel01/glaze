@@ -1,11 +1,25 @@
 //// Basecoat documentation: <https://basecoatui.com/components/empty/>
 ////
-//// Display empty states with icons, titles, descriptions, and actions.
+//// Empty state helpers for "nothing here yet" screens.
 ////
-//// ## Usage
+//// Use empty states in lists, tables, or dashboards when there is no data to
+//// show, and pair them with an action that helps the user recover.
+////
+//// ## Anatomy
+////
+//// Compose an empty state from:
+//// - [`icon`](#icon) (optional)
+//// - [`title`](#title)
+//// - [`description`](#description)
+//// - [`actions`](#actions)
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/empty
+//// import glaze_basecoat/icon
+//// import glaze_basecoat/button
+//// import lustre/element/html
 ////
 //// fn no_projects() {
 ////   empty.empty([], [
@@ -24,8 +38,6 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render an empty state container.
-///
 pub fn empty(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -41,8 +53,6 @@ pub fn empty(
   )
 }
 
-/// Render an empty state with a border.
-///
 pub fn outlined(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -58,8 +68,6 @@ pub fn outlined(
   )
 }
 
-/// Render an empty state header.
-///
 pub fn header(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -73,8 +81,6 @@ pub fn header(
   )
 }
 
-/// Render an empty state icon container.
-///
 pub fn icon(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -90,8 +96,6 @@ pub fn icon(
   )
 }
 
-/// Render an empty state title.
-///
 pub fn title(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -102,8 +106,6 @@ pub fn title(
   )
 }
 
-/// Render an empty state description.
-///
 pub fn description(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -114,8 +116,6 @@ pub fn description(
   )
 }
 
-/// Render an empty state actions container.
-///
 pub fn actions(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

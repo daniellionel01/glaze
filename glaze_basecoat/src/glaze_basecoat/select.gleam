@@ -1,13 +1,14 @@
 //// Basecoat documentation: <https://basecoatui.com/components/select/>
 ////
-//// Displays a list of options for the user to pick from—triggered by a button.
+//// Select helpers for choosing one option from a list.
 ////
-//// ## Usage
+//// This module styles the native `<select>` element.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/select
 ////
-//// // Native select
 //// fn my_select() {
 ////   select.select([select.name("fruit")], [
 ////     select.optgroup("Fruits", [
@@ -18,6 +19,10 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<select>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select>
+//// - MDN `<option>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

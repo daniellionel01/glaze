@@ -1,29 +1,43 @@
 //// Basecoat documentation: <https://basecoatui.com/components/field/>
 ////
-//// The [`field`](#field) helpers display form field wrappers with labels and descriptions.
+//// Form field layout helpers for labels, descriptions, and errors.
 ////
-//// ## Usage
+//// These helpers don't replace your input components; they provide a consistent
+//// wrapper structure around them.
+////
+//// ## Anatomy
+////
+//// A typical field has a `label`, optional `description` or `error`, and an
+//// input element (from `glaze_basecoat/input`, `glaze_basecoat/select`, etc.).
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/field
 //// import glaze_basecoat/input
+//// import lustre/attribute
+//// import lustre/element/html
 ////
 //// fn email_field() {
 ////   field.field([], [
-////     field.label([], [html.text("Email")]),
+////     field.label([attribute.for("email")], [html.text("Email")]),
 ////     field.description([], [html.text("Enter your email address.")]),
-////     input.email([input.placeholder("you@example.com")]),
+////     input.email([
+////       attribute.id("email"),
+////       input.placeholder("you@example.com"),
+////     ]),
 ////   ])
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<label>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a form field container.
-///
 pub fn field(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -31,8 +45,6 @@ pub fn field(
   html.div([attribute.class("grid gap-3"), ..attrs], children)
 }
 
-/// Render a field label.
-///
 pub fn label(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -40,8 +52,6 @@ pub fn label(
   html.label([attribute.class("label"), ..attrs], children)
 }
 
-/// Render a field description.
-///
 pub fn description(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -49,8 +59,6 @@ pub fn description(
   html.p([attribute.class("text-muted-foreground text-sm"), ..attrs], children)
 }
 
-/// Render a field error message.
-///
 pub fn error(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -58,8 +66,6 @@ pub fn error(
   html.p([attribute.class("text-destructive text-sm"), ..attrs], children)
 }
 
-/// Render a complete field with label, input, and description.
-///
 pub fn with_label(
   id: String,
   label_text: String,
@@ -72,8 +78,6 @@ pub fn with_label(
   ])
 }
 
-/// Render a complete field with label, description, and input.
-///
 pub fn with_description(
   id: String,
   label_text: String,

@@ -1,33 +1,36 @@
 //// Basecoat documentation: <https://basecoatui.com/components/checkbox/>
 ////
-//// The [`checkbox`](#checkbox) helpers display checkbox inputs.
+//// Checkbox helpers for boolean selections.
 ////
-//// ## Usage
+//// Use [`checkbox`](#checkbox) for the input itself, or the convenience helpers
+//// for common label/description layouts.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/checkbox
 //// import lustre/attribute
+//// import lustre/element/html
 ////
 //// fn terms_checkbox() {
-////   checkbox.checkbox([
-////     attribute.id("terms"),
+////   checkbox.with_label("terms", "Accept terms", [
+////     attribute.checked(True),
 ////   ])
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<input type="checkbox">`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a checkbox input.
-///
 pub fn checkbox(attrs: List(Attribute(msg))) -> Element(msg) {
   html.input([attribute.type_("checkbox"), attribute.class("input"), ..attrs])
 }
 
-/// Render a checkbox with a label.
-///
 pub fn with_label(
   id: String,
   label_text: String,
@@ -39,8 +42,6 @@ pub fn with_label(
   ])
 }
 
-/// Render a checkbox with label and description.
-///
 pub fn with_description(
   id: String,
   label_text: String,
@@ -60,32 +61,22 @@ pub fn with_description(
   ])
 }
 
-/// Mark checkbox as checked.
-///
 pub fn checked() -> Attribute(msg) {
   attribute.checked(True)
 }
 
-/// Mark checkbox as disabled.
-///
 pub fn disabled() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
-/// Set the checkbox name.
-///
 pub fn name(n: String) -> Attribute(msg) {
   attribute.name(n)
 }
 
-/// Set the checkbox value.
-///
 pub fn value(v: String) -> Attribute(msg) {
   attribute.value(v)
 }
 
-/// Set the checkbox id.
-///
 pub fn id(id: String) -> Attribute(msg) {
   attribute.id(id)
 }

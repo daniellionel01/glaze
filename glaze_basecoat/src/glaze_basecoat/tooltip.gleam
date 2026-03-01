@@ -1,14 +1,18 @@
 //// Basecoat documentation: <https://basecoatui.com/components/tooltip/>
 ////
-//// A popup that displays information related to an element when the element
-//// receives keyboard focus or the mouse hovers over it.
+//// Tooltip helpers for short helper text on hover/focus.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// A tooltip setup usually includes a `trigger` element and a `content` panel.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/tooltip
+//// import lustre/element/html
 ////
 //// fn my_tooltip() {
 ////   tooltip.tooltip("my-tooltip", [
@@ -17,6 +21,11 @@
 ////   ])
 //// }
 //// ```
+////
+//// ## References
+////
+//// - MDN ARIA `tooltip` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tooltip_role>
+//// - MDN Popover API: <https://developer.mozilla.org/en-US/docs/Web/API/Popover_API>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

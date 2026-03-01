@@ -1,8 +1,16 @@
 //// Basecoat documentation: <https://basecoatui.com/components/accordion/>
 ////
-//// A vertically stacked set of interactive headings that each reveal a section of content.
+//// Accordion helpers built on `<details>` and `<summary>`.
 ////
-//// ## Usage
+//// Use accordions to progressively reveal content while keeping the page
+//// scannable.
+////
+//// ## Anatomy
+////
+//// Each accordion `item` is a `<details>` with a `<summary>` title and a
+//// content section.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/accordion
@@ -20,6 +28,10 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<details>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details>
+//// - MDN `<summary>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

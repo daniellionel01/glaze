@@ -1,10 +1,14 @@
 //// Basecoat documentation: <https://basecoatui.com/components/sidebar/>
 ////
-//// A composable, themeable and customizable sidebar component.
+//// Sidebar helpers for app navigation.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// A sidebar is typically an `aside` with a `nav` containing groups and links.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/sidebar
@@ -24,6 +28,11 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<aside>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside>
+//// - MDN `<nav>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav>
+//// - MDN `aria-current`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-current>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

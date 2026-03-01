@@ -1,29 +1,46 @@
 //// Basecoat documentation: <https://basecoatui.com/components/breadcrumb/>
 ////
-//// Breadcrumbs show the path to the current resource using a hierarchy of links.
+//// Breadcrumb helpers for showing the current location in a hierarchy.
 ////
-//// ## Usage
+//// Breadcrumbs work best as a short list of links, with the current page
+//// rendered as plain text.
+////
+//// ## Anatomy
+////
+//// Use [`breadcrumb`](#breadcrumb) as the ordered list container. Each step is
+//// typically an [`item`](#item) link, followed by a [`current`](#current)
+//// element.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/breadcrumb
+//// import lustre/attribute
+//// import lustre/element/html
 ////
 //// fn nav_breadcrumb() {
-////   breadcrumb.breadcrumb([], [
-////     breadcrumb.item([attribute.href("/")], [html.text("Home")]),
-////     breadcrumb.item([attribute.href("/docs")], [html.text("Documentation")]),
-////     breadcrumb.current([], [html.text("Components")]),
+////   html.nav([attribute.aria_label("Breadcrumb")], [
+////     breadcrumb.breadcrumb([], [
+////       breadcrumb.item([attribute.href("/")], [html.text("Home")]),
+////       breadcrumb.separator([]),
+////       breadcrumb.item([attribute.href("/docs")], [html.text("Documentation")]),
+////       breadcrumb.separator([]),
+////       breadcrumb.current([], [html.text("Components")]),
+////     ])
 ////   ])
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<nav>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav>
+//// - MDN `aria-label`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label>
 
 import gleam/list
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a breadcrumb container.
-///
 pub fn breadcrumb(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -39,8 +56,6 @@ pub fn breadcrumb(
   )
 }
 
-/// Render a breadcrumb item with link.
-///
 pub fn item(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -53,8 +68,6 @@ pub fn item(
   ])
 }
 
-/// Render the current page (non-clickable).
-///
 pub fn current(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -67,8 +80,6 @@ pub fn current(
   ])
 }
 
-/// Render a separator between breadcrumb items.
-///
 pub fn separator(attrs: List(Attribute(msg))) -> Element(msg) {
   html.li(attrs, [
     html.span([attribute.class("size-3.5")], [
@@ -77,8 +88,6 @@ pub fn separator(attrs: List(Attribute(msg))) -> Element(msg) {
   ])
 }
 
-/// Render a breadcrumb with items automatically separated.
-///
 pub fn with_items(
   items: List(#(String, String, Bool)),
   attrs: List(Attribute(msg)),

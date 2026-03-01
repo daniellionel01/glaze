@@ -72,10 +72,6 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render buttons as an action group.
-///
-/// Use this when actions are related and should be visually grouped.
-///
 pub fn group(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -83,10 +79,6 @@ pub fn group(
   html.div([attribute.class("flex items-center gap-2"), ..attrs], children)
 }
 
-/// Render a primary button for in-page actions.
-///
-/// Use this for primary actions like submit, save, or confirm.
-///
 pub fn button(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -97,10 +89,6 @@ pub fn button(
   )
 }
 
-/// Render a secondary button for in-page actions.
-///
-/// Use this for secondary actions.
-///
 pub fn secondary(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -111,10 +99,6 @@ pub fn secondary(
   )
 }
 
-/// Render a destructive button for dangerous actions.
-///
-/// Use this for destructive actions like delete or remove.
-///
 pub fn destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -125,10 +109,6 @@ pub fn destructive(
   )
 }
 
-/// Render an outline button for in-page actions.
-///
-/// Use this for less prominent actions.
-///
 pub fn outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -139,10 +119,6 @@ pub fn outline(
   )
 }
 
-/// Render a ghost button for in-page actions.
-///
-/// Use this for subtle actions or in tight spaces.
-///
 pub fn ghost(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -153,10 +129,6 @@ pub fn ghost(
   )
 }
 
-/// Render a link-styled button for in-page actions.
-///
-/// Use this when you want a button that looks like a link.
-///
 pub fn link_style(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -167,10 +139,6 @@ pub fn link_style(
   )
 }
 
-/// Render an icon button for in-page actions.
-///
-/// Use this for buttons that only contain an icon.
-///
 pub fn icon(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -181,8 +149,6 @@ pub fn icon(
   )
 }
 
-/// Render an outline icon button.
-///
 pub fn icon_outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -193,8 +159,6 @@ pub fn icon_outline(
   )
 }
 
-/// Render a destructive icon button.
-///
 pub fn icon_destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -209,10 +173,6 @@ pub fn icon_destructive(
   )
 }
 
-/// Render a link (`<a>`) styled like a primary button.
-///
-/// Use this for navigation actions rather than state-changing actions.
-///
 pub fn link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -220,8 +180,6 @@ pub fn link(
   html.a([attribute.class("btn"), ..attrs], children)
 }
 
-/// Render a link (`<a>`) styled like a secondary button.
-///
 pub fn link_secondary(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -229,8 +187,6 @@ pub fn link_secondary(
   html.a([attribute.class("btn-secondary"), ..attrs], children)
 }
 
-/// Render a link (`<a>`) styled like an outline button.
-///
 pub fn link_outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -238,8 +194,6 @@ pub fn link_outline(
   html.a([attribute.class("btn-outline"), ..attrs], children)
 }
 
-/// Render a link (`<a>`) styled like a ghost button.
-///
 pub fn link_ghost(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -247,8 +201,6 @@ pub fn link_ghost(
   html.a([attribute.class("btn-ghost"), ..attrs], children)
 }
 
-/// Render a link (`<a>`) styled like a destructive button.
-///
 pub fn link_destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -256,40 +208,26 @@ pub fn link_destructive(
   html.a([attribute.class("btn-destructive"), ..attrs], children)
 }
 
-/// Size modifier for small buttons.
-///
 pub fn small() -> Attribute(msg) {
   attribute.class("btn-sm")
 }
 
-/// Size modifier for large buttons.
-///
 pub fn large() -> Attribute(msg) {
   attribute.class("btn-lg")
 }
 
-/// Button with full width.
-///
 pub fn full_width() -> Attribute(msg) {
   attribute.class("w-full")
 }
 
-/// Disabled state.
-///
 pub fn disabled() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
-/// Loading state with spinner.
-///
-/// Note: You should provide the spinner icon as a child.
-///
 pub fn loading() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
-/// Render button styling on a submit button.
-///
 pub fn submit(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -300,8 +238,6 @@ pub fn submit(
   )
 }
 
-/// Render button styling on a reset button.
-///
 pub fn reset(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),

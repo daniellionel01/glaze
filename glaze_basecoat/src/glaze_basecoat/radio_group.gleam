@@ -1,8 +1,10 @@
 //// Basecoat documentation: <https://basecoatui.com/components/radio-group/>
 ////
-//// The [`radio_group`](#radio_group) helpers display radio button groups.
+//// Radio group helpers for mutually exclusive choices.
 ////
-//// ## Usage
+//// Use [`group`](#group) to render a `fieldset` of radio options.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/radio_group
@@ -16,14 +18,17 @@
 ////   ], [])
 //// }
 //// ```
+////
+//// ## References
+////
+//// - MDN `<input type="radio">`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio>
+//// - MDN `<fieldset>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset>
 
 import gleam/list
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a radio button group.
-///
 pub fn group(
   name: String,
   items: List(#(String, String, Bool)),
@@ -39,8 +44,6 @@ pub fn group(
   html.fieldset([attribute.class("grid gap-3"), ..attrs], options)
 }
 
-/// Render a single radio option (alias for item_).
-///
 pub fn item(
   name: String,
   value: String,
@@ -51,8 +54,6 @@ pub fn item(
   item_(name, value, label_text, checked, attrs)
 }
 
-/// Render a single radio option with label.
-///
 fn item_(
   name: String,
   value: String,
@@ -79,8 +80,6 @@ fn item_(
   ])
 }
 
-/// Render a radio input without a label.
-///
 pub fn radio(
   name: String,
   value: String,
@@ -95,20 +94,14 @@ pub fn radio(
   ])
 }
 
-/// Mark radio as checked.
-///
 pub fn checked() -> Attribute(msg) {
   attribute.checked(True)
 }
 
-/// Mark radio as disabled.
-///
 pub fn disabled() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
-/// Mark the group as invalid.
-///
 pub fn invalid() -> Attribute(msg) {
   attribute.aria_invalid("true")
 }

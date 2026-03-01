@@ -1,50 +1,14 @@
-//// Icon helper for using Lucide icons with Basecoat UI.
+//// Icon helpers for Lucide icons in Basecoat UIs.
 ////
-//// Basecoat uses [Lucide icons](https://lucide.dev). This module provides
-//// helpers to include Lucide icons in your Lustre application.
+//// Basecoat uses Lucide icons: <https://lucide.dev>
 ////
-//// ## Installation
+//// ## Anatomy
 ////
-//// First, install Lucide using your preferred package manager:
+//// - [`icon`](#icon): render an icon placeholder element
+//// - [`init`](#init): load Lucide via ESM (bundler/import map)
+//// - [`register_cdn`](#register_cdn): load Lucide via CDN (no bundler)
 ////
-//// ```sh
-//// npm install lucide
-//// # or
-//// bun add lucide
-//// # or
-//// pnpm add lucide
-//// ```
-////
-//// Then initialize Lucide in your application.
-////
-//// Note: `init()` injects a `<script type="module">` that imports `lucide` as a
-//// bare module specifier. This requires a JS setup that can resolve `import ... from "lucide"`
-//// (bundler, import map, etc).
-////
-//// ```gleam
-//// import glaze_basecoat/icon
-////
-//// html.head([], [
-////   icon.init(),
-//// ])
-//// ```
-////
-//// If you are not bundling JavaScript, load Lucide via CDN and call
-//// `lucide.createIcons()` after your HTML has been rendered (see
-//// <https://lucide.dev/guide/packages/lucide>).
-////
-//// ```gleam
-//// import glaze_basecoat/icon
-////
-//// html.head([], [
-////   // Use a pinned version in real projects.
-////   icon.register_cdn("latest"),
-//// ])
-//// ```
-////
-//// ## Usage
-////
-//// Use the `icon` function to create icons:
+//// ## Recipes
 ////
 //// ```gleam
 //// import glaze_basecoat/icon
@@ -52,9 +16,19 @@
 //// icon.icon("plus", [])
 //// ```
 ////
-//// ## Available Icons
+//// ```gleam
+//// import glaze_basecoat/icon
 ////
-//// Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons).
+//// html.head([], [
+////   // Prefer a pinned version in real projects.
+////   icon.register_cdn("latest"),
+//// ])
+//// ```
+////
+//// ## References
+////
+//// - Lucide icon list: <https://lucide.dev/icons>
+//// - Lucide package guide: <https://lucide.dev/guide/packages/lucide>
 ////
 
 import lustre/attribute.{type Attribute, attribute}

@@ -1,8 +1,10 @@
 //// Basecoat documentation: <https://basecoatui.com/components/switch/>
 ////
-//// The [`switch`](#switch) helpers display toggle switch inputs.
+//// Switch helpers for binary on/off controls.
 ////
-//// ## Usage
+//// These helpers render a checkbox input with `role="switch"`.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/switch
@@ -15,13 +17,15 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN ARIA `switch` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role>
+//// - MDN `<input type="checkbox">`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a switch input.
-///
 pub fn switch(attrs: List(Attribute(msg))) -> Element(msg) {
   html.input([
     attribute.type_("checkbox"),
@@ -31,8 +35,6 @@ pub fn switch(attrs: List(Attribute(msg))) -> Element(msg) {
   ])
 }
 
-/// Render a switch with a label.
-///
 pub fn with_label(
   id: String,
   label_text: String,
@@ -44,8 +46,6 @@ pub fn with_label(
   ])
 }
 
-/// Render a switch with label and description.
-///
 pub fn with_description(
   id: String,
   label_text: String,
@@ -72,26 +72,18 @@ pub fn with_description(
   )
 }
 
-/// Mark switch as checked.
-///
 pub fn checked() -> Attribute(msg) {
   attribute.checked(True)
 }
 
-/// Mark switch as disabled.
-///
 pub fn disabled() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
-/// Set the switch name.
-///
 pub fn name(n: String) -> Attribute(msg) {
   attribute.name(n)
 }
 
-/// Set the switch id.
-///
 pub fn id(id: String) -> Attribute(msg) {
   attribute.id(id)
 }

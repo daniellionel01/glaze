@@ -1,14 +1,20 @@
 //// Basecoat documentation: <https://basecoatui.com/components/dropdown-menu/>
 ////
-//// Displays a menu to the user — such as a set of actions or functions —
-//// triggered by a button.
+//// Dropdown menu helpers for small action lists.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// A dropdown usually has a trigger control and a content panel containing one
+//// or more `item` entries.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/dropdown_menu
+//// import glaze_basecoat/button
+//// import lustre/element/html
 ////
 //// fn my_dropdown() {
 ////   dropdown_menu.dropdown("my-menu", [
@@ -25,6 +31,11 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN ARIA `menu` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menu_role>
+//// - MDN ARIA `menuitem` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menuitem_role>
+//// - MDN Popover API: <https://developer.mozilla.org/en-US/docs/Web/API/Popover_API>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

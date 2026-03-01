@@ -3,25 +3,37 @@
 //// A window overlaid on either the primary window or another dialog window,
 //// rendering the content underneath inert.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// A dialog flow usually includes a dialog container and a trigger that opens it.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/dialog
 //// import lustre/attribute
+//// import lustre/element/html
 ////
 //// fn edit_profile_dialog() {
-////   dialog.dialog("edit-profile", "Edit profile", [
-////     dialog.description("Make changes to your profile here."),
-////     dialog.max_width("425px"),
-////   ], [
+////   dialog.dialog_with_description(
+////     "edit-profile",
+////     "Edit profile",
+////     "Make changes to your profile here.",
+////     [dialog.max_width("425px")],
+////     [
 ////     dialog.content([], [html.text("Dialog content here.")]),
 ////     dialog.footer([], [
 ////       button.button([], [html.text("Save")]),
 ////     ]),
-////   ])
+////     ],
+////   )
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
+//// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

@@ -1,25 +1,30 @@
 //// Basecoat documentation: <https://basecoatui.com/components/label/>
 ////
-//// The [`label`](#label) helpers display form labels.
+//// Label helpers for form controls.
 ////
-//// ## Usage
+//// Pair a label with an input by using `attribute.for(...)` and a matching
+//// input `id`.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/label
 //// import lustre/attribute
+//// import lustre/element/html
 ////
 //// fn email_field() {
 ////   label.label([attribute.for("email")], [html.text("Email")])
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<label>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a form label.
-///
 pub fn label(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -27,8 +32,6 @@ pub fn label(
   html.label([attribute.class("label"), ..attrs], children)
 }
 
-/// Render a label with an associated input.
-///
 pub fn with_input(
   id: String,
   label_text: String,

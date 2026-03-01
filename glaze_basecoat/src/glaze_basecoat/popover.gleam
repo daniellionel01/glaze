@@ -1,13 +1,21 @@
 //// Basecoat documentation: <https://basecoatui.com/components/popover/>
 ////
-//// Displays rich content in a portal, triggered by a button.
+//// Popover helpers for rich floating content.
+////
+//// A popover typically has a trigger control and a floating content panel.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// - [`trigger`](#trigger): the control that opens the popover
+//// - [`content`](#content): the floating panel
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/popover
+//// import lustre/element/html
 ////
 //// fn my_popover() {
 ////   popover.popover("my-popover", [
@@ -18,6 +26,11 @@
 ////   ])
 //// }
 //// ```
+////
+//// ## References
+////
+//// - MDN Popover API: <https://developer.mozilla.org/en-US/docs/Web/API/Popover_API>
+//// - MDN `popovertarget`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#popovertarget>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

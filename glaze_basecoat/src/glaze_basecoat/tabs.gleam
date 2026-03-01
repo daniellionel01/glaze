@@ -1,22 +1,36 @@
 //// Basecoat documentation: <https://basecoatui.com/components/tabs/>
 ////
-//// Tabs display layered sections of content shown one at a time.
+//// Tabs helpers for switching between related content views.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// A tab view has a tablist of tab triggers and one or more matching tab panels.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/tabs
+//// import lustre/element/html
 ////
 //// fn settings_tabs() {
-////   tabs.tabs("settings-tabs", [], [
-////     tabs.tab("account", "Account", True, account_panel),
-////     tabs.tab("password", "Password", False, password_panel),
-////   ])
+////   tabs.tab_set(
+////     "settings-tabs",
+////     [
+////       #("account", "Account", True, html.div([], [html.text("Account")])),
+////       #("password", "Password", False, html.div([], [html.text("Password")])),
+////     ],
+////     [],
+////   )
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN ARIA `tablist` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tablist_role>
+//// - MDN ARIA `tab` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role>
+//// - MDN ARIA `tabpanel` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tabpanel_role>
 
 import gleam/int
 import gleam/list
@@ -24,8 +38,6 @@ import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a tabs container.
-///
 pub fn tabs(
   id: String,
   attrs: List(Attribute(msg)),
@@ -37,8 +49,6 @@ pub fn tabs(
   )
 }
 
-/// Render a tab list.
-///
 pub fn tab_list(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -54,8 +64,6 @@ pub fn tab_list(
   )
 }
 
-/// Render a tab trigger button.
-///
 pub fn tab_trigger(
   id: String,
   panel_id: String,
@@ -77,8 +85,6 @@ pub fn tab_trigger(
   )
 }
 
-/// Render a tab panel.
-///
 pub fn tab_panel(
   id: String,
   tab_id: String,
@@ -105,8 +111,6 @@ pub fn tab_panel(
   )
 }
 
-/// Render a complete tab set with triggers and panels.
-///
 pub fn tab_set(
   base_id: String,
   items: List(#(String, String, Bool, Element(msg))),

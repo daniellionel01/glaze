@@ -1,39 +1,46 @@
 //// Basecoat documentation: <https://basecoatui.com/components/table/>
 ////
-//// A responsive table component.
+//// Table helpers for data grids and record lists.
 ////
-//// ## Usage
+//// Use [`scrollable`](#scrollable) to wrap wide tables and keep them usable on
+//// smaller screens.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/table
+//// import lustre/element/html
 ////
 //// fn invoices_table() {
-////   table.table([], [
-////     table.thead([], [
-////       table.tr([], [
-////         table.th([], [html.text("Invoice")]),
-////         table.th([], [html.text("Status")]),
-////         table.th([], [html.text("Amount")]),
+////   table.scrollable([], [
+////     table.table([], [
+////       table.thead([], [
+////         table.tr([], [
+////           table.th([], [html.text("Invoice")]),
+////           table.th([], [html.text("Status")]),
+////           table.th([table.align_right()], [html.text("Amount")]),
+////         ]),
 ////       ]),
-////     ]),
-////     table.tbody([], [
-////       table.tr([], [
-////         table.td([], [html.text("INV001")]),
-////         table.td([], [html.text("Paid")]),
-////         table.td([], [html.text("$250.00")]),
+////       table.tbody([], [
+////         table.tr([], [
+////           table.td([], [html.text("INV001")]),
+////           table.td([], [html.text("Paid")]),
+////           table.td([table.align_right(), table.font_medium()], [html.text("$250.00")]),
+////         ]),
 ////       ]),
-////     ]),
+////     ])
 ////   ])
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN `<table>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a table container.
-///
 pub fn table(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -41,8 +48,6 @@ pub fn table(
   html.table([attribute.class("table"), ..attrs], children)
 }
 
-/// Render a scrollable table wrapper.
-///
 pub fn scrollable(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -50,8 +55,6 @@ pub fn scrollable(
   html.div([attribute.class("overflow-x-auto"), ..attrs], children)
 }
 
-/// Render a table caption.
-///
 pub fn caption(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -59,8 +62,6 @@ pub fn caption(
   html.caption(attrs, children)
 }
 
-/// Render a table header.
-///
 pub fn thead(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -68,8 +69,6 @@ pub fn thead(
   html.thead(attrs, children)
 }
 
-/// Render a table body.
-///
 pub fn tbody(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -77,8 +76,6 @@ pub fn tbody(
   html.tbody(attrs, children)
 }
 
-/// Render a table footer.
-///
 pub fn tfoot(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -86,8 +83,6 @@ pub fn tfoot(
   html.tfoot(attrs, children)
 }
 
-/// Render a table row.
-///
 pub fn tr(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -95,8 +90,6 @@ pub fn tr(
   html.tr(attrs, children)
 }
 
-/// Render a table header cell.
-///
 pub fn th(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -104,8 +97,6 @@ pub fn th(
   html.th(attrs, children)
 }
 
-/// Render a table data cell.
-///
 pub fn td(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -113,14 +104,10 @@ pub fn td(
   html.td(attrs, children)
 }
 
-/// Right-align a cell.
-///
 pub fn align_right() -> Attribute(msg) {
   attribute.class("text-right")
 }
 
-/// Bold text in a cell.
-///
 pub fn font_medium() -> Attribute(msg) {
   attribute.class("font-medium")
 }

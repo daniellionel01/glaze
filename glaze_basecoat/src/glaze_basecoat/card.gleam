@@ -32,8 +32,6 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Render a card container.
-///
 pub fn card(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -41,10 +39,6 @@ pub fn card(
   html.div([attribute.class("card"), ..attrs], children)
 }
 
-/// Render a card header.
-///
-/// Contains the title and optional description.
-///
 pub fn header(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -52,8 +46,6 @@ pub fn header(
   html.header(attrs, children)
 }
 
-/// Render a card title.
-///
 pub fn title(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -61,8 +53,6 @@ pub fn title(
   html.h2([attribute.class("text-lg font-semibold"), ..attrs], children)
 }
 
-/// Render a card description.
-///
 pub fn description(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -70,8 +60,6 @@ pub fn description(
   html.p([attribute.class("text-sm text-muted-foreground"), ..attrs], children)
 }
 
-/// Render card content.
-///
 pub fn content(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -79,10 +67,6 @@ pub fn content(
   html.section(attrs, children)
 }
 
-/// Render a card footer.
-///
-/// Usually contains actions.
-///
 pub fn footer(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -90,8 +74,6 @@ pub fn footer(
   html.footer(attrs, children)
 }
 
-/// Card with no padding on content.
-///
 pub fn no_padding() -> Attribute(msg) {
   attribute.class("p-0")
 }

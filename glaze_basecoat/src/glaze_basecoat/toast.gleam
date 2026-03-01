@@ -1,28 +1,39 @@
 //// Basecoat documentation: <https://basecoatui.com/components/toast/>
 ////
-//// A succinct message that is displayed temporarily.
+//// Toast helpers for short, temporary notifications.
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// - Render a container once with [`toaster`](#toaster)
+//// - Trigger notifications either by rendering [`toast`](#toast) markup, or by
+////   calling [`show`](#show) to build a JavaScript snippet
+////
+//// ## Recipes
 ////
 //// ```gleam
 //// import glaze_basecoat/toast
+//// import lustre/element/html
 ////
-//// // Server-rendered toast
-//// fn success_toast() {
+//// fn success_toast_markup() {
 ////   toast.toast([toast.success()], [
-////     toast.title("Success"),
-////     toast.description("Your changes have been saved."),
+////     toast.title([], [html.text("Success")]),
+////     toast.description([], [html.text("Your changes have been saved.")]),
 ////   ])
-//// }
-////
-//// // Client-side toast via JavaScript
-//// fn show_toast_script() {
-////   toast.show(toast.Config("success", "Success", "Saved!", None, None))
 //// }
 //// ```
 ////
+//// ```gleam
+//// fn show_toast_script() {
+////   toast.show(toast.Config(toast.Success, "Success", "Saved!", None, None))
+//// }
+//// ```
+////
+//// ## References
+////
+//// - MDN ARIA `status` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role>
+//// - MDN `CustomEvent`: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent>
 
 import gleam/list
 import gleam/option.{type Option, None, Some}
@@ -30,6 +41,7 @@ import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
+/// Toast category (visual style).
 pub type Category {
   Success
   Info
@@ -37,6 +49,7 @@ pub type Category {
   Error
 }
 
+/// Configuration used by [`show`](#show).
 pub type Config {
   Config(
     category: Category,
@@ -47,10 +60,12 @@ pub type Config {
   )
 }
 
+/// Optional toast action button.
 pub type Action {
   Action(label: String, onclick: Option(String))
 }
 
+/// Optional toast cancel button.
 pub type Cancel {
   Cancel(label: Option(String), onclick: Option(String))
 }

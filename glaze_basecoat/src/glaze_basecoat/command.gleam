@@ -4,10 +4,16 @@
 ////
 //// **Note**: This component requires JavaScript from Basecoat.
 ////
-//// ## Usage
+//// ## Anatomy
+////
+//// A command menu usually includes a search input and a menu of items grouped
+//// into sections.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/command
+//// import lustre/element/html
 ////
 //// fn my_command() {
 ////   command.command("my-command", [], [
@@ -19,6 +25,12 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN ARIA `combobox` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/combobox_role>
+//// - MDN ARIA `menu` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menu_role>
+//// - MDN ARIA `menuitem` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menuitem_role>
+//// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

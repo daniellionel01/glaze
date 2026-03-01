@@ -1,8 +1,11 @@
 //// Basecoat documentation: <https://basecoatui.com/components/spinner/>
 ////
-//// The [`spinner`](#spinner) helpers display loading spinners.
+//// Loading spinners for inline and overlay states.
 ////
-//// ## Usage
+//// Use [`spinner`](#spinner) for inline loading indicators, and [`overlay`](#overlay)
+//// when you want to block interaction with existing content.
+////
+//// ## Recipe
 ////
 //// ```gleam
 //// import glaze_basecoat/spinner
@@ -12,13 +15,15 @@
 //// }
 //// ```
 ////
+//// ## References
+////
+//// - MDN ARIA `status` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role>
+//// - MDN `aria-busy`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-busy>
 
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element, element}
 import lustre/element/html
 
-/// Render a loading spinner.
-///
 pub fn spinner(attrs: List(Attribute(msg))) -> Element(msg) {
   element(
     "svg",
@@ -43,22 +48,14 @@ pub fn spinner(attrs: List(Attribute(msg))) -> Element(msg) {
   )
 }
 
-/// Small spinner size.
-///
 pub fn small() -> Attribute(msg) {
   attribute.class("size-3")
 }
 
-/// Large spinner size.
-///
 pub fn large() -> Attribute(msg) {
   attribute.class("size-8")
 }
 
-/// Spinner with overlay.
-///
-/// Use this to overlay a loading state on content.
-///
 pub fn overlay(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
