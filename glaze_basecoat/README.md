@@ -78,6 +78,15 @@ Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen si
 
 Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your own Tailwind configuration.
 
+### Decision Matrix
+
+| Scenario | CSS | JS | Use these functions | Notes |
+| --- | --- | --- | --- | --- |
+| Quick start (no Tailwind setup) | Basecoat compiled CSS via CDN (`basecoat.cdn.min.css`) | All Basecoat JS via CDN (`all.min.js`) | `glaze_basecoat.register(version)` + `theme.style_tag(...)` | Easiest setup; you mainly use Basecoat component classes like `btn`, `card`, etc. |
+| Use Tailwind Play CDN in the browser | Tailwind Play CDN + Basecoat CSS via CDN | All Basecoat JS via CDN | Tailwind `<script ...@tailwindcss/browser@4>` + `glaze_basecoat.register(version)` + `theme.style_tag(...)` + `theme.tailwind_v4_bridge_style_tag()` | The bridge makes utilities like `bg-accent` work with Basecoat's tokens. |
+| You have build-time Tailwind (Tailwind CLI/PostCSS/Vite) | Your Tailwind build output (with `@import "basecoat-css"`) | Basecoat JS via CDN | `glaze_basecoat.register_js(version)` (or `register_component(version, "tabs")`) + `theme.style_tag(...)` | Don't use `register()` here, since it would also pull in Basecoat CSS from CDN. |
+| You want to manage CSS/JS separately (still CDN) | Basecoat compiled CSS via CDN | Only specific JS components via CDN | `glaze_basecoat.register_css(version)` + `glaze_basecoat.register_component(version, "popover")` | Useful if you only need a subset of interactive components. |
+
 ### CDN
 
 Use `glaze_basecoat.register()` to include everything via CDN.
