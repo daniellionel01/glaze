@@ -16,7 +16,6 @@ GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 ## Getting Started
 
 ```sh
-# Step 1: Installation
 gleam add glaze_basecoat@1
 ```
 
