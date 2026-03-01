@@ -20,7 +20,6 @@
 //// ## References
 ////
 //// - MDN ARIA `switch` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role>
-//// - MDN `<input type="checkbox">`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

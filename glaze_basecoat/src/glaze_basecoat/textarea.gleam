@@ -20,7 +20,6 @@
 ////
 //// ## References
 ////
-//// - MDN `<textarea>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea>
 //// - MDN `aria-invalid`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid>
 
 import lustre/attribute.{type Attribute}

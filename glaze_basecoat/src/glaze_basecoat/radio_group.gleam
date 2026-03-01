@@ -19,10 +19,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<input type="radio">`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio>
-//// - MDN `<fieldset>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

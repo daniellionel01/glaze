@@ -31,10 +31,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<nav>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav>
-//// - MDN `aria-label`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

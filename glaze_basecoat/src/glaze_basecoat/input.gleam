@@ -27,7 +27,6 @@
 ////
 //// ## References
 ////
-//// - MDN `<input>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input>
 //// - MDN `aria-invalid`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid>
 
 import lustre/attribute.{type Attribute}

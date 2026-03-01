@@ -20,9 +20,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<nav>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav>
 
 import gleam/int
 import lustre/attribute.{type Attribute}

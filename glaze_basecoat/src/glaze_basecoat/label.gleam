@@ -17,9 +17,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<label>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

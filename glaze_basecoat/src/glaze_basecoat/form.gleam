@@ -23,9 +23,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<form>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}

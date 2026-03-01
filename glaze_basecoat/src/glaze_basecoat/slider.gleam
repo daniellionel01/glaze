@@ -18,9 +18,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<input type="range">`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range>
 
 import gleam/int
 import lustre/attribute.{type Attribute}

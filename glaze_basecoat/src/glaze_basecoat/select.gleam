@@ -19,10 +19,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<select>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select>
-//// - MDN `<option>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option>
 
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}

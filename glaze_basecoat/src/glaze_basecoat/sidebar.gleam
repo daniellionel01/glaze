@@ -30,8 +30,6 @@
 ////
 //// ## References
 ////
-//// - MDN `<aside>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside>
-//// - MDN `<nav>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav>
 //// - MDN `aria-current`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-current>
 
 import gleam/list

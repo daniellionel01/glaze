@@ -21,9 +21,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<kbd>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd>
 
 import gleam/list
 import lustre/attribute.{type Attribute}

@@ -41,9 +41,6 @@
 //// }
 //// ```
 ////
-//// ## References
-////
-//// - MDN `<img>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img>
 
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
