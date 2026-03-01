@@ -82,9 +82,9 @@ Basecoat UI is built on Tailwind CSS. You can use Basecoat via CDN or with your 
 
 Use `glaze_basecoat.register()` to include everything via CDN.
 
-### Tailwind Play CDN
+### Tailwind CDN
 
-If you use Tailwind's Play CDN (<https://tailwindcss.com/docs/installation/play-cdn>), you also need Basecoat's Tailwind v4
+If you use Tailwind's CDN (<https://tailwindcss.com/docs/installation/play-cdn>), you also need Basecoat's Tailwind v4
 `@theme` mapping so utilities like `bg-accent` exist.
 
 ```gleam
