@@ -1038,8 +1038,10 @@ pub fn page() {
                           toast.toast_eval_string(
                             "Disk usage at 89%",
                             "Warning",
-                            toast.default_options(toast.Warning)
-                              |> toast.with_placement(toast.TopLeft),
+                            toast.Options(
+                              ..toast.default_options(toast.Warning),
+                              placement: toast.TopLeft,
+                            ),
                           ),
                         ),
                       ],
@@ -1054,8 +1056,10 @@ pub fn page() {
                           toast.toast_eval_string(
                             "Connection lost.",
                             "Error",
-                            toast.default_options(toast.Danger)
-                              |> toast.with_placement(toast.BottomRight),
+                            toast.Options(
+                              ..toast.default_options(toast.Danger),
+                              placement: toast.BottomRight,
+                            ),
                           ),
                         ),
                       ],

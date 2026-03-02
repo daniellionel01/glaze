@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Changed the API of `glaze/oat/toast/Options`. The type is no longer opaque and does not require the builder functions.
+
 ## [2.0.0] - 2026-03-02
 
 - **Breaking Change:** moved gleam modules from `glaze_oat/...` -> `glaze/oat/...`.

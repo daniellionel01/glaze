@@ -96,7 +96,7 @@ pub fn placement_to_string(placement: Placement) -> String {
 
 /// Toast runtime options.
 ///
-pub opaque type Options {
+pub type Options {
   Options(variant: Variant, placement: Placement, duration_ms: Int)
 }
 
@@ -106,18 +106,6 @@ pub opaque type Options {
 ///
 pub fn default_options(variant: Variant) {
   Options(variant, TopRight, 4000)
-}
-
-/// Set toast placement.
-///
-pub fn with_placement(options: Options, placement: Placement) {
-  Options(..options, placement:)
-}
-
-/// Set toast duration in milliseconds.
-///
-pub fn with_duration_ms(options: Options, duration_ms: Int) {
-  Options(..options, duration_ms:)
 }
 
 @target(javascript)
