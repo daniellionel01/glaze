@@ -49,7 +49,7 @@ html.head([], [
 ])
 ```
 
-## Example
+### Example
 
 In a real project this might look like this:
 
@@ -100,14 +100,6 @@ Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen si
 
 Basecoat UI ships Tailwind-based styles. You can either use the CDN for a fast setup, or integrate it into your own Tailwind build.
 
-### TL;DR
-
-| Scenario | CSS | JS | Use these functions |
-| --- | --- | --- | --- |
-| Use Tailwind CDN | Tailwind CDN + Basecoat CDN | Basecoat JS via CDN | Tailwind `<script ...@tailwindcss/browser@4>`<br>`glaze_basecoat.register(version)`<br>`theme.style_tag(...)`<br>`theme.tailwind_v4_bridge_style_tag()` |
-| Build-time Tailwind (CLI/PostCSS/Vite) | Your Tailwind build output (with `@import "basecoat-css"`) | Basecoat JS via CDN | `glaze_basecoat.register_js(version)` <br>`theme.style_tag(...)` |
-| Manage CSS/JS separately (still CDN) | Basecoat compiled CSS via CDN | Only specific JS components via CDN | `glaze_basecoat.register_css(version)`<br>`glaze_basecoat.register_component(version, "popover")` |
-
 ### Option 1: Full CDN
 
 Use `basecoat.register()` to include Basecoat's compiled CSS and all Basecoat JavaScript via CDN.
@@ -116,8 +108,6 @@ Use `basecoat.register()` to include Basecoat's compiled CSS and all Basecoat Ja
 
 If you use Tailwind's CDN (<https://tailwindcss.com/docs/installation/play-cdn>), you also need Basecoat's Tailwind v4
 `@theme` mapping so utilities like `bg-accent` exist.
-
-If you have a build-time Tailwind setup, you do not need this bridge (it comes from `@import "basecoat-css"`).
 
 ```gleam
 import glaze/basecoat
@@ -138,7 +128,7 @@ html.head([], [
 
 ### Option 3: Build-time Tailwind
 
-If you have a build-time Tailwind setup (Tailwind CLI/PostCSS/Vite/etc) and you install Basecoat from npm, you can import Basecoat directly in your Tailwind entry CSS.
+If you have a build-time Tailwind setup (CLI / Lustre Dev Tools / Vite) and you install Basecoat from npm, you can import Basecoat directly in your Tailwind entry CSS.
 
 ```sh
 npm install basecoat-css
@@ -150,7 +140,7 @@ npm install basecoat-css
 ```
 
 In this case you should not use `basecoat.register()`, since it also includes Basecoat's CSS from the CDN.
-Use `basecoat.register_js()` (or `basecoat.register_component()`) to only include the JavaScript and let your Tailwind build produce the CSS.
+Use `basecoat.register_js()` to only include the JavaScript and let your Tailwind build produce the CSS.
 
 ```gleam
 import glaze/basecoat
@@ -164,25 +154,9 @@ html.head([], [
 ])
 ```
 
-### Option 4: Split CSS and JS (CDN)
-
-If you want to manage CSS and JavaScript separately (still via CDN), register the compiled CSS and only the JS components you use.
-
-```gleam
-import glaze/basecoat
-import glaze/basecoat/theme
-import lustre/element/html
-
-html.head([], [
-  basecoat.register_css(basecoat.version),
-  basecoat.register_component(basecoat.version, "popover"),
-  theme.style_tag(theme.default_theme()),
-])
-```
-
 ## Theming
 
-Basecoat uses shadcn/ui compatible CSS variables. You can customize the theme:
+Basecoat uses shadcn/ui compatible CSS variables:
 
 ```gleam
 import glaze/basecoat/theme
@@ -193,25 +167,19 @@ let custom_theme =
   |> theme.set(theme.Radius, "0.5rem")
 ```
 
-Browse available themes at [ui.shadcn.com/themes](https://ui.shadcn.com/themes).
+You can find curated themes at [ui.shadcn.com/themes](https://ui.shadcn.com/themes).
 
 You can also use tools like <https://tweakcn.com/editor/theme>!
 
 ## Icons
 
-Basecoat uses [Lucide icons](https://lucide.dev).
+Not strictly necessary, but Basecoat recommends using [Lucide icons](https://lucide.dev).
 
-The icon helpers in `glaze/basecoat/icon` render placeholders like `<i class="lucide" data-lucide="plus">`.
-To turn those placeholders into SVGs you must also load the Lucide runtime.
-
-Lucide docs (including the CDN snippet): <https://lucide.dev/guide/packages/lucide>
+Lucide docs: <https://lucide.dev/guide/packages/lucide>
 
 ### Option 1: Bundled
 
 Install `lucide` (npm/pnpm/bun) and use `icon.init()`.
-
-Note: `icon.init()` injects a `<script type="module">` that does `import lucide from "lucide"`.
-That means your app must have a JS setup that can resolve the bare module specifier (bundler, import map, etc).
 
 ```gleam
 import glaze/basecoat/icon

@@ -3,7 +3,7 @@
 //// Basecoat uses shadcn/ui compatible CSS variables for theming.
 //// This module provides typed tokens and helpers to generate theme styles.
 ////
-//// ## Example
+//// ### Example
 ////
 //// ```gleam
 //// import glaze/basecoat

@@ -79,7 +79,7 @@ pub fn register_cdn(lucide_version: String) -> Element(a) {
 ///
 /// Use the icon name from [lucide.dev/icons](https://lucide.dev/icons).
 ///
-/// ## Example
+/// ### Example
 ///
 /// ```gleam
 /// import glaze/basecoat/icon
