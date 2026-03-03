@@ -52,7 +52,7 @@ pub fn layout() {
       // ...
       
       oat.register(oat.version),
-      theme.style_tag(theme.default_theme),
+      theme.style_tag(theme.default_theme()),
     ]),
     html.body([
       // ...
