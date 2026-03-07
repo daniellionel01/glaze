@@ -15,7 +15,7 @@
 ////   |> theme.set(theme.Radius, "0.5rem")
 ////
 //// html.head([], [
-////   glaze_basecoat.register(glaze_basecoat.version),
+////   basecoat.register(basecoat.version),
 ////   theme.style_tag(my_theme),
 //// ])
 //// ```
@@ -248,8 +248,8 @@ pub fn style_tag_light_dark(light: Theme, dark: Theme) -> element.Element(a) {
 /// Render a `<style type="text/tailwindcss">` tag containing Basecoat's
 /// Tailwind v4 `@theme` mapping.
 ///
-/// This is only needed when using Tailwind's Play CDN (`@tailwindcss/browser`).
-/// In build-time Tailwind setups (Tailwind CLI/PostCSS/Vite/etc), this mapping
+/// This is only needed when using Tailwind's CDN (`@tailwindcss/browser`).
+/// With build-time Tailwind setups (Tailwind CLI / Vite), this mapping
 /// comes from `@import "basecoat-css";`.
 ///
 /// Basecoat defines design tokens like `--accent` and Tailwind generates utility

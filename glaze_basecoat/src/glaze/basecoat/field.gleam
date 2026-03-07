@@ -8,7 +8,7 @@
 //// ## Anatomy
 ////
 //// A typical field has a `label`, optional `description` or `error`, and an
-//// input element (from `glaze_basecoat/input`, `glaze_basecoat/select`, etc.).
+//// input element (from `glaze/basecoat/input`, `glaze/basecoat/select`, etc.).
 ////
 //// ## Recipe
 ////
