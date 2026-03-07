@@ -65,7 +65,6 @@ pub fn layout() {
       // ...
       
       theme_switcher.init_script(),
-      icon.register_cdn("latest"),
       
       html.script(
         [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
@@ -170,48 +169,13 @@ You can find curated themes at [ui.shadcn.com/themes](https://ui.shadcn.com/them
 
 You can also use tools like <https://tweakcn.com/editor/theme>!
 
-## Icons
+## FAQs
+
+### What about Icons?
 
 Not strictly necessary, but Basecoat recommends using [Lucide icons](https://lucide.dev).
 
 Lucide docs: <https://lucide.dev/guide/packages/lucide>
-
-### Option 1: Bundled
-
-Install `lucide` (npm/pnpm/bun) and use `icon.init()`.
-
-```gleam
-import glaze/basecoat/icon
-import lustre/element/html
-
-// Initialize Lucide
-html.head([], [
-  icon.init(),
-])
-
-// Use icons
-icon.plus([])
-icon.search([])
-```
-
-### Option 2: CDN
-
-If you are not bundling JavaScript, include Lucide icons via CDN.
-
-```gleam
-import glaze/basecoat/icon
-
-html.head([], [
-  // Use a pinned version in real projects.
-  icon.register_cdn("latest"),
-])
-
-// Use icons (same API)
-icon.plus([])
-icon.search([])
-```
-
-## FAQs
 
 ### Client vs Server?
 
