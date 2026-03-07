@@ -32,7 +32,7 @@
 ////
 //// - MDN `aria-current`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-current>
 
-import gleam/list
+import glaze/basecoat/internal/listx
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -48,14 +48,12 @@ pub fn sidebar(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.aside(
-    list.append(
-      [
-        attribute.class("sidebar"),
-        attribute.id(id),
-        attribute.aria_hidden(False),
-      ],
-      attrs,
-    ),
+    [
+      attribute.class("sidebar"),
+      attribute.id(id),
+      attribute.aria_hidden(False),
+      ..attrs
+    ],
     children,
   )
 }
@@ -88,7 +86,7 @@ pub fn nav_with_label(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.nav(list.append([attribute.aria_label(label)], attrs), children)
+  html.nav([attribute.aria_label(label), ..attrs], children)
 }
 
 pub fn header(
@@ -102,7 +100,7 @@ pub fn section(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.section(list.append([attribute.class("scrollbar")], attrs), children)
+  html.section([attribute.class("scrollbar"), ..attrs], children)
 }
 
 pub fn group(label: String, items: List(Element(msg))) -> Element(msg) {
@@ -128,13 +126,7 @@ pub fn group_with_attrs(
 ) -> Element(msg) {
   let label_id = "group-label-" <> label
   html.div(
-    list.append(
-      [
-        attribute.role("group"),
-        attribute.aria_labelledby(label_id),
-      ],
-      attrs,
-    ),
+    [attribute.role("group"), attribute.aria_labelledby(label_id), ..attrs],
     [
       html.h3([attribute.id(label_id), attribute.class("text-sm font-medium")], [
         html.text(label),
@@ -155,10 +147,7 @@ pub fn link(
     False -> []
   }
   html.li([], [
-    html.a(
-      list.append(list.append([attribute.href(href)], current_attr), attrs),
-      children,
-    ),
+    html.a(listx.append3([attribute.href(href)], current_attr, attrs), children),
   ])
 }
 
@@ -173,11 +162,9 @@ pub fn button(
   }
   html.li([], [
     html.button(
-      list.append(
-        list.append(
-          [attribute.type_("button"), attribute.class("w-full text-left")],
-          current_attr,
-        ),
+      listx.append3(
+        [attribute.type_("button"), attribute.class("w-full text-left")],
+        current_attr,
         attrs,
       ),
       children,
@@ -192,7 +179,7 @@ pub fn submenu(
   items: List(Element(msg)),
 ) -> Element(msg) {
   html.li([], [
-    html.details(list.append([attribute.id(id)], attrs), [
+    html.details([attribute.id(id), ..attrs], [
       html.summary([attribute.aria_controls(id <> "-content")], [
         html.text(label),
       ]),
@@ -209,7 +196,7 @@ pub fn submenu_with_icon(
   items: List(Element(msg)),
 ) -> Element(msg) {
   html.li([], [
-    html.details(list.append([attribute.id(id)], attrs), [
+    html.details([attribute.id(id), ..attrs], [
       html.summary([attribute.aria_controls(id <> "-content")], [
         icon,
         html.text(label),

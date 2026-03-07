@@ -9,6 +9,11 @@ links = [
   { title = "Basecoat UI", href = "https://basecoatui.com/" },
 ]
 
+internal_modules = [
+  "glaze/basecoat/internal",
+  "glaze/basecoat/internal/*",
+]
+
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"
 lustre = ">= 5.6.0 and < 6.0.0"

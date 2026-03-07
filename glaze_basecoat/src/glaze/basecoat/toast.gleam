@@ -35,7 +35,6 @@
 //// - MDN ARIA `status` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role>
 //// - MDN `CustomEvent`: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent>
 
-import gleam/list
 import gleam/option.{type Option, None, Some}
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
@@ -71,10 +70,7 @@ pub type Cancel {
 }
 
 pub fn toaster(attrs: List(Attribute(msg))) -> Element(msg) {
-  html.div(
-    list.append([attribute.id("toaster"), attribute.class("toaster")], attrs),
-    [],
-  )
+  html.div([attribute.id("toaster"), attribute.class("toaster"), ..attrs], [])
 }
 
 pub fn toaster_aligned(
@@ -82,14 +78,12 @@ pub fn toaster_aligned(
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id("toaster"),
-        attribute.class("toaster"),
-        attribute.data("align", align),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id("toaster"),
+      attribute.class("toaster"),
+      attribute.data("align", align),
+      ..attrs
+    ],
     [],
   )
 }
@@ -99,15 +93,13 @@ pub fn toast(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.class("toast"),
-        attribute.role("status"),
-        attribute.aria_atomic(True),
-        attribute.aria_hidden(False),
-      ],
-      attrs,
-    ),
+    [
+      attribute.class("toast"),
+      attribute.role("status"),
+      attribute.aria_atomic(True),
+      attribute.aria_hidden(False),
+      ..attrs
+    ],
     [
       html.div([attribute.class("toast-content")], children),
     ],
@@ -164,27 +156,19 @@ pub fn footer(
 
 pub fn action_button(label: String, attrs: List(Attribute(msg))) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.class("btn"),
-        attribute.data("toast-action", ""),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.class("btn"),
+      attribute.data("toast-action", ""),
+      ..attrs
+    ],
     [html.text(label)],
   )
 }
 
 pub fn cancel_button(label: String, attrs: List(Attribute(msg))) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.class("btn-outline"),
-      ],
-      attrs,
-    ),
+    [attribute.type_("button"), attribute.class("btn-outline"), ..attrs],
     [html.text(label)],
   )
 }

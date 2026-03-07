@@ -27,7 +27,6 @@
 ////
 //// - MDN `prefers-color-scheme`: <https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme>
 
-import gleam/list
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element, element}
 import lustre/element/html
@@ -70,15 +69,13 @@ pub fn set_light_script() -> String {
 
 pub fn button(attrs: List(Attribute(msg))) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_label("Toggle dark mode"),
-        attribute("onclick", toggle_script()),
-        attribute.class("btn-icon-outline size-8"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.aria_label("Toggle dark mode"),
+      attribute("onclick", toggle_script()),
+      attribute.class("btn-icon-outline size-8"),
+      ..attrs
+    ],
     [
       element("span", [attribute.class("hidden dark:block")], [sun_icon()]),
       element("span", [attribute.class("block dark:hidden")], [moon_icon()]),
@@ -91,17 +88,15 @@ pub fn button_with_tooltip(
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_label("Toggle dark mode"),
-        attribute.data("tooltip", "Toggle dark mode"),
-        attribute.data("side", tooltip_side),
-        attribute("onclick", toggle_script()),
-        attribute.class("btn-icon-outline size-8"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.aria_label("Toggle dark mode"),
+      attribute.data("tooltip", "Toggle dark mode"),
+      attribute.data("side", tooltip_side),
+      attribute("onclick", toggle_script()),
+      attribute.class("btn-icon-outline size-8"),
+      ..attrs
+    ],
     [
       element("span", [attribute.class("hidden dark:block")], [sun_icon()]),
       element("span", [attribute.class("block dark:hidden")], [moon_icon()]),

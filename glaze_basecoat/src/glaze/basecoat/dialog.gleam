@@ -35,7 +35,6 @@
 //// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
 //// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
 
-import gleam/list
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element, element}
 import lustre/element/html
@@ -48,26 +47,19 @@ pub fn dialog(
 ) -> Element(msg) {
   let title_id = id <> "-title"
   html.dialog(
-    list.append(
-      [
-        attribute.class("dialog"),
-        attribute.id(id),
-        attribute.aria_labelledby(title_id),
-      ],
-      attrs,
-    ),
     [
-      html.div(
-        [],
-        list.append(
-          [
-            header([], [
-              html.h2([attribute.id(title_id)], [html.text(title)]),
-            ]),
-          ],
-          children,
-        ),
-      ),
+      attribute.class("dialog"),
+      attribute.id(id),
+      attribute.aria_labelledby(title_id),
+      ..attrs
+    ],
+    [
+      html.div([], [
+        header([], [
+          html.h2([attribute.id(title_id)], [html.text(title)]),
+        ]),
+        ..children
+      ]),
     ],
   )
 }
@@ -82,28 +74,21 @@ pub fn dialog_with_description(
   let title_id = id <> "-title"
   let desc_id = id <> "-description"
   html.dialog(
-    list.append(
-      [
-        attribute.class("dialog"),
-        attribute.id(id),
-        attribute.aria_labelledby(title_id),
-        attribute.aria_describedby(desc_id),
-      ],
-      attrs,
-    ),
     [
-      html.div(
-        [],
-        list.append(
-          [
-            header([], [
-              html.h2([attribute.id(title_id)], [html.text(title)]),
-              html.p([attribute.id(desc_id)], [html.text(description)]),
-            ]),
-          ],
-          children,
-        ),
-      ),
+      attribute.class("dialog"),
+      attribute.id(id),
+      attribute.aria_labelledby(title_id),
+      attribute.aria_describedby(desc_id),
+      ..attrs
+    ],
+    [
+      html.div([], [
+        header([], [
+          html.h2([attribute.id(title_id)], [html.text(title)]),
+          html.p([attribute.id(desc_id)], [html.text(description)]),
+        ]),
+        ..children
+      ]),
     ],
   )
 }
@@ -127,7 +112,7 @@ pub fn scrollable_content(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.section(
-    list.append([attribute.class("overflow-y-auto scrollbar")], attrs),
+    [attribute.class("overflow-y-auto scrollbar"), ..attrs],
     children,
   )
 }
@@ -141,14 +126,12 @@ pub fn footer(
 
 pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_label("Close dialog"),
-        attribute("onclick", "this.closest('dialog').close()"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.aria_label("Close dialog"),
+      attribute("onclick", "this.closest('dialog').close()"),
+      ..attrs
+    ],
     [
       element(
         "svg",
@@ -206,13 +189,11 @@ pub fn trigger_button(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute("onclick", open_script(dialog_id)),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute("onclick", open_script(dialog_id)),
+      ..attrs
+    ],
     children,
   )
 }

@@ -27,7 +27,6 @@
 //// - MDN ARIA `tooltip` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tooltip_role>
 //// - MDN Popover API: <https://developer.mozilla.org/en-US/docs/Web/API/Popover_API>
 
-import gleam/list
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -42,13 +41,7 @@ pub fn trigger(
 ) -> Element(msg) {
   let tooltip_id = "tooltip"
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_describedby(tooltip_id),
-      ],
-      attrs,
-    ),
+    [attribute.type_("button"), attribute.aria_describedby(tooltip_id), ..attrs],
     children,
   )
 }
@@ -59,13 +52,7 @@ pub fn trigger_with_id(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_describedby(tooltip_id),
-      ],
-      attrs,
-    ),
+    [attribute.type_("button"), attribute.aria_describedby(tooltip_id), ..attrs],
     children,
   )
 }
@@ -76,15 +63,13 @@ pub fn content(
 ) -> Element(msg) {
   let tooltip_id = "tooltip"
   html.div(
-    list.append(
-      [
-        attribute.id(tooltip_id),
-        attribute.role("tooltip"),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(tooltip_id),
+      attribute.role("tooltip"),
+      attribute.data("popover", ""),
+      attribute.aria_hidden(True),
+      ..attrs
+    ],
     children,
   )
 }
@@ -95,15 +80,13 @@ pub fn content_with_id(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(tooltip_id),
-        attribute.role("tooltip"),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(tooltip_id),
+      attribute.role("tooltip"),
+      attribute.data("popover", ""),
+      attribute.aria_hidden(True),
+      ..attrs
+    ],
     children,
   )
 }

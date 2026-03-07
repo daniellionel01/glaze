@@ -32,6 +32,7 @@
 //// - MDN ARIA `tab` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role>
 //// - MDN ARIA `tabpanel` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tabpanel_role>
 
+import glaze/basecoat/internal/listx
 import gleam/int
 import gleam/list
 import lustre/attribute.{type Attribute, attribute}
@@ -98,14 +99,15 @@ pub fn tab_panel(
   }
 
   html.div(
-    list.append(
+    listx.append3(
       [
         attribute.role("tabpanel"),
         attribute.id(id),
         attribute.aria_labelledby(tab_id),
         attribute.tabindex(-1),
       ],
-      list.append(selected_attr, attrs),
+      selected_attr,
+      attrs,
     ),
     children,
   )

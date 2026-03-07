@@ -20,6 +20,7 @@
 //// ```
 ////
 
+import glaze/basecoat/internal/listx
 import gleam/list
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
@@ -63,14 +64,15 @@ fn item_(
   }
 
   html.label([attribute.class("label")], [
-    html.input(list.append(
+    html.input(listx.append3(
       [
         attribute.type_("radio"),
         attribute.name(name),
         attribute.value(value),
         attribute.class("input"),
       ],
-      list.append(checked_attr, attrs),
+      checked_attr,
+      attrs,
     )),
     html.text(label_text),
   ])

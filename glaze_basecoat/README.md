@@ -21,6 +21,11 @@ GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 gleam add glaze_basecoat@1
 ```
 
+### Lustre SPA
+
+
+### Anything else
+
 ```gleam
 import glaze/basecoat
 import glaze/basecoat/icon

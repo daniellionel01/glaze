@@ -20,7 +20,7 @@
 //// ```
 ////
 
-import gleam/list
+import glaze/basecoat/internal/listx
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -29,7 +29,7 @@ pub fn select(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.select(list.append([attribute.class("select")], attrs), children)
+  html.select([attribute.class("select"), ..attrs], children)
 }
 
 pub fn name(n: String) -> Attribute(msg) {
@@ -61,7 +61,7 @@ pub fn option(value: String, label: String, selected: Bool) -> Element(msg) {
     True -> [attribute.selected(True)]
     False -> []
   }
-  html.option(list.append([attribute.value(value)], selected_attr), label)
+  html.option([attribute.value(value), ..selected_attr], label)
 }
 
 pub fn option_with_attrs(
@@ -75,7 +75,7 @@ pub fn option_with_attrs(
     False -> []
   }
   html.option(
-    list.append(list.append([attribute.value(value)], selected_attr), attrs),
+    listx.append3([attribute.value(value)], selected_attr, attrs),
     label,
   )
 }

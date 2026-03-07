@@ -32,7 +32,6 @@
 //// - MDN Popover API: <https://developer.mozilla.org/en-US/docs/Web/API/Popover_API>
 //// - MDN `popovertarget`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#popovertarget>
 
-import gleam/list
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -47,13 +46,7 @@ pub fn trigger(
 ) -> Element(msg) {
   let popover_id = "popover"
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.popovertarget(popover_id),
-      ],
-      attrs,
-    ),
+    [attribute.type_("button"), attribute.popovertarget(popover_id), ..attrs],
     children,
   )
 }
@@ -64,13 +57,7 @@ pub fn trigger_with_id(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.popovertarget(popover_id),
-      ],
-      attrs,
-    ),
+    [attribute.type_("button"), attribute.popovertarget(popover_id), ..attrs],
     children,
   )
 }
@@ -81,15 +68,13 @@ pub fn content(
 ) -> Element(msg) {
   let popover_id = "popover"
   html.div(
-    list.append(
-      [
-        attribute.id(popover_id),
-        attribute.popover(""),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(popover_id),
+      attribute.popover(""),
+      attribute.data("popover", ""),
+      attribute.aria_hidden(True),
+      ..attrs
+    ],
     children,
   )
 }
@@ -100,15 +85,13 @@ pub fn content_with_id(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(popover_id),
-        attribute.popover(""),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(popover_id),
+      attribute.popover(""),
+      attribute.data("popover", ""),
+      attribute.aria_hidden(True),
+      ..attrs
+    ],
     children,
   )
 }
