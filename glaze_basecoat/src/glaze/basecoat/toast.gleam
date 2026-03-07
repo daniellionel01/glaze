@@ -2,8 +2,6 @@
 ////
 //// Programmatic toast notifications.
 ////
-//// **Note**: This component requires JavaScript from Basecoat.
-////
 //// ## Anatomy
 ////
 //// - Render a container once with [`toaster`](#toaster)
@@ -35,6 +33,7 @@
 //// - MDN ARIA `status` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role>
 //// - MDN `CustomEvent`: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent>
 
+import gleam/int
 import gleam/option.{type Option, None, Some}
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
@@ -69,6 +68,21 @@ pub type Cancel {
   Cancel(label: Option(String), onclick: Option(String))
 }
 
+/// Add the toaster container required for toast notifications.
+///
+/// Place this at the end of your body element.
+///
+/// ### Example
+///
+/// ```gleam
+/// import glaze/basecoat
+///
+/// html.body([], [
+///   // Your content...
+///   basecoat.toaster(),
+/// ])
+/// ```
+///
 pub fn toaster(attrs: List(Attribute(msg))) -> Element(msg) {
   html.div([attribute.id("toaster"), attribute.class("toaster"), ..attrs], [])
 }
@@ -235,5 +249,3 @@ pub fn success_toast(title: String, description: String) -> String {
 pub fn error_toast(title: String, description: String) -> String {
   show(Config(Error, title, description, None, None))
 }
-
-import gleam/int

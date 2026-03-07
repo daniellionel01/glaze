@@ -37,14 +37,11 @@ html.head([], [
   // Don't forget this, if you're using Tailwind through a CDN!
   theme.tailwind_v4_bridge_style_tag(),
   
-  // Register Basecoat Components
+  // Register Basecoat CSS and JavaScript
   basecoat.register(basecoat.version),
   
   // Register your theme
   theme.style_tag(theme.default_theme()),
-  
-  // Register Lucide icons, required by some components
-  icon.register_cdn("latest"),
   
   // (Optional) Init theme switcher
   theme_switcher.init_script(),
