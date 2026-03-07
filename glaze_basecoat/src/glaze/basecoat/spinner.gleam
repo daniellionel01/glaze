@@ -18,12 +18,12 @@
 //// - MDN `aria-busy`: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-busy>
 
 import lustre/attribute.{type Attribute, attribute}
-import lustre/element.{type Element, element}
+import lustre/element.{type Element}
 import lustre/element/html
+import lustre/element/svg
 
 pub fn spinner(attrs: List(Attribute(msg))) -> Element(msg) {
-  element(
-    "svg",
+  svg.svg(
     [
       attribute("xmlns", "http://www.w3.org/2000/svg"),
       attribute("width", "24"),
@@ -40,7 +40,7 @@ pub fn spinner(attrs: List(Attribute(msg))) -> Element(msg) {
       ..attrs
     ],
     [
-      element("path", [attribute("d", "M21 12a9 9 0 1 1-6.219-8.56")], []),
+      svg.path([attribute("d", "M21 12a9 9 0 1 1-6.219-8.56")]),
     ],
   )
 }

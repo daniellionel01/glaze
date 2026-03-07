@@ -32,8 +32,9 @@
 //// - MDN `<summary>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary>
 
 import lustre/attribute.{type Attribute, attribute}
-import lustre/element.{type Element, element}
+import lustre/element.{type Element}
 import lustre/element/html
+import lustre/element/svg
 
 pub fn accordion(
   attrs: List(Attribute(msg)),
@@ -63,8 +64,7 @@ pub fn item(
           ],
           [
             html.text(title),
-            element(
-              "svg",
+            svg.svg(
               [
                 attribute("xmlns", "http://www.w3.org/2000/svg"),
                 attribute("width", "24"),
@@ -80,7 +80,7 @@ pub fn item(
                 ),
               ],
               [
-                element("path", [attribute("d", "m6 9 6 6 6-6")], []),
+                svg.path([attribute("d", "m6 9 6 6 6-6")]),
               ],
             ),
           ],
@@ -118,8 +118,7 @@ pub fn item_open(
             ],
             [
               html.text(title),
-              element(
-                "svg",
+              svg.svg(
                 [
                   attribute("xmlns", "http://www.w3.org/2000/svg"),
                   attribute("width", "24"),
@@ -135,7 +134,7 @@ pub fn item_open(
                   ),
                 ],
                 [
-                  element("path", [attribute("d", "m6 9 6 6 6-6")], []),
+                  svg.path([attribute("d", "m6 9 6 6 6-6")]),
                 ],
               ),
             ],

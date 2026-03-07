@@ -36,8 +36,9 @@
 //// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
 
 import lustre/attribute.{type Attribute, attribute}
-import lustre/element.{type Element, element}
+import lustre/element.{type Element}
 import lustre/element/html
+import lustre/element/svg
 
 pub fn dialog(
   id: String,
@@ -133,8 +134,7 @@ pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
       ..attrs
     ],
     [
-      element(
-        "svg",
+      svg.svg(
         [
           attribute("xmlns", "http://www.w3.org/2000/svg"),
           attribute("width", "24"),
@@ -147,8 +147,8 @@ pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
           attribute("stroke-linejoin", "round"),
         ],
         [
-          element("path", [attribute("d", "M18 6 6 18")], []),
-          element("path", [attribute("d", "m6 6 12 12")], []),
+          svg.path([attribute("d", "M18 6 6 18")]),
+          svg.path([attribute("d", "m6 6 12 12")]),
         ],
       ),
     ],
