@@ -43,14 +43,12 @@ pub fn command(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(id),
-        attribute.class("command"),
-        attribute.aria_label("Command menu"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(id),
+      attribute.class("command"),
+      attribute.aria_label("Command menu"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -61,14 +59,12 @@ pub fn command_styled(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(id),
-        attribute.class("command rounded-lg border shadow-md"),
-        attribute.aria_label("Command menu"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(id),
+      attribute.class("command rounded-lg border shadow-md"),
+      attribute.aria_label("Command menu"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -79,15 +75,13 @@ pub fn dialog(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.dialog(
-    list.append(
-      [
-        attribute.id(id),
-        attribute.class("command-dialog"),
-        attribute.aria_label("Command menu"),
-        attribute("onclick", "if (event.target === this) this.close()"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(id),
+      attribute.class("command-dialog"),
+      attribute.aria_label("Command menu"),
+      attribute("onclick", "if (event.target === this) this.close()"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -105,21 +99,19 @@ pub fn search_input(
   menu_id: String,
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
-  html.input(list.append(
-    [
-      attribute.type_("text"),
-      attribute.id(id),
-      attribute.placeholder(placeholder),
-      attribute.autocomplete("off"),
-      attribute.autocorrect(False),
-      attribute.spellcheck(False),
-      attribute.aria_autocomplete("list"),
-      attribute.role("combobox"),
-      attribute.aria_expanded(True),
-      attribute.aria_controls(menu_id),
-    ],
-    attrs,
-  ))
+  html.input([
+    attribute.type_("text"),
+    attribute.id(id),
+    attribute.placeholder(placeholder),
+    attribute.autocomplete("off"),
+    attribute.autocorrect(False),
+    attribute.spellcheck(False),
+    attribute.aria_autocomplete("list"),
+    attribute.role("combobox"),
+    attribute.aria_expanded(True),
+    attribute.aria_controls(menu_id),
+    ..attrs
+  ])
 }
 
 pub fn menu(
@@ -128,15 +120,13 @@ pub fn menu(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(id),
-        attribute.role("menu"),
-        attribute.aria_orientation("vertical"),
-        attribute.class("scrollbar"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(id),
+      attribute.role("menu"),
+      attribute.aria_orientation("vertical"),
+      attribute.class("scrollbar"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -148,16 +138,14 @@ pub fn menu_with_empty(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(id),
-        attribute.role("menu"),
-        attribute.aria_orientation("vertical"),
-        attribute.data("empty", empty_message),
-        attribute.class("scrollbar"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(id),
+      attribute.role("menu"),
+      attribute.aria_orientation("vertical"),
+      attribute.data("empty", empty_message),
+      attribute.class("scrollbar"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -166,7 +154,7 @@ pub fn item(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.div(list.append([attribute.role("menuitem")], attrs), children)
+  html.div([attribute.role("menuitem"), ..attrs], children)
 }
 
 pub fn item_with_shortcut(
@@ -175,7 +163,7 @@ pub fn item_with_shortcut(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append([attribute.role("menuitem")], attrs),
+    [attribute.role("menuitem"), ..attrs],
     list.append(children, [
       html.kbd(
         [
@@ -194,10 +182,7 @@ pub fn item_disabled(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [attribute.role("menuitem"), attribute.aria_disabled(True)],
-      attrs,
-    ),
+    [attribute.role("menuitem"), attribute.aria_disabled(True), ..attrs],
     children,
   )
 }
@@ -207,25 +192,17 @@ pub fn item_link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a(
-    list.append([attribute.href(href), attribute.role("menuitem")], attrs),
-    children,
-  )
+  html.a([attribute.href(href), attribute.role("menuitem"), ..attrs], children)
 }
 
 pub fn group(label: String, items: List(Element(msg))) -> Element(msg) {
   let label_id = "group-label-" <> label
-  html.div(
-    [attribute.role("group"), attribute.aria_labelledby(label_id)],
-    list.append(
-      [
-        html.span([attribute.role("heading"), attribute.id(label_id)], [
-          html.text(label),
-        ]),
-      ],
-      items,
-    ),
-  )
+  html.div([attribute.role("group"), attribute.aria_labelledby(label_id)], [
+    html.span([attribute.role("heading"), attribute.id(label_id)], [
+      html.text(label),
+    ]),
+    ..items
+  ])
 }
 
 pub fn separator() -> Element(msg) {

@@ -55,17 +55,15 @@ pub fn trigger(
   let menu_id = "menu"
   let popover_id = "popover"
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.id(trigger_id),
-        attribute.aria_haspopup("menu"),
-        attribute.aria_controls(menu_id),
-        attribute.aria_expanded(False),
-        attribute.popovertarget(popover_id),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.id(trigger_id),
+      attribute.aria_haspopup("menu"),
+      attribute.aria_controls(menu_id),
+      attribute.aria_expanded(False),
+      attribute.popovertarget(popover_id),
+      ..attrs
+    ],
     children,
   )
 }
@@ -78,17 +76,15 @@ pub fn trigger_with_ids(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.id(trigger_id),
-        attribute.aria_haspopup("menu"),
-        attribute.aria_controls(menu_id),
-        attribute.aria_expanded(False),
-        attribute.popovertarget(popover_id),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.id(trigger_id),
+      attribute.aria_haspopup("menu"),
+      attribute.aria_controls(menu_id),
+      attribute.aria_expanded(False),
+      attribute.popovertarget(popover_id),
+      ..attrs
+    ],
     children,
   )
 }
@@ -101,14 +97,12 @@ pub fn content(
   let menu_id = "menu"
   let trigger_id = "trigger"
   html.div(
-    list.append(
-      [
-        attribute.id(popover_id),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(popover_id),
+      attribute.data("popover", ""),
+      attribute.aria_hidden(True),
+      ..attrs
+    ],
     [
       html.div(
         [
@@ -130,14 +124,12 @@ pub fn content_with_ids(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append(
-      [
-        attribute.id(popover_id),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-      ],
-      attrs,
-    ),
+    [
+      attribute.id(popover_id),
+      attribute.data("popover", ""),
+      attribute.aria_hidden(True),
+      ..attrs
+    ],
     [
       html.div(
         [
@@ -155,7 +147,7 @@ pub fn item(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.div(list.append([attribute.role("menuitem")], attrs), children)
+  html.div([attribute.role("menuitem"), ..attrs], children)
 }
 
 pub fn item_with_shortcut(
@@ -164,7 +156,7 @@ pub fn item_with_shortcut(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.div(
-    list.append([attribute.role("menuitem")], attrs),
+    [attribute.role("menuitem"), ..attrs],
     list.append(children, [
       html.span(
         [
@@ -219,17 +211,12 @@ pub fn radio_item(
 
 pub fn group(label: String, items: List(Element(msg))) -> Element(msg) {
   let label_id = "group-" <> label
-  html.div(
-    [attribute.role("group"), attribute.aria_labelledby(label_id)],
-    list.append(
-      [
-        html.div([attribute.role("heading"), attribute.id(label_id)], [
-          html.text(label),
-        ]),
-      ],
-      items,
-    ),
-  )
+  html.div([attribute.role("group"), attribute.aria_labelledby(label_id)], [
+    html.div([attribute.role("heading"), attribute.id(label_id)], [
+      html.text(label),
+    ]),
+    ..items
+  ])
 }
 
 pub fn separator() -> Element(msg) {
@@ -241,10 +228,7 @@ pub fn heading(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.div(
-    list.append([attribute.role("heading"), attribute.id(id)], attrs),
-    children,
-  )
+  html.div([attribute.role("heading"), attribute.id(id), ..attrs], children)
 }
 
 pub fn disabled() -> Attribute(msg) {

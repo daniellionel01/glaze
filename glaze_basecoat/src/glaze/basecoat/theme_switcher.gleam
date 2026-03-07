@@ -27,10 +27,10 @@
 ////
 //// - MDN `prefers-color-scheme`: <https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme>
 
-import gleam/list
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element, element}
 import lustre/element/html
+import lustre/element/svg
 
 pub fn init_script() -> Element(msg) {
   html.script(
@@ -70,18 +70,16 @@ pub fn set_light_script() -> String {
 
 pub fn button(attrs: List(Attribute(msg))) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_label("Toggle dark mode"),
-        attribute("onclick", toggle_script()),
-        attribute.class("btn-icon-outline size-8"),
-      ],
-      attrs,
-    ),
     [
-      element("span", [attribute.class("hidden dark:block")], [sun_icon()]),
-      element("span", [attribute.class("block dark:hidden")], [moon_icon()]),
+      attribute.type_("button"),
+      attribute.aria_label("Toggle dark mode"),
+      attribute("onclick", toggle_script()),
+      attribute.class("btn-icon-outline size-8"),
+      ..attrs
+    ],
+    [
+      html.span([attribute.class("hidden dark:block")], [sun_icon()]),
+      html.span([attribute.class("block dark:hidden")], [moon_icon()]),
     ],
   )
 }
@@ -91,27 +89,24 @@ pub fn button_with_tooltip(
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_label("Toggle dark mode"),
-        attribute.data("tooltip", "Toggle dark mode"),
-        attribute.data("side", tooltip_side),
-        attribute("onclick", toggle_script()),
-        attribute.class("btn-icon-outline size-8"),
-      ],
-      attrs,
-    ),
     [
-      element("span", [attribute.class("hidden dark:block")], [sun_icon()]),
-      element("span", [attribute.class("block dark:hidden")], [moon_icon()]),
+      attribute.type_("button"),
+      attribute.aria_label("Toggle dark mode"),
+      attribute.data("tooltip", "Toggle dark mode"),
+      attribute.data("side", tooltip_side),
+      attribute("onclick", toggle_script()),
+      attribute.class("btn-icon-outline size-8"),
+      ..attrs
+    ],
+    [
+      html.span([attribute.class("hidden dark:block")], [sun_icon()]),
+      html.span([attribute.class("block dark:hidden")], [moon_icon()]),
     ],
   )
 }
 
 fn sun_icon() -> Element(msg) {
-  element(
-    "svg",
+  svg.svg(
     [
       attribute("xmlns", "http://www.w3.org/2000/svg"),
       attribute("width", "24"),
@@ -124,23 +119,19 @@ fn sun_icon() -> Element(msg) {
       attribute("stroke-linejoin", "round"),
     ],
     [
-      element(
-        "circle",
-        [
-          attribute("cx", "12"),
-          attribute("cy", "12"),
-          attribute("r", "4"),
-        ],
-        [],
-      ),
-      element("path", [attribute("d", "M12 2v2")], []),
-      element("path", [attribute("d", "M12 20v2")], []),
-      element("path", [attribute("d", "m4.93 4.93 1.41 1.41")], []),
-      element("path", [attribute("d", "m17.66 17.66 1.41 1.41")], []),
-      element("path", [attribute("d", "M2 12h2")], []),
-      element("path", [attribute("d", "M20 12h2")], []),
-      element("path", [attribute("d", "m6.34 17.66-1.41 1.41")], []),
-      element("path", [attribute("d", "m19.07 4.93-1.41 1.41")], []),
+      svg.circle([
+        attribute("cx", "12"),
+        attribute("cy", "12"),
+        attribute("r", "4"),
+      ]),
+      svg.path([attribute("d", "M12 2v2")]),
+      svg.path([attribute("d", "M12 20v2")]),
+      svg.path([attribute("d", "m4.93 4.93 1.41 1.41")]),
+      svg.path([attribute("d", "m17.66 17.66 1.41 1.41")]),
+      svg.path([attribute("d", "M2 12h2")]),
+      svg.path([attribute("d", "M20 12h2")]),
+      svg.path([attribute("d", "m6.34 17.66-1.41 1.41")]),
+      svg.path([attribute("d", "m19.07 4.93-1.41 1.41")]),
     ],
   )
 }
@@ -160,11 +151,7 @@ fn moon_icon() -> Element(msg) {
       attribute("stroke-linejoin", "round"),
     ],
     [
-      element(
-        "path",
-        [attribute("d", "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z")],
-        [],
-      ),
+      svg.path([attribute("d", "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z")]),
     ],
   )
 }

@@ -29,7 +29,6 @@
 //// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
 //// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
 
-import gleam/list
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -42,29 +41,22 @@ pub fn alert_dialog(
   let title_id = id <> "-title"
   let desc_id = id <> "-description"
   html.dialog(
-    list.append(
-      [
-        attribute.class("alert-dialog"),
-        attribute.id(id),
-        attribute.aria_labelledby(title_id),
-        attribute.aria_describedby(desc_id),
-        attribute("onclick", "if (event.target === this) this.close()"),
-      ],
-      attrs,
-    ),
     [
-      html.div(
-        [],
-        list.append(
-          [
-            header([], [
-              html.h2([attribute.id(title_id)], []),
-            ]),
-            html.p([attribute.id(desc_id), attribute.class("sr-only")], []),
-          ],
-          children,
-        ),
-      ),
+      attribute.class("alert-dialog"),
+      attribute.id(id),
+      attribute.aria_labelledby(title_id),
+      attribute.aria_describedby(desc_id),
+      attribute("onclick", "if (event.target === this) this.close()"),
+      ..attrs
+    ],
+    [
+      html.div([], [
+        header([], [
+          html.h2([attribute.id(title_id)], []),
+        ]),
+        html.p([attribute.id(desc_id), attribute.class("sr-only")], []),
+        ..children
+      ]),
     ],
   )
 }
@@ -79,29 +71,22 @@ pub fn alert_dialog_with_text(
   let title_id = id <> "-title"
   let desc_id = id <> "-description"
   html.dialog(
-    list.append(
-      [
-        attribute.class("alert-dialog"),
-        attribute.id(id),
-        attribute.aria_labelledby(title_id),
-        attribute.aria_describedby(desc_id),
-        attribute("onclick", "if (event.target === this) this.close()"),
-      ],
-      attrs,
-    ),
     [
-      html.div(
-        [],
-        list.append(
-          [
-            header([], [
-              html.h2([attribute.id(title_id)], [html.text(title)]),
-            ]),
-            html.p([attribute.id(desc_id)], [html.text(description)]),
-          ],
-          children,
-        ),
-      ),
+      attribute.class("alert-dialog"),
+      attribute.id(id),
+      attribute.aria_labelledby(title_id),
+      attribute.aria_describedby(desc_id),
+      attribute("onclick", "if (event.target === this) this.close()"),
+      ..attrs
+    ],
+    [
+      html.div([], [
+        header([], [
+          html.h2([attribute.id(title_id)], [html.text(title)]),
+        ]),
+        html.p([attribute.id(desc_id)], [html.text(description)]),
+        ..children
+      ]),
     ],
   )
 }
@@ -146,7 +131,7 @@ pub fn action(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append([attribute.type_("button"), attribute.class("btn")], attrs),
+    [attribute.type_("button"), attribute.class("btn"), ..attrs],
     children,
   )
 }
@@ -156,14 +141,12 @@ pub fn cancel(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.class("btn-outline"),
-        attribute("onclick", "this.closest('dialog').close()"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.class("btn-outline"),
+      attribute("onclick", "this.closest('dialog').close()"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -173,14 +156,12 @@ pub fn destructive(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.class("btn-destructive"),
-        attribute("onclick", "this.closest('dialog').close()"),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute.class("btn-destructive"),
+      attribute("onclick", "this.closest('dialog').close()"),
+      ..attrs
+    ],
     children,
   )
 }
@@ -199,13 +180,11 @@ pub fn trigger_button(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute("onclick", open_script(dialog_id)),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute("onclick", open_script(dialog_id)),
+      ..attrs
+    ],
     children,
   )
 }

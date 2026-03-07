@@ -35,10 +35,10 @@
 //// - MDN `<dialog>`: <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>
 //// - MDN `HTMLDialogElement`: <https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement>
 
-import gleam/list
 import lustre/attribute.{type Attribute, attribute}
-import lustre/element.{type Element, element}
+import lustre/element.{type Element}
 import lustre/element/html
+import lustre/element/svg
 
 pub fn dialog(
   id: String,
@@ -48,26 +48,19 @@ pub fn dialog(
 ) -> Element(msg) {
   let title_id = id <> "-title"
   html.dialog(
-    list.append(
-      [
-        attribute.class("dialog"),
-        attribute.id(id),
-        attribute.aria_labelledby(title_id),
-      ],
-      attrs,
-    ),
     [
-      html.div(
-        [],
-        list.append(
-          [
-            header([], [
-              html.h2([attribute.id(title_id)], [html.text(title)]),
-            ]),
-          ],
-          children,
-        ),
-      ),
+      attribute.class("dialog"),
+      attribute.id(id),
+      attribute.aria_labelledby(title_id),
+      ..attrs
+    ],
+    [
+      html.div([], [
+        header([], [
+          html.h2([attribute.id(title_id)], [html.text(title)]),
+        ]),
+        ..children
+      ]),
     ],
   )
 }
@@ -82,28 +75,21 @@ pub fn dialog_with_description(
   let title_id = id <> "-title"
   let desc_id = id <> "-description"
   html.dialog(
-    list.append(
-      [
-        attribute.class("dialog"),
-        attribute.id(id),
-        attribute.aria_labelledby(title_id),
-        attribute.aria_describedby(desc_id),
-      ],
-      attrs,
-    ),
     [
-      html.div(
-        [],
-        list.append(
-          [
-            header([], [
-              html.h2([attribute.id(title_id)], [html.text(title)]),
-              html.p([attribute.id(desc_id)], [html.text(description)]),
-            ]),
-          ],
-          children,
-        ),
-      ),
+      attribute.class("dialog"),
+      attribute.id(id),
+      attribute.aria_labelledby(title_id),
+      attribute.aria_describedby(desc_id),
+      ..attrs
+    ],
+    [
+      html.div([], [
+        header([], [
+          html.h2([attribute.id(title_id)], [html.text(title)]),
+          html.p([attribute.id(desc_id)], [html.text(description)]),
+        ]),
+        ..children
+      ]),
     ],
   )
 }
@@ -127,7 +113,7 @@ pub fn scrollable_content(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.section(
-    list.append([attribute.class("overflow-y-auto scrollbar")], attrs),
+    [attribute.class("overflow-y-auto scrollbar"), ..attrs],
     children,
   )
 }
@@ -141,17 +127,14 @@ pub fn footer(
 
 pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute.aria_label("Close dialog"),
-        attribute("onclick", "this.closest('dialog').close()"),
-      ],
-      attrs,
-    ),
     [
-      element(
-        "svg",
+      attribute.type_("button"),
+      attribute.aria_label("Close dialog"),
+      attribute("onclick", "this.closest('dialog').close()"),
+      ..attrs
+    ],
+    [
+      svg.svg(
         [
           attribute("xmlns", "http://www.w3.org/2000/svg"),
           attribute("width", "24"),
@@ -164,8 +147,8 @@ pub fn close_button(attrs: List(Attribute(msg))) -> Element(msg) {
           attribute("stroke-linejoin", "round"),
         ],
         [
-          element("path", [attribute("d", "M18 6 6 18")], []),
-          element("path", [attribute("d", "m6 6 12 12")], []),
+          svg.path([attribute("d", "M18 6 6 18")]),
+          svg.path([attribute("d", "m6 6 12 12")]),
         ],
       ),
     ],
@@ -206,13 +189,11 @@ pub fn trigger_button(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    list.append(
-      [
-        attribute.type_("button"),
-        attribute("onclick", open_script(dialog_id)),
-      ],
-      attrs,
-    ),
+    [
+      attribute.type_("button"),
+      attribute("onclick", open_script(dialog_id)),
+      ..attrs
+    ],
     children,
   )
 }
