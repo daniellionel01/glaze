@@ -13,7 +13,7 @@ Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basec
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
-Example Projects: [lustre SPA](./examples/lustre_spa_cdn/), [wisp server](./examples/wisp_server/)
+Example Projects: [lustre SPA](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa_cdn/), [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/)
 
 *This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>*
 
@@ -128,11 +128,11 @@ html.head([], [
 ])
 ```
 
-There are example gleam projects for [lustre spa cdn](./examples/lustre_spa_cdn/) and [wisp server](./examples/wisp_server/) to see a fully fledged setup on server or client.
+There are example gleam projects for [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa_cdn/) and [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/) to see a fully fledged setup on server or client.
 
 You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
 
-Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
+Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
 ## Theming
 
