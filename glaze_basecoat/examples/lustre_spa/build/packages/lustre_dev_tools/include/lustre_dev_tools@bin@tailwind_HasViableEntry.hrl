@@ -1,1 +1,0 @@
--record(has_viable_entry, {path :: binary()}).

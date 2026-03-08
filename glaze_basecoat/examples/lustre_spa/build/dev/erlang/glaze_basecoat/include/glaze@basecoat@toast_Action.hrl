@@ -1,1 +1,0 @@
--record(action, {label :: binary(), onclick :: gleam@option:option(binary())}).
