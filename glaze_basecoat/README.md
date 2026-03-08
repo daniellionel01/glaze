@@ -81,8 +81,14 @@ In this case we need to load the Basecoat JavaScript.
 
 ### Lustre Dev Tools TOML
 
+**This approach is discouraged and will lead to incorrect theming of Basecoat!**
+
 As documented in the [TOML reference](https://hexdocs.pm/lustre_dev_tools/toml-reference.html) for the lustre dev tools, you can provide stylesheets and scripts
 that will be included in your `<head>` automatically. You can also statically link the Basecoat CSS and JavaScript files there.
+
+However the interactions between the Tailwind CLI and the ordering of the `<style>` tags seem to mess up the theming of Basecoat and removes a lot of the styling and depth of some of the components.
+
+You can still try this out yourself, but I recommend using [`basecoat.inject_element`](./glaze/basecoat.html#inject_element) or installing the package directly.
 
 ```toml
 [tools.lustre.html]
@@ -120,47 +126,7 @@ html.head([], [
 ])
 ```
 
-### Example
-
-In a real project this might look like this:
-
-```gleam
-import glaze/basecoat
-import glaze/basecoat/button
-import glaze/basecoat/card
-import glaze/basecoat/theme
-import lustre/element/html
-
-pub fn layout() {
-  html.html([], [
-    html.head([], [
-      // ...
-      
-      theme_switcher.init_script(),
-      
-      html.script(
-        [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
-        "",
-      ),
-      theme.tailwind_v4_bridge_style_tag(),
-      
-      basecoat.register(basecoat.version),
-      theme.style_tag(theme.default_theme()),
-    ]),
-    html.body([], [
-      card.card([], [
-        card.header([], [
-          card.title([], [html.text("Welcome")]),
-          card.description([], [html.text("Hello!")]),
-        ]),
-        card.content([], [
-          button.button([], [html.text("Get Started")]),
-        ]),
-      ]),
-    ]),
-  ])
-}
-```
+There are example gleam projects for [lustre spa cdn](./examples/lustre_spa_cdn/) and [wisp server](./examples/wisp_server/) to see a fully fledged setup on server or client.
 
 You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
 

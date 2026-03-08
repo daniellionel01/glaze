@@ -1,6 +1,7 @@
 import glaze/basecoat
 import glaze/basecoat/button
 import glaze/basecoat/card
+import glaze/basecoat/theme
 import lustre
 import lustre/attribute
 import lustre/element
@@ -18,6 +19,7 @@ pub fn view() {
     basecoat.inject_elements([
       basecoat.cdn_stylesheet(basecoat.version),
       basecoat.cdn_script(basecoat.version),
+      theme.style_tag(theme.default_theme()),
     ]),
 
     html.div([attribute.class("p-10")], [
