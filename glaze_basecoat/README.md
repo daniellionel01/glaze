@@ -13,12 +13,14 @@ Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basec
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
+Example Projects: [lustre SPA](./examples/lustre_spa_cdn/), [wisp server](./examples/wisp_server/)
+
 *This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>*
 
 ## Getting Started
 
 ```sh
-gleam add glaze_basecoat@1
+gleam add glaze_basecoat@3
 ```
 
 There are various ways of loading the CSS and JavaScript into .
