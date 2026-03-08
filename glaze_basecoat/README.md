@@ -21,16 +21,16 @@ GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 gleam add glaze_basecoat@1
 ```
 
-### Build Step
+There are various ways of loading the CSS and JavaScript into .
 
-If you are using any kind of build step (Lustre Dev Tools / Tailwind CLI / Vite), you can setup Basecoat by installing it via a package manager.
+Your approach will depend on wether you use the [lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite),
+or want to insert everything via a CDN.
 
-Don't forget to setup the JavaScript, too!
+### Package Manager
 
 ```sh
 npm/pnpm/bun add basecoat-css
 ```
-
 
 ```css
 /* src/app.css */
@@ -45,32 +45,50 @@ import glaze/basecoat
 import glaze/basecoat/button
 import glaze/basecoat/card
 import lustre
+import lustre/attribute
+import lustre/element
 import lustre/element/html
 
-
 pub fn main() {
-  basecoat.append_cdn_script_to_head(basecoat.version)
-  
   let app = lustre.element(view())
   let assert Ok(_) = lustre.start(app, "#app", Nil)
 
-  Nil 
+  Nil
 }
 
 pub fn view() {
-  card.card([], [
-    card.header([], [
-      card.title([], [html.text("Welcome")]),
-      card.description([], [html.text("Hello!")]),
-    ]),
-    card.content([], [
-      button.button([], [html.text("Get Started")]),
+  element.fragment([
+    // Don't forget about the javascript!
+    basecoat.inject_element(basecoat.cdn_script(basecoat.version)),
+
+    html.div([attribute.class("p-10")], [
+      card.card([], [
+        card.header([], [
+          card.title([], [html.text("Welcome")]),
+          card.description([], [html.text("Hello!")]),
+        ]),
+        card.content([], [
+          button.button([], [html.text("Get Started")]),
+        ]),
+      ]),
     ]),
   ])
 }
 ```
 
-Alternatively you can run a function that hooks into the 
+[`basecoat.inject_element`](./glaze/basecoat.html#inject_element) is a very handy function, that will append any element to the `<head>` of your document.
+In this case we need to load the Basecoat JavaScript.
+
+### Lustre Dev Tools TOML
+
+As documented in the [TOML reference](https://hexdocs.pm/lustre_dev_tools/toml-reference.html) for the lustre dev tools, you can provide stylesheets and scripts
+that will be included in your `<head>` automatically. You can also statically link the Basecoat CSS and JavaScript files there.
+
+```toml
+[tools.lustre.html]
+stylesheets = [{ href = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.cdn.min.css" }]
+scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" }]
+```
 
 ### Installation via CDN
 

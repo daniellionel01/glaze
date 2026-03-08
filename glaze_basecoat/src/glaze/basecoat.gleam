@@ -48,22 +48,14 @@ pub fn cdn_script(v: String) -> Element(a) {
   html.script(
     [
       attribute("defer", "defer"),
-      attribute.src(cdn_script_link(v)),
+      attribute.src(
+        "https://cdn.jsdelivr.net/npm/basecoat-css@"
+        <> v
+        <> "/dist/js/all.min.js",
+      ),
     ],
     "",
   )
-}
-
-@internal
-pub fn cdn_script_link(v: String) -> String {
-  "https://cdn.jsdelivr.net/npm/basecoat-css@" <> v <> "/dist/js/all.min.js"
-}
-
-@internal
-pub fn cdn_stylesheet_link(v: String) -> String {
-  "https://cdn.jsdelivr.net/npm/basecoat-css@"
-  <> v
-  <> "/dist/basecoat.cdn.min.css"
 }
 
 pub fn inject_element(el: Element(a)) {
@@ -94,7 +86,11 @@ pub fn cdn_stylesheet(v: String) -> Element(a) {
   element.fragment([
     html.link([
       attribute.rel("stylesheet"),
-      attribute.href(cdn_stylesheet_link(v)),
+      attribute.href(
+        "https://cdn.jsdelivr.net/npm/basecoat-css@"
+        <> v
+        <> "/dist/basecoat.cdn.min.css",
+      ),
     ]),
     theme.tailwind_v4_bridge_style_tag(),
   ])
