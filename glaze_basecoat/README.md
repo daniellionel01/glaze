@@ -21,6 +21,61 @@ GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 gleam add glaze_basecoat@1
 ```
 
+### Build Step
+
+If you are using any kind of build step (Lustre Dev Tools / Tailwind CLI / Vite), you can setup Basecoat by installing it via a package manager.
+
+Don't forget to setup the JavaScript, too!
+
+```sh
+npm/pnpm/bun add basecoat-css
+```
+
+
+```css
+/* src/app.css */
+@import "tailwindcss";
+@import "basecoat-css";
+```
+
+```gleam
+// src/app.gleam
+
+import glaze/basecoat
+import glaze/basecoat/button
+import glaze/basecoat/card
+import lustre
+import lustre/element/html
+
+
+pub fn main() {
+  basecoat.append_cdn_script_to_head(basecoat.version)
+  
+  let app = lustre.element(view())
+  let assert Ok(_) = lustre.start(app, "#app", Nil)
+
+  Nil 
+}
+
+pub fn view() {
+  card.card([], [
+    card.header([], [
+      card.title([], [html.text("Welcome")]),
+      card.description([], [html.text("Hello!")]),
+    ]),
+    card.content([], [
+      button.button([], [html.text("Get Started")]),
+    ]),
+  ])
+}
+```
+
+Alternatively you can run a function that hooks into the 
+
+### Installation via CDN
+
+If you are not using any build tools or client bundling, you can always fallback to direct CDN imports for Tailwind and all Basecoat CSS and JavaScript.
+
 ```gleam
 import glaze/basecoat
 import glaze/basecoat/icon
@@ -30,12 +85,11 @@ import lustre/element/html
 
 html.head([], [
   // (Optional) Register Tailwind (if not already coming from your build-tool)
+  
   html.script(
     [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
     "",
   ),
-  // Don't forget this, if you're using Tailwind through a CDN!
-  theme.tailwind_v4_bridge_style_tag(),
   
   // Register Basecoat CSS and JavaScript
   basecoat.register(basecoat.version),
@@ -93,64 +147,6 @@ pub fn layout() {
 You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
 
 Take a look at the [dev module](./dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
-
-## Tailwind CSS
-
-Basecoat UI ships Tailwind-based styles. You can either use the CDN for a fast setup, or integrate it into your own Tailwind build.
-
-### Option 1: Full CDN
-
-Use `basecoat.register()` to include Basecoat's compiled CSS and all Basecoat JavaScript via CDN.
-
-### Option 2: Tailwind Play CDN
-
-If you use Tailwind's CDN (<https://tailwindcss.com/docs/installation/play-cdn>), you also need Basecoat's Tailwind v4
-`@theme` mapping so utilities like `bg-accent` exist.
-
-```gleam
-import glaze/basecoat
-import glaze/basecoat/theme
-import lustre/attribute.{attribute}
-import lustre/element/html
-
-html.head([], [
-  html.script(
-    [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
-    "",
-  ),
-  basecoat.register(basecoat.version),
-  theme.style_tag(theme.default_theme()),
-  theme.tailwind_v4_bridge_style_tag(),
-])
-```
-
-### Option 3: Build-time Tailwind
-
-If you have a build-time Tailwind setup (CLI / Lustre Dev Tools / Vite) and you install Basecoat from npm, you can import Basecoat directly in your Tailwind entry CSS.
-
-```sh
-npm install basecoat-css
-```
-
-```css
-@import "tailwindcss";
-@import "basecoat-css";
-```
-
-In this case you should not use `basecoat.register()`, since it also includes Basecoat's CSS from the CDN.
-Use `basecoat.register_js()` to only include the JavaScript and let your Tailwind build produce the CSS.
-
-```gleam
-import glaze/basecoat
-import glaze/basecoat/theme
-import lustre/attribute.{attribute}
-import lustre/element/html
-
-html.head([], [
-  basecoat.register_js(basecoat.version),
-  theme.style_tag(theme.default_theme()),
-])
-```
 
 ## Theming
 

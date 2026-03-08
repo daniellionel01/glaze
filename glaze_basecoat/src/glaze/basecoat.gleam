@@ -1,3 +1,4 @@
+import glaze/basecoat/theme
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -38,7 +39,7 @@ pub fn register(v: String) -> Element(a) {
 ///
 /// html.head([], [
 ///   // Your Tailwind CSS import...
-///   basecoat.register_js(basecoat.version),
+///   basecoat.cdn_script(basecoat.version),
 /// ])
 /// ```
 ///
@@ -46,15 +47,39 @@ pub fn cdn_script(v: String) -> Element(a) {
   html.script(
     [
       attribute("defer", "defer"),
-      attribute.src(
-        "https://cdn.jsdelivr.net/npm/basecoat-css@"
-        <> v
-        <> "/dist/js/all.min.js",
-      ),
+      attribute.src(cdn_script_link(v)),
     ],
     "",
   )
 }
+
+@internal
+pub fn cdn_script_link(v: String) -> String {
+  "https://cdn.jsdelivr.net/npm/basecoat-css@" <> v <> "/dist/js/all.min.js"
+}
+
+@internal
+pub fn cdn_stylesheet_link(v: String) -> String {
+  "https://cdn.jsdelivr.net/npm/basecoat-css@"
+  <> v
+  <> "/dist/basecoat.cdn.min.css"
+}
+
+@target(javascript)
+/// Ensure the <script> tag that loads the Basecoat JavaScript.
+///
+/// Available on the JavaScript target.
+///
+@external(javascript, "./basecoat_ffi.mjs", "append_cdn_script_to_head")
+pub fn append_cdn_script_to_head(v: String) -> Nil
+
+@target(javascript)
+/// Ensure the <style> tag that loads the Basecoat CSS.
+///
+/// Available on the JavaScript target.
+///
+@external(javascript, "./basecoat_ffi.mjs", "append_cdn_stylesheet_to_head")
+pub fn append_cdn_stylesheet_to_head(v: String) -> Nil
 
 /// <style> tag that loads the Basecoat CSS from a CDN.
 ///
@@ -69,12 +94,11 @@ pub fn cdn_script(v: String) -> Element(a) {
 /// ```
 ///
 pub fn cdn_stylesheet(v: String) -> Element(a) {
-  html.link([
-    attribute.rel("stylesheet"),
-    attribute.href(
-      "https://cdn.jsdelivr.net/npm/basecoat-css@"
-      <> v
-      <> "/dist/basecoat.cdn.min.css",
-    ),
+  element.fragment([
+    html.link([
+      attribute.rel("stylesheet"),
+      attribute.href(cdn_stylesheet_link(v)),
+    ]),
+    theme.tailwind_v4_bridge_style_tag(),
   ])
 }

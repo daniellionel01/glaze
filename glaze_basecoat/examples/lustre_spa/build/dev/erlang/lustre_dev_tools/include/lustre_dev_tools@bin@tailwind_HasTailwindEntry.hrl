@@ -1,0 +1,1 @@
+-record(has_tailwind_entry, {path :: binary()}).

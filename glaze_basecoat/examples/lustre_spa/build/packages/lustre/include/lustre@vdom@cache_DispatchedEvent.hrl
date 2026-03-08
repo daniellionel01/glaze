@@ -1,0 +1,1 @@
+-record(dispatched_event, {path :: binary()}).

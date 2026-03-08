@@ -1,0 +1,1 @@
+-record(subtree, {parent :: lustre@vdom@path:path()}).

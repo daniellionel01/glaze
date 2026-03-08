@@ -1,0 +1,9 @@
+{application, gleam_community_ansi, [
+    {vsn, "1.4.4"},
+    {applications, [gleam_community_colour,
+                    gleam_regexp,
+                    gleam_stdlib]},
+    {description, "ANSI colours, formatting, and control codes"},
+    {modules, []},
+    {registered, []}
+]}.

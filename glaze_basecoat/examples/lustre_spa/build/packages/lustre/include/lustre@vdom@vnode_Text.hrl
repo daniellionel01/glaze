@@ -1,0 +1,1 @@
+-record(text, {kind :: integer(), key :: binary(), content :: binary()}).
