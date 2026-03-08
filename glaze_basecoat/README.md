@@ -20,7 +20,7 @@ Example Projects: [lustre SPA](./examples/lustre_spa_cdn/), [wisp server](./exam
 ## Getting Started
 
 ```sh
-gleam add glaze_basecoat@3
+gleam add glaze_basecoat
 ```
 
 There are various ways of loading the CSS and JavaScript into .
