@@ -23,7 +23,7 @@ Example Projects: [lustre SPA](./examples/lustre_spa_cdn/), [wisp server](./exam
 gleam add glaze_basecoat
 ```
 
-There are various ways of loading the CSS and JavaScript into .
+There are various ways of loading the CSS and JavaScript for the Basecoat components into your website.
 
 Your approach will depend on wether you use the [lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite),
 or want to insert everything via a CDN.
@@ -90,7 +90,7 @@ that will be included in your `<head>` automatically. You can also statically li
 
 However the interactions between the Tailwind CLI and the ordering of the `<style>` tags seem to mess up the theming of Basecoat and removes a lot of the styling and depth of some of the components.
 
-You can still try this out yourself, but I recommend using [`basecoat.inject_element`](./glaze/basecoat.html#inject_element) or installing the package directly.
+You can still try this out for yourself, but I did not get it working correctly on my end.
 
 ```toml
 [tools.lustre.html]
