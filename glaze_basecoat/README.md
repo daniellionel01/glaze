@@ -13,7 +13,7 @@ Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basec
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
-Example Projects: [lustre SPA](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa_cdn/), [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/)
+Example Projects: [lustre SPA](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/), [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/)
 
 *This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>*
 
@@ -28,27 +28,57 @@ There are various ways of loading the CSS and JavaScript for the Basecoat compon
 Your approach will depend on wether you use the [lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite),
 or want to insert everything via a CDN.
 
-### Package Manager
+### Lustre Dev Tools
 
+If you are using the [lustre dev tools](https://github.com/lustre-labs/dev-tools/) and are using the built-in tailwind support, you can setup
+Basecoat in two ways:
+
+You can install the `basecoat-css` package:
 ```sh
 npm/pnpm/bun add basecoat-css
 ```
 
+And import it in your application css file:
 ```css
 /* src/app.css */
 @import "tailwindcss";
 @import "basecoat-css";
 ```
 
+If you install the package, you can create an additional css file to configure your theme: <https://basecoatui.com/installation/#install-theming>
+
+Or create a `src/basecoat.css` file and put the contents of the [basecoat.css](https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css)
+and import it in your main css file.
+
+```sh
+curl -L https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css -o src/basecoat.css
+```
+
+```css
+/* src/app.css */
+@import "tailwindcss";
+@import "./basecoat.css";
+
+/* optional */
+@import "./theme.css";
+```
+
+As for the JavaScript, you can link that in the `[tools.lustre.html]` in your `gleam.toml`:
+
+```toml
+[tools.lustre.html]
+scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" }]
+```
+
+After that you can freely use any basecoat component:
+
 ```gleam
 // src/app.gleam
 
-import glaze/basecoat
 import glaze/basecoat/button
 import glaze/basecoat/card
 import lustre
 import lustre/attribute
-import lustre/element
 import lustre/element/html
 
 pub fn main() {
@@ -59,18 +89,65 @@ pub fn main() {
 }
 
 pub fn view() {
-  element.fragment([
-    // Don't forget about the javascript!
-    basecoat.inject_element(basecoat.cdn_script(basecoat.version)),
+  html.div([attribute.class("p-10")], [
+    card.card([], [
+      card.header([], [
+        card.title([], [html.text("Welcome")]),
+        card.description([], [html.text("Hello!")]),
+      ]),
+      card.content([], [
+        button.button([], [html.text("Get Started")]),
+      ]),
+    ]),
+  ])
+}
+```
 
-    html.div([attribute.class("p-10")], [
-      card.card([], [
-        card.header([], [
-          card.title([], [html.text("Welcome")]),
-          card.description([], [html.text("Hello!")]),
-        ]),
-        card.content([], [
-          button.button([], [html.text("Get Started")]),
+#### Note on `[tools.lustre.html]`
+
+*Putting the basecoat.css file in the `[tools.lustre.html]` as a stylesheet will not work with the Tailwind CLI because it bundles everything in `app.css`.*
+
+### Installation via CDN
+
+If you are generating the HTML on the server or provide the layout for your SPA there (f.e. a wisp proxy for your lustre SPA),
+you can always fall back to CDN imports for Tailwind or the Basecoat CSS and JavaScript.
+
+```gleam
+import glaze/basecoat
+import glaze/basecoat/button
+import glaze/basecoat/card
+import glaze/basecoat/theme
+import lustre/attribute.{attribute}
+import lustre/element/html
+
+pub fn page() {
+  html.html([attribute("lang", "en")], [
+    html.head([], [
+      html.title([], "Basecoat x Gleam"),
+      html.meta([
+        attribute.name("viewport"),
+        attribute.content("width=device-width, initial-scale=1"),
+      ]),
+
+      // optional: if you are not using any build tool for working with tailwind
+      html.script([attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")], ""),
+
+      basecoat.register(basecoat.version),
+      theme.style_tag(theme.default_theme()),
+      
+      // optional: init built-in theme switcher
+      theme_switcher.init_script()
+    ]),
+    html.body([], [
+      html.div([attribute.class("p-10")], [
+        card.card([], [
+          card.header([], [
+            card.title([], [html.text("Welcome")]),
+            card.description([], [html.text("Hello!")]),
+          ]),
+          card.content([], [
+            button.button([], [html.text("Get Started")]),
+          ]),
         ]),
       ]),
     ]),
@@ -78,57 +155,7 @@ pub fn view() {
 }
 ```
 
-[`basecoat.inject_element`](./glaze/basecoat.html#inject_element) is a very handy function, that will append any element to the `<head>` of your document.
-In this case we need to load the Basecoat JavaScript.
-
-### Lustre Dev Tools TOML
-
-**This approach is discouraged and will lead to incorrect theming of Basecoat!**
-
-As documented in the [TOML reference](https://hexdocs.pm/lustre_dev_tools/toml-reference.html) for the lustre dev tools, you can provide stylesheets and scripts
-that will be included in your `<head>` automatically. You can also statically link the Basecoat CSS and JavaScript files there.
-
-However the interactions between the Tailwind CLI and the ordering of the `<style>` tags seem to mess up the theming of Basecoat and removes a lot of the styling and depth of some of the components.
-
-You can still try this out for yourself, but I did not get it working correctly on my end.
-
-```toml
-[tools.lustre.html]
-stylesheets = [{ href = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.cdn.min.css" }]
-scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" }]
-```
-
-### Installation via CDN
-
-If you are not using any build tools or client bundling, you can always fallback to direct CDN imports for Tailwind and all Basecoat CSS and JavaScript.
-
-```gleam
-import glaze/basecoat
-import glaze/basecoat/icon
-import glaze/basecoat/theme
-import glaze/basecoat/theme_switcher
-import lustre/element/html
-
-html.head([], [
-  // (Optional) Register Tailwind (if not already coming from your build-tool)
-  
-  html.script(
-    [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
-    "",
-  ),
-  
-  // Register Basecoat CSS and JavaScript
-  basecoat.register(basecoat.version),
-  
-  // Register your theme
-  theme.style_tag(theme.default_theme()),
-  
-  // (Optional) Init theme switcher
-  theme_switcher.init_script(),
-])
-```
-
-There are example gleam projects for [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa_cdn/) and [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/) to see a fully fledged setup on server or client.
+There are example gleam projects for [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/) and [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/) to see a fully fledged setup on server or client.
 
 You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
 
@@ -150,6 +177,8 @@ let custom_theme =
 You can find curated themes at [ui.shadcn.com/themes](https://ui.shadcn.com/themes).
 
 You can also use tools like <https://tweakcn.com/editor/theme>!
+
+If you are not using the built-in theme module to configure your theme, you can find more documentation on it here: <https://basecoatui.com/installation/#install-theming>.
 
 ## FAQs
 

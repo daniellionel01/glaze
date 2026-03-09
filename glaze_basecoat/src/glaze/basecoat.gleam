@@ -1,5 +1,4 @@
 import glaze/basecoat/theme
-import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -56,18 +55,6 @@ pub fn cdn_script(v: String) -> Element(a) {
     ],
     "",
   )
-}
-
-pub fn inject_element(el: Element(a)) {
-  let el_html = element.to_string(el)
-  html.script(
-    [],
-    "document.head.insertAdjacentHTML('beforeend', `" <> el_html <> "`);",
-  )
-}
-
-pub fn inject_elements(elements: List(Element(a))) {
-  element.fragment(list.map(elements, inject_element))
 }
 
 /// <style> tag that loads the Basecoat CSS from a CDN.
