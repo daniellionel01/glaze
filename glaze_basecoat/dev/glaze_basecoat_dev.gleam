@@ -85,7 +85,6 @@ pub fn page() {
         [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
         "",
       ),
-      theme.tailwind_v4_bridge_style_tag(),
 
       basecoat.register(basecoat.version),
       theme.style_tag_light_dark(theme.default_theme(), theme.dark_theme()),
