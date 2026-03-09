@@ -79,6 +79,6 @@ pub fn cdn_stylesheet(v: String) -> Element(a) {
         <> "/dist/basecoat.cdn.min.css",
       ),
     ]),
-    theme.tailwind_v4_bridge_style_tag(),
+    theme.tailwind_bridge_style_tag(),
   ])
 }
