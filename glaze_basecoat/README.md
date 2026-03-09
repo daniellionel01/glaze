@@ -18,9 +18,9 @@ Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basec
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
 Example projects:
-- Lustre SPA: [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/)
-- wisp server (w/ CDN imports): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_cdn/)
-- wisp server (w/ Tailwind CLI): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_tw_cli/)
+- [Lustre SPA](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/)
+- [Wisp server (w/ CDN imports)](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_cdn/)
+- [Wisp server (w/ Tailwind CLI)](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_tw_cli/)
 
 ## Getting Started
 
@@ -30,12 +30,12 @@ gleam add glaze_basecoat
 
 There are various ways of loading the CSS and JavaScript for the Basecoat components into your website.
 
-Your approach will depend on wether you use the [lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite),
-or want to insert everything via a CDN.
+Your approach will depend on wether you use the [Lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite),
+or want to load everything via a CDN.
 
 ### Lustre Dev Tools
 
-If you are using the [lustre dev tools](https://github.com/lustre-labs/dev-tools/) and are using the built-in tailwind support, you can setup
+If you are using the [Lustre dev tools](https://github.com/lustre-labs/dev-tools/) and are using the built-in tailwind support, you can setup
 Basecoat in two ways:
 
 You can install the `basecoat-css` package:
@@ -76,7 +76,7 @@ As for the JavaScript, you can link that in the `[tools.lustre.html]` in your `g
 scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" }]
 ```
 
-After that you can freely use any basecoat components:
+After that you can freely use any Basecoat components:
 
 ```gleam
 // src/app.gleam
@@ -115,7 +115,7 @@ pub fn view() {
 
 ### Installation via CDN
 
-If you are generating the HTML on the server or provide the layout for your SPA there (f.e. a wisp proxy for your lustre SPA),
+If you are generating the HTML on the server or provide the layout for your SPA there (f.e. a wisp proxy for your Lustre SPA),
 you can always fall back to CDN imports for Tailwind or the Basecoat CSS and JavaScript.
 
 ```gleam
@@ -161,8 +161,6 @@ pub fn page() {
 }
 ```
 
-There are example gleam projects for [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/) and [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/) to see a fully fledged setup on server or client.
-
 You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
 
 Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
@@ -198,10 +196,10 @@ Lucide docs: <https://lucide.dev/guide/packages/lucide>
 
 This library constructs HTML elements the same way on a client or on a server, so it is compatible in both environments.
 
-Examples:
-- Lustre SPA: [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/)
-- wisp server (w/ CDN imports): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_cdn/)
-- wisp server (w/ Tailwind CLI): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_tw_cli/)
+Example projects:
+- [Lustre SPA](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/)
+- [Wisp server (w/ CDN imports)](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_cdn/)
+- [Wisp server (w/ Tailwind CLI)](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_tw_cli/)
 
 ## Development
 
