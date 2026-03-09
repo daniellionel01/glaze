@@ -3,19 +3,24 @@
 [![Package Version](https://img.shields.io/hexpm/v/glaze_basecoat)](https://hex.pm/packages/glaze_basecoat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_basecoat/)
 
+> This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>
+
 This is a collection of Lustre components mapped from [Basecoat UI](https://basecoatui.com/).
 
 Basecoat UI is a Tailwind CSS-based component library inspired by shadcn/ui that works with any web stack.
 
-For a full list of components, take a look at <https://hexdocs.pm/glaze_basecoat> or <https://basecoatui.com/components/>
+For a full list of components, take a look at either:
+- <https://hexdocs.pm/glaze_basecoat>
+- <https://basecoatui.com/components/>
 
 Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basecoat).
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
-Example Projects: [lustre SPA](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/), [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server/)
-
-*This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>*
+Example projects:
+- Lustre SPA: [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/)
+- wisp server (w/ CDN imports): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_cdn/)
+- wisp server (w/ Tailwind CLI): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_tw_cli/)
 
 ## Getting Started
 
@@ -51,7 +56,8 @@ Or create a `src/basecoat.css` file and put the contents of the [basecoat.css](h
 and import it in your main css file.
 
 ```sh
-curl -L https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css -o src/basecoat.css
+curl -L https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css \
+  -o src/basecoat.css
 ```
 
 ```css
@@ -70,7 +76,7 @@ As for the JavaScript, you can link that in the `[tools.lustre.html]` in your `g
 scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" }]
 ```
 
-After that you can freely use any basecoat component:
+After that you can freely use any basecoat components:
 
 ```gleam
 // src/app.gleam
@@ -191,6 +197,11 @@ Lucide docs: <https://lucide.dev/guide/packages/lucide>
 ### Client vs Server?
 
 This library constructs HTML elements the same way on a client or on a server, so it is compatible in both environments.
+
+Examples:
+- Lustre SPA: [lustre spa cdn](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/lustre_spa/)
+- wisp server (w/ CDN imports): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_cdn/)
+- wisp server (w/ Tailwind CLI): [wisp server](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/examples/wisper_server_tw_cli/)
 
 ## Development
 
