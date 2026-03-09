@@ -1,8 +1,8 @@
 # TODO
 
-- [ ] basecoat examples 
-  - [ ] wisp server
-  - [ ] lustre spa
+- [x] basecoat examples 
+  - [x] wisp server
+  - [x] lustre spa
 - [ ] oat examples 
   - [ ] wisp server
   - [ ] lustre spa
