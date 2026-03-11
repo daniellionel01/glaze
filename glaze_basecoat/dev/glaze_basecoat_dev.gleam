@@ -30,7 +30,6 @@ import glaze/basecoat/dropdown_menu
 import glaze/basecoat/empty
 import glaze/basecoat/field
 import glaze/basecoat/form
-import glaze/basecoat/icon
 import glaze/basecoat/input
 import glaze/basecoat/item
 import glaze/basecoat/kbd
@@ -64,6 +63,13 @@ pub fn main() {
     simplifile.write(contents: html, to: "../docs/glaze_basecoat/index.html")
 }
 
+fn icon(name: String, attrs: List(Attribute(msg))) {
+  html.i(
+    [attribute.class("lucide"), attribute("data-lucide", name), ..attrs],
+    [],
+  )
+}
+
 pub fn page() {
   html.html([attribute("lang", "en")], [
     html.head([], [
@@ -74,16 +80,23 @@ pub fn page() {
       html.title([], "Kitchen Sink | Glaze Basecoat"),
 
       theme_switcher.init_script(),
-      icon.register_cdn("latest"),
 
       html.script(
         [attribute.src("https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")],
         "",
       ),
-      theme.tailwind_v4_bridge_style_tag(),
 
       basecoat.register(basecoat.version),
       theme.style_tag_light_dark(theme.default_theme(), theme.dark_theme()),
+
+      html.script(
+        [attribute.src("https://unpkg.com/lucide@latest/dist/umd/lucide.js")],
+        "",
+      ),
+      html.script(
+        [],
+        "window.addEventListener('DOMContentLoaded', () => lucide.createIcons());",
+      ),
     ]),
     html.body([], [
       html.main([attribute.class("p-4 md:p-6 xl:p-12")], [
@@ -112,7 +125,7 @@ pub fn page() {
                     attribute.data("tooltip", "GitHub repository"),
                     attribute.data("side", "bottom"),
                   ],
-                  [icon.github([])],
+                  [icon("github", [])],
                 ),
               ]),
             ]),
@@ -129,7 +142,7 @@ pub fn page() {
           ),
         ]),
       ]),
-      toast.toaster([]),
+      toast.container([]),
     ]),
   ])
 }
@@ -280,7 +293,7 @@ fn sink_section(
         attribute.data("tooltip", "See documentation"),
         attribute.data("side", "left"),
       ],
-      [icon.icon("book-open", [attribute.class("size-4")])],
+      [icon("book-open", [attribute.class("size-4")])],
     )
 
   html.section(
@@ -383,14 +396,14 @@ fn section_alert() -> Element(msg) {
     [
       html.div([attribute.class("grid max-w-xl items-start gap-4")], [
         alert.alert([], [
-          icon.icon("circle-check", []),
+          icon("circle-check", []),
           alert.title([], [html.text("Success! Your changes have been saved")]),
           alert.description([], [
             html.text("This is an alert with icon, title and description."),
           ]),
         ]),
         alert.alert([], [
-          icon.icon("bookmark-check", []),
+          icon("bookmark-check", []),
           alert.description([], [
             html.text("This is an alert with icon, description and no title."),
           ]),
@@ -401,11 +414,11 @@ fn section_alert() -> Element(msg) {
           ]),
         ]),
         alert.alert([], [
-          icon.icon("popcorn", []),
+          icon("popcorn", []),
           alert.title([], [html.text("Let's try one with icon and title.")]),
         ]),
         alert.alert([], [
-          icon.icon("shield-alert", []),
+          icon("shield-alert", []),
           alert.title([], [
             html.text(
               "This is a very long alert title that demonstrates how the component handles extended text content and potentially wraps across multiple lines",
@@ -413,7 +426,7 @@ fn section_alert() -> Element(msg) {
           ]),
         ]),
         alert.alert([], [
-          icon.icon("gift", []),
+          icon("gift", []),
           alert.description([], [
             html.text(
               "This is a very long alert description that demonstrates how the component handles extended text content and potentially wraps across multiple lines",
@@ -421,7 +434,7 @@ fn section_alert() -> Element(msg) {
           ]),
         ]),
         alert.alert([], [
-          icon.icon("circle-alert", []),
+          icon("circle-alert", []),
           alert.title([], [
             html.text(
               "This is an extremely long alert title that spans multiple lines to demonstrate how the component handles very lengthy headings while maintaining readability and proper text wrapping behavior",
@@ -434,14 +447,14 @@ fn section_alert() -> Element(msg) {
           ]),
         ]),
         alert.destructive([], [
-          icon.icon("circle-alert", []),
+          icon("circle-alert", []),
           alert.title([], [html.text("Something went wrong!")]),
           alert.description([], [
             html.text("Your session has expired. Please log in again."),
           ]),
         ]),
         alert.destructive([], [
-          icon.icon("circle-alert", []),
+          icon("circle-alert", []),
           alert.title([], [html.text("Something went wrong!")]),
           alert.description([], [
             html.p([], [
@@ -461,7 +474,7 @@ fn section_alert() -> Element(msg) {
             ),
           ],
           [
-            icon.icon("circle-check", []),
+            icon("circle-check", []),
             alert.title([], [
               html.text("Plot Twist: This Alert is Actually Amber!"),
             ]),
@@ -583,9 +596,9 @@ fn section_badge() -> Element(msg) {
             badge.secondary([], [html.text("Secondary")]),
             badge.outline([], [html.text("Outline")]),
             badge.destructive([], [html.text("Destructive")]),
-            badge.outline([], [icon.check([]), html.text("Badge")]),
+            badge.outline([], [icon("check", []), html.text("Badge")]),
             badge.destructive([], [
-              icon.icon("circle-alert", []),
+              icon("circle-alert", []),
               html.text("Alert"),
             ]),
             badge.badge([attribute.class("rounded-full min-w-5 px-1")], [
@@ -609,19 +622,19 @@ fn section_badge() -> Element(msg) {
           [
             badge.link([attribute.href("#")], [
               html.text("Link"),
-              icon.arrow_right([]),
+              icon("arrow-right", []),
             ]),
             badge.link_secondary([attribute.href("#")], [
               html.text("Link"),
-              icon.arrow_right([]),
+              icon("arrow-right", []),
             ]),
             badge.link_destructive([attribute.href("#")], [
               html.text("Link"),
-              icon.arrow_right([]),
+              icon("arrow-right", []),
             ]),
             badge.link_outline([attribute.href("#")], [
               html.text("Link"),
-              icon.arrow_right([]),
+              icon("arrow-right", []),
             ]),
           ],
         ),
@@ -658,7 +671,7 @@ fn section_breadcrumb() -> Element(msg) {
             ),
           ]),
           html.li([], [
-            icon.icon("chevron-right", [attribute.class("size-3.5")]),
+            icon("chevron-right", [attribute.class("size-3.5")]),
           ]),
           html.li([attribute.class("inline-flex items-center gap-1.5")], [
             dropdown_menu.dropdown(dd_id, [
@@ -671,7 +684,7 @@ fn section_breadcrumb() -> Element(msg) {
                     "flex size-9 items-center justify-center h-4 w-4 hover:text-foreground cursor-pointer",
                   ),
                 ],
-                [icon.icon("ellipsis", [])],
+                [icon("ellipsis", [])],
               ),
               dropdown_menu.content_with_ids(
                 popover_id,
@@ -687,7 +700,7 @@ fn section_breadcrumb() -> Element(msg) {
             ]),
           ]),
           html.li([], [
-            icon.icon("chevron-right", [attribute.class("size-3.5")]),
+            icon("chevron-right", [attribute.class("size-3.5")]),
           ]),
           html.li([attribute.class("inline-flex items-center gap-1.5")], [
             html.a(
@@ -699,7 +712,7 @@ fn section_breadcrumb() -> Element(msg) {
             ),
           ]),
           html.li([], [
-            icon.icon("chevron-right", [attribute.class("size-3.5")]),
+            icon("chevron-right", [attribute.class("size-3.5")]),
           ]),
           html.li([attribute.class("inline-flex items-center gap-1.5")], [
             html.span([attribute.class("text-foreground font-normal")], [
@@ -725,13 +738,16 @@ fn section_button() -> Element(msg) {
             button.button([], [html.text("Primary")]),
             button.outline([], [html.text("Outline")]),
             button.ghost([], [html.text("Ghost")]),
-            button.destructive([], [icon.icon("send", []), html.text("Danger")]),
+            button.destructive([], [icon("send", []), html.text("Danger")]),
             button.secondary([], [html.text("Secondary")]),
             button.link_style([], [html.text("Link")]),
-            button.outline([], [icon.icon("send", []), html.text("Send")]),
-            button.outline([], [html.text("Learn more"), icon.arrow_right([])]),
+            button.outline([], [icon("send", []), html.text("Send")]),
+            button.outline([], [
+              html.text("Learn more"),
+              icon("arrow-right", []),
+            ]),
             button.outline([button.disabled()], [
-              icon.loader([]),
+              icon("loader-2", []),
               html.text("Loading"),
             ]),
           ],
@@ -746,15 +762,15 @@ fn section_button() -> Element(msg) {
             button.secondary([button.small()], [html.text("Secondary")]),
             button.link_style([button.small()], [html.text("Link")]),
             button.outline([button.small()], [
-              icon.icon("send", []),
+              icon("send", []),
               html.text("Send"),
             ]),
             button.outline([button.small()], [
               html.text("Learn more"),
-              icon.arrow_right([]),
+              icon("arrow-right", []),
             ]),
             button.outline([button.small(), button.disabled()], [
-              icon.loader([]),
+              icon("loader-2", []),
               html.text("Loading"),
             ]),
           ],
@@ -766,21 +782,21 @@ fn section_button() -> Element(msg) {
             button.outline([button.large()], [html.text("Outline")]),
             button.ghost([button.large()], [html.text("Ghost")]),
             button.destructive([button.large()], [
-              icon.icon("send", []),
+              icon("send", []),
               html.text("Danger"),
             ]),
             button.secondary([button.large()], [html.text("Secondary")]),
             button.link_style([button.large()], [html.text("Link")]),
             button.outline([button.large()], [
-              icon.icon("send", []),
+              icon("send", []),
               html.text("Send"),
             ]),
             button.outline([button.large()], [
               html.text("Learn more"),
-              icon.arrow_right([]),
+              icon("arrow-right", []),
             ]),
             button.outline([button.large(), button.disabled()], [
-              icon.loader([]),
+              icon("loader-2", []),
               html.text("Loading"),
             ]),
           ],
@@ -789,17 +805,17 @@ fn section_button() -> Element(msg) {
           [attribute.class("flex flex-wrap items-center gap-2 md:flex-row")],
           [
             button.icon([attribute.class("btn-icon-primary")], [
-              icon.download([]),
+              icon("download", []),
             ]),
             button.icon([attribute.class("btn-icon-secondary")], [
-              icon.upload([]),
+              icon("upload", []),
             ]),
-            button.icon_outline([], [icon.arrow_right([])]),
+            button.icon_outline([], [icon("arrow-right", [])]),
             button.icon([attribute.class("btn-icon-ghost")], [
-              icon.icon("ellipsis", []),
+              icon("ellipsis", []),
             ]),
-            button.icon_destructive([], [icon.trash([])]),
-            button.icon_outline([button.disabled()], [icon.loader([])]),
+            button.icon_destructive([], [icon("trash-2", [])]),
+            button.icon_outline([button.disabled()], [icon("loader-2", [])]),
           ],
         ),
       ]),
@@ -926,9 +942,9 @@ fn section_card() -> Element(msg) {
           ]),
         ]),
         card.footer([attribute.class("flex items-center gap-2")], [
-          badge.outline([], [icon.icon("bed", []), html.text("1")]),
-          badge.outline([], [icon.icon("bath", []), html.text("2")]),
-          badge.outline([], [icon.icon("land-plot", []), html.text("350m2")]),
+          badge.outline([], [icon("bed", []), html.text("1")]),
+          badge.outline([], [icon("bath", []), html.text("2")]),
+          badge.outline([], [icon("land-plot", []), html.text("350m2")]),
           html.span([attribute.class("ml-auto font-medium tabular-nums")], [
             html.text("$135,000"),
           ]),
@@ -1063,7 +1079,7 @@ fn section_command() -> Element(msg) {
       html.div([attribute.class("grid gap-6")], [
         command.command_styled(cmd_id, [attribute.class("max-w-xl")], [
           command.header([], [
-            icon.search([attribute.class("size-4")]),
+            icon("search", [attribute.class("size-4")]),
             command.search_input(
               search_id,
               "Type a command or search...",
@@ -1078,23 +1094,23 @@ fn section_command() -> Element(msg) {
             [
               command.group("Suggestions", [
                 command.item_with_shortcut("↵", [], [
-                  icon.calendar([]),
+                  icon("calendar", []),
                   html.text("Calendar"),
                 ]),
                 command.item_with_shortcut("⌘K", [], [
-                  icon.search([]),
+                  icon("search", []),
                   html.text("Search"),
                 ]),
                 command.item_with_shortcut("⌘P", [], [
-                  icon.settings([]),
+                  icon("settings", []),
                   html.text("Settings"),
                 ]),
               ]),
               command.separator(),
               command.group("Actions", [
-                command.item([], [icon.mail([]), html.text("Send email")]),
+                command.item([], [icon("mail", []), html.text("Send email")]),
                 command.item_disabled([], [
-                  icon.icon("sparkles", []),
+                  icon("sparkles", []),
                   html.text("Generate report"),
                 ]),
               ]),
@@ -1113,7 +1129,7 @@ fn section_command() -> Element(msg) {
           command.dialog(dialog_id, [], [
             command.command_styled(dialog_cmd_id, [attribute.class("w-full")], [
               command.header([], [
-                icon.search([attribute.class("size-4")]),
+                icon("search", [attribute.class("size-4")]),
                 command.search_input(
                   dialog_search_id,
                   "Search commands...",
@@ -1127,11 +1143,11 @@ fn section_command() -> Element(msg) {
                 [
                   command.group("Quick", [
                     command.item_with_shortcut("G", [], [
-                      icon.github([]),
+                      icon("github", []),
                       html.text("Open GitHub"),
                     ]),
                     command.item_with_shortcut("T", [], [
-                      icon.icon("table", []),
+                      icon("table", []),
                       html.text("Jump to Table"),
                     ]),
                   ]),
@@ -1163,7 +1179,7 @@ fn section_empty() -> Element(msg) {
     [
       html.div([attribute.class("grid gap-6")], [
         empty.empty([], [
-          empty.icon([], [icon.folder([])]),
+          empty.icon([], [icon("folder", [])]),
           empty.title([], [html.text("No Projects Yet")]),
           empty.description([], [
             html.text("Create your first project to get started."),
@@ -1174,7 +1190,7 @@ fn section_empty() -> Element(msg) {
           ]),
         ]),
         empty.outlined([], [
-          empty.icon([], [icon.icon("inbox", [])]),
+          empty.icon([], [icon("inbox", [])]),
           empty.title([], [html.text("Nothing to review")]),
           empty.description([], [
             html.text("You're all caught up. Check back later."),
@@ -1251,7 +1267,7 @@ fn section_icon() -> Element(msg) {
       html.div(
         [attribute.class("flex items-center gap-3 rounded-md border p-3")],
         [
-          icon.icon(name, [attribute.class("size-5")]),
+          icon(name, [attribute.class("size-5")]),
           html.div([attribute.class("grid")], [
             html.span([attribute.class("text-sm font-medium")], [
               html.text(label),
@@ -1285,7 +1301,7 @@ fn section_item() -> Element(msg) {
   sink_section_simple("item", "Item", "https://basecoatui.com/components/item", [
     item.group([attribute.class("gap-3")], [
       item.item([], [
-        item.icon([], [icon.mail([])]),
+        item.icon([], [icon("mail", [])]),
         item.content([], [
           item.title([], [html.text("Inbox")]),
           item.description([], [
@@ -1293,8 +1309,8 @@ fn section_item() -> Element(msg) {
           ]),
         ]),
         item.actions([], [
-          button.icon_outline([], [icon.external_link([])]),
-          button.icon_outline([], [icon.more_horizontal([])]),
+          button.icon_outline([], [icon("external-link", [])]),
+          button.icon_outline([], [icon("more-horizontal", [])]),
         ]),
       ]),
       item.item([], [
@@ -1319,7 +1335,7 @@ fn section_item() -> Element(msg) {
             html.text("A link item with an image and a trailing action."),
           ]),
         ]),
-        item.actions([], [button.icon_outline([], [icon.arrow_right([])])]),
+        item.actions([], [button.icon_outline([], [icon("arrow-right", [])])]),
       ]),
     ]),
   ])
@@ -1379,7 +1395,7 @@ fn basecoat_select_base(
       ],
       [
         html.span([attribute.class("truncate")], [html.text(selected_label)]),
-        icon.icon("chevron-down", [
+        icon("chevron-down", [
           attribute.class("text-muted-foreground opacity-50 shrink-0"),
         ]),
       ],
@@ -1436,7 +1452,7 @@ fn basecoat_combobox(
       ],
       [
         html.span([attribute.class("truncate")], []),
-        icon.icon("chevrons-up-down", [
+        icon("chevrons-up-down", [
           attribute.class("text-muted-foreground opacity-50 shrink-0"),
         ]),
       ],
@@ -1450,7 +1466,7 @@ fn basecoat_combobox(
       ],
       [
         html.header([], [
-          icon.search([]),
+          icon("search", []),
           html.input([
             attribute.type_("text"),
             attribute.value(""),
@@ -1749,7 +1765,7 @@ fn section_combobox() -> Element(msg) {
             ]),
             html.hr([attribute.role("separator")]),
             html.div([attribute.role("option")], [
-              icon.icon("circle-plus", []),
+              icon("circle-plus", []),
               html.text("Create timezone"),
             ]),
           ],
@@ -1967,20 +1983,20 @@ fn section_dropdown_menu() -> Element(msg) {
             [attribute.class("min-w-56")],
             [
               dropdown_menu.group("Account Options", [
-                dropdown_menu.item([], [icon.user([]), html.text("Profile")]),
+                dropdown_menu.item([], [icon("user", []), html.text("Profile")]),
                 dropdown_menu.item([], [
-                  icon.icon("credit-card", []),
+                  icon("credit-card", []),
                   html.text("Billing"),
                 ]),
                 dropdown_menu.item([], [
-                  icon.settings([]),
+                  icon("settings", []),
                   html.text("Settings"),
                 ]),
               ]),
               dropdown_menu.separator(),
               dropdown_menu.group("Appearance", [
                 dropdown_menu.checkbox_item(True, [attribute.class("group")], [
-                  icon.check([
+                  icon("check", [
                     attribute.class("invisible group-aria-checked:visible"),
                     attribute.aria_hidden(True),
                   ]),
@@ -1990,7 +2006,7 @@ fn section_dropdown_menu() -> Element(msg) {
                   False,
                   [attribute.class("group"), dropdown_menu.disabled()],
                   [
-                    icon.check([
+                    icon("check", [
                       attribute.class("invisible group-aria-checked:visible"),
                       attribute.aria_hidden(True),
                     ]),
@@ -1998,7 +2014,7 @@ fn section_dropdown_menu() -> Element(msg) {
                   ],
                 ),
                 dropdown_menu.checkbox_item(False, [attribute.class("group")], [
-                  icon.check([
+                  icon("check", [
                     attribute.class("invisible group-aria-checked:visible"),
                     attribute.aria_hidden(True),
                   ]),
@@ -2007,7 +2023,7 @@ fn section_dropdown_menu() -> Element(msg) {
               ]),
               dropdown_menu.separator(),
               dropdown_menu.item([], [
-                icon.icon("log-out", []),
+                icon("log-out", []),
                 html.text("Logout"),
               ]),
             ],
@@ -2123,7 +2139,7 @@ fn section_dropdown_menu() -> Element(msg) {
                   ),
                 ],
               ),
-              icon.icon("chevrons-up-down", [
+              icon("chevrons-up-down", [
                 attribute.class("text-muted-foreground ml-auto"),
               ]),
             ],
@@ -2135,22 +2151,22 @@ fn section_dropdown_menu() -> Element(msg) {
             [],
             [
               dropdown_menu.item([], [
-                icon.star([]),
+                icon("star", []),
                 html.text("Upgrade to Pro"),
               ]),
               dropdown_menu.separator(),
-              dropdown_menu.item([], [icon.user([]), html.text("Account")]),
+              dropdown_menu.item([], [icon("user", []), html.text("Account")]),
               dropdown_menu.item([], [
-                icon.icon("credit-card", []),
+                icon("credit-card", []),
                 html.text("Billing"),
               ]),
               dropdown_menu.item([], [
-                icon.icon("bell", []),
+                icon("bell", []),
                 html.text("Notifications"),
               ]),
               dropdown_menu.separator(),
               dropdown_menu.item([], [
-                icon.icon("log-out", []),
+                icon("log-out", []),
                 html.text("Signout"),
               ]),
             ],
@@ -2564,7 +2580,7 @@ fn section_pagination() -> Element(msg) {
             html.ul([attribute.class("flex flex-row items-center gap-1")], [
               html.li([], [
                 html.a([attribute.href("#"), attribute.class("btn-ghost")], [
-                  icon.icon("chevron-left", []),
+                  icon("chevron-left", []),
                   html.text(" Previous"),
                 ]),
               ]),
@@ -2596,14 +2612,14 @@ fn section_pagination() -> Element(msg) {
                 html.a(
                   [attribute.href("#"), attribute.class("btn-icon-ghost")],
                   [
-                    icon.icon("ellipsis", []),
+                    icon("ellipsis", []),
                   ],
                 ),
               ]),
               html.li([], [
                 html.a([attribute.href("#"), attribute.class("btn-ghost")], [
                   html.text("Next "),
-                  icon.icon("chevron-right", []),
+                  icon("chevron-right", []),
                 ]),
               ]),
             ]),
@@ -3011,7 +3027,7 @@ fn section_select() -> Element(msg) {
                     ],
                     [
                       html.span([attribute.class("flex items-center gap-2")], [
-                        icon.icon("chart-bar", [
+                        icon("chart-bar", [
                           attribute.class("text-muted-foreground"),
                         ]),
                         html.text("Bar"),
@@ -3026,7 +3042,7 @@ fn section_select() -> Element(msg) {
                     ],
                     [
                       html.span([attribute.class("flex items-center gap-2")], [
-                        icon.icon("chart-line", [
+                        icon("chart-line", [
                           attribute.class("text-muted-foreground"),
                         ]),
                         html.text("Line"),
@@ -3041,7 +3057,7 @@ fn section_select() -> Element(msg) {
                     ],
                     [
                       html.span([attribute.class("flex items-center gap-2")], [
-                        icon.icon("chart-pie", [
+                        icon("chart-pie", [
                           attribute.class("text-muted-foreground"),
                         ]),
                         html.text("Pie"),
@@ -3099,7 +3115,7 @@ fn section_sidebar() -> Element(msg) {
                     ),
                   ],
                   [
-                    icon.icon("panel-left-close", [attribute.class("size-4")]),
+                    icon("panel-left-close", [attribute.class("size-4")]),
                     html.text("Sidebar collapsed"),
                   ],
                 ),
@@ -3108,7 +3124,7 @@ fn section_sidebar() -> Element(msg) {
                     button.small(),
                     attribute("onclick", sidebar.open_script(sidebar_id)),
                   ],
-                  [icon.chevron_right([]), html.text("Expand")],
+                  [icon("chevron-right", []), html.text("Expand")],
                 ),
               ],
             ),
@@ -3140,7 +3156,7 @@ fn section_sidebar() -> Element(msg) {
                               ),
                             ],
                             [
-                              icon.icon("layout-grid", [
+                              icon("layout-grid", [
                                 attribute.class("size-4"),
                               ]),
                             ],
@@ -3170,32 +3186,32 @@ fn section_sidebar() -> Element(msg) {
                           attribute("onclick", sidebar.close_script(sidebar_id)),
                           attribute.data("tooltip", "Collapse sidebar"),
                         ],
-                        [icon.chevron_left([attribute.class("size-4")])],
+                        [icon("chevron-left", [attribute.class("size-4")])],
                       ),
                     ]),
                   ]),
                   sidebar.section([], [
                     sidebar.group("Getting started", [
                       sidebar.link("#", True, [], [
-                        icon.home([attribute.class("size-4")]),
+                        icon("home", [attribute.class("size-4")]),
                         html.span([], [html.text("Home")]),
                       ]),
                       sidebar.link("#", False, [], [
-                        icon.icon("square-terminal", [attribute.class("size-4")]),
+                        icon("square-terminal", [attribute.class("size-4")]),
                         html.span([], [html.text("Playground")]),
                       ]),
                       sidebar.link("#", False, [], [
-                        icon.icon("settings", [attribute.class("size-4")]),
+                        icon("settings", [attribute.class("size-4")]),
                         html.span([], [html.text("Settings")]),
                       ]),
                     ]),
                     sidebar.group("Resources", [
                       sidebar.link("#", False, [], [
-                        icon.github([attribute.class("size-4")]),
+                        icon("github", [attribute.class("size-4")]),
                         html.span([], [html.text("GitHub")]),
                       ]),
                       sidebar.link("#", False, [], [
-                        icon.icon("book-open", [attribute.class("size-4")]),
+                        icon("book-open", [attribute.class("size-4")]),
                         html.span([], [html.text("Docs")]),
                       ]),
                     ]),
@@ -3225,7 +3241,7 @@ fn section_sidebar() -> Element(msg) {
                           ),
                         ],
                       ),
-                      button.icon_outline([], [icon.more_vertical([])]),
+                      button.icon_outline([], [icon("more-vertical", [])]),
                     ]),
                   ]),
                 ]),
@@ -3591,14 +3607,14 @@ fn section_tabs() -> Element(msg) {
             "demo-tabs-with-icons-panel-1",
             True,
             [],
-            [icon.icon("app-window", []), html.text("Preview")],
+            [icon("app-window", []), html.text("Preview")],
           ),
           tabs.tab_trigger(
             "demo-tabs-with-icons-tab-2",
             "demo-tabs-with-icons-panel-2",
             False,
             [],
-            [icon.icon("code", []), html.text("Code")],
+            [icon("code", []), html.text("Code")],
           ),
         ]),
         tabs.tab_panel(

@@ -20,7 +20,7 @@ GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_oat/>
 ### Step 1: Installation
 
 ```sh
-gleam add glaze_oat@2
+gleam add glaze_oat
 ```
 
 ### Step 2: Register `<style>` and `<script>` tags

@@ -1,5 +1,5 @@
 name = "glaze_basecoat"
-version = "2.1.0"
+version = "3.0.0"
 description = "🍩 Lustre Bindings to Basecoat UI Components"
 
 licences = ["Apache-2.0"]
@@ -17,7 +17,11 @@ internal_modules = [
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"
 lustre = ">= 5.6.0 and < 6.0.0"
+gleam_json = ">= 3.1.0 and < 4.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"
 simplifile = ">= 2.3.2 and < 3.0.0"
+
+[javascript]
+typescript_declarations = true

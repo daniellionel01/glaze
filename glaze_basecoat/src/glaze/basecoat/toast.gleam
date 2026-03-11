@@ -2,8 +2,6 @@
 ////
 //// Programmatic toast notifications.
 ////
-//// **Note**: This component requires JavaScript from Basecoat.
-////
 //// ## Anatomy
 ////
 //// - Render a container once with [`toaster`](#toaster)
@@ -34,13 +32,63 @@
 ////
 //// - MDN ARIA `status` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role>
 //// - MDN `CustomEvent`: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent>
+////
 
+import gleam/int
+import gleam/json
 import gleam/option.{type Option, None, Some}
+import gleam/string
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 
-/// Toast category (visual style).
+pub type Alignment {
+  AlignStart
+  AlignCenter
+  AlignEnd
+}
+
+fn alignment_to_string(align: Alignment) {
+  case align {
+    AlignStart -> "start"
+    AlignCenter -> "center"
+    AlignEnd -> "end"
+  }
+}
+
+pub type Action {
+  Action(label: String, onclick: Option(String))
+}
+
+fn action_to_json(action: Action) -> json.Json {
+  let Action(label:, onclick:) = action
+  json.object([
+    #("label", json.string(label)),
+    #("onclick", case onclick {
+      None -> json.null()
+      Some(value) -> json.string(value)
+    }),
+  ])
+}
+
+pub type Cancel {
+  Cancel(label: Option(String), onclick: Option(String))
+}
+
+fn cancel_to_json(cancel: Cancel) -> json.Json {
+  let Cancel(label:, onclick:) = cancel
+  json.object([
+    #("label", case label {
+      None -> json.null()
+      Some(value) -> json.string(value)
+    }),
+    #("onclick", case onclick {
+      None -> json.null()
+      Some(value) -> json.string(value)
+    }),
+  ])
+}
+
 pub type Category {
   Success
   Info
@@ -48,7 +96,15 @@ pub type Category {
   Error
 }
 
-/// Configuration used by [`show`](#show).
+fn category_to_json(category: Category) -> json.Json {
+  case category {
+    Success -> json.string("success")
+    Info -> json.string("info")
+    Warning -> json.string("warning")
+    Error -> json.string("error")
+  }
+}
+
 pub type Config {
   Config(
     category: Category,
@@ -59,35 +115,59 @@ pub type Config {
   )
 }
 
-/// Optional toast action button.
-pub type Action {
-  Action(label: String, onclick: Option(String))
+pub fn config_to_json(config: Config) -> json.Json {
+  let Config(category:, title:, description:, action:, cancel:) = config
+  json.object([
+    #("category", category_to_json(category)),
+    #("title", json.string(title)),
+    #("description", json.string(description)),
+    #("action", case action {
+      None -> json.null()
+      Some(value) -> action_to_json(value)
+    }),
+    #("cancel", case cancel {
+      None -> json.null()
+      Some(value) -> cancel_to_json(value)
+    }),
+  ])
 }
 
-/// Optional toast cancel button.
-pub type Cancel {
-  Cancel(label: Option(String), onclick: Option(String))
-}
-
-pub fn toaster(attrs: List(Attribute(msg))) -> Element(msg) {
+/// Add the toaster container required for toast notifications.
+///
+/// Place this at the end of your body element.
+///
+/// ### Example
+///
+/// ```gleam
+/// import glaze/basecoat/toast
+///
+/// html.body([], [
+///   // Your content...
+///   toast.container(),
+/// ])
+/// ```
+///
+pub fn container(attrs: List(Attribute(msg))) -> Element(msg) {
   html.div([attribute.id("toaster"), attribute.class("toaster"), ..attrs], [])
 }
 
-pub fn toaster_aligned(
-  align: String,
+pub fn container_aligned(
+  align: Alignment,
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
   html.div(
     [
       attribute.id("toaster"),
       attribute.class("toaster"),
-      attribute.data("align", align),
+      attribute.data("align", alignment_to_string(align)),
       ..attrs
     ],
     [],
   )
 }
 
+/// An element to create a custom toast
+///
 pub fn toast(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -173,67 +253,52 @@ pub fn cancel_button(label: String, attrs: List(Attribute(msg))) -> Element(msg)
   )
 }
 
-fn category_to_string(cat: Category) -> String {
-  case cat {
-    Success -> "success"
-    Info -> "info"
-    Warning -> "warning"
-    Error -> "error"
-  }
+/// Trigger a toast notification.
+///
+@external(javascript, "./toast_ffi.mjs", "dispatch")
+pub fn dispatch(_config: Config) -> Nil {
+  Nil
 }
 
-fn action_to_json(action: Action) -> String {
-  let onclick_json = case action.onclick {
-    Some(onclick) -> ", \"onclick\": \"" <> onclick <> "\""
-    None -> ""
-  }
-  "{\"label\": \"" <> action.label <> "\"" <> onclick_json <> "}"
-}
+/// This function produces a string that can be evaluated as javascript.
+///
+/// ### Example
+///
+/// ```gleam
+/// fn login_form() {
+///   let submit_toast_js =
+///     toast.serialize_dispatch(toast.Config(
+///       category: toast.Info,
+///       title: "Have fun!",
+///       description: "",
+///       action: None,
+///       cancel: None,
+///     ))
+///
+///   form.form([attribute.id("login-form"), attribute.class("space-y-2")], [
+///     input.email([attribute.placeholder("Email")]),
+///     input.password([attribute.placeholder("Password")]),
+///
+///     button.button([attribute.type_("submit")], [html.text("submit")]),
+///
+///     html.script([], "
+///       let form = document.querySelector('form#login-form');
+///       if (form !== null) {
+///          form.addEventListener('submit', (event) => {
+///            event.preventDefault();\n" <> submit_toast_js <> "\n
+///          });
+///       }
+///     "),
+///   ])
+/// }
+/// ```
+///
+pub fn serialize_dispatch(config: Config) -> String {
+  let payload =
+    config_to_json(config)
+    |> json.to_string
 
-fn cancel_to_json(cancel: Cancel) -> String {
-  let label_json = case cancel.label {
-    Some(label) -> "\"label\": \"" <> label <> "\""
-    None -> ""
-  }
-  let onclick_json = case cancel.onclick {
-    Some(onclick) -> ", \"onclick\": \"" <> onclick <> "\""
-    None -> ""
-  }
-  "{" <> label_json <> onclick_json <> "}"
-}
-
-pub fn show(config: Config) -> String {
-  let category_str = category_to_string(config.category)
-  let action_json = case config.action {
-    Some(action) -> ", \"action\": " <> action_to_json(action)
-    None -> ""
-  }
-  let cancel_json = case config.cancel {
-    Some(cancel) -> ", \"cancel\": " <> cancel_to_json(cancel)
-    None -> ""
-  }
-  "document.dispatchEvent(new CustomEvent('basecoat:toast', { detail: { config: { category: '"
-  <> category_str
-  <> "', title: '"
-  <> config.title
-  <> "', description: '"
-  <> config.description
-  <> "'"
-  <> action_json
-  <> cancel_json
+  "document.dispatchEvent(new CustomEvent('basecoat:toast', { detail: { config: { ..."
+  <> payload
   <> " } } }));"
 }
-
-pub fn show_simple(category: Category, title: String) -> String {
-  show(Config(category, title, "", None, None))
-}
-
-pub fn success_toast(title: String, description: String) -> String {
-  show(Config(Success, title, description, None, None))
-}
-
-pub fn error_toast(title: String, description: String) -> String {
-  show(Config(Error, title, description, None, None))
-}
-
-import gleam/int

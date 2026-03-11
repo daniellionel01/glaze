@@ -108,13 +108,14 @@ pub fn default_options(variant: Variant) {
   Options(variant, TopRight, 4000)
 }
 
-@target(javascript)
 /// Trigger a toast notification.
 ///
 /// Available on the JavaScript target.
 ///
 @external(javascript, "./toast_ffi.mjs", "toast")
-pub fn toast(title: String, description: String, options: Options) -> Nil
+pub fn toast(_title: String, _description: String, _options: Options) {
+  Nil
+}
 
 /// Build a JavaScript expression string that triggers a toast.
 ///
