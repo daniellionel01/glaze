@@ -260,6 +260,39 @@ pub fn dispatch(_config: Config) -> Nil {
   Nil
 }
 
+/// This function produces a string that can be evaluated as javascript.
+///
+/// ### Example
+///
+/// ```gleam
+/// fn login_form() {
+///   let submit_toast_js =
+///     toast.serialize_dispatch(toast.Config(
+///       category: toast.Info,
+///       title: "Have fun!",
+///       description: "",
+///       action: None,
+///       cancel: None,
+///     ))
+///
+///   form.form([attribute.id("login-form"), attribute.class("space-y-2")], [
+///     input.email([attribute.placeholder("Email")]),
+///     input.password([attribute.placeholder("Password")]),
+///
+///     button.button([attribute.type_("submit")], [html.text("submit")]),
+///
+///     html.script([], "
+///       let form = document.querySelector('form#login-form');
+///       if (form !== null) {
+///          form.addEventListener('submit', (event) => {
+///            event.preventDefault();\n" <> submit_toast_js <> "\n
+///          });
+///       }
+///     "),
+///   ])
+/// }
+/// ```
+///
 pub fn serialize_dispatch(config: Config) -> String {
   let payload =
     config_to_json(config)

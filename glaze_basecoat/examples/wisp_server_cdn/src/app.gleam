@@ -1,6 +1,8 @@
 import glaze/basecoat
 import glaze/basecoat/button
 import glaze/basecoat/card
+import glaze/basecoat/form
+import glaze/basecoat/input
 import glaze/basecoat/theme
 import glaze/basecoat/toast
 import gleam/erlang/process
@@ -11,6 +13,33 @@ import lustre/element/html
 import mist
 import wisp.{type Request, type Response}
 import wisp/wisp_mist
+
+fn login_form() {
+  let submit_toast_js =
+    toast.serialize_dispatch(toast.Config(
+      category: toast.Info,
+      title: "Have fun!",
+      description: "",
+      action: None,
+      cancel: None,
+    ))
+
+  form.form([attribute.id("login-form"), attribute.class("space-y-2")], [
+    input.email([attribute.placeholder("Email")]),
+    input.password([attribute.placeholder("Password")]),
+
+    button.button([attribute.type_("submit")], [html.text("submit")]),
+
+    html.script([], "
+      let form = document.querySelector('form#login-form');
+      if (form !== null) {
+         form.addEventListener('submit', (event) => {
+           event.preventDefault();\n" <> submit_toast_js <> "\n
+         });
+      }
+    "),
+  ])
+}
 
 pub fn page() {
   html.html([attribute("lang", "en")], [
@@ -36,30 +65,8 @@ pub fn page() {
             card.title([], [html.text("Welcome")]),
             card.description([], [html.text("Hello!")]),
           ]),
-          card.content([], []),
-          card.footer([], [
-            button.button(
-              [
-                // "onclick" is a bad practice for real applications.
-                // Instead, use custom elements or more explicit / isolated
-                // javascript instead!
-                //
-                attribute.attribute(
-                  "onclick",
-                  toast.serialize_dispatch(toast.Config(
-                    category: toast.Success,
-                    title: "Lorem Ipsum!",
-                    description: "This is an alert",
-                    action: None,
-                    cancel: None,
-                  )),
-                ),
-              ],
-              [
-                html.text("Cheers!"),
-              ],
-            ),
-          ]),
+          card.content([], [login_form()]),
+          card.footer([], []),
         ]),
       ]),
       toast.container([]),
