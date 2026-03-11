@@ -142,7 +142,7 @@ pub fn page() {
           ),
         ]),
       ]),
-      toast.toaster([]),
+      toast.container([]),
     ]),
   ])
 }

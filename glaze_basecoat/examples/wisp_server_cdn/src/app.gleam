@@ -2,7 +2,9 @@ import glaze/basecoat
 import glaze/basecoat/button
 import glaze/basecoat/card
 import glaze/basecoat/theme
+import glaze/basecoat/toast
 import gleam/erlang/process
+import gleam/option.{None}
 import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
@@ -34,11 +36,33 @@ pub fn page() {
             card.title([], [html.text("Welcome")]),
             card.description([], [html.text("Hello!")]),
           ]),
-          card.content([], [
-            button.button([], [html.text("Get Started")]),
+          card.content([], []),
+          card.footer([], [
+            button.button(
+              [
+                // "onclick" is a bad practice for real applications.
+                // Instead, use custom elements or more explicit / isolated
+                // javascript instead!
+                //
+                attribute.attribute(
+                  "onclick",
+                  toast.serialize_dispatch(toast.Config(
+                    category: toast.Success,
+                    title: "Lorem Ipsum!",
+                    description: "This is an alert",
+                    action: None,
+                    cancel: None,
+                  )),
+                ),
+              ],
+              [
+                html.text("Cheers!"),
+              ],
+            ),
           ]),
         ]),
       ]),
+      toast.container([]),
     ]),
   ])
 }
