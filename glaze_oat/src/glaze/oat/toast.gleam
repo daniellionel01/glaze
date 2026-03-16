@@ -112,7 +112,7 @@ pub fn default_options(variant: Variant) {
 ///
 /// Available on the JavaScript target.
 ///
-@external(javascript, "./toast_ffi.mjs", "toast")
+@external(javascript, "./toast.ffi.mjs", "toast")
 pub fn toast(_title: String, _description: String, _options: Options) {
   Nil
 }

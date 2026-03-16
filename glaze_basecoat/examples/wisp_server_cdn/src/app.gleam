@@ -6,23 +6,41 @@ import glaze/basecoat/input
 import glaze/basecoat/theme
 import glaze/basecoat/toast
 import gleam/erlang/process
+import gleam/json
 import gleam/option.{None}
 import lustre/attribute.{attribute}
 import lustre/element
 import lustre/element/html
+import lustre/element/svg
 import mist
 import wisp.{type Request, type Response}
 import wisp/wisp_mist
 
+pub fn custom_toast() {
+  toast.toast([toast.success()], [
+    svg.svg([], [
+      // an icon...
+    ]),
+    toast.content([], [
+      toast.title([], [html.text("Lorem Ipsum!")]),
+      toast.description([], [
+        html.text("Animi et eos quisquam debitis qui illum."),
+      ]),
+    ]),
+    toast.footer([], [toast.dismiss_button("go away", [])]),
+  ])
+}
+
 fn login_form() {
-  let submit_toast_js =
-    toast.serialize_dispatch(toast.Config(
+  let toast_payload =
+    toast.config_to_json(toast.Config(
       category: toast.Info,
       title: "Have fun!",
       description: "",
       action: None,
       cancel: None,
     ))
+    |> json.to_string
 
   form.form([attribute.id("login-form"), attribute.class("space-y-2")], [
     input.email([attribute.placeholder("Email")]),
@@ -34,7 +52,8 @@ fn login_form() {
       let form = document.querySelector('form#login-form');
       if (form !== null) {
          form.addEventListener('submit', (event) => {
-           event.preventDefault();\n" <> submit_toast_js <> "\n
+           event.preventDefault();
+           document.dispatchEvent(new CustomEvent('" <> toast.event_name <> "', { detail: { config: " <> toast_payload <> " } }));\n
          });
       }
     "),

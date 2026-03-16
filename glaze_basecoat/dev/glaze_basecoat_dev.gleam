@@ -12,6 +12,7 @@
 ////
 
 import gleam/int
+import gleam/json
 import gleam/list
 import gleam/option.{None}
 
@@ -3771,6 +3772,18 @@ fn section_textarea() -> Element(msg) {
   )
 }
 
+fn dispatch_toast(config: toast.Config) {
+  let payload =
+    toast.config_to_json(config)
+    |> json.to_string
+
+  "document.dispatchEvent(new CustomEvent('"
+  <> toast.event_name
+  <> "', { detail: { config: "
+  <> payload
+  <> " } }));"
+}
+
 fn section_toast() -> Element(msg) {
   sink_section_simple(
     "toast",
@@ -3779,14 +3792,31 @@ fn section_toast() -> Element(msg) {
     [
       html.div([attribute.class("flex flex-wrap items-center gap-2")], [
         button.outline(
-          [attribute("onclick", toast.success_toast("Success", "Saved!"))],
+          [
+            attribute(
+              "onclick",
+              dispatch_toast(toast.Config(
+                category: toast.Success,
+                title: "Saved!",
+                description: "",
+                action: None,
+                cancel: None,
+              )),
+            ),
+          ],
           [html.text("Success")],
         ),
         button.outline(
           [
             attribute(
               "onclick",
-              toast.error_toast("Error", "Something went wrong."),
+              dispatch_toast(toast.Config(
+                category: toast.Error,
+                title: "Error",
+                description: "Something went wrong.",
+                action: None,
+                cancel: None,
+              )),
             ),
           ],
           [html.text("Error")],
@@ -3795,7 +3825,7 @@ fn section_toast() -> Element(msg) {
           [
             attribute(
               "onclick",
-              toast.show(toast.Config(toast.Info, "Info", "FYI", None, None)),
+              dispatch_toast(toast.Config(toast.Info, "Info", "FYI", None, None)),
             ),
           ],
           [html.text("Info")],
@@ -3804,7 +3834,7 @@ fn section_toast() -> Element(msg) {
           [
             attribute(
               "onclick",
-              toast.show(toast.Config(
+              dispatch_toast(toast.Config(
                 toast.Warning,
                 "Warning",
                 "Be careful",

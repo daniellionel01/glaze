@@ -37,10 +37,17 @@
 import gleam/int
 import gleam/json
 import gleam/option.{type Option, None, Some}
-import gleam/string
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
+
+/// Name of the `CustomEvent` dispatched in the Browser environment.
+///
+/// ```js
+/// document.dispatchEvent(new CustomEvent('basecoat:toast', /* payload */));
+/// ```
+///
+pub const event_name = "basecoat:toast"
 
 pub type Alignment {
   AlignStart
@@ -143,7 +150,7 @@ pub fn config_to_json(config: Config) -> json.Json {
 ///
 /// html.body([], [
 ///   // Your content...
-///   toast.container(),
+///   toast.container([]),
 /// ])
 /// ```
 ///
@@ -151,6 +158,21 @@ pub fn container(attrs: List(Attribute(msg))) -> Element(msg) {
   html.div([attribute.id("toaster"), attribute.class("toaster"), ..attrs], [])
 }
 
+/// Add the toaster container required for toast notifications.
+///
+/// Place this at the end of your body element.
+///
+/// ### Example
+///
+/// ```gleam
+/// import glaze/basecoat/toast
+///
+/// html.body([], [
+///   // Your content...
+///   toast.container_aligned(toast.AlignStart, []),
+/// ])
+/// ```
+///
 pub fn container_aligned(
   align: Alignment,
   attrs: List(Attribute(msg)),
@@ -166,7 +188,30 @@ pub fn container_aligned(
   )
 }
 
-/// An element to create a custom toast
+/// An element to create a custom toast.
+///
+/// The structure looks like this:
+///
+/// ```gleam
+/// import glaze/basecoat/toast
+/// import lustre/element/html
+/// import lustre/element/svg
+///
+/// fn custom_toast() {
+///   toast.toast([toast.success()], [
+///     svg.svg([], [
+///       // an icon...
+///     ]),
+///     toast.content([], [
+///       toast.title([], [html.text("Lorem Ipsum!")]),
+///       toast.description([], [html.text("Animi et eos quisquam debitis qui illum.")])
+///     ]),
+///     toast.footer([], [
+///       toast.dismiss_button("go away", [])
+///     ])
+///   ])
+/// }
+/// ```
 ///
 pub fn toast(
   attrs: List(Attribute(msg)),
@@ -234,7 +279,10 @@ pub fn footer(
   html.footer(attrs, children)
 }
 
-pub fn action_button(label: String, attrs: List(Attribute(msg))) -> Element(msg) {
+pub fn dismiss_button(
+  label: String,
+  attrs: List(Attribute(msg)),
+) -> Element(msg) {
   html.button(
     [
       attribute.type_("button"),
@@ -246,59 +294,9 @@ pub fn action_button(label: String, attrs: List(Attribute(msg))) -> Element(msg)
   )
 }
 
-pub fn cancel_button(label: String, attrs: List(Attribute(msg))) -> Element(msg) {
-  html.button(
-    [attribute.type_("button"), attribute.class("btn-outline"), ..attrs],
-    [html.text(label)],
-  )
-}
-
 /// Trigger a toast notification.
 ///
-@external(javascript, "./toast_ffi.mjs", "dispatch")
+@external(javascript, "./toast.ffi.mjs", "dispatch")
 pub fn dispatch(_config: Config) -> Nil {
   Nil
-}
-
-/// This function produces a string that can be evaluated as javascript.
-///
-/// ### Example
-///
-/// ```gleam
-/// fn login_form() {
-///   let submit_toast_js =
-///     toast.serialize_dispatch(toast.Config(
-///       category: toast.Info,
-///       title: "Have fun!",
-///       description: "",
-///       action: None,
-///       cancel: None,
-///     ))
-///
-///   form.form([attribute.id("login-form"), attribute.class("space-y-2")], [
-///     input.email([attribute.placeholder("Email")]),
-///     input.password([attribute.placeholder("Password")]),
-///
-///     button.button([attribute.type_("submit")], [html.text("submit")]),
-///
-///     html.script([], "
-///       let form = document.querySelector('form#login-form');
-///       if (form !== null) {
-///          form.addEventListener('submit', (event) => {
-///            event.preventDefault();\n" <> submit_toast_js <> "\n
-///          });
-///       }
-///     "),
-///   ])
-/// }
-/// ```
-///
-pub fn serialize_dispatch(config: Config) -> String {
-  let payload =
-    config_to_json(config)
-    |> json.to_string
-
-  "document.dispatchEvent(new CustomEvent('basecoat:toast', { detail: { config: { ..."
-  <> payload
-  <> " } } }));"
 }
