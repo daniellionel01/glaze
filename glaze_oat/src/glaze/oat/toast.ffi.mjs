@@ -12,7 +12,7 @@ import {
  * @param {string} description - Additional descriptive text shown below the title.
  * @param {Options} options
  */
-export function toast(title, description, options) {
+export function dispatch(title, description, options) {
   let options_args = {
     variant: variant_to_string(Options$Options$variant(options)),
     placement: placement_to_string(Options$Options$placement(options)),
