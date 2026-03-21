@@ -12,3 +12,7 @@ glaze_oat = { path = "../.." }
 gleeunit = ">= 1.0.0 and < 2.0.0"
 
 lustre_dev_tools = ">= 2.3.4 and < 3.0.0"
+
+[tools.lustre.html]
+stylesheets = [{ href = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.css" }]
+scripts = [{ src = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.js" }]
