@@ -33,6 +33,7 @@ import glaze/oat/tabs
 import glaze/oat/theme
 import glaze/oat/toast
 import glaze/oat/tooltip
+import gleam/json
 import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element
@@ -52,6 +53,20 @@ pub fn main() {
     simplifile.write(contents: html, to: "../docs/glaze_oat/index.html")
 }
 
+pub fn toast_eval_string(
+  title: String,
+  description: String,
+  options: toast.Options,
+) {
+  let title = "`" <> title <> "`"
+  let description = "`" <> description <> "`"
+  let options =
+    toast.options_to_json(options)
+    |> json.to_string
+
+  "ot.toast(" <> title <> ", " <> description <> ", " <> options <> ");"
+}
+
 /// Demo page ported from https://oat.ink/demo/
 /// Sources:
 /// - https://github.com/knadh/oat/blob/master/docs/static/demo.css
@@ -59,7 +74,7 @@ pub fn main() {
 ///
 pub fn page() {
   let settings_saved_toast_javascript =
-    toast.toast_eval_string(
+    toast_eval_string(
       "Settings saved!",
       "Success",
       toast.default_options(toast.Success),
@@ -1020,7 +1035,7 @@ pub fn page() {
                         button.small(),
                         attribute(
                           "onclick",
-                          toast.toast_eval_string(
+                          toast_eval_string(
                             "Deployment completed.",
                             "Success",
                             toast.default_options(toast.Success),
@@ -1035,7 +1050,7 @@ pub fn page() {
                         button.outline(),
                         attribute(
                           "onclick",
-                          toast.toast_eval_string(
+                          toast_eval_string(
                             "Disk usage at 89%",
                             "Warning",
                             toast.Options(
@@ -1053,7 +1068,7 @@ pub fn page() {
                         button.danger(),
                         attribute(
                           "onclick",
-                          toast.toast_eval_string(
+                          toast_eval_string(
                             "Connection lost.",
                             "Error",
                             toast.Options(
@@ -1071,7 +1086,7 @@ pub fn page() {
                         button.secondary(),
                         attribute(
                           "onclick",
-                          toast.toast_eval_string(
+                          toast_eval_string(
                             "Build #1847 started.",
                             "Info",
                             toast.default_options(toast.Info),

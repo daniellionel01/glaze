@@ -54,12 +54,12 @@ pub type Placement {
 
 pub fn placement_to_json(placement: Placement) -> json.Json {
   case placement {
-    TopRight -> json.string("top_right")
-    TopLeft -> json.string("top_left")
-    TopCenter -> json.string("top_center")
-    BottomLeft -> json.string("bottom_left")
-    BottomRight -> json.string("bottom_right")
-    BottomCenter -> json.string("bottom_center")
+    TopRight -> json.string("top-right")
+    TopLeft -> json.string("top-left")
+    TopCenter -> json.string("top-center")
+    BottomLeft -> json.string("bottom-left")
+    BottomRight -> json.string("bottom-right")
+    BottomCenter -> json.string("bottom-center")
   }
 }
 
@@ -74,7 +74,7 @@ pub fn options_to_json(options: Options) -> json.Json {
   json.object([
     #("variant", variant_to_json(variant)),
     #("placement", placement_to_json(placement)),
-    #("duration_ms", json.int(duration_ms)),
+    #("duration", json.int(duration_ms)),
   ])
 }
 
