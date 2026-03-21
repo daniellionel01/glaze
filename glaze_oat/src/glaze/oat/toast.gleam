@@ -20,35 +20,8 @@
 //// toast.toast("Saved", "Your changes were stored.", options)
 //// ```
 ////
-//// ```gleam
-//// import glaze/oat/toast
-//// import lustre/attribute
-//// import lustre/element/html
-////
-//// let options =
-////   toast.default_options(toast.Info)
-////   |> toast.with_duration_ms(2500)
-////
-//// html.button([
-////   attribute.type_("button"),
-////   attribute(
-////     "onclick",
-////     toast.toast_eval_string(
-////       "Build complete",
-////       "All checks passed.",
-////       options,
-////     ),
-////   ),
-//// ], [html.text("Show toast")])
-//// ```
-////
-//// ## Notes
-////
-//// - [`toast`](#toast) uses JavaScript FFI and is only available on the JS target.
-//// - [`toast_eval_string`](#toast_eval_string) returns a script string for
-////   integration contexts where inline evaluation is needed.
 
-import gleam/int
+import gleam/json
 
 /// Toast visual style.
 ///
@@ -59,14 +32,12 @@ pub type Variant {
   Warning
 }
 
-/// Convert a toast variant to the string expected by Oat runtime.
-///
-pub fn variant_to_string(variant: Variant) -> String {
+pub fn variant_to_json(variant: Variant) -> json.Json {
   case variant {
-    Info -> "info"
-    Success -> "success"
-    Danger -> "danger"
-    Warning -> "warning"
+    Info -> json.string("info")
+    Success -> json.string("success")
+    Danger -> json.string("danger")
+    Warning -> json.string("warning")
   }
 }
 
@@ -81,16 +52,14 @@ pub type Placement {
   BottomCenter
 }
 
-/// Convert a placement to the string expected by Oat runtime.
-///
-pub fn placement_to_string(placement: Placement) -> String {
+pub fn placement_to_json(placement: Placement) -> json.Json {
   case placement {
-    TopRight -> "top-right"
-    TopLeft -> "top-left"
-    TopCenter -> "top-center"
-    BottomLeft -> "bottom-left"
-    BottomRight -> "bottom-right"
-    BottomCenter -> "bottom-center"
+    TopRight -> json.string("top_right")
+    TopLeft -> json.string("top_left")
+    TopCenter -> json.string("top_center")
+    BottomLeft -> json.string("bottom_left")
+    BottomRight -> json.string("bottom_right")
+    BottomCenter -> json.string("bottom_center")
   }
 }
 
@@ -98,6 +67,15 @@ pub fn placement_to_string(placement: Placement) -> String {
 ///
 pub type Options {
   Options(variant: Variant, placement: Placement, duration_ms: Int)
+}
+
+pub fn options_to_json(options: Options) -> json.Json {
+  let Options(variant:, placement:, duration_ms:) = options
+  json.object([
+    #("variant", variant_to_json(variant)),
+    #("placement", placement_to_json(placement)),
+    #("duration_ms", json.int(duration_ms)),
+  ])
 }
 
 /// Create default options for a given variant.
@@ -108,34 +86,19 @@ pub fn default_options(variant: Variant) {
   Options(variant, TopRight, 4000)
 }
 
+pub fn with_placement(options: Options, placement: Placement) {
+  Options(..options, placement:)
+}
+
+pub fn with_duration(options: Options, duration_ms: Int) {
+  Options(..options, duration_ms:)
+}
+
 /// Trigger a toast notification.
 ///
-/// Available on the JavaScript target.
+/// Available in the Browser.
 ///
 @external(javascript, "./toast.ffi.mjs", "toast")
 pub fn toast(_title: String, _description: String, _options: Options) {
   Nil
-}
-
-/// Build a JavaScript expression string that triggers a toast.
-///
-/// Useful when integrating with APIs that expect script strings.
-///
-pub fn toast_eval_string(title: String, description: String, options: Options) {
-  let Options(variant:, placement:, duration_ms:) = options
-
-  let variant = variant_to_string(variant)
-  let placement = placement_to_string(placement)
-  let duration = int.to_string(duration_ms)
-
-  let options =
-    "{variant: \""
-    <> variant
-    <> "\", placement: \""
-    <> placement
-    <> "\", duration: "
-    <> duration
-    <> "}"
-
-  "ot.toast(`" <> title <> "`, `" <> description <> "`, " <> options <> ");"
 }
