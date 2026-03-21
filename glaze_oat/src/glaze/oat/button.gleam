@@ -120,15 +120,15 @@ pub fn instance(
 }
 
 pub fn primary() -> Attribute(msg) {
-  attribute.data("data-variant", "primary")
+  attribute.data("variant", "primary")
 }
 
 pub fn secondary() -> Attribute(msg) {
-  attribute.data("data-variant", "secondary")
+  attribute.data("variant", "secondary")
 }
 
 pub fn danger() -> Attribute(msg) {
-  attribute.data("data-variant", "danger")
+  attribute.data("variant", "danger")
 }
 
 pub fn outline() -> Attribute(msg) {

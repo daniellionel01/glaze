@@ -52,8 +52,8 @@ pub fn busy() -> Attribute(msg) {
 ///
 pub fn size(size: Size) -> Attribute(msg) {
   case size {
-    Small -> attribute.data("data-spinner", "small")
-    Large -> attribute.data("data-spinner", "large")
+    Small -> attribute.data("spinner", "small")
+    Large -> attribute.data("spinner", "large")
   }
 }
 
@@ -67,7 +67,7 @@ pub fn overlay() -> Attribute(msg) {
 ///
 pub fn size_overlay(size: Size) -> Attribute(msg) {
   case size {
-    Small -> attribute.data("data-spinner", "small overlay")
-    Large -> attribute.data("data-spinner", "large overlay")
+    Small -> attribute.data("spinner", "small overlay")
+    Large -> attribute.data("spinner", "large overlay")
   }
 }
