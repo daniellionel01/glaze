@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.0.0] - 2026-03-21
 
 - The getting started instructions in `README.md` have been greatly improved.
-- The repo gains example applications for a Lustre SPA and wisp server.
+- The repo gains example applications for a Lustre SPA and Wisp server.
 
 - In `glaze/basecoat`:
   - `register_js` has been renamed to `cdn_script`.

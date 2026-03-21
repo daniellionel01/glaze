@@ -1,6 +1,6 @@
 import {
-  variant_to_string,
-  placement_to_string,
+  variant_to_json,
+  placement_to_json,
   Options,
   Options$Options$duration_ms,
   Options$Options$placement,
@@ -14,8 +14,8 @@ import {
  */
 export function dispatch(title, description, options) {
   let options_args = {
-    variant: variant_to_string(Options$Options$variant(options)),
-    placement: placement_to_string(Options$Options$placement(options)),
+    variant: variant_to_json(Options$Options$variant(options)),
+    placement: placement_to_json(Options$Options$placement(options)),
     duration: Options$Options$duration_ms(options),
   };
   ot.toast(title, description, options_args);

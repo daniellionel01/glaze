@@ -3,6 +3,8 @@
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
 
+> This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>
+
 This is a collection of Lustre components mapped from [Oat UI](https://oat.ink/).
 
 It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_elements.asp), is very small (~8KB CSS and JS) and themable.
@@ -13,7 +15,9 @@ Latest supported version is [Oat v0.4.1](https://github.com/knadh/oat/releases/t
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_oat/>
 
-*This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>*
+Example projects:
+- [Lustre SPA](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/examples/lustre_spa/)
+- [Wisp server](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/examples/wisper_server/)
 
 ## Getting Started
 
@@ -65,7 +69,7 @@ pub fn layout() {
 
 You can find the full documentation here: <https://hexdocs.pm/glaze_oat>.
 
-Take a look at the [dev module](./dev/glaze_oat_dev.gleam) for a kitchen sink of all components and how you might use them!
+Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/dev/glaze_oat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
 ## FAQs
 
@@ -76,8 +80,6 @@ Take a look at the [dev module](./dev/glaze_oat_dev.gleam) for a kitchen sink of
 ### Client vs Server?
 
 This library constructs HTML elements the same way on the client or on the server, so it is compatible in both environments.
-
-The only exception is the [toast](./src/glaze/oat/toast.gleam) component. In the browser, it uses FFI to call the `ot.toast` function directly, but on Erlang, it generates a javascript string, that you can embed into your html directly (f.e. via `onclick` or in a `<script>` tag).
 
 ## Development
 
