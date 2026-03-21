@@ -1,5 +1,3 @@
-//@ts-check
-
 import {
   variant_to_string,
   placement_to_string,
