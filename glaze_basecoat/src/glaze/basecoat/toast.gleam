@@ -67,7 +67,7 @@ pub type Action {
   Action(label: String, onclick: Option(String))
 }
 
-fn action_to_json(action: Action) -> json.Json {
+pub fn action_to_json(action: Action) -> json.Json {
   let Action(label:, onclick:) = action
   json.object([
     #("label", json.string(label)),
@@ -82,7 +82,7 @@ pub type Cancel {
   Cancel(label: Option(String), onclick: Option(String))
 }
 
-fn cancel_to_json(cancel: Cancel) -> json.Json {
+pub fn cancel_to_json(cancel: Cancel) -> json.Json {
   let Cancel(label:, onclick:) = cancel
   json.object([
     #("label", case label {
@@ -103,7 +103,7 @@ pub type Category {
   Error
 }
 
-fn category_to_json(category: Category) -> json.Json {
+pub fn category_to_json(category: Category) -> json.Json {
   case category {
     Success -> json.string("success")
     Info -> json.string("info")
@@ -139,7 +139,7 @@ pub fn config_to_json(config: Config) -> json.Json {
   ])
 }
 
-/// Add the toaster container required for toast notifications.
+/// The toaster container required for toast notifications.
 ///
 /// Place this at the end of your body element.
 ///
@@ -231,22 +231,32 @@ pub fn toast(
   )
 }
 
+/// Useful for when creating custom toasts with [`toast`](#toast).
+///
 pub fn success() -> Attribute(msg) {
   attribute.data("category", "success")
 }
 
+/// Useful for when creating custom toasts with [`toast`](#toast).
+///
 pub fn info() -> Attribute(msg) {
   attribute.data("category", "info")
 }
 
+/// Useful for when creating custom toasts with [`toast`](#toast).
+///
 pub fn warning() -> Attribute(msg) {
   attribute.data("category", "warning")
 }
 
+/// Useful for when creating custom toasts with [`toast`](#toast).
+///
 pub fn error() -> Attribute(msg) {
   attribute.data("category", "error")
 }
 
+/// Useful for when creating custom toasts with [`toast`](#toast).
+///
 pub fn duration(ms: Int) -> Attribute(msg) {
   attribute.data("duration", int.to_string(ms))
 }
@@ -295,6 +305,8 @@ pub fn dismiss_button(
 }
 
 /// Trigger a toast notification.
+///
+/// Available in the Browser.
 ///
 @external(javascript, "./toast.ffi.mjs", "dispatch")
 pub fn dispatch(_config: Config) -> Nil {
