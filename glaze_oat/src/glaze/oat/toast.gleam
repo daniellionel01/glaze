@@ -99,6 +99,6 @@ pub fn with_duration(options: Options, duration_ms: Int) {
 /// Available in the Browser.
 ///
 @external(javascript, "./toast.ffi.mjs", "dispatch")
-pub fn dispatch(_title: String, _description: String, _options: Options) {
+pub fn dispatch(_title: String, _description: String, _options: Options) -> Nil {
   Nil
 }

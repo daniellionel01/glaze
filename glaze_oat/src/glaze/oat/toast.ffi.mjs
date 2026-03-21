@@ -19,4 +19,6 @@ export function dispatch(title, description, options) {
     duration: Options$Options$duration_ms(options),
   };
   ot.toast(title, description, options_args);
+
+  return null;
 }

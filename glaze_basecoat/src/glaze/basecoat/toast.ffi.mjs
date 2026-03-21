@@ -9,4 +9,6 @@ export function dispatch(config) {
       },
     }),
   );
+
+  return null;
 }

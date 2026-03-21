@@ -1,4 +1,4 @@
-# Example project: wisp server w/ Tailwind CLI
+# Example project: Wisp server w/ Tailwind CLI
 
 ```sh
 # download tailwind cli from https://github.com/tailwindlabs/tailwindcss/releases

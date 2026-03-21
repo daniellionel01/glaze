@@ -1,4 +1,4 @@
-# Example project: wisp server w/ CDN
+# Example project: Wisp server w/ CDN
 
 ```sh
 gleam run
