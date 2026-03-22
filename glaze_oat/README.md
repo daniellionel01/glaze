@@ -101,7 +101,7 @@ For a full overview of all available theme variables, take a look at <https://gi
 
 ### Tailwind?
 
-[Oat](https://oat.ink/) does not use or need [Tailwind](https://tailwindcss.com/). However it does not clash with it in anyway, so you can use it along this library with no problems!
+[Oat](https://oat.ink/) does not use or need [Tailwind](https://tailwindcss.com/). However it does not clash with it in anyway, so you can use it along side this library with no problems!
 
 ### Client vs Server?
 
