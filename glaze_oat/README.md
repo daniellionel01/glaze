@@ -93,7 +93,6 @@ import glaze/oat/theme
 let custom_theme =
   theme.default_theme()
   |> theme.set(theme.Primary, "oklch(0.205 0 0)")
-  |> theme.set(theme.Radius, "0.5rem")
 ```
 
 For a full overview of all available theme variables, take a look at <https://github.com/knadh/oat/blob/master/src/css/01-theme.css>.
