@@ -6,19 +6,10 @@
 ```sh
 gleam add glaze@1
 ```
-```gleam
-import glaze
 
-pub fn main() -> Nil {
-  // TODO: An example of the project in use
-}
-```
+## Acknowledgements
 
-Further documentation can be found at <https://hexdocs.pm/glaze>.
-
-## Development
-
-```sh
-gleam run   # Run the project
-gleam test  # Run the tests
-```
+This library has been heavily inspired by:
+- https://github.com/shadcn-ui/ui
+- https://github.com/hunvreus/basecoat
+- https://github.com/saadeghi/daisyui
