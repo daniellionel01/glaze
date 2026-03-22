@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.0.0] - 2026-03-21
+## [3.0.0] - 2026-03-22
 
 - The getting started instructions in `README.md` have been greatly improved.
 - The repo gains example applications for a Lustre SPA and Wisp server.
