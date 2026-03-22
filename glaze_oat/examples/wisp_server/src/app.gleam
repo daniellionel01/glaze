@@ -29,7 +29,9 @@ pub fn page() {
       html.div([attribute.style("padding", "10px")], [
         card.card([], [
           card.header([], [html.h3([], [html.text("Profile")])]),
-          card.content([], [html.p([], [html.text("Update your details.")])]),
+          card.content([attribute.style("margin", "10px 0")], [
+            html.p([], [html.text("Update your details.")]),
+          ]),
           card.footer([], [html.button([], [html.text("Save")])]),
         ]),
       ]),

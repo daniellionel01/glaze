@@ -54,17 +54,27 @@ fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
 
 pub fn view(model: Model) -> Element(Msg) {
   element.fragment([
-    html.div([attribute.class("p-10")], [
+    html.div([attribute.style("padding", "10px")], [
       card.card([], [
         card.header([], [html.text("Counter: " <> int.to_string(model.counter))]),
-        card.content([attribute.class("space-x-2")], [
-          button.button([button.outline(), event.on_click(Decrement)], [
-            html.text("Decrement"),
-          ]),
-          button.button([button.outline(), event.on_click(Increment)], [
-            html.text("Increment"),
-          ]),
-        ]),
+        card.content(
+          [
+            attribute.styles([
+              #("margin", "10px 0"),
+              #("display", "inline-grid"),
+              #("grid-auto-flow", "column"),
+              #("gap", "10px"),
+            ]),
+          ],
+          [
+            button.button([button.outline(), event.on_click(Decrement)], [
+              html.text("Decrement"),
+            ]),
+            button.button([button.outline(), event.on_click(Increment)], [
+              html.text("Increment"),
+            ]),
+          ],
+        ),
         card.footer([], [
           button.button([event.on_click(Alert("Hi Haighley!"))], [
             html.text("Cheers!"),
