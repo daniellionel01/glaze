@@ -41,7 +41,7 @@ stylesheets = [{ href = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.css" }]
 scripts = [{ src = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.js" }]
 ```
 
-If you are using Tailwind CSS with the Lustre Dev Tools, you can also import Oat like this:
+If you are using Tailwind CSS with the Lustre dev tools, you can also import Oat like this:
 
 ```sh
 curl -L https://unpkg.com/@knadh/oat@0.4.1/oat.min.css \
