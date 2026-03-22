@@ -17,7 +17,7 @@
 ////   |> toast.with_placement(toast.BottomRight)
 ////   |> toast.with_duration_ms(3000)
 ////
-//// toast.toast("Saved", "Your changes were stored.", options)
+//// toast.dispatch("Saved", "Your changes were stored.", options)
 //// ```
 ////
 
