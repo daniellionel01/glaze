@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - In `glaze/basecoat/theme`: The `tailwind_v4_bridge_css` function has been removed and merged with `tailwind_bridge_style_tag`.
 
 - The `glaze/basecoat/toast` API has been almost completely revised.
+  * There is no utility function to construct javascript strings for the server. This logic should be implemented by the user of this library.
 
 ## [2.1.0] - 2026-03-07
 
