@@ -41,7 +41,7 @@ pub fn variant_to_json(variant: Variant) -> json.Json {
   }
 }
 
-/// Screen placement for a toast stack.
+/// Screen placement for a toast.
 ///
 pub type Placement {
   TopRight
@@ -63,7 +63,7 @@ pub fn placement_to_json(placement: Placement) -> json.Json {
   }
 }
 
-/// Toast runtime options.
+/// Configuration for when launching a toast.
 ///
 pub type Options {
   Options(variant: Variant, placement: Placement, duration_ms: Int)
