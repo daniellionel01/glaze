@@ -21,16 +21,68 @@ Example projects:
 
 ## Getting Started
 
-### Step 1: Installation
-
 ```sh
 gleam add glaze_oat
 ```
 
-### Step 2: Register `<style>` and `<script>` tags
+There are various ways of loading the CSS and JavaScript for the Oat components into your website.
+
+Your approach will depend on wether you use the [Lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite), or want to load everything via a CDN.
+
+### Lustre SPA / Dev Tools
+
+If you are using the [Lustre dev tools](https://github.com/lustre-labs/dev-tools/), you can setup Oat in two ways:
+
+You can link the CSS and JavaScript in the `[tools.lustre.html]` in your `gleam.toml`:
+
+```toml
+[tools.lustre.html]
+stylesheets = [{ href = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.css" }]
+scripts = [{ src = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.js" }]
+```
+
+If you are using Tailwind CSS with the Lustre Dev Tools, you can also import Oat like this:
+
+```sh
+curl -L https://unpkg.com/@knadh/oat@0.4.1/oat.min.css \
+  -o src/oat.css
+```
+
+```css
+/* src/app.css */
+@import "tailwindcss";
+@import "./oat.css";
+```
+
+Do not forget the JavaScript:
+
+```toml
+[tools.lustre.html]
+scripts = [{ src = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.js" }]
+```
+
+### Server Application
+
+If your generating the HTML on the server, you can register the CDN with `oat.register`.
 
 ```gleam
-glaze_oat.register(glaze_oat.version)
+import glaze/oat
+import glaze/oat/theme
+import lustre/element/html
+
+pub fn layout() {
+  html.html([], [
+    html.head([], [
+      // ...
+      
+      oat.register(oat.version),
+      theme.style_tag(theme.default_theme()),
+    ]),
+    html.body([], [
+      // ...
+    ])
+  ])
+}
 ```
 
 ### Step 3: Register your theme
@@ -43,33 +95,6 @@ theme.style_tag(my_theme)
 ```
 
 For a full overview of all available theme variables, take a look at <https://github.com/knadh/oat/blob/master/src/css/01-theme.css>.
-
-## Example
-
-In a real project this might look like this:
-
-```gleam
-import glaze/oat
-import glaze/oat/theme
-
-pub fn layout() {
-  html.html([
-    html.head([
-      // ...
-      
-      oat.register(oat.version),
-      theme.style_tag(theme.default_theme()),
-    ]),
-    html.body([
-      // ...
-    ])
-  ])
-}
-```
-
-You can find the full documentation here: <https://hexdocs.pm/glaze_oat>.
-
-Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/dev/glaze_oat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
 ## FAQs
 

@@ -30,13 +30,11 @@ gleam add glaze_basecoat
 
 There are various ways of loading the CSS and JavaScript for the Basecoat components into your website.
 
-Your approach will depend on wether you use the [Lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite),
-or want to load everything via a CDN.
+Your approach will depend on wether you use the [Lustre dev tools](https://github.com/lustre-labs/dev-tools), other build tools (Bun / Vite), or want to load everything via a CDN.
 
-### Lustre Dev Tools
+### Lustre SPA / Dev Tools
 
-If you are using the [Lustre dev tools](https://github.com/lustre-labs/dev-tools/) and are using the built-in tailwind support, you can setup
-Basecoat in two ways:
+If you are using the [Lustre dev tools](https://github.com/lustre-labs/dev-tools/) and are using the built-in tailwind support, you can setup Basecoat in two ways:
 
 You can install the `basecoat-css` package:
 ```sh
@@ -52,8 +50,7 @@ And import it in your application css file:
 
 If you install the package, you can create an additional css file to configure your theme: <https://basecoatui.com/installation/#install-theming>
 
-Or create a `src/basecoat.css` file and put the contents of the [basecoat.css](https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css)
-and import it in your main css file.
+Or create a `src/basecoat.css` file and put the contents of the [basecoat.css](https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css) and import it in your main css file.
 
 ```sh
 curl -L https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css \
@@ -115,8 +112,7 @@ pub fn view() {
 
 ### Installation via CDN
 
-If you are generating the HTML on the server or provide the layout for your SPA there (f.e. a wisp proxy for your Lustre SPA),
-you can always fall back to CDN imports for Tailwind or the Basecoat CSS and JavaScript.
+If you are generating the HTML on the server or provide the layout for your SPA there (f.e. a wisp proxy for your Lustre SPA), you can always fall back to CDN imports for Tailwind or the Basecoat CSS and JavaScript.
 
 ```gleam
 import glaze/basecoat
@@ -127,7 +123,7 @@ import lustre/attribute.{attribute}
 import lustre/element/html
 
 pub fn page() {
-  html.html([attribute("lang", "en")], [
+  html.html([], [
     html.head([], [
       html.title([], "Basecoat x Gleam"),
       html.meta([
