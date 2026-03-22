@@ -42,6 +42,7 @@ pub fn item(
     [
       attribute.data("slot", "accordion-item"),
       attribute.class(cn_accordion_item_css),
+      attribute.class("group"),
       ..attrs
     ],
     children,
@@ -66,13 +67,7 @@ pub fn trigger(
       icons.chevron_down([
         attribute.data("slot", "accordion-trigger-icon"),
         attribute.class(
-          "pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden",
-        ),
-      ]),
-      icons.chevron_up([
-        attribute.data("slot", "accordion-trigger-icon"),
-        attribute.class(
-          "pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline",
+          "pointer-events-none shrink-0 group-open:rotate-180 transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)]",
         ),
       ]),
     ],
@@ -87,7 +82,9 @@ pub fn content(
     [
       attribute.data("slot", "accordion-content"),
       attribute.class(cn_accordion_content),
-      attribute.class("overflow-hidden"),
+      attribute.class(
+        "grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.87,0,0.13,1)] group-open:grid-rows-[1fr]",
+      ),
       ..attrs
     ],
     [
@@ -95,7 +92,7 @@ pub fn content(
         [
           attribute.class(cn_accordion_content_inner),
           attribute.class(
-            "h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+            "overflow-hidden [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           ),
         ],
         children,

@@ -15,6 +15,7 @@
 - [ ] good docs
 - [x] tailwind merge classes utility? (https://github.com/shadcn-ui/ui/blob/5b40b9de5ad5e81228efecbff86d5f0728342ec0/apps/v4/registry/bases/base/lib/utils.ts)
 - [ ] find alternative to glailwind_merge
+- [ ] look into wai aria patterns, for example: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 - [ ] icons? -> switch out? provider?
 
