@@ -16,8 +16,8 @@ Latest supported version is [Oat v0.4.1](https://github.com/knadh/oat/releases/t
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_oat/>
 
 Example projects:
-- [Lustre SPA](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/examples/lustre_spa/)
-- [Wisp server](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/examples/wisper_server/)
+- [Lustre SPA](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/glaze_oat/examples/lustre_spa/)
+- [Wisp server](https://github.com/daniellionel01/glaze/blob/oat-v3.0.0/glaze_oat/examples/wisper_server/)
 
 ## Getting Started
 
