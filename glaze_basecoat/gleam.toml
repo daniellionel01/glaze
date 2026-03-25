@@ -1,5 +1,5 @@
 name = "glaze_basecoat"
-version = "3.0.0"
+version = "3.1.0"
 description = "🍩 Lustre Bindings to Basecoat UI Components"
 
 licences = ["Apache-2.0"]
