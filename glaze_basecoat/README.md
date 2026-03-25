@@ -159,7 +159,7 @@ pub fn page() {
 
 You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
 
-Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
+Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/glaze_basecoat/dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
 
 ## Theming
 
