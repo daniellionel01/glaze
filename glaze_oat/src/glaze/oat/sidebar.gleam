@@ -39,9 +39,9 @@ pub fn sidebar(
   element([attribute("data-sidebar-layout", ""), ..attrs], children)
 }
 
-/// Render a sidebar layout that is always visible.
+/// Render a sidebar whose toggle is always visible on all screen sizes.
 ///
-/// Use this for desktop-first layouts where the sidebar should never collapse.
+/// Use this to allow hiding the sidebar on desktop layouts.
 ///
 pub fn sidebar_always(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
