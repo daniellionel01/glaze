@@ -65,6 +65,10 @@ pub fn time(attrs: List(Attribute(msg))) -> Element(msg) {
   html.input([attribute.class("input"), attribute.type_("time"), ..attrs])
 }
 
+pub fn file(attrs: List(Attribute(msg))) -> Element(msg) {
+  html.input([attribute.class("input"), attribute.type_("file"), ..attrs])
+}
+
 pub fn invalid() -> Attribute(msg) {
   attribute.aria_invalid("true")
 }
