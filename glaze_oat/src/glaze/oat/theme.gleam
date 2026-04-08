@@ -48,6 +48,7 @@ pub type Token {
   Faint
   FaintForeground
   Accent
+  AccentForeground
   Danger
   DangerForeground
   Success
@@ -126,6 +127,7 @@ pub fn default_theme() -> Theme {
     #(Faint, "light-dark(#fafafa, #1e1e21)"),
     #(FaintForeground, "light-dark(#a1a1aa, #71717a)"),
     #(Accent, "light-dark(#f4f4f5, #27272a)"),
+    #(AccentForeground, "light-dark(#18181b, #fafafa)"),
     #(Danger, "light-dark(#d32f2f, #f4807b)"),
     #(DangerForeground, "light-dark(#fafafa, #18181b)"),
     #(Success, "light-dark(#008032, #6cc070)"),
@@ -258,6 +260,7 @@ pub fn set_many(theme: Theme, updates: List(#(Token, String))) -> Theme {
 ///     faint: "light-dark(#fafafa, #1e1e21)",
 ///     faint_foreground: "light-dark(#a1a1aa, #71717a)",
 ///     accent: "light-dark(#e2e8f0, #334155)",
+///     accent_foreground: "light-dark(#0f172a, #f8fafc)",
 ///     danger: "light-dark(#d32f2f, #f4807b)",
 ///     danger_foreground: "light-dark(#fafafa, #18181b)",
 ///     success: "light-dark(#008032, #6cc070)",
@@ -285,6 +288,7 @@ pub fn set_colors(
   faint faint: String,
   faint_foreground faint_foreground: String,
   accent accent: String,
+  accent_foreground accent_foreground: String,
   danger danger: String,
   danger_foreground danger_foreground: String,
   success success: String,
@@ -309,6 +313,7 @@ pub fn set_colors(
     #(Faint, faint),
     #(FaintForeground, faint_foreground),
     #(Accent, accent),
+    #(AccentForeground, accent_foreground),
     #(Danger, danger),
     #(DangerForeground, danger_foreground),
     #(Success, success),
@@ -385,6 +390,7 @@ fn token_css_var(token: Token) -> String {
     Faint -> "--faint"
     FaintForeground -> "--faint-foreground"
     Accent -> "--accent"
+    AccentForeground -> "--accent-foreground"
     Danger -> "--danger"
     DangerForeground -> "--danger-foreground"
     Success -> "--success"
