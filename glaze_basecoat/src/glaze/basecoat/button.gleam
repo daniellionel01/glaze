@@ -175,6 +175,26 @@ pub fn icon_destructive(
   )
 }
 
+pub fn icon_ghost(
+  attrs: List(Attribute(msg)),
+  children: List(Element(msg)),
+) -> Element(msg) {
+  html.button(
+    [attribute.class("btn-icon-ghost"), attribute.type_("button"), ..attrs],
+    children,
+  )
+}
+
+pub fn icon_ghost_sm(
+  attrs: List(Attribute(msg)),
+  children: List(Element(msg)),
+) -> Element(msg) {
+  html.button(
+    [attribute.class("btn-sm-icon-ghost"), attribute.type_("button"), ..attrs],
+    children,
+  )
+}
+
 pub fn link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
