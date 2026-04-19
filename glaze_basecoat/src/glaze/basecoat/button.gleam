@@ -190,11 +190,7 @@ pub fn icon_ghost_sm(
   children: List(Element(msg)),
 ) -> Element(msg) {
   html.button(
-    [
-      attribute.class("btn-sm-icon-ghost"),
-      attribute.type_("button"),
-      ..attrs
-    ],
+    [attribute.class("btn-sm-icon-ghost"), attribute.type_("button"), ..attrs],
     children,
   )
 }
