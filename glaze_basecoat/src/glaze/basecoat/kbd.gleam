@@ -34,7 +34,10 @@ pub fn kbd(
   html.kbd([attribute.class("kbd"), ..attrs], children)
 }
 
-pub fn shortcut(keys: List(String), attrs: List(Attribute(msg))) -> Element(msg) {
+pub fn shortcut(
+  keys: List(String),
+  attrs: List(Attribute(msg)),
+) -> Element(msg) {
   let key_elements =
     keys
     |> list.map(fn(key) { kbd([], [html.text(key)]) })

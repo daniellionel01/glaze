@@ -123,7 +123,10 @@ pub fn accordion(
   })
 }
 
-fn do_item_to_html(item: Item(msg), group: Option(String)) -> List(Element(msg)) {
+fn do_item_to_html(
+  item: Item(msg),
+  group: Option(String),
+) -> List(Element(msg)) {
   case item {
     Group(name:, items:) -> {
       use item <- list.flat_map(items)
