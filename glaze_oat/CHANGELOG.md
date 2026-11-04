@@ -5,13 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [4.0.0] - 2026-11-04
+
+- **Breaking:** Requires Oat v1.1.0 (previously v0.4.1).
+- Badge variants use `data-variant` instead of classes.
+- `form.field_error` is deprecated. Instead, use `form.field()` on the container and `form.invalid()` on the input.
+- Tooltips now require Oat's JavaScript. Added `tooltip.bottom`, `tooltip.left` and `tooltip.right`.
+- New modules: `avatar`, `taginput` and `upload`.
+
 ## [3.0.0] - 2026-03-22
 
 - The repo gains example applications for a Lustre SPA and Wisp server.
 
 - The `glaze/basecoat/toast` API has been almost completely revised:
-  * `dispatch` is used to trigger a toast notification in the browser.
-  * There is no utility function to construct javascript strings for the server. This logic should be implemented by the user of this library.
+  - `dispatch` is used to trigger a toast notification in the browser.
+  - There is no utility function to construct javascript strings for the server. This logic should be implemented by the user of this library.
 
 ## [2.0.0] - 2026-03-02
 

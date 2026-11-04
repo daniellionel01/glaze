@@ -1,12 +1,8 @@
 //// Oat documentation: <https://oat.ink/components/tooltip/>
 ////
 //// Tooltip helpers for short helper text on interactive elements.
-////
-//// ## Anatomy
-////
-//// Use [`tooltip`](#tooltip) for Oat-styled tooltip content and optionally pair
-//// it with [`title`](#title) so native browser tooltip behavior still exists as
-//// a fallback.
+//// Requires Oat's JavaScript, which also turns plain `title` attributes into
+//// Oat tooltips.
 ////
 //// ## Recipe
 ////
@@ -18,7 +14,7 @@
 //// html.button([
 ////   attribute.type_("button"),
 ////   tooltip.tooltip("Delete this item"),
-////   tooltip.title("Delete this item"),
+////   tooltip.bottom(),
 //// ], [html.text("Delete")])
 //// ```
 ////
@@ -43,4 +39,18 @@ pub fn tooltip(text: String) -> Attribute(msg) {
 ///
 pub fn title(text: String) -> Attribute(msg) {
   attribute.title(text)
+}
+
+/// Tooltips show above the element by default.
+///
+pub fn bottom() -> Attribute(msg) {
+  attribute("data-tooltip-placement", "bottom")
+}
+
+pub fn left() -> Attribute(msg) {
+  attribute("data-tooltip-placement", "left")
+}
+
+pub fn right() -> Attribute(msg) {
+  attribute("data-tooltip-placement", "right")
 }

@@ -28,7 +28,9 @@
 ////       html.p([], [html.text("This action cannot be undone.")]),
 ////       dialog.footer([], [
 ////         html.button(dialog.close_for(id), [html.text("Cancel")]),
-////         html.button([attribute.class("danger")], [html.text("Delete")]),
+////         html.button([attribute.data("variant", "danger")], [
+////           html.text("Delete"),
+////         ]),
 ////       ]),
 ////     ]),
 ////   ])

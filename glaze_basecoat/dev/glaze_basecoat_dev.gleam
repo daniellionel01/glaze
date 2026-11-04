@@ -74,6 +74,7 @@ fn icon(name: String, attrs: List(Attribute(msg))) {
 pub fn page() {
   html.html([attribute("lang", "en")], [
     html.head([], [
+      html.meta([attribute.charset("utf-8")]),
       html.meta([
         attribute.name("viewport"),
         attribute.content("width=device-width, initial-scale=1"),

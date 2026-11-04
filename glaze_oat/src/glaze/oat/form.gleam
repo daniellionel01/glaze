@@ -34,7 +34,7 @@
 //// import lustre/element/html
 ////
 //// fn username_field() {
-////   form.fieldset([form.field_error()], [
+////   form.fieldset([form.field()], [
 ////     form.label([attribute.for("username")], [html.text("Username")]),
 ////     form.input([
 ////       attribute.id("username"),
@@ -127,8 +127,7 @@ pub fn field() -> Attribute(msg) {
   attribute("data-field", "")
 }
 
-/// Mark a field container as errored.
-///
+@deprecated("Use `field()` and mark the input with `invalid()`")
 pub fn field_error() -> Attribute(msg) {
   attribute("data-field", "error")
 }
