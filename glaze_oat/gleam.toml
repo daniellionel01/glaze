@@ -1,13 +1,11 @@
 name = "glaze_oat"
-version = "3.0.0"
+version = "4.0.0"
 description = "🍩 Lustre Bindings to Oat UI Components"
 
 licences = ["Apache-2.0"]
 repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_oat", tag-prefix = "oat-" }
 
-links = [
-  { title = "Oat", href = "https://oat.ink/" },
-]
+links = [{ title = "Oat", href = "https://oat.ink/" }]
 
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"
