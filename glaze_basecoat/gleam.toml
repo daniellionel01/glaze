@@ -1,18 +1,13 @@
 name = "glaze_basecoat"
-version = "3.1.0"
+version = "4.0.0"
 description = "🍩 Lustre Bindings to Basecoat UI Components"
 
 licences = ["Apache-2.0"]
 repository = { type = "github", user = "daniellionel01", repo = "glaze", path = "glaze_basecoat", tag-prefix = "basecoat-" }
 
-links = [
-  { title = "Basecoat UI", href = "https://basecoatui.com/" },
-]
+links = [{ title = "Basecoat UI", href = "https://basecoatui.com/" }]
 
-internal_modules = [
-  "glaze/basecoat/internal",
-  "glaze/basecoat/internal/*",
-]
+internal_modules = ["glaze/basecoat/internal", "glaze/basecoat/internal/*"]
 
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"

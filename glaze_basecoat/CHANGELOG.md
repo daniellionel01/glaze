@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-11-04
+
 - **Breaking:** `dialog.dialog`, `dialog.dialog_with_description`, `alert_dialog.alert_dialog` and `alert_dialog.alert_dialog_with_text` take a new `panel_attrs` argument after `attrs`, applied to the visible panel. Sizing attributes like `dialog.max_width` previously had no effect.
 
 - Fixed `dialog.responsive_width` and `dialog.full_width`, which relied on Tailwind classes that weren't generated.
