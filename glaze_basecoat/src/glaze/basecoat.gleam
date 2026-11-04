@@ -8,7 +8,7 @@ import lustre/element/html
 ///
 /// All releases are available here: https://github.com/hunvreus/basecoat/releases
 ///
-pub const version = "0.3.11"
+pub const version = "1.1.0"
 
 /// Register Basecoat UI CSS and JavaScript from a CDN.
 ///

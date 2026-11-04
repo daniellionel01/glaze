@@ -43,13 +43,19 @@ pub fn pagination(
 
 pub fn prev(attrs: List(Attribute(msg))) -> Element(msg) {
   html.li([], [
-    html.a([attribute.class("btn-ghost"), ..attrs], [html.text(" Previous")]),
+    html.a(
+      [attribute.class("btn"), attribute.data("variant", "ghost"), ..attrs],
+      [html.text(" Previous")],
+    ),
   ])
 }
 
 pub fn next(attrs: List(Attribute(msg))) -> Element(msg) {
   html.li([], [
-    html.a([attribute.class("btn-ghost"), ..attrs], [html.text("Next ")]),
+    html.a(
+      [attribute.class("btn"), attribute.data("variant", "ghost"), ..attrs],
+      [html.text("Next ")],
+    ),
   ])
 }
 
@@ -58,15 +64,23 @@ pub fn page(
   is_active: Bool,
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
-  let class = case is_active {
-    True -> "btn-icon-outline"
-    False -> "btn-icon-ghost"
+  let variant = case is_active {
+    True -> "outline"
+    False -> "ghost"
   }
 
   html.li([], [
-    html.a([attribute.class(class), ..attrs], [
-      html.text(int.to_string(page_num)),
-    ]),
+    html.a(
+      [
+        attribute.class("btn"),
+        attribute.data("variant", variant),
+        attribute.data("size", "icon"),
+        ..attrs
+      ],
+      [
+        html.text(int.to_string(page_num)),
+      ],
+    ),
   ])
 }
 

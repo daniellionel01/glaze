@@ -39,7 +39,7 @@ pub fn field(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.div([attribute.class("grid gap-3"), ..attrs], children)
+  html.div([attribute.class("field"), ..attrs], children)
 }
 
 pub fn label(
@@ -69,7 +69,7 @@ pub fn with_label(
   input_element: Element(msg),
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
-  html.div([attribute.class("grid gap-3"), ..attrs], [
+  html.div([attribute.class("field"), ..attrs], [
     label([attribute.for(id)], [html.text(label_text)]),
     input_element,
   ])
@@ -82,7 +82,7 @@ pub fn with_description(
   input_element: Element(msg),
   attrs: List(Attribute(msg)),
 ) -> Element(msg) {
-  html.div([attribute.class("grid gap-3"), ..attrs], [
+  html.div([attribute.class("field"), ..attrs], [
     label([attribute.for(id)], [html.text(label_text)]),
     input_element,
     html.p([attribute.class("text-muted-foreground text-sm")], [

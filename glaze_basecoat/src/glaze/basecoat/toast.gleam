@@ -31,7 +31,6 @@
 //// ## References
 ////
 //// - MDN ARIA `status` role: <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role>
-//// - MDN `CustomEvent`: <https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent>
 ////
 
 import gleam/int
@@ -40,14 +39,6 @@ import gleam/option.{type Option, None, Some}
 import lustre/attribute.{type Attribute}
 import lustre/element.{type Element}
 import lustre/element/html
-
-/// Name of the `CustomEvent` dispatched in the Browser environment.
-///
-/// ```js
-/// document.dispatchEvent(new CustomEvent('basecoat:toast', /* payload */));
-/// ```
-///
-pub const event_name = "basecoat:toast"
 
 pub type Alignment {
   AlignStart

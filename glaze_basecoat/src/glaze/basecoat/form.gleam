@@ -3,6 +3,9 @@
 //// The [`form`](#form) helpers provide a compact set of primitives for building
 //// accessible form layouts with native HTML elements.
 ////
+//// Basecoat only styles controls that have their own class (see the `input`,
+//// `textarea` and `select` modules) or sit directly inside a `field`.
+////
 //// ## Recipe
 ////
 //// ```gleam
@@ -30,21 +33,21 @@ pub fn form(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.form([attribute.class("form"), ..attrs], children)
+  html.form(attrs, children)
 }
 
 pub fn vertical(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.form([attribute.class("form space-y-6"), ..attrs], children)
+  html.form([attribute.class("space-y-6"), ..attrs], children)
 }
 
 pub fn group(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.div([attribute.class("grid gap-3"), ..attrs], children)
+  html.div([attribute.class("field"), ..attrs], children)
 }
 
 pub fn action(url: String) -> Attribute(msg) {
@@ -71,7 +74,7 @@ pub fn fieldset(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.fieldset([attribute.class("grid gap-3"), ..attrs], children)
+  html.fieldset([attribute.class("fieldset"), ..attrs], children)
 }
 
 pub fn legend(

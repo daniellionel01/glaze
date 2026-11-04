@@ -85,8 +85,8 @@ pub fn alert_dialog_with_text(
       html.div(panel_attrs, [
         header([], [
           html.h2([attribute.id(title_id)], [html.text(title)]),
+          html.p([attribute.id(desc_id)], [html.text(description)]),
         ]),
-        html.p([attribute.id(desc_id)], [html.text(description)]),
         ..children
       ]),
     ],
@@ -145,7 +145,8 @@ pub fn cancel(
   html.button(
     [
       attribute.type_("button"),
-      attribute.class("btn-outline"),
+      attribute.class("btn"),
+      attribute.data("variant", "outline"),
       attribute("onclick", "this.closest('dialog').close()"),
       ..attrs
     ],
@@ -160,7 +161,8 @@ pub fn destructive(
   html.button(
     [
       attribute.type_("button"),
-      attribute.class("btn-destructive"),
+      attribute.class("btn"),
+      attribute.data("variant", "destructive"),
       attribute("onclick", "this.closest('dialog').close()"),
       ..attrs
     ],

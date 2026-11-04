@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- **Breaking:** Requires Basecoat v1.1.0 (previously v0.3.11). If you vendor the CSS, use `dist/basecoat.bundle.css`.
+- **Breaking:** `form.form` no longer styles plain inputs inside it, as Basecoat v1 removed `.form`. Use the `input`, `textarea` and `select` modules, or place controls directly inside a `field`.
+- **Breaking:** Removed `toast.event_name` and the `theme.DestructiveForeground` token, which Basecoat v1 no longer uses.
+- Button, badge and alert variants use `data-variant` / `data-size` instead of classes like `btn-sm-outline`. The functions are unchanged.
+- `field`, `form.group` and `label.with_input` render Basecoat's `.field`, and `form.fieldset` renders `.fieldset`.
+- Sidebar, theme switcher and toast scripts use Basecoat v1's methods instead of document events.
+- `accordion` and `alert_dialog_with_text` markup updated for Basecoat v1.
+
 ## [4.0.0] - 2026-11-04
 
 - **Breaking:** `dialog.dialog`, `dialog.dialog_with_description`, `alert_dialog.alert_dialog` and `alert_dialog.alert_dialog_with_text` take a new `panel_attrs` argument after `attrs`, applied to the visible panel. Sizing attributes like `dialog.max_width` previously had no effect.

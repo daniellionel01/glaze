@@ -61,7 +61,14 @@ pub fn destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.div([attribute.class("alert-destructive"), ..attrs], children)
+  html.div(
+    [
+      attribute.class("alert"),
+      attribute.data("variant", "destructive"),
+      ..attrs
+    ],
+    children,
+  )
 }
 
 pub fn icon(

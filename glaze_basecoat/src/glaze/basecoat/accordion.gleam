@@ -48,47 +48,7 @@ pub fn item(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.details([attribute.class("group border-b last:border-b-0"), ..attrs], [
-    html.summary(
-      [
-        attribute.class(
-          "w-full focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-all outline-none rounded-md",
-        ),
-      ],
-      [
-        html.h2(
-          [
-            attribute.class(
-              "flex flex-1 items-start justify-between gap-4 py-4 text-left text-sm font-medium hover:underline",
-            ),
-          ],
-          [
-            html.text(title),
-            svg.svg(
-              [
-                attribute("xmlns", "http://www.w3.org/2000/svg"),
-                attribute("width", "24"),
-                attribute("height", "24"),
-                attribute("viewBox", "0 0 24 24"),
-                attribute("fill", "none"),
-                attribute("stroke", "currentColor"),
-                attribute("stroke-width", "2"),
-                attribute("stroke-linecap", "round"),
-                attribute("stroke-linejoin", "round"),
-                attribute.class(
-                  "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open:rotate-180",
-                ),
-              ],
-              [
-                svg.path([attribute("d", "m6 9 6 6 6-6")]),
-              ],
-            ),
-          ],
-        ),
-      ],
-    ),
-    html.section([attribute.class("pb-4")], children),
-  ])
+  html.details(attrs, [summary(title), html.section([], children)])
 }
 
 pub fn item_open(
@@ -96,52 +56,25 @@ pub fn item_open(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.details(
-    [
-      attribute.class("group border-b last:border-b-0"),
-      attribute.open(True),
-      ..attrs
-    ],
-    [
-      html.summary(
-        [
-          attribute.class(
-            "w-full focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-all outline-none rounded-md",
-          ),
-        ],
-        [
-          html.h2(
-            [
-              attribute.class(
-                "flex flex-1 items-start justify-between gap-4 py-4 text-left text-sm font-medium hover:underline",
-              ),
-            ],
-            [
-              html.text(title),
-              svg.svg(
-                [
-                  attribute("xmlns", "http://www.w3.org/2000/svg"),
-                  attribute("width", "24"),
-                  attribute("height", "24"),
-                  attribute("viewBox", "0 0 24 24"),
-                  attribute("fill", "none"),
-                  attribute("stroke", "currentColor"),
-                  attribute("stroke-width", "2"),
-                  attribute("stroke-linecap", "round"),
-                  attribute("stroke-linejoin", "round"),
-                  attribute.class(
-                    "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200 group-open:rotate-180",
-                  ),
-                ],
-                [
-                  svg.path([attribute("d", "m6 9 6 6 6-6")]),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-      html.section([attribute.class("pb-4")], children),
-    ],
-  )
+  item(title, [attribute.open(True), ..attrs], children)
+}
+
+fn summary(title: String) -> Element(msg) {
+  html.summary([], [
+    html.text(title),
+    svg.svg(
+      [
+        attribute("xmlns", "http://www.w3.org/2000/svg"),
+        attribute("width", "24"),
+        attribute("height", "24"),
+        attribute("viewBox", "0 0 24 24"),
+        attribute("fill", "none"),
+        attribute("stroke", "currentColor"),
+        attribute("stroke-width", "2"),
+        attribute("stroke-linecap", "round"),
+        attribute("stroke-linejoin", "round"),
+      ],
+      [svg.path([attribute("d", "m6 9 6 6 6-6")])],
+    ),
+  ])
 }

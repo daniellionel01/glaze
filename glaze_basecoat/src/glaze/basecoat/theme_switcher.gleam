@@ -42,30 +42,20 @@ pub fn init_script() -> Element(msg) {
           document.documentElement.classList.add('dark');
         }
       } catch (_) {}
-
-      const apply = (dark) => {
-        document.documentElement.classList.toggle('dark', dark);
-        try { localStorage.setItem('themeMode', dark ? 'dark' : 'light'); } catch (_) {}
-      };
-
-      document.addEventListener('basecoat:theme', (event) => {
-        const mode = event.detail?.mode;
-        apply(mode === 'dark' ? true : mode === 'light' ? false : !document.documentElement.classList.contains('dark'));
-      });
     })();",
   )
 }
 
 pub fn toggle_script() -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:theme'))"
+  "window.basecoat.theme.toggle()"
 }
 
 pub fn set_dark_script() -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:theme', { detail: { mode: 'dark' } }))"
+  "window.basecoat.theme.set('dark')"
 }
 
 pub fn set_light_script() -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:theme', { detail: { mode: 'light' } }))"
+  "window.basecoat.theme.set('light')"
 }
 
 pub fn button(attrs: List(Attribute(msg))) -> Element(msg) {
@@ -74,7 +64,9 @@ pub fn button(attrs: List(Attribute(msg))) -> Element(msg) {
       attribute.type_("button"),
       attribute.aria_label("Toggle dark mode"),
       attribute("onclick", toggle_script()),
-      attribute.class("btn-icon-outline size-8"),
+      attribute.class("btn size-8"),
+      attribute.data("variant", "outline"),
+      attribute.data("size", "icon"),
       ..attrs
     ],
     [
@@ -95,7 +87,9 @@ pub fn button_with_tooltip(
       attribute.data("tooltip", "Toggle dark mode"),
       attribute.data("side", tooltip_side),
       attribute("onclick", toggle_script()),
-      attribute.class("btn-icon-outline size-8"),
+      attribute.class("btn size-8"),
+      attribute.data("variant", "outline"),
+      attribute.data("size", "icon"),
       ..attrs
     ],
     [

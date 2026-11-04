@@ -54,7 +54,6 @@ pub type Token {
   Accent
   AccentForeground
   Destructive
-  DestructiveForeground
   Border
   Input
   Ring
@@ -102,7 +101,6 @@ pub fn default_theme() -> Theme {
     #(Accent, "oklch(0.97 0 0)"),
     #(AccentForeground, "oklch(0.205 0 0)"),
     #(Destructive, "oklch(0.577 0.245 27.325)"),
-    #(DestructiveForeground, "oklch(0.985 0 0)"),
     #(Border, "oklch(0.922 0 0)"),
     #(Input, "oklch(0.922 0 0)"),
     #(Ring, "oklch(0.708 0 0)"),
@@ -145,7 +143,6 @@ pub fn dark_theme() -> Theme {
     #(Accent, "oklch(0.371 0 0)"),
     #(AccentForeground, "oklch(0.985 0 0)"),
     #(Destructive, "oklch(0.704 0.191 22.216)"),
-    #(DestructiveForeground, "oklch(0.985 0 0)"),
     #(Border, "oklch(1 0 0 / 10%)"),
     #(Input, "oklch(1 0 0 / 15%)"),
     #(Ring, "oklch(0.556 0 0)"),
@@ -327,7 +324,6 @@ fn token_css_var(token: Token) -> String {
     Accent -> "--accent"
     AccentForeground -> "--accent-foreground"
     Destructive -> "--destructive"
-    DestructiveForeground -> "--destructive-foreground"
     Border -> "--border"
     Input -> "--input"
     Ring -> "--ring"

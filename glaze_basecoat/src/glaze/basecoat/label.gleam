@@ -34,7 +34,7 @@ pub fn with_input(
   label_text: String,
   input_attrs: List(Attribute(msg)),
 ) -> Element(msg) {
-  html.div([attribute.class("grid gap-2")], [
+  html.div([attribute.class("field")], [
     label([attribute.for(id)], [html.text(label_text)]),
     html.input([
       attribute.id(id),

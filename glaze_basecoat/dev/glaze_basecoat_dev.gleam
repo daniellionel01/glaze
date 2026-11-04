@@ -120,7 +120,9 @@ pub fn page() {
                 html.a(
                   [
                     attribute.href("https://github.com/daniellionel01/glaze"),
-                    attribute.class("btn-icon-outline size-8"),
+                    attribute.class("btn size-8"),
+                    attribute.data("variant", "outline"),
+                    attribute.data("size", "icon"),
                     attribute.target("_blank"),
                     attribute.rel("noopener noreferrer"),
                     attribute.data("tooltip", "GitHub repository"),
@@ -497,9 +499,13 @@ fn section_alert_dialog() -> Element(msg) {
     "Alert Dialog",
     "https://basecoatui.com/components/alert-dialog",
     [
-      alert_dialog.trigger_button(dialog_id, [attribute.class("btn-outline")], [
-        html.text("Open dialog"),
-      ]),
+      alert_dialog.trigger_button(
+        dialog_id,
+        [attribute.class("btn"), attribute.data("variant", "outline")],
+        [
+          html.text("Open dialog"),
+        ],
+      ),
       alert_dialog.alert_dialog_with_text(
         dialog_id,
         "Are you absolutely sure?",
@@ -806,16 +812,37 @@ fn section_button() -> Element(msg) {
         html.div(
           [attribute.class("flex flex-wrap items-center gap-2 md:flex-row")],
           [
-            button.icon([attribute.class("btn-icon-primary")], [
-              icon("download", []),
-            ]),
-            button.icon([attribute.class("btn-icon-secondary")], [
-              icon("upload", []),
-            ]),
+            button.icon(
+              [
+                attribute.class("btn"),
+                attribute.data("variant", "primary"),
+                attribute.data("size", "icon"),
+              ],
+              [
+                icon("download", []),
+              ],
+            ),
+            button.icon(
+              [
+                attribute.class("btn"),
+                attribute.data("variant", "secondary"),
+                attribute.data("size", "icon"),
+              ],
+              [
+                icon("upload", []),
+              ],
+            ),
             button.icon_outline([], [icon("arrow-right", [])]),
-            button.icon([attribute.class("btn-icon-ghost")], [
-              icon("ellipsis", []),
-            ]),
+            button.icon(
+              [
+                attribute.class("btn"),
+                attribute.data("variant", "ghost"),
+                attribute.data("size", "icon"),
+              ],
+              [
+                icon("ellipsis", []),
+              ],
+            ),
             button.icon_destructive([], [icon("trash-2", [])]),
             button.icon_outline([button.disabled()], [icon("loader-2", [])]),
           ],
@@ -837,7 +864,7 @@ fn section_card() -> Element(msg) {
         ]),
         card.content([], [
           form.form([attribute.class("grid gap-6")], [
-            html.div([attribute.class("grid gap-2")], [
+            html.div([attribute.class("field")], [
               html.label([attribute.for("demo-card-form-email")], [
                 html.text("Email"),
               ]),
@@ -846,7 +873,7 @@ fn section_card() -> Element(msg) {
                 attribute.id("demo-card-form-email"),
               ]),
             ]),
-            html.div([attribute.class("grid gap-2")], [
+            html.div([attribute.class("field")], [
               html.div([attribute.class("flex items-center gap-2")], [
                 html.label([attribute.for("demo-card-form-password")], [
                   html.text("Password"),
@@ -1123,7 +1150,8 @@ fn section_command() -> Element(msg) {
           html.button(
             [
               attribute.type_("button"),
-              attribute.class("btn-outline"),
+              attribute.class("btn"),
+              attribute.data("variant", "outline"),
               attribute("onclick", command.open_script(dialog_id)),
             ],
             [html.text("Open command dialog")],
@@ -1159,7 +1187,8 @@ fn section_command() -> Element(msg) {
                 html.button(
                   [
                     attribute.type_("button"),
-                    attribute.class("btn-outline"),
+                    attribute.class("btn"),
+                    attribute.data("variant", "outline"),
                     attribute("onclick", command.close_script(dialog_id)),
                   ],
                   [html.text("Close")],
@@ -1433,6 +1462,7 @@ fn basecoat_select_base(
 fn basecoat_combobox(
   id: String,
   name: String,
+  selected: String,
   trigger_attrs: List(Attribute(msg)),
   popover_attrs: List(Attribute(msg)),
   empty_message: String,
@@ -1498,7 +1528,7 @@ fn basecoat_combobox(
     html.input([
       attribute.type_("hidden"),
       attribute.name(name),
-      attribute.value(""),
+      attribute.value(selected),
     ]),
   ])
 }
@@ -1513,7 +1543,8 @@ fn section_combobox() -> Element(msg) {
         basecoat_combobox(
           "demo-combobox-frameworks",
           "demo-combobox-frameworks-value",
-          [attribute.class("btn-outline w-48")],
+          "Next.js",
+          [attribute.class("btn w-48"), attribute.data("variant", "outline")],
           [attribute.class("w-48")],
           "No framework found.",
           [
@@ -1552,7 +1583,8 @@ fn section_combobox() -> Element(msg) {
         basecoat_combobox(
           "demo-combobox-timezones",
           "demo-combobox-timezones-value",
-          [attribute.class("btn-outline w-72")],
+          "America/New_York",
+          [attribute.class("btn w-72"), attribute.data("variant", "outline")],
           [attribute.class("w-72")],
           "No timezone found.",
           [
@@ -1787,9 +1819,13 @@ fn section_dialog() -> Element(msg) {
     "https://basecoatui.com/components/dialog",
     [
       html.div([attribute.class("flex flex-wrap items-center gap-4")], [
-        dialog.trigger_button(edit_id, [attribute.class("btn-outline")], [
-          html.text("Edit Profile"),
-        ]),
+        dialog.trigger_button(
+          edit_id,
+          [attribute.class("btn"), attribute.data("variant", "outline")],
+          [
+            html.text("Edit Profile"),
+          ],
+        ),
         dialog.dialog_with_description(
           edit_id,
           "Edit profile",
@@ -1799,7 +1835,7 @@ fn section_dialog() -> Element(msg) {
           [
             dialog.content([], [
               form.form([attribute.class("grid gap-4")], [
-                html.div([attribute.class("grid gap-3")], [
+                html.div([attribute.class("field")], [
                   html.label([attribute.for(edit_id <> "-name")], [
                     html.text("Name"),
                   ]),
@@ -1809,7 +1845,7 @@ fn section_dialog() -> Element(msg) {
                     attribute.value("Pedro Duarte"),
                   ]),
                 ]),
-                html.div([attribute.class("grid gap-3")], [
+                html.div([attribute.class("field")], [
                   html.label([attribute.for(edit_id <> "-username")], [
                     html.text("Username"),
                   ]),
@@ -1834,9 +1870,13 @@ fn section_dialog() -> Element(msg) {
             dialog.close_button([]),
           ],
         ),
-        dialog.trigger_button(scroll_id, [attribute.class("btn-outline")], [
-          html.text("Scrollable Content"),
-        ]),
+        dialog.trigger_button(
+          scroll_id,
+          [attribute.class("btn"), attribute.data("variant", "outline")],
+          [
+            html.text("Scrollable Content"),
+          ],
+        ),
         dialog.dialog_with_description(
           scroll_id,
           "Scrollable Content",
@@ -1934,7 +1974,7 @@ fn section_dropdown_menu() -> Element(msg) {
             dd1_trigger,
             dd1_menu,
             dd1_popover,
-            [attribute.class("btn-outline")],
+            [attribute.class("btn"), attribute.data("variant", "outline")],
             [html.text("Open")],
           ),
           dropdown_menu.content_with_ids(
@@ -1971,7 +2011,7 @@ fn section_dropdown_menu() -> Element(msg) {
             dd2_trigger,
             dd2_menu,
             dd2_popover,
-            [attribute.class("btn-outline")],
+            [attribute.class("btn"), attribute.data("variant", "outline")],
             [html.text("Checkboxes")],
           ),
           dropdown_menu.content_with_ids(
@@ -2036,7 +2076,7 @@ fn section_dropdown_menu() -> Element(msg) {
             dd3_trigger,
             dd3_menu,
             dd3_popover,
-            [attribute.class("btn-outline")],
+            [attribute.class("btn"), attribute.data("variant", "outline")],
             [html.text("Radio Group")],
           ),
           dropdown_menu.content_with_ids(
@@ -2113,9 +2153,8 @@ fn section_dropdown_menu() -> Element(msg) {
             dd_profile_menu,
             dd_profile_popover,
             [
-              attribute.class(
-                "btn-outline h-12 justify-start px-2 md:max-w-[200px]",
-              ),
+              attribute.class("btn h-12 justify-start px-2 md:max-w-[200px]"),
+              attribute.data("variant", "outline"),
             ],
             [
               html.img([
@@ -2183,7 +2222,7 @@ fn section_form() -> Element(msg) {
     "scroll-mt-16",
     [
       html.form([attribute.class("form grid w-full max-w-sm gap-6")], [
-        html.div([attribute.class("grid gap-2")], [
+        html.div([attribute.class("field")], [
           html.label([attribute.for("demo-form-text")], [html.text("Username")]),
           html.input([
             attribute.type_("text"),
@@ -2194,7 +2233,7 @@ fn section_form() -> Element(msg) {
             html.text("This is your public display name."),
           ]),
         ]),
-        html.div([attribute.class("grid gap-2")], [
+        html.div([attribute.class("field")], [
           html.label([attribute.for("demo-form-select")], [html.text("Email")]),
           html.select([attribute.id("demo-form-select")], [
             html.option([attribute.value("bob@example.com")], "m@example.com"),
@@ -2205,7 +2244,7 @@ fn section_form() -> Element(msg) {
             html.text("You can manage email addresses in your email settings."),
           ]),
         ]),
-        html.div([attribute.class("grid gap-2")], [
+        html.div([attribute.class("field")], [
           html.label([attribute.for("demo-form-textarea")], [html.text("Bio")]),
           html.textarea(
             [
@@ -2226,25 +2265,28 @@ fn section_form() -> Element(msg) {
           html.fieldset(
             [attribute.id("demo-form-radio"), attribute.class("grid gap-3")],
             [
-              html.label([attribute.class("font-normal")], [
+              html.label([attribute.class("label gap-3 font-normal")], [
                 html.input([
                   attribute.type_("radio"),
+                  attribute.class("input"),
                   attribute.name("demo-form-radio"),
                   attribute.value("1"),
                 ]),
                 html.text("All new messages"),
               ]),
-              html.label([attribute.class("font-normal")], [
+              html.label([attribute.class("label gap-3 font-normal")], [
                 html.input([
                   attribute.type_("radio"),
+                  attribute.class("input"),
                   attribute.name("demo-form-radio"),
                   attribute.value("2"),
                 ]),
                 html.text("Direct messages and mentions"),
               ]),
-              html.label([attribute.class("font-normal")], [
+              html.label([attribute.class("label gap-3 font-normal")], [
                 html.input([
                   attribute.type_("radio"),
+                  attribute.class("input"),
                   attribute.name("demo-form-radio"),
                   attribute.value("3"),
                 ]),
@@ -2262,6 +2304,7 @@ fn section_form() -> Element(msg) {
           [
             html.input([
               attribute.type_("checkbox"),
+              attribute.class("input"),
               attribute.id("demo-form-checkbox"),
             ]),
             html.div([attribute.class("flex flex-col gap-1")], [
@@ -2304,60 +2347,84 @@ fn section_form() -> Element(msg) {
               attribute.class("flex flex-col gap-2"),
             ],
             [
-              html.label([attribute.class("font-normal leading-tight")], [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("demo-form-checkboxes"),
-                  attribute.value("1"),
-                  attribute.checked(True),
-                ]),
-                html.text("Recents"),
-              ]),
-              html.label([attribute.class("font-normal leading-tight")], [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("demo-form-checkboxes"),
-                  attribute.value("2"),
-                  attribute.checked(True),
-                ]),
-                html.text("Home"),
-              ]),
-              html.label([attribute.class("font-normal leading-tight")], [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("demo-form-checkboxes"),
-                  attribute.value("3"),
-                ]),
-                html.text("Applications"),
-              ]),
-              html.label([attribute.class("font-normal leading-tight")], [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("demo-form-checkboxes"),
-                  attribute.value("4"),
-                ]),
-                html.text("Desktop"),
-              ]),
-              html.label([attribute.class("font-normal leading-tight")], [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("demo-form-checkboxes"),
-                  attribute.value("5"),
-                ]),
-                html.text("Download"),
-              ]),
-              html.label([attribute.class("font-normal leading-tight")], [
-                html.input([
-                  attribute.type_("checkbox"),
-                  attribute.name("demo-form-checkboxes"),
-                  attribute.value("6"),
-                ]),
-                html.text("Documents"),
-              ]),
+              html.label(
+                [attribute.class("label gap-3 font-normal leading-tight")],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.class("input"),
+                    attribute.name("demo-form-checkboxes"),
+                    attribute.value("1"),
+                    attribute.checked(True),
+                  ]),
+                  html.text("Recents"),
+                ],
+              ),
+              html.label(
+                [attribute.class("label gap-3 font-normal leading-tight")],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.class("input"),
+                    attribute.name("demo-form-checkboxes"),
+                    attribute.value("2"),
+                    attribute.checked(True),
+                  ]),
+                  html.text("Home"),
+                ],
+              ),
+              html.label(
+                [attribute.class("label gap-3 font-normal leading-tight")],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.class("input"),
+                    attribute.name("demo-form-checkboxes"),
+                    attribute.value("3"),
+                  ]),
+                  html.text("Applications"),
+                ],
+              ),
+              html.label(
+                [attribute.class("label gap-3 font-normal leading-tight")],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.class("input"),
+                    attribute.name("demo-form-checkboxes"),
+                    attribute.value("4"),
+                  ]),
+                  html.text("Desktop"),
+                ],
+              ),
+              html.label(
+                [attribute.class("label gap-3 font-normal leading-tight")],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.class("input"),
+                    attribute.name("demo-form-checkboxes"),
+                    attribute.value("5"),
+                  ]),
+                  html.text("Download"),
+                ],
+              ),
+              html.label(
+                [attribute.class("label gap-3 font-normal leading-tight")],
+                [
+                  html.input([
+                    attribute.type_("checkbox"),
+                    attribute.class("input"),
+                    attribute.name("demo-form-checkboxes"),
+                    attribute.value("6"),
+                  ]),
+                  html.text("Documents"),
+                ],
+              ),
             ],
           ),
         ]),
-        html.div([attribute.class("grid gap-2")], [
+        html.div([attribute.class("field")], [
           html.label([attribute.for("demo-form-date")], [
             html.text("Date of birth"),
           ]),
@@ -2398,6 +2465,7 @@ fn section_form() -> Element(msg) {
               ]),
               html.input([
                 attribute.type_("checkbox"),
+                attribute.class("input"),
                 attribute.id("demo-form-switch"),
                 attribute.role("switch"),
               ]),
@@ -2428,6 +2496,7 @@ fn section_form() -> Element(msg) {
               ]),
               html.input([
                 attribute.type_("checkbox"),
+                attribute.class("input"),
                 attribute.id("demo-form-switch-disabled"),
                 attribute.role("switch"),
                 attribute.disabled(True),
@@ -2525,7 +2594,7 @@ fn section_label() -> Element(msg) {
             html.text("Accept terms and conditions"),
           ]),
         ]),
-        html.div([attribute.class("grid gap-3")], [
+        html.div([attribute.class("field")], [
           label.label([attribute.for("label-demo-text")], [
             html.text("Username"),
           ]),
@@ -2534,7 +2603,7 @@ fn section_label() -> Element(msg) {
             input.placeholder("Username"),
           ]),
         ]),
-        html.div([attribute.class("grid gap-3")], [
+        html.div([attribute.class("field")], [
           label.label([attribute.for("label-demo-disabled")], [
             html.text("Disabled"),
           ]),
@@ -2544,7 +2613,7 @@ fn section_label() -> Element(msg) {
             input.disabled(),
           ]),
         ]),
-        html.div([attribute.class("grid gap-3")], [
+        html.div([attribute.class("field")], [
           label.label([attribute.for("label-demo-textarea")], [
             html.text("Message"),
           ]),
@@ -2577,14 +2646,25 @@ fn section_pagination() -> Element(msg) {
           [
             html.ul([attribute.class("flex flex-row items-center gap-1")], [
               html.li([], [
-                html.a([attribute.href("#"), attribute.class("btn-ghost")], [
-                  icon("chevron-left", []),
-                  html.text(" Previous"),
-                ]),
+                html.a(
+                  [
+                    attribute.href("#"),
+                    attribute.class("btn"),
+                    attribute.data("variant", "ghost"),
+                  ],
+                  [
+                    icon("chevron-left", []),
+                    html.text(" Previous"),
+                  ],
+                ),
               ]),
               html.li([], [
                 html.a(
-                  [attribute.href("#"), attribute.class("btn-ghost size-9")],
+                  [
+                    attribute.href("#"),
+                    attribute.class("btn size-9"),
+                    attribute.data("variant", "ghost"),
+                  ],
                   [
                     html.text("1"),
                   ],
@@ -2592,7 +2672,11 @@ fn section_pagination() -> Element(msg) {
               ]),
               html.li([], [
                 html.a(
-                  [attribute.href("#"), attribute.class("btn-outline size-9")],
+                  [
+                    attribute.href("#"),
+                    attribute.class("btn size-9"),
+                    attribute.data("variant", "outline"),
+                  ],
                   [
                     html.text("2"),
                   ],
@@ -2600,7 +2684,11 @@ fn section_pagination() -> Element(msg) {
               ]),
               html.li([], [
                 html.a(
-                  [attribute.href("#"), attribute.class("btn-ghost size-9")],
+                  [
+                    attribute.href("#"),
+                    attribute.class("btn size-9"),
+                    attribute.data("variant", "ghost"),
+                  ],
                   [
                     html.text("3"),
                   ],
@@ -2608,17 +2696,29 @@ fn section_pagination() -> Element(msg) {
               ]),
               html.li([], [
                 html.a(
-                  [attribute.href("#"), attribute.class("btn-icon-ghost")],
+                  [
+                    attribute.href("#"),
+                    attribute.class("btn"),
+                    attribute.data("variant", "ghost"),
+                    attribute.data("size", "icon"),
+                  ],
                   [
                     icon("ellipsis", []),
                   ],
                 ),
               ]),
               html.li([], [
-                html.a([attribute.href("#"), attribute.class("btn-ghost")], [
-                  html.text("Next "),
-                  icon("chevron-right", []),
-                ]),
+                html.a(
+                  [
+                    attribute.href("#"),
+                    attribute.class("btn"),
+                    attribute.data("variant", "ghost"),
+                  ],
+                  [
+                    html.text("Next "),
+                    icon("chevron-right", []),
+                  ],
+                ),
               ]),
             ]),
           ],
@@ -2638,9 +2738,13 @@ fn section_popover() -> Element(msg) {
     "https://basecoatui.com/components/popover",
     [
       popover.popover(id, [
-        popover.trigger_with_id(popover_id, [attribute.class("btn-outline")], [
-          html.text("Open popover"),
-        ]),
+        popover.trigger_with_id(
+          popover_id,
+          [attribute.class("btn"), attribute.data("variant", "outline")],
+          [
+            html.text("Open popover"),
+          ],
+        ),
         popover.content_with_id(popover_id, [attribute.class("w-80")], [
           html.div([attribute.class("grid gap-4")], [
             html.header([attribute.class("grid gap-1.5")], [
@@ -2662,7 +2766,7 @@ fn section_popover() -> Element(msg) {
                     attribute.type_("text"),
                     attribute.id("demo-popover-width"),
                     attribute.value("100%"),
-                    attribute.class("col-span-2 h-8"),
+                    attribute.class("input col-span-2 h-8"),
                   ]),
                 ],
               ),
@@ -2676,7 +2780,7 @@ fn section_popover() -> Element(msg) {
                     attribute.type_("text"),
                     attribute.id("demo-popover-max-width"),
                     attribute.value("300px"),
-                    attribute.class("col-span-2 h-8"),
+                    attribute.class("input col-span-2 h-8"),
                   ]),
                 ],
               ),
@@ -2690,7 +2794,7 @@ fn section_popover() -> Element(msg) {
                     attribute.type_("text"),
                     attribute.id("demo-popover-height"),
                     attribute.value("25px"),
-                    attribute.class("col-span-2 h-8"),
+                    attribute.class("input col-span-2 h-8"),
                   ]),
                 ],
               ),
@@ -2704,7 +2808,7 @@ fn section_popover() -> Element(msg) {
                     attribute.type_("text"),
                     attribute.id("demo-popover-max-height"),
                     attribute.value("none"),
-                    attribute.class("col-span-2 h-8"),
+                    attribute.class("input col-span-2 h-8"),
                   ]),
                 ],
               ),
@@ -2884,7 +2988,10 @@ fn section_select() -> Element(msg) {
                 "select-default-value",
                 "Blueberry",
                 "blueberry",
-                [attribute.class("btn-outline w-[180px]")],
+                [
+                  attribute.class("btn w-[180px]"),
+                  attribute.data("variant", "outline"),
+                ],
                 [],
                 [],
                 [
@@ -2966,9 +3073,12 @@ fn section_select() -> Element(msg) {
               basecoat_select_base(
                 "select-scrollbar",
                 "select-scrollbar-value",
-                "",
-                "",
-                [attribute.class("btn-outline w-[180px]")],
+                "Item 0",
+                "item-0",
+                [
+                  attribute.class("btn w-[180px]"),
+                  attribute.data("variant", "outline"),
+                ],
                 [],
                 [attribute.class("scrollbar overflow-y-auto max-h-64")],
                 int.range(from: 0, to: 100, with: [], run: fn(acc, i) {
@@ -2988,10 +3098,11 @@ fn section_select() -> Element(msg) {
               basecoat_select_base(
                 "select-disabled",
                 "select-disabled-value",
-                "",
-                "",
+                "Disabled",
+                "disabled",
                 [
-                  attribute.class("btn-outline w-[180px]"),
+                  attribute.class("btn w-[180px]"),
+                  attribute.data("variant", "outline"),
                   attribute.disabled(True),
                 ],
                 [],
@@ -3011,9 +3122,12 @@ fn section_select() -> Element(msg) {
               basecoat_select_base(
                 "select-with-icon",
                 "chart-type",
-                "",
-                "",
-                [attribute.class("btn-outline w-[180px]")],
+                "Bar",
+                "bar",
+                [
+                  attribute.class("btn w-[180px]"),
+                  attribute.data("variant", "outline"),
+                ],
                 [],
                 [],
                 [
@@ -3142,9 +3256,8 @@ fn section_sidebar() -> Element(msg) {
                       html.a(
                         [
                           attribute.href("#"),
-                          attribute.class(
-                            "btn-ghost p-2 h-12 flex-1 justify-start",
-                          ),
+                          attribute.class("btn p-2 h-12 flex-1 justify-start"),
+                          attribute.data("variant", "ghost"),
                         ],
                         [
                           html.div(
@@ -3516,7 +3629,7 @@ fn section_tabs() -> Element(msg) {
               ]),
               card.content([], [
                 form.form([attribute.class("grid gap-6")], [
-                  html.div([attribute.class("grid gap-3")], [
+                  html.div([attribute.class("field")], [
                     html.label([attribute.for("demo-tabs-account-name")], [
                       html.text("Name"),
                     ]),
@@ -3526,7 +3639,7 @@ fn section_tabs() -> Element(msg) {
                       attribute.value("Pedro Duarte"),
                     ]),
                   ]),
-                  html.div([attribute.class("grid gap-3")], [
+                  html.div([attribute.class("field")], [
                     html.label([attribute.for("demo-tabs-account-username")], [
                       html.text("Username"),
                     ]),
@@ -3556,7 +3669,7 @@ fn section_tabs() -> Element(msg) {
               ]),
               card.content([], [
                 form.form([attribute.class("grid gap-6")], [
-                  html.div([attribute.class("grid gap-3")], [
+                  html.div([attribute.class("field")], [
                     html.label([attribute.for("demo-tabs-password-current")], [
                       html.text("Current password"),
                     ]),
@@ -3565,7 +3678,7 @@ fn section_tabs() -> Element(msg) {
                       attribute.id("demo-tabs-password-current"),
                     ]),
                   ]),
-                  html.div([attribute.class("grid gap-3")], [
+                  html.div([attribute.class("field")], [
                     html.label([attribute.for("demo-tabs-password-new")], [
                       html.text("New password"),
                     ]),
@@ -3724,7 +3837,7 @@ fn section_textarea() -> Element(msg) {
           [textarea.placeholder("Type your message here"), textarea.invalid()],
           "",
         ),
-        html.div([attribute.class("grid gap-3")], [
+        html.div([attribute.class("field")], [
           label.label([attribute.for("textarea-demo-label")], [
             html.text("Label"),
           ]),
@@ -3736,7 +3849,7 @@ fn section_textarea() -> Element(msg) {
             "",
           ),
         ]),
-        html.div([attribute.class("grid gap-3")], [
+        html.div([attribute.class("field")], [
           label.label([attribute.for("textarea-demo-label-and-description")], [
             html.text("With label and description"),
           ]),
@@ -3751,7 +3864,7 @@ fn section_textarea() -> Element(msg) {
             html.text("Type your message and press enter to send."),
           ]),
         ]),
-        html.div([attribute.class("grid gap-3")], [
+        html.div([attribute.class("field")], [
           label.label([attribute.for("textarea-demo-disabled")], [
             html.text("Disabled"),
           ]),
@@ -3774,11 +3887,7 @@ fn dispatch_toast(config: toast.Config) {
     toast.config_to_json(config)
     |> json.to_string
 
-  "document.dispatchEvent(new CustomEvent('"
-  <> toast.event_name
-  <> "', { detail: { config: "
-  <> payload
-  <> " } }));"
+  "document.getElementById('toaster').toast(" <> payload <> ");"
 }
 
 fn section_toast() -> Element(msg) {
@@ -3857,7 +3966,8 @@ fn section_tooltip() -> Element(msg) {
         html.button(
           [
             attribute.type_("button"),
-            attribute.class("btn-outline"),
+            attribute.class("btn"),
+            attribute.data("variant", "outline"),
             attribute.data("tooltip", "Top tooltip"),
           ],
           [html.text("Top")],
@@ -3865,7 +3975,8 @@ fn section_tooltip() -> Element(msg) {
         html.button(
           [
             attribute.type_("button"),
-            attribute.class("btn-outline"),
+            attribute.class("btn"),
+            attribute.data("variant", "outline"),
             attribute.data("tooltip", "Right tooltip"),
             attribute.data("side", "right"),
           ],
@@ -3874,7 +3985,8 @@ fn section_tooltip() -> Element(msg) {
         html.button(
           [
             attribute.type_("button"),
-            attribute.class("btn-outline"),
+            attribute.class("btn"),
+            attribute.data("variant", "outline"),
             attribute.data("tooltip", "Bottom tooltip"),
             attribute.data("side", "bottom"),
           ],
@@ -3883,7 +3995,8 @@ fn section_tooltip() -> Element(msg) {
         html.button(
           [
             attribute.type_("button"),
-            attribute.class("btn-outline"),
+            attribute.class("btn"),
+            attribute.data("variant", "outline"),
             attribute.data("tooltip", "Left tooltip"),
             attribute.data("side", "left"),
           ],

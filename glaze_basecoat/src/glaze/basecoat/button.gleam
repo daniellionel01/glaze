@@ -33,7 +33,7 @@
 ////
 //// fn actions() {
 ////   button.group([], [
-////     button.button([button.outline()], [html.text("Cancel")]),
+////     button.outline([], [html.text("Cancel")]),
 ////     button.button([], [html.text("Continue")]),
 ////   ])
 //// }
@@ -47,7 +47,7 @@
 //// import lustre/element/html
 ////
 //// fn docs_link() {
-////   button.link([attribute.href("/docs"), button.outline()], [
+////   button.link_outline([attribute.href("/docs")], [
 ////     html.text("Read docs"),
 ////   ])
 //// }
@@ -64,10 +64,9 @@
 ////
 //// ## Sizes
 ////
-//// Size can be set via the [`small`](#small) or [`large`](#large) attribute
-//// helpers when using a primary button. For other variants, pass the size to
-//// the variant function directly (e.g., `outline_sm`, `destructive_lg`) to
-//// produce the correct compound CSS class (e.g., `btn-sm-outline`).
+//// Size can be set on any variant with the [`small`](#small) or
+//// [`large`](#large) attribute helpers. The `_sm` and `_lg` functions are
+//// shorthands for the same thing.
 ////
 
 import lustre/attribute.{type Attribute}
@@ -85,137 +84,106 @@ pub fn button(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("", "", "button", attrs), children)
 }
 
 pub fn secondary(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-secondary"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("secondary", "", "button", attrs), children)
 }
 
 pub fn destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-destructive"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("destructive", "", "button", attrs), children)
 }
 
 pub fn outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-outline"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("outline", "", "button", attrs), children)
 }
 
 pub fn ghost(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-ghost"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("ghost", "", "button", attrs), children)
 }
 
 pub fn link_style(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-link"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("link", "", "button", attrs), children)
 }
 
 pub fn icon(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-icon"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("", "icon", "button", attrs), children)
 }
 
 pub fn icon_outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-icon-outline"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("outline", "icon", "button", attrs), children)
 }
 
 pub fn icon_destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [
-      attribute.class("btn-icon-destructive"),
-      attribute.type_("button"),
-      ..attrs
-    ],
-    children,
-  )
+  html.button(btn("destructive", "icon", "button", attrs), children)
 }
 
 pub fn link(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn"), ..attrs], children)
+  html.a(btn_attrs("", "", attrs), children)
 }
 
 pub fn link_secondary(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-secondary"), ..attrs], children)
+  html.a(btn_attrs("secondary", "", attrs), children)
 }
 
 pub fn link_outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-outline"), ..attrs], children)
+  html.a(btn_attrs("outline", "", attrs), children)
 }
 
 pub fn link_ghost(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-ghost"), ..attrs], children)
+  html.a(btn_attrs("ghost", "", attrs), children)
 }
 
 pub fn link_destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-destructive"), ..attrs], children)
+  html.a(btn_attrs("destructive", "", attrs), children)
 }
 
 pub fn small() -> Attribute(msg) {
-  attribute.class("btn-sm")
+  attribute.data("size", "sm")
 }
 
 pub fn large() -> Attribute(msg) {
-  attribute.class("btn-lg")
+  attribute.data("size", "lg")
 }
 
 // -- Small variant buttons --------------------------------------------------
@@ -224,50 +192,35 @@ pub fn secondary_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-sm-secondary"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("secondary", "sm", "button", attrs), children)
 }
 
 pub fn destructive_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-sm-destructive"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("destructive", "sm", "button", attrs), children)
 }
 
 pub fn outline_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-sm-outline"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("outline", "sm", "button", attrs), children)
 }
 
 pub fn ghost_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-sm-ghost"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("ghost", "sm", "button", attrs), children)
 }
 
 pub fn link_style_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-sm-link"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("link", "sm", "button", attrs), children)
 }
 
 // -- Large variant buttons --------------------------------------------------
@@ -276,50 +229,35 @@ pub fn secondary_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-lg-secondary"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("secondary", "lg", "button", attrs), children)
 }
 
 pub fn destructive_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-lg-destructive"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("destructive", "lg", "button", attrs), children)
 }
 
 pub fn outline_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-lg-outline"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("outline", "lg", "button", attrs), children)
 }
 
 pub fn ghost_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-lg-ghost"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("ghost", "lg", "button", attrs), children)
 }
 
 pub fn link_style_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn-lg-link"), attribute.type_("button"), ..attrs],
-    children,
-  )
+  html.button(btn("link", "lg", "button", attrs), children)
 }
 
 // -- Small variant links ----------------------------------------------------
@@ -328,35 +266,35 @@ pub fn link_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-sm"), ..attrs], children)
+  html.a(btn_attrs("", "sm", attrs), children)
 }
 
 pub fn link_secondary_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-sm-secondary"), ..attrs], children)
+  html.a(btn_attrs("secondary", "sm", attrs), children)
 }
 
 pub fn link_outline_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-sm-outline"), ..attrs], children)
+  html.a(btn_attrs("outline", "sm", attrs), children)
 }
 
 pub fn link_ghost_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-sm-ghost"), ..attrs], children)
+  html.a(btn_attrs("ghost", "sm", attrs), children)
 }
 
 pub fn link_destructive_sm(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-sm-destructive"), ..attrs], children)
+  html.a(btn_attrs("destructive", "sm", attrs), children)
 }
 
 // -- Large variant links ----------------------------------------------------
@@ -365,35 +303,35 @@ pub fn link_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-lg"), ..attrs], children)
+  html.a(btn_attrs("", "lg", attrs), children)
 }
 
 pub fn link_secondary_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-lg-secondary"), ..attrs], children)
+  html.a(btn_attrs("secondary", "lg", attrs), children)
 }
 
 pub fn link_outline_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-lg-outline"), ..attrs], children)
+  html.a(btn_attrs("outline", "lg", attrs), children)
 }
 
 pub fn link_ghost_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-lg-ghost"), ..attrs], children)
+  html.a(btn_attrs("ghost", "lg", attrs), children)
 }
 
 pub fn link_destructive_lg(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("btn-lg-destructive"), ..attrs], children)
+  html.a(btn_attrs("destructive", "lg", attrs), children)
 }
 
 pub fn full_width() -> Attribute(msg) {
@@ -408,22 +346,41 @@ pub fn loading() -> Attribute(msg) {
   attribute.disabled(True)
 }
 
+fn btn(
+  variant: String,
+  size: String,
+  type_: String,
+  attrs: List(Attribute(msg)),
+) -> List(Attribute(msg)) {
+  [attribute.type_(type_), ..btn_attrs(variant, size, attrs)]
+}
+
+fn btn_attrs(
+  variant: String,
+  size: String,
+  attrs: List(Attribute(msg)),
+) -> List(Attribute(msg)) {
+  let attrs = case size {
+    "" -> attrs
+    size -> [attribute.data("size", size), ..attrs]
+  }
+  let attrs = case variant {
+    "" -> attrs
+    variant -> [attribute.data("variant", variant), ..attrs]
+  }
+  [attribute.class("btn"), ..attrs]
+}
+
 pub fn submit(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn"), attribute.type_("submit"), ..attrs],
-    children,
-  )
+  html.button(btn("", "", "submit", attrs), children)
 }
 
 pub fn reset(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.button(
-    [attribute.class("btn"), attribute.type_("reset"), ..attrs],
-    children,
-  )
+  html.button(btn("", "", "reset", attrs), children)
 }

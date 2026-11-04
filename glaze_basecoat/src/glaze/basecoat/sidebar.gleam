@@ -214,23 +214,17 @@ pub fn footer(
 }
 
 pub fn toggle_script(sidebar_id: String) -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:sidebar', { detail: { id: '"
-  <> sidebar_id
-  <> "' } }));"
+  "document.getElementById('" <> sidebar_id <> "')?.toggle();"
 }
 
 pub fn toggle_script_default() -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:sidebar'));"
+  "document.querySelector('.sidebar')?.toggle();"
 }
 
 pub fn open_script(sidebar_id: String) -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:sidebar', { detail: { id: '"
-  <> sidebar_id
-  <> "', action: 'open' } }));"
+  "document.getElementById('" <> sidebar_id <> "')?.open();"
 }
 
 pub fn close_script(sidebar_id: String) -> String {
-  "document.dispatchEvent(new CustomEvent('basecoat:sidebar', { detail: { id: '"
-  <> sidebar_id
-  <> "', action: 'close' } }));"
+  "document.getElementById('" <> sidebar_id <> "')?.close();"
 }

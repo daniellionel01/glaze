@@ -13,7 +13,7 @@ For a full list of components, take a look at either:
 - <https://hexdocs.pm/glaze_basecoat>
 - <https://basecoatui.com/components/>
 
-Latest supported version is [Basecoat v0.3.11](https://github.com/hunvreus/basecoat).
+Latest supported version is [Basecoat v1.1.0](https://github.com/hunvreus/basecoat/releases/tag/1.1.0).
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_basecoat/>
 
@@ -50,10 +50,10 @@ And import it in your application css file:
 
 If you install the package, you can create an additional css file to configure your theme: <https://basecoatui.com/installation/#install-theming>
 
-Or create a `src/basecoat.css` file and put the contents of the [basecoat.css](https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css) and import it in your main css file.
+Or create a `src/basecoat.css` file and put the contents of the [basecoat.bundle.css](https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/dist/basecoat.bundle.css) and import it in your main css file.
 
 ```sh
-curl -L https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.css \
+curl -L https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/dist/basecoat.bundle.css \
   -o src/basecoat.css
 ```
 
@@ -70,7 +70,7 @@ As for the JavaScript, you can link that in the `[tools.lustre.html]` in your `g
 
 ```toml
 [tools.lustre.html]
-scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" }]
+scripts = [{ src = "https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/dist/js/all.min.js" }]
 ```
 
 After that you can freely use any Basecoat components:

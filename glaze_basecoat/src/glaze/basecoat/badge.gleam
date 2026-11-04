@@ -39,21 +39,34 @@ pub fn secondary(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.span([attribute.class("badge-secondary"), ..attrs], children)
+  html.span(
+    [attribute.class("badge"), attribute.data("variant", "secondary"), ..attrs],
+    children,
+  )
 }
 
 pub fn outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.span([attribute.class("badge-outline"), ..attrs], children)
+  html.span(
+    [attribute.class("badge"), attribute.data("variant", "outline"), ..attrs],
+    children,
+  )
 }
 
 pub fn destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.span([attribute.class("badge-destructive"), ..attrs], children)
+  html.span(
+    [
+      attribute.class("badge"),
+      attribute.data("variant", "destructive"),
+      ..attrs
+    ],
+    children,
+  )
 }
 
 pub fn link(
@@ -67,21 +80,34 @@ pub fn link_secondary(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("badge-secondary"), ..attrs], children)
+  html.a(
+    [attribute.class("badge"), attribute.data("variant", "secondary"), ..attrs],
+    children,
+  )
 }
 
 pub fn link_outline(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("badge-outline"), ..attrs], children)
+  html.a(
+    [attribute.class("badge"), attribute.data("variant", "outline"), ..attrs],
+    children,
+  )
 }
 
 pub fn link_destructive(
   attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
-  html.a([attribute.class("badge-destructive"), ..attrs], children)
+  html.a(
+    [
+      attribute.class("badge"),
+      attribute.data("variant", "destructive"),
+      ..attrs
+    ],
+    children,
+  )
 }
 
 pub fn with_icon(

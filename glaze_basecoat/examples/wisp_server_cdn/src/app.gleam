@@ -53,7 +53,7 @@ fn login_form() {
       if (form !== null) {
          form.addEventListener('submit', (event) => {
            event.preventDefault();
-           document.dispatchEvent(new CustomEvent('" <> toast.event_name <> "', { detail: { config: " <> toast_payload <> " } }));\n
+           document.getElementById('toaster').toast(" <> toast_payload <> ");\n
          });
       }
     "),
