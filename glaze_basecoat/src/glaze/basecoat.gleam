@@ -70,15 +70,51 @@ pub fn cdn_script(v: String) -> Element(a) {
 /// ```
 ///
 pub fn cdn_stylesheet(v: String) -> Element(a) {
+  cdn_stylesheet_with_style(v, Vega)
+}
+
+/// Basecoat's style packs: <https://basecoatui.com/installation/#cdn-files>
+///
+/// The default is Vega.
+///
+pub type Style {
+  Vega
+  Nova
+  Maia
+  Lyra
+  Mira
+  Luma
+  Sera
+  Rhea
+}
+
+/// Like [`cdn_stylesheet`](#cdn_stylesheet), but with a specific style pack.
+///
+pub fn cdn_stylesheet_with_style(v: String, style: Style) -> Element(a) {
   element.fragment([
     html.link([
       attribute.rel("stylesheet"),
       attribute.href(
         "https://cdn.jsdelivr.net/npm/basecoat-css@"
         <> v
-        <> "/dist/basecoat.cdn.min.css",
+        <> "/dist/basecoat-"
+        <> style_to_string(style)
+        <> ".cdn.min.css",
       ),
     ]),
     theme.tailwind_bridge_style_tag(),
   ])
+}
+
+fn style_to_string(style: Style) -> String {
+  case style {
+    Vega -> "vega"
+    Nova -> "nova"
+    Maia -> "maia"
+    Lyra -> "lyra"
+    Mira -> "mira"
+    Luma -> "luma"
+    Sera -> "sera"
+    Rhea -> "rhea"
+  }
 }

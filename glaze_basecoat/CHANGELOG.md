@@ -7,13 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-11-04
+
 - **Breaking:** Requires Basecoat v1.1.0 (previously v0.3.11). If you vendor the CSS, use `dist/basecoat.bundle.css`.
-- **Breaking:** `form.form` no longer styles plain inputs inside it, as Basecoat v1 removed `.form`. Use the `input`, `textarea` and `select` modules, or place controls directly inside a `field`.
+- **Breaking:** `form.form` no longer styles plain inputs inside it, as Basecoat v1 removed `.form`. Use the `input`, `textarea` and `native_select` modules, or place controls directly inside a `field`.
+- **Breaking:** The `select` module is renamed to `native_select` (and `select.select` to `native_select.native_select`), matching Basecoat's naming. `select` is now Basecoat's JavaScript select.
 - **Breaking:** Removed `toast.event_name` and the `theme.DestructiveForeground` token, which Basecoat v1 no longer uses.
 - Button, badge and alert variants use `data-variant` / `data-size` instead of classes like `btn-sm-outline`. The functions are unchanged.
 - `field`, `form.group` and `label.with_input` render Basecoat's `.field`, and `form.fieldset` renders `.fieldset`.
 - Sidebar, theme switcher and toast scripts use Basecoat v1's methods instead of document events.
 - `accordion` and `alert_dialog_with_text` markup updated for Basecoat v1.
+- New modules: `select`, `combobox`, `drawer`, `button_group`, `input_group` and `scroll_area`.
+- Added `basecoat.cdn_stylesheet_with_style` to load one of Basecoat's style packs (Vega, Nova, Maia, …).
 
 ## [4.0.0] - 2026-11-04
 

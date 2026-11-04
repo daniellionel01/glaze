@@ -23,20 +23,27 @@ import glaze/basecoat/alert_dialog
 import glaze/basecoat/avatar
 import glaze/basecoat/badge
 import glaze/basecoat/button
+import glaze/basecoat/button_group
 import glaze/basecoat/card
 import glaze/basecoat/checkbox
+import glaze/basecoat/combobox
 import glaze/basecoat/command
 import glaze/basecoat/dialog
+import glaze/basecoat/drawer
 import glaze/basecoat/dropdown_menu
 import glaze/basecoat/empty
 import glaze/basecoat/field
 import glaze/basecoat/form
 import glaze/basecoat/input
+import glaze/basecoat/input_group
 import glaze/basecoat/item
 import glaze/basecoat/kbd
 import glaze/basecoat/label
+import glaze/basecoat/native_select
 import glaze/basecoat/popover
 import glaze/basecoat/progress
+import glaze/basecoat/scroll_area
+import glaze/basecoat/select
 import glaze/basecoat/sidebar
 import glaze/basecoat/skeleton
 import glaze/basecoat/spinner
@@ -168,11 +175,17 @@ fn kitchen_sink_components() -> List(#(String, String, String)) {
       "https://basecoatui.com/components/breadcrumb",
     ),
     #("Button", "button", "https://basecoatui.com/components/button"),
+    #(
+      "Button Group",
+      "button-group",
+      "https://basecoatui.com/components/button-group",
+    ),
     #("Card", "card", "https://basecoatui.com/components/card"),
     #("Checkbox", "checkbox", "https://basecoatui.com/components/checkbox"),
     #("Command", "command", "https://basecoatui.com/components/command"),
     #("Combobox", "combobox", "https://basecoatui.com/components/combobox"),
     #("Dialog", "dialog", "https://basecoatui.com/components/dialog"),
+    #("Drawer", "drawer", "https://basecoatui.com/components/drawer"),
     #(
       "Dropdown Menu",
       "dropdown-menu",
@@ -183,6 +196,11 @@ fn kitchen_sink_components() -> List(#(String, String, String)) {
     #("Form", "form", "https://basecoatui.com/components/form"),
     #("Icon", "icon", "https://basecoatui.com"),
     #("Input", "input", "https://basecoatui.com/components/input"),
+    #(
+      "Input Group",
+      "input-group",
+      "https://basecoatui.com/components/input-group",
+    ),
     #("Item", "item", "https://basecoatui.com/components/item"),
     #("Kbd", "kbd", "https://basecoatui.com/components/kbd"),
     #("Label", "label", "https://basecoatui.com/components/label"),
@@ -197,6 +215,11 @@ fn kitchen_sink_components() -> List(#(String, String, String)) {
       "Radio Group",
       "radio-group",
       "https://basecoatui.com/components/radio-group",
+    ),
+    #(
+      "Scroll Area",
+      "scroll-area",
+      "https://basecoatui.com/components/scroll-area",
     ),
     #("Select", "select", "https://basecoatui.com/components/select"),
     #("Sidebar", "sidebar", "https://basecoatui.com/components/sidebar"),
@@ -227,17 +250,20 @@ fn kitchen_sink_sections() -> List(Element(msg)) {
     section_badge(),
     section_breadcrumb(),
     section_button(),
+    section_button_group(),
     section_card(),
     section_checkbox(),
     section_command(),
     section_combobox(),
     section_dialog(),
+    section_drawer(),
     section_dropdown_menu(),
     section_empty(),
     section_field(),
     section_form(),
     section_icon(),
     section_input(),
+    section_input_group(),
     section_item(),
     section_kbd(),
     section_label(),
@@ -245,6 +271,7 @@ fn kitchen_sink_sections() -> List(Element(msg)) {
     section_popover(),
     section_progress(),
     section_radio_group(),
+    section_scroll_area(),
     section_select(),
     section_sidebar(),
     section_skeleton(),
@@ -1401,415 +1428,6 @@ fn section_kbd() -> Element(msg) {
   ])
 }
 
-fn basecoat_select_base(
-  id: String,
-  name: String,
-  selected_label: String,
-  selected_value: String,
-  trigger_attrs: List(Attribute(msg)),
-  popover_attrs: List(Attribute(msg)),
-  listbox_attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
-  let trigger_id = id <> "-trigger"
-  let listbox_id = id <> "-listbox"
-  let popover_id = id <> "-popover"
-
-  html.div([attribute.id(id), attribute.class("select")], [
-    html.button(
-      [
-        attribute.type_("button"),
-        attribute.id(trigger_id),
-        attribute.aria_haspopup("listbox"),
-        attribute.aria_expanded(False),
-        attribute.aria_controls(listbox_id),
-        ..trigger_attrs
-      ],
-      [
-        html.span([attribute.class("truncate")], [html.text(selected_label)]),
-        icon("chevron-down", [
-          attribute.class("text-muted-foreground opacity-50 shrink-0"),
-        ]),
-      ],
-    ),
-    html.div(
-      [
-        attribute.id(popover_id),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-        ..popover_attrs
-      ],
-      [
-        html.div(
-          [
-            attribute.role("listbox"),
-            attribute.id(listbox_id),
-            attribute.aria_orientation("vertical"),
-            attribute.aria_labelledby(trigger_id),
-            ..listbox_attrs
-          ],
-          children,
-        ),
-      ],
-    ),
-    html.input([
-      attribute.type_("hidden"),
-      attribute.name(name),
-      attribute.value(selected_value),
-    ]),
-  ])
-}
-
-fn basecoat_combobox(
-  id: String,
-  name: String,
-  selected: String,
-  trigger_attrs: List(Attribute(msg)),
-  popover_attrs: List(Attribute(msg)),
-  empty_message: String,
-  children: List(Element(msg)),
-) -> Element(msg) {
-  let trigger_id = id <> "-trigger"
-  let listbox_id = id <> "-listbox"
-  let popover_id = id <> "-popover"
-
-  html.div([attribute.id(id), attribute.class("select")], [
-    html.button(
-      [
-        attribute.type_("button"),
-        attribute.id(trigger_id),
-        attribute.aria_haspopup("listbox"),
-        attribute.aria_expanded(False),
-        attribute.aria_controls(listbox_id),
-        ..trigger_attrs
-      ],
-      [
-        html.span([attribute.class("truncate")], []),
-        icon("chevrons-up-down", [
-          attribute.class("text-muted-foreground opacity-50 shrink-0"),
-        ]),
-      ],
-    ),
-    html.div(
-      [
-        attribute.id(popover_id),
-        attribute.data("popover", ""),
-        attribute.aria_hidden(True),
-        ..popover_attrs
-      ],
-      [
-        html.header([], [
-          icon("search", []),
-          html.input([
-            attribute.type_("text"),
-            attribute.value(""),
-            attribute.placeholder("Search entries..."),
-            attribute.autocomplete("off"),
-            attribute.autocorrect(False),
-            attribute.spellcheck(False),
-            attribute.aria_autocomplete("list"),
-            attribute.role("combobox"),
-            attribute.aria_expanded(False),
-            attribute.aria_controls(listbox_id),
-            attribute.aria_labelledby(trigger_id),
-          ]),
-        ]),
-        html.div(
-          [
-            attribute.role("listbox"),
-            attribute.id(listbox_id),
-            attribute.aria_orientation("vertical"),
-            attribute.aria_labelledby(trigger_id),
-            attribute.data("empty", empty_message),
-          ],
-          children,
-        ),
-      ],
-    ),
-    html.input([
-      attribute.type_("hidden"),
-      attribute.name(name),
-      attribute.value(selected),
-    ]),
-  ])
-}
-
-fn section_combobox() -> Element(msg) {
-  sink_section_simple(
-    "combobox",
-    "Combobox",
-    "https://basecoatui.com/components/combobox",
-    [
-      html.div([attribute.class("flex flex-wrap items-start gap-4")], [
-        basecoat_combobox(
-          "demo-combobox-frameworks",
-          "demo-combobox-frameworks-value",
-          "Next.js",
-          [attribute.class("btn w-48"), attribute.data("variant", "outline")],
-          [attribute.class("w-48")],
-          "No framework found.",
-          [
-            html.div(
-              [attribute.role("option"), attribute.data("value", "Next.js")],
-              [
-                html.text("Next.js"),
-              ],
-            ),
-            html.div(
-              [attribute.role("option"), attribute.data("value", "SvelteKit")],
-              [
-                html.text("SvelteKit"),
-              ],
-            ),
-            html.div(
-              [attribute.role("option"), attribute.data("value", "Nuxt.js")],
-              [
-                html.text("Nuxt.js"),
-              ],
-            ),
-            html.div(
-              [attribute.role("option"), attribute.data("value", "Remix")],
-              [
-                html.text("Remix"),
-              ],
-            ),
-            html.div(
-              [attribute.role("option"), attribute.data("value", "Astro")],
-              [
-                html.text("Astro"),
-              ],
-            ),
-          ],
-        ),
-        basecoat_combobox(
-          "demo-combobox-timezones",
-          "demo-combobox-timezones-value",
-          "America/New_York",
-          [attribute.class("btn w-72"), attribute.data("variant", "outline")],
-          [attribute.class("w-72")],
-          "No timezone found.",
-          [
-            html.div([attribute.class("max-h-64 overflow-y-auto scrollbar")], [
-              html.div(
-                [
-                  attribute.role("group"),
-                  attribute.aria_labelledby("demo-combobox-timezones-group-0"),
-                ],
-                [
-                  html.span(
-                    [
-                      attribute.id("demo-combobox-timezones-group-0"),
-                      attribute.role("heading"),
-                    ],
-                    [html.text("Americas")],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "America/New_York"),
-                    ],
-                    [
-                      html.text("(GMT-5) New York"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "America/Los_Angeles"),
-                    ],
-                    [
-                      html.text("(GMT-8) Los Angeles"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "America/Chicago"),
-                    ],
-                    [
-                      html.text("(GMT-6) Chicago"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "America/Toronto"),
-                    ],
-                    [
-                      html.text("(GMT-5) Toronto"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "America/Vancouver"),
-                    ],
-                    [
-                      html.text("(GMT-8) Vancouver"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "America/Sao_Paulo"),
-                    ],
-                    [
-                      html.text("(GMT-3) Sao Paulo"),
-                    ],
-                  ),
-                ],
-              ),
-              html.div(
-                [
-                  attribute.role("group"),
-                  attribute.aria_labelledby("demo-combobox-timezones-group-1"),
-                ],
-                [
-                  html.span(
-                    [
-                      attribute.id("demo-combobox-timezones-group-1"),
-                      attribute.role("heading"),
-                    ],
-                    [html.text("Europe")],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Europe/London"),
-                    ],
-                    [
-                      html.text("(GMT+0) London"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Europe/Paris"),
-                    ],
-                    [
-                      html.text("(GMT+1) Paris"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Europe/Berlin"),
-                    ],
-                    [
-                      html.text("(GMT+1) Berlin"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Europe/Rome"),
-                    ],
-                    [
-                      html.text("(GMT+1) Rome"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Europe/Madrid"),
-                    ],
-                    [
-                      html.text("(GMT+1) Madrid"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Europe/Amsterdam"),
-                    ],
-                    [
-                      html.text("(GMT+1) Amsterdam"),
-                    ],
-                  ),
-                ],
-              ),
-              html.div(
-                [
-                  attribute.role("group"),
-                  attribute.aria_labelledby("demo-combobox-timezones-group-2"),
-                ],
-                [
-                  html.span(
-                    [
-                      attribute.id("demo-combobox-timezones-group-2"),
-                      attribute.role("heading"),
-                    ],
-                    [html.text("Asia/Pacific")],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Asia/Tokyo"),
-                    ],
-                    [
-                      html.text("(GMT+9) Tokyo"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Asia/Shanghai"),
-                    ],
-                    [
-                      html.text("(GMT+8) Shanghai"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Asia/Singapore"),
-                    ],
-                    [
-                      html.text("(GMT+8) Singapore"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Asia/Dubai"),
-                    ],
-                    [
-                      html.text("(GMT+4) Dubai"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Australia/Sydney"),
-                    ],
-                    [
-                      html.text("(GMT+11) Sydney"),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "Asia/Seoul"),
-                    ],
-                    [
-                      html.text("(GMT+9) Seoul"),
-                    ],
-                  ),
-                ],
-              ),
-            ]),
-            html.hr([attribute.role("separator")]),
-            html.div([attribute.role("option")], [
-              icon("circle-plus", []),
-              html.text("Create timezone"),
-            ]),
-          ],
-        ),
-      ]),
-    ],
-  )
-}
-
 fn section_dialog() -> Element(msg) {
   let edit_id = "demo-dialog-edit-profile"
   let scroll_id = "dialog-example"
@@ -2952,241 +2570,6 @@ fn section_radio_group() -> Element(msg) {
   )
 }
 
-fn section_select() -> Element(msg) {
-  sink_section_simple(
-    "select",
-    "Select",
-    "https://basecoatui.com/components/select",
-    [
-      html.div([attribute.class("flex flex-col gap-4")], [
-        html.div(
-          [attribute.class("flex flex-wrap items-center gap-2 md:flex-row")],
-          [
-            html.select([attribute.class("select w-[180px]")], [
-              html.optgroup([attribute("label", "Fruits")], [
-                html.option([], "Apple"),
-                html.option([], "Banana"),
-                html.option([], "Blueberry"),
-              ]),
-              html.optgroup([attribute("label", "Grapes")], [
-                html.option([], "Pineapple"),
-              ]),
-            ]),
-            html.select(
-              [attribute.class("select w-[180px]"), attribute.disabled(True)],
-              [
-                html.option([], "Disabled"),
-              ],
-            ),
-          ],
-        ),
-        html.div([attribute.class("flex flex-wrap items-center gap-4")], [
-          html.div(
-            [attribute.class("flex flex-wrap items-center gap-2 md:flex-row")],
-            [
-              basecoat_select_base(
-                "select-default",
-                "select-default-value",
-                "Blueberry",
-                "blueberry",
-                [
-                  attribute.class("btn w-[180px]"),
-                  attribute.data("variant", "outline"),
-                ],
-                [],
-                [],
-                [
-                  html.div(
-                    [
-                      attribute.role("group"),
-                      attribute.aria_labelledby(
-                        "group-label-select-default-items-1",
-                      ),
-                    ],
-                    [
-                      html.div(
-                        [
-                          attribute.role("heading"),
-                          attribute.id("group-label-select-default-items-1"),
-                        ],
-                        [
-                          html.text("Fruits"),
-                        ],
-                      ),
-                      html.div(
-                        [
-                          attribute.role("option"),
-                          attribute.data("value", "apple"),
-                        ],
-                        [
-                          html.text("Apple"),
-                        ],
-                      ),
-                      html.div(
-                        [
-                          attribute.role("option"),
-                          attribute.data("value", "banana"),
-                        ],
-                        [
-                          html.text("Banana"),
-                        ],
-                      ),
-                      html.div(
-                        [
-                          attribute.role("option"),
-                          attribute.data("value", "blueberry"),
-                          attribute.aria_selected(True),
-                        ],
-                        [html.text("Blueberry")],
-                      ),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("group"),
-                      attribute.aria_labelledby(
-                        "group-label-select-default-items-2",
-                      ),
-                    ],
-                    [
-                      html.div(
-                        [
-                          attribute.role("heading"),
-                          attribute.id("group-label-select-default-items-2"),
-                        ],
-                        [
-                          html.text("Grapes"),
-                        ],
-                      ),
-                      html.div(
-                        [
-                          attribute.role("option"),
-                          attribute.data("value", "pineapple"),
-                        ],
-                        [
-                          html.text("Pineapple"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              basecoat_select_base(
-                "select-scrollbar",
-                "select-scrollbar-value",
-                "Item 0",
-                "item-0",
-                [
-                  attribute.class("btn w-[180px]"),
-                  attribute.data("variant", "outline"),
-                ],
-                [],
-                [attribute.class("scrollbar overflow-y-auto max-h-64")],
-                int.range(from: 0, to: 100, with: [], run: fn(acc, i) {
-                  [i, ..acc]
-                })
-                  |> list.reverse
-                  |> list.map(fn(i) {
-                    html.div(
-                      [
-                        attribute.role("option"),
-                        attribute.data("value", "item-" <> int.to_string(i)),
-                      ],
-                      [html.text("Item " <> int.to_string(i))],
-                    )
-                  }),
-              ),
-              basecoat_select_base(
-                "select-disabled",
-                "select-disabled-value",
-                "Disabled",
-                "disabled",
-                [
-                  attribute.class("btn w-[180px]"),
-                  attribute.data("variant", "outline"),
-                  attribute.disabled(True),
-                ],
-                [],
-                [],
-                [
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "disabled"),
-                    ],
-                    [
-                      html.text("Disabled"),
-                    ],
-                  ),
-                ],
-              ),
-              basecoat_select_base(
-                "select-with-icon",
-                "chart-type",
-                "Bar",
-                "bar",
-                [
-                  attribute.class("btn w-[180px]"),
-                  attribute.data("variant", "outline"),
-                ],
-                [],
-                [],
-                [
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "bar"),
-                      attribute("type", "button"),
-                    ],
-                    [
-                      html.span([attribute.class("flex items-center gap-2")], [
-                        icon("chart-bar", [
-                          attribute.class("text-muted-foreground"),
-                        ]),
-                        html.text("Bar"),
-                      ]),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "line"),
-                      attribute("type", "button"),
-                    ],
-                    [
-                      html.span([attribute.class("flex items-center gap-2")], [
-                        icon("chart-line", [
-                          attribute.class("text-muted-foreground"),
-                        ]),
-                        html.text("Line"),
-                      ]),
-                    ],
-                  ),
-                  html.div(
-                    [
-                      attribute.role("option"),
-                      attribute.data("value", "pie"),
-                      attribute("type", "button"),
-                    ],
-                    [
-                      html.span([attribute.class("flex items-center gap-2")], [
-                        icon("chart-pie", [
-                          attribute.class("text-muted-foreground"),
-                        ]),
-                        html.text("Pie"),
-                      ]),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ]),
-      ]),
-    ],
-  )
-}
-
 fn section_sidebar() -> Element(msg) {
   let sidebar_id = "demo-sidebar"
   let collapsed_bar_id = sidebar_id <> "-collapsed-bar"
@@ -3247,116 +2630,129 @@ fn section_sidebar() -> Element(msg) {
                 sidebar.left(),
                 attribute(
                   "style",
-                  "position: static; width: 280px; height: 360px;",
+                  "position: relative; overflow: hidden; width: 280px; height: 360px;",
                 ),
               ],
               [
-                sidebar.nav_with_label("Demo sidebar", [], [
-                  sidebar.header([], [
-                    html.div([attribute.class("flex items-center gap-1")], [
-                      html.a(
-                        [
-                          attribute.href("#"),
-                          attribute.class("btn p-2 h-12 flex-1 justify-start"),
-                          attribute.data("variant", "ghost"),
-                        ],
-                        [
-                          html.div(
-                            [
-                              attribute.class(
-                                "bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg",
-                              ),
-                            ],
-                            [
-                              icon("layout-grid", [
-                                attribute.class("size-4"),
-                              ]),
-                            ],
-                          ),
-                          html.div(
-                            [
-                              attribute.class(
-                                "grid flex-1 text-left text-sm leading-tight",
-                              ),
-                            ],
-                            [
-                              html.span(
-                                [attribute.class("truncate font-medium")],
-                                [
-                                  html.text("Glaze Basecoat"),
-                                ],
-                              ),
-                              html.span([attribute.class("truncate text-xs")], [
-                                html.text("v" <> basecoat.version),
-                              ]),
-                            ],
-                          ),
-                        ],
-                      ),
-                      button.icon_outline(
-                        [
-                          attribute("onclick", sidebar.close_script(sidebar_id)),
-                          attribute.data("tooltip", "Collapse sidebar"),
-                        ],
-                        [icon("chevron-left", [attribute.class("size-4")])],
-                      ),
-                    ]),
-                  ]),
-                  sidebar.section([], [
-                    sidebar.group("Getting started", [
-                      sidebar.link("#", True, [], [
-                        icon("home", [attribute.class("size-4")]),
-                        html.span([], [html.text("Home")]),
-                      ]),
-                      sidebar.link("#", False, [], [
-                        icon("square-terminal", [attribute.class("size-4")]),
-                        html.span([], [html.text("Playground")]),
-                      ]),
-                      sidebar.link("#", False, [], [
-                        icon("settings", [attribute.class("size-4")]),
-                        html.span([], [html.text("Settings")]),
+                sidebar.nav_with_label(
+                  "Demo sidebar",
+                  [attribute("style", "position: absolute; width: 100%;")],
+                  [
+                    sidebar.header([], [
+                      html.div([attribute.class("flex items-center gap-1")], [
+                        html.a(
+                          [
+                            attribute.href("#"),
+                            attribute.class("btn p-2 h-12 flex-1 justify-start"),
+                            attribute.data("variant", "ghost"),
+                          ],
+                          [
+                            html.div(
+                              [
+                                attribute.class(
+                                  "bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg",
+                                ),
+                              ],
+                              [
+                                icon("layout-grid", [
+                                  attribute.class("size-4"),
+                                ]),
+                              ],
+                            ),
+                            html.div(
+                              [
+                                attribute.class(
+                                  "grid flex-1 text-left text-sm leading-tight",
+                                ),
+                              ],
+                              [
+                                html.span(
+                                  [attribute.class("truncate font-medium")],
+                                  [
+                                    html.text("Glaze Basecoat"),
+                                  ],
+                                ),
+                                html.span(
+                                  [attribute.class("truncate text-xs")],
+                                  [
+                                    html.text("v" <> basecoat.version),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        button.icon_outline(
+                          [
+                            attribute(
+                              "onclick",
+                              sidebar.close_script(sidebar_id),
+                            ),
+                            attribute.data("tooltip", "Collapse sidebar"),
+                          ],
+                          [icon("chevron-left", [attribute.class("size-4")])],
+                        ),
                       ]),
                     ]),
-                    sidebar.group("Resources", [
-                      sidebar.link("#", False, [], [
-                        icon("github", [attribute.class("size-4")]),
-                        html.span([], [html.text("GitHub")]),
+                    sidebar.section([], [
+                      sidebar.group("Getting started", [
+                        sidebar.link("#", True, [], [
+                          icon("home", [attribute.class("size-4")]),
+                          html.span([], [html.text("Home")]),
+                        ]),
+                        sidebar.link("#", False, [], [
+                          icon("square-terminal", [attribute.class("size-4")]),
+                          html.span([], [html.text("Playground")]),
+                        ]),
+                        sidebar.link("#", False, [], [
+                          icon("settings", [attribute.class("size-4")]),
+                          html.span([], [html.text("Settings")]),
+                        ]),
                       ]),
-                      sidebar.link("#", False, [], [
-                        icon("book-open", [attribute.class("size-4")]),
-                        html.span([], [html.text("Docs")]),
+                      sidebar.group("Resources", [
+                        sidebar.link("#", False, [], [
+                          icon("github", [attribute.class("size-4")]),
+                          html.span([], [html.text("GitHub")]),
+                        ]),
+                        sidebar.link("#", False, [], [
+                          icon("book-open", [attribute.class("size-4")]),
+                          html.span([], [html.text("Docs")]),
+                        ]),
                       ]),
                     ]),
-                  ]),
-                  sidebar.footer([attribute.class("p-2 border-t")], [
-                    html.div([attribute.class("flex items-center gap-2")], [
-                      html.img([
-                        attribute.src("https://github.com/hunvreus.png"),
-                        attribute.alt("User"),
-                        attribute.class("size-8 rounded-lg"),
+                    sidebar.footer([attribute.class("p-2 border-t")], [
+                      html.div([attribute.class("flex items-center gap-2")], [
+                        html.img([
+                          attribute.src("https://github.com/hunvreus.png"),
+                          attribute.alt("User"),
+                          attribute.class("size-8 rounded-lg"),
+                        ]),
+                        html.div(
+                          [attribute.class("grid flex-1 text-left text-sm")],
+                          [
+                            html.span(
+                              [attribute.class("truncate font-medium")],
+                              [
+                                html.text("hunvreus"),
+                              ],
+                            ),
+                            html.span(
+                              [
+                                attribute.class(
+                                  "truncate text-xs text-muted-foreground",
+                                ),
+                              ],
+                              [
+                                html.text("hunvreus@example.com"),
+                              ],
+                            ),
+                          ],
+                        ),
+                        button.icon_outline([], [icon("more-vertical", [])]),
                       ]),
-                      html.div(
-                        [attribute.class("grid flex-1 text-left text-sm")],
-                        [
-                          html.span([attribute.class("truncate font-medium")], [
-                            html.text("hunvreus"),
-                          ]),
-                          html.span(
-                            [
-                              attribute.class(
-                                "truncate text-xs text-muted-foreground",
-                              ),
-                            ],
-                            [
-                              html.text("hunvreus@example.com"),
-                            ],
-                          ),
-                        ],
-                      ),
-                      button.icon_outline([], [icon("more-vertical", [])]),
                     ]),
-                  ]),
-                ]),
+                  ],
+                ),
               ],
             ),
           ]),
@@ -3367,7 +2763,7 @@ fn section_sidebar() -> Element(msg) {
             <> sidebar_id
             <> "'); const collapsedBar = document.getElementById('"
             <> collapsed_bar_id
-            <> "'); if (!sidebar || !collapsedBar) return; const syncCollapsedState = () => { const isHidden = sidebar.getAttribute('aria-hidden') === 'true'; collapsedBar.classList.toggle('hidden', !isHidden); }; syncCollapsedState(); new MutationObserver(syncCollapsedState).observe(sidebar, { attributes: true, attributeFilter: ['aria-hidden'] }); document.addEventListener('basecoat:sidebar', () => setTimeout(syncCollapsedState, 0)); })();",
+            <> "'); if (!sidebar || !collapsedBar) return; const syncCollapsedState = () => { const isHidden = sidebar.getAttribute('aria-hidden') === 'true'; collapsedBar.classList.toggle('hidden', !isHidden); }; syncCollapsedState(); new MutationObserver(syncCollapsedState).observe(sidebar, { attributes: true, attributeFilter: ['aria-hidden'] }); })();",
         ),
       ]),
     ],
@@ -4002,6 +3398,292 @@ fn section_tooltip() -> Element(msg) {
             attribute.data("side", "left"),
           ],
           [html.text("Left")],
+        ),
+      ]),
+    ],
+  )
+}
+
+fn section_button_group() -> Element(msg) {
+  sink_section_simple(
+    "button-group",
+    "Button Group",
+    "https://basecoatui.com/components/button-group",
+    [
+      html.div([attribute.class("flex flex-wrap items-start gap-4")], [
+        button_group.button_group([], [
+          button.outline([], [html.text("Archive")]),
+          button.outline([], [html.text("Report")]),
+          button.outline([], [html.text("Snooze")]),
+        ]),
+        button_group.button_group([], [
+          button.outline_sm([], [html.text("-")]),
+          button_group.text([attribute.class("text-sm px-3")], [html.text("12")]),
+          button.outline_sm([], [html.text("+")]),
+        ]),
+        button_group.button_group([button_group.vertical()], [
+          button.outline([], [html.text("Top")]),
+          button_group.separator(),
+          button.outline([], [html.text("Bottom")]),
+        ]),
+      ]),
+    ],
+  )
+}
+
+fn section_input_group() -> Element(msg) {
+  sink_section_simple(
+    "input-group",
+    "Input Group",
+    "https://basecoatui.com/components/input-group",
+    [
+      html.div([attribute.class("flex flex-col gap-4 max-w-sm")], [
+        input_group.input_group([], [
+          html.input([attribute.placeholder("Search...")]),
+          input_group.addon([input_group.start()], [icon("search", [])]),
+          input_group.addon([input_group.end()], [html.text("12 results")]),
+        ]),
+        input_group.input_group([], [
+          html.input([attribute.placeholder("example.com")]),
+          input_group.addon([input_group.start()], [html.text("https://")]),
+        ]),
+        input_group.input_group([], [
+          html.textarea([attribute.placeholder("Write a message...")], ""),
+          input_group.addon([input_group.bottom()], [html.text("0 / 280")]),
+        ]),
+      ]),
+    ],
+  )
+}
+
+fn section_scroll_area() -> Element(msg) {
+  sink_section_simple(
+    "scroll-area",
+    "Scroll Area",
+    "https://basecoatui.com/components/scroll-area",
+    [
+      html.div([attribute.class("card h-72 w-48 p-0")], [
+        html.div(
+          [
+            scroll_area.scrollbar(),
+            attribute.class("h-full overflow-y-auto p-4"),
+          ],
+          int.range(from: 50, to: 30, with: [], run: fn(acc, i) { [i, ..acc] })
+            |> list.reverse
+            |> list.map(fn(i) {
+              html.div([attribute.class("border-b py-2 text-sm")], [
+                html.text("v1.2.0-beta." <> int.to_string(i)),
+              ])
+            }),
+        ),
+      ]),
+    ],
+  )
+}
+
+fn section_drawer() -> Element(msg) {
+  sink_section_simple(
+    "drawer",
+    "Drawer",
+    "https://basecoatui.com/components/drawer",
+    [
+      html.div([attribute.class("flex flex-wrap gap-2")], [
+        button.outline(
+          [attribute("onclick", drawer.open_script("demo-drawer"))],
+          [html.text("Open drawer")],
+        ),
+        button.outline(
+          [attribute("onclick", drawer.open_script("demo-drawer-right"))],
+          [html.text("Open from right")],
+        ),
+        drawer.drawer_with_description(
+          "demo-drawer",
+          "Move Goal",
+          "Set your daily activity goal.",
+          [],
+          [],
+          [
+            drawer.content([attribute.class("px-4 text-center")], [
+              html.div([attribute.class("text-7xl font-bold")], [
+                html.text("350"),
+              ]),
+              html.div(
+                [attribute.class("text-muted-foreground text-xs uppercase")],
+                [html.text("Calories/day")],
+              ),
+            ]),
+            drawer.footer([], [
+              button.button(
+                [attribute("onclick", drawer.close_script("demo-drawer"))],
+                [html.text("Submit")],
+              ),
+              button.outline(
+                [attribute("onclick", drawer.close_script("demo-drawer"))],
+                [html.text("Cancel")],
+              ),
+            ]),
+          ],
+        ),
+        drawer.drawer("demo-drawer-right", "Settings", [drawer.right()], [], [
+          drawer.content([attribute.class("px-4")], [html.text("Content")]),
+        ]),
+      ]),
+    ],
+  )
+}
+
+fn section_select() -> Element(msg) {
+  let trigger = [attribute.class("w-[180px]")]
+  sink_section_simple(
+    "select",
+    "Select",
+    "https://basecoatui.com/components/select",
+    [
+      html.div([attribute.class("flex flex-col gap-4")], [
+        html.div([attribute.class("flex flex-wrap items-center gap-2")], [
+          native_select.native_select([native_select.width("180px")], [
+            native_select.optgroup("Fruits", [
+              native_select.option("apple", "Apple", False),
+              native_select.option("banana", "Banana", False),
+              native_select.option("blueberry", "Blueberry", False),
+            ]),
+            native_select.optgroup("Grapes", [
+              native_select.option("pineapple", "Pineapple", False),
+            ]),
+          ]),
+          native_select.native_select(
+            [native_select.width("180px"), native_select.disabled()],
+            [native_select.option("disabled", "Disabled", True)],
+          ),
+        ]),
+        html.div([attribute.class("flex flex-wrap items-center gap-2")], [
+          select.select("select-default", "fruit", [], trigger, [
+            select.group("Fruits", [
+              select.option("apple", [], [html.text("Apple")]),
+              select.option("banana", [], [html.text("Banana")]),
+              select.option("blueberry", [select.selected()], [
+                html.text("Blueberry"),
+              ]),
+            ]),
+            select.separator(),
+            select.group("Grapes", [
+              select.option("pineapple", [], [html.text("Pineapple")]),
+            ]),
+          ]),
+          select.select(
+            "select-scrollbar",
+            "item",
+            [select.placeholder("Pick an item")],
+            trigger,
+            [
+              select.scroll_area(
+                "18rem",
+                int.range(from: 0, to: 100, with: [], run: fn(acc, i) {
+                  [i, ..acc]
+                })
+                  |> list.reverse
+                  |> list.map(fn(i) {
+                    let i = int.to_string(i)
+                    select.option("item-" <> i, [], [html.text("Item " <> i)])
+                  }),
+              ),
+            ],
+          ),
+          select.select(
+            "select-disabled",
+            "disabled",
+            [],
+            [attribute.disabled(True), ..trigger],
+            [
+              select.option("disabled", [select.selected()], [
+                html.text("Disabled"),
+              ]),
+            ],
+          ),
+          select.select("select-with-icon", "chart-type", [], trigger, [
+            select.option("bar", [select.selected()], [
+              icon("chart-bar", []),
+              html.text("Bar"),
+            ]),
+            select.option("line", [], [
+              icon("chart-line", []),
+              html.text("Line"),
+            ]),
+            select.option("pie", [], [icon("chart-pie", []), html.text("Pie")]),
+          ]),
+          select.select_multiple(
+            "select-multiple",
+            "fruits",
+            [select.placeholder("Pick fruits")],
+            trigger,
+            [
+              select.option("apple", [select.selected()], [html.text("Apple")]),
+              select.option("banana", [], [html.text("Banana")]),
+              select.option("cherry", [select.selected()], [html.text("Cherry")]),
+            ],
+          ),
+        ]),
+      ]),
+    ],
+  )
+}
+
+fn section_combobox() -> Element(msg) {
+  let tz = fn(value, label) { select.option(value, [], [html.text(label)]) }
+  sink_section_simple(
+    "combobox",
+    "Combobox",
+    "https://basecoatui.com/components/combobox",
+    [
+      html.div([attribute.class("flex flex-wrap items-start gap-4")], [
+        combobox.combobox(
+          "demo-combobox-frameworks",
+          "framework",
+          "Select framework...",
+          "No framework found.",
+          [attribute.class("w-48")],
+          [
+            select.option("Next.js", [], [html.text("Next.js")]),
+            select.option("SvelteKit", [], [html.text("SvelteKit")]),
+            select.option("Nuxt.js", [], [html.text("Nuxt.js")]),
+            select.option("Remix", [], [html.text("Remix")]),
+            select.option("Astro", [], [html.text("Astro")]),
+          ],
+        ),
+        combobox.combobox(
+          "demo-combobox-timezones",
+          "timezone",
+          "Select timezone...",
+          "No timezone found.",
+          [attribute.class("w-72")],
+          [
+            select.group("Americas", [
+              tz("America/New_York", "(GMT-5) New York"),
+              tz("America/Los_Angeles", "(GMT-8) Los Angeles"),
+              tz("America/Chicago", "(GMT-6) Chicago"),
+            ]),
+            select.group("Europe", [
+              tz("Europe/London", "(GMT+0) London"),
+              tz("Europe/Paris", "(GMT+1) Paris"),
+              tz("Europe/Berlin", "(GMT+1) Berlin"),
+            ]),
+            select.group("Asia/Pacific", [
+              tz("Asia/Tokyo", "(GMT+9) Tokyo"),
+              tz("Asia/Singapore", "(GMT+8) Singapore"),
+            ]),
+          ],
+        ),
+        combobox.combobox_multiple(
+          "demo-combobox-multiple",
+          "frameworks",
+          "Add frameworks...",
+          "No framework found.",
+          [attribute.class("w-72")],
+          [
+            select.option("Next.js", [], [html.text("Next.js")]),
+            select.option("SvelteKit", [], [html.text("SvelteKit")]),
+            select.option("Astro", [], [html.text("Astro")]),
+          ],
         ),
       ]),
     ],
