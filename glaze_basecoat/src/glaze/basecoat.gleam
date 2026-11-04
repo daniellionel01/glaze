@@ -94,16 +94,21 @@ pub fn cdn_stylesheet_with_style(v: String, style: Style) -> Element(a) {
   element.fragment([
     html.link([
       attribute.rel("stylesheet"),
-      attribute.href(
-        "https://cdn.jsdelivr.net/npm/basecoat-css@"
-        <> v
-        <> "/dist/basecoat-"
-        <> style_to_string(style)
-        <> ".cdn.min.css",
-      ),
+      attribute.href(cdn_stylesheet_url(v, style)),
     ]),
     theme.tailwind_bridge_style_tag(),
   ])
+}
+
+/// The URL that [`cdn_stylesheet_with_style`](#cdn_stylesheet_with_style)
+/// loads.
+///
+pub fn cdn_stylesheet_url(v: String, style: Style) -> String {
+  "https://cdn.jsdelivr.net/npm/basecoat-css@"
+  <> v
+  <> "/dist/basecoat-"
+  <> style_to_string(style)
+  <> ".cdn.min.css"
 }
 
 fn style_to_string(style: Style) -> String {

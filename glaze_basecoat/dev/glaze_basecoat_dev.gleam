@@ -56,6 +56,7 @@ import glaze/basecoat/toast
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
 import lustre/element/html
+import lustre/element/svg
 import simplifile
 
 /// Generates `docs/glaze_basecoat/index.html` (GitHub Pages artifact).
@@ -71,10 +72,39 @@ pub fn main() {
     simplifile.write(contents: html, to: "../docs/glaze_basecoat/index.html")
 }
 
-fn icon(name: String, attrs: List(Attribute(msg))) {
+fn icon(name: String, attrs: List(Attribute(msg))) -> Element(msg) {
   html.i(
     [attribute.class("lucide"), attribute("data-lucide", name), ..attrs],
     [],
+  )
+}
+
+/// Lucide no longer ships brand icons, so this one is inlined.
+///
+fn github_icon(attrs: List(Attribute(msg))) -> Element(msg) {
+  svg.svg(
+    [
+      attribute("xmlns", "http://www.w3.org/2000/svg"),
+      attribute("width", "24"),
+      attribute("height", "24"),
+      attribute("viewBox", "0 0 24 24"),
+      attribute("fill", "none"),
+      attribute("stroke", "currentColor"),
+      attribute("stroke-width", "2"),
+      attribute("stroke-linecap", "round"),
+      attribute("stroke-linejoin", "round"),
+      attribute("aria-hidden", "true"),
+      ..attrs
+    ],
+    [
+      svg.path([
+        attribute(
+          "d",
+          "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4",
+        ),
+      ]),
+      svg.path([attribute("d", "M9 18c-4.51 2-5-2-7-2")]),
+    ],
   )
 }
 
@@ -96,6 +126,7 @@ pub fn page() {
       ),
 
       basecoat.register(basecoat.version),
+      html.script([], style_switcher_script),
       theme.style_tag_light_dark(theme.default_theme(), theme.dark_theme()),
 
       html.script(
@@ -125,6 +156,7 @@ pub fn page() {
               ]),
               html.div([attribute.class("flex flex-wrap items-center gap-2")], [
                 theme_switcher.button([]),
+                style_switcher(),
                 html.a(
                   [
                     attribute.href("https://github.com/daniellionel01/glaze"),
@@ -136,7 +168,7 @@ pub fn page() {
                     attribute.data("tooltip", "GitHub repository"),
                     attribute.data("side", "bottom"),
                   ],
-                  [icon("github", [])],
+                  [github_icon([])],
                 ),
               ]),
             ]),
@@ -1201,7 +1233,7 @@ fn section_command() -> Element(msg) {
                 [
                   command.group("Quick", [
                     command.item_with_shortcut("G", [], [
-                      icon("github", []),
+                      github_icon([]),
                       html.text("Open GitHub"),
                     ]),
                     command.item_with_shortcut("T", [], [
@@ -1310,7 +1342,7 @@ fn section_icon() -> Element(msg) {
     #("Plus", "plus"),
     #("Mail", "mail"),
     #("Calendar", "calendar"),
-    #("GitHub", "github"),
+    #("Code", "code"),
     #("Alert", "circle-alert"),
     #("Check", "check"),
     #("X", "x"),
@@ -2711,7 +2743,7 @@ fn section_sidebar() -> Element(msg) {
                       ]),
                       sidebar.group("Resources", [
                         sidebar.link("#", False, [], [
-                          icon("github", [attribute.class("size-4")]),
+                          github_icon([attribute.class("size-4")]),
                           html.span([], [html.text("GitHub")]),
                         ]),
                         sidebar.link("#", False, [], [
@@ -3687,5 +3719,54 @@ fn section_combobox() -> Element(msg) {
         ),
       ]),
     ],
+  )
+}
+
+const styles = [
+  #("Vega", basecoat.Vega),
+  #("Nova", basecoat.Nova),
+  #("Maia", basecoat.Maia),
+  #("Lyra", basecoat.Lyra),
+  #("Mira", basecoat.Mira),
+  #("Luma", basecoat.Luma),
+  #("Sera", basecoat.Sera),
+  #("Rhea", basecoat.Rhea),
+]
+
+/// Applies a stored style before the page renders. The switcher's options
+/// hold the full stylesheet URLs.
+const style_switcher_script =
+  "(() => {
+  const link = document.querySelector('link[href*=\"basecoat-css@\"]');
+  window.setBasecoatStyle = (url) => {
+    link.href = url;
+    try { localStorage.setItem('basecoatStyleUrl', url); } catch (_) {}
+  };
+  try {
+    const stored = localStorage.getItem('basecoatStyleUrl');
+    if (!stored) return;
+    link.href = stored;
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('style-switcher').value = stored;
+    });
+  } catch (_) {}
+})();"
+
+fn style_switcher() -> Element(msg) {
+  native_select.native_select(
+    [
+      attribute.id("style-switcher"),
+      attribute.aria_label("Basecoat style"),
+      attribute("onchange", "setBasecoatStyle(this.value)"),
+      native_select.width("120px"),
+    ],
+    list.map(styles, fn(style) {
+      let #(label, style) = style
+      native_select.option(
+        basecoat.cdn_stylesheet_url(basecoat.version, style),
+        label,
+        style == basecoat.Vega,
+      )
+    }),
   )
 }
