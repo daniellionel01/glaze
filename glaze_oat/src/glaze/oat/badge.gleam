@@ -73,7 +73,7 @@ pub fn instance(
 }
 
 pub fn secondary() -> Attribute(msg) {
-  attribute.class("secondary")
+  attribute.data("variant", "secondary")
 }
 
 pub fn outline() -> Attribute(msg) {
@@ -81,13 +81,13 @@ pub fn outline() -> Attribute(msg) {
 }
 
 pub fn success() -> Attribute(msg) {
-  attribute.class("success")
+  attribute.data("variant", "success")
 }
 
 pub fn warning() -> Attribute(msg) {
-  attribute.class("warning")
+  attribute.data("variant", "warning")
 }
 
 pub fn danger() -> Attribute(msg) {
-  attribute.class("danger")
+  attribute.data("variant", "danger")
 }

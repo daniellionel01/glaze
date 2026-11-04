@@ -11,7 +11,7 @@ It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_element
 
 For a full list of components, take a look at <https://hexdocs.pm/glaze_oat> or <https://oat.ink/components/>
 
-Latest supported version is [Oat v0.4.1](https://github.com/knadh/oat/releases/tag/v0.4.1). This library will be updated for future versions when they get released.
+Latest supported version is [Oat v1.1.0](https://github.com/knadh/oat/releases/tag/v1.1.0). This library will be updated for future versions when they get released.
 
 GitHub Pages Demo: <https://daniellionel01.github.io/glaze/glaze_oat/>
 
@@ -37,14 +37,14 @@ You can link the CSS and JavaScript in the `[tools.lustre.html]` in your `gleam.
 
 ```toml
 [tools.lustre.html]
-stylesheets = [{ href = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.css" }]
-scripts = [{ src = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.js" }]
+stylesheets = [{ href = "https://unpkg.com/@knadh/oat@1.1.0/oat.min.css" }]
+scripts = [{ src = "https://unpkg.com/@knadh/oat@1.1.0/oat.min.js" }]
 ```
 
 If you are using Tailwind CSS with the Lustre dev tools, you can also import Oat like this:
 
 ```sh
-curl -L https://unpkg.com/@knadh/oat@0.4.1/oat.min.css \
+curl -L https://unpkg.com/@knadh/oat@1.1.0/oat.min.css \
   -o src/oat.css
 ```
 
@@ -58,7 +58,7 @@ Do not forget the JavaScript:
 
 ```toml
 [tools.lustre.html]
-scripts = [{ src = "https://unpkg.com/@knadh/oat@0.4.1/oat.min.js" }]
+scripts = [{ src = "https://unpkg.com/@knadh/oat@1.1.0/oat.min.js" }]
 ```
 
 ### Server Application

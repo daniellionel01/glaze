@@ -14,6 +14,7 @@
 import glaze/oat
 import glaze/oat/accordion.{accordion}
 import glaze/oat/alert.{alert}
+import glaze/oat/avatar
 import glaze/oat/badge.{badge}
 import glaze/oat/breadcrumb.{breadcrumb}
 import glaze/oat/button.{button}
@@ -30,9 +31,11 @@ import glaze/oat/spinner
 import glaze/oat/switch.{switch}
 import glaze/oat/table
 import glaze/oat/tabs
+import glaze/oat/taginput
 import glaze/oat/theme
 import glaze/oat/toast
 import glaze/oat/tooltip
+import glaze/oat/upload
 import gleam/json
 import gleam/list
 import lustre/attribute.{attribute}
@@ -82,6 +85,7 @@ pub fn page() {
 
   html.html([attribute("lang", "en")], [
     html.head([], [
+      html.meta([attribute.charset("utf-8")]),
       html.meta([
         attribute.name("viewport"),
         attribute.content("width=device-width, initial-scale=1"),
@@ -165,8 +169,16 @@ pub fn page() {
             ],
             [html.text("Toggle Theme")],
           ),
-          button([tooltip.tooltip("Refresh data now"), button.small()], [
-            html.text("↻"),
+          button(
+            [
+              tooltip.tooltip("Refresh data now"),
+              tooltip.bottom(),
+              button.small(),
+            ],
+            [html.text("↻")],
+          ),
+          avatar.avatar([avatar.small(), tooltip.tooltip("Jane Doe")], [
+            html.text("JD"),
           ]),
         ]),
       ]),
@@ -1234,7 +1246,7 @@ pub fn page() {
                       ]),
                     ]),
                     html.div([attribute.class("col-6")], [
-                      html.div([form.field_error()], [
+                      html.div([form.field()], [
                         form.label([attribute.for("settings-email")], [
                           html.text("Email"),
                         ]),
@@ -1310,11 +1322,22 @@ pub fn page() {
                   ]),
                   html.div([attribute.class("row")], [
                     html.div([attribute.class("col-6")], [
-                      form.label([form.field()], [
-                        html.text(" Avatar "),
-                        form.input([
-                          attribute("accept", "image/*"),
-                          attribute.type_("file"),
+                      html.div([form.field()], [
+                        form.label([], [html.text("Avatar")]),
+                        upload.upload([], [
+                          form.input([
+                            attribute("accept", "image/*"),
+                            attribute.type_("file"),
+                            attribute.hidden(True),
+                          ]),
+                          button([attribute.type_("button"), button.small()], [
+                            html.text("Choose file"),
+                          ]),
+                          upload.files([], [
+                            html.small([form.hint()], [
+                              html.text("Drop an image here"),
+                            ]),
+                          ]),
                         ]),
                       ]),
                     ]),
@@ -1335,6 +1358,12 @@ pub fn page() {
                       attribute.max("100"),
                       attribute.min("0"),
                       attribute.type_("range"),
+                    ]),
+                  ]),
+                  form.label([form.field()], [
+                    html.text(" Skills "),
+                    taginput.taginput([taginput.value(["Gleam", "Lustre"])], [
+                      html.input([attribute.placeholder("Add a skill …")]),
                     ]),
                   ]),
                   form.label([form.field()], [
