@@ -505,6 +505,7 @@ fn section_alert_dialog() -> Element(msg) {
         "Are you absolutely sure?",
         "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
         [dialog.close_on_backdrop()],
+        [],
         [
           alert_dialog.footer([], [
             alert_dialog.cancel([], [html.text("Cancel")]),
@@ -1793,10 +1794,8 @@ fn section_dialog() -> Element(msg) {
           edit_id,
           "Edit profile",
           "Make changes to your profile here. Click save when you're done.",
-          [
-            attribute.class("w-full sm:max-w-[425px] max-h-[612px]"),
-            dialog.close_on_backdrop(),
-          ],
+          [dialog.close_on_backdrop()],
+          [dialog.responsive_width("425px"), dialog.max_height("612px")],
           [
             dialog.content([], [
               form.form([attribute.class("grid gap-4")], [
@@ -1842,10 +1841,8 @@ fn section_dialog() -> Element(msg) {
           scroll_id,
           "Scrollable Content",
           "This is a dialog with scrollable content.",
-          [
-            attribute.class("w-full sm:max-w-[425px] max-h-[612px]"),
-            dialog.close_on_backdrop(),
-          ],
+          [dialog.close_on_backdrop()],
+          [dialog.responsive_width("425px"), dialog.max_height("612px")],
           [
             dialog.scrollable_content([], [
               html.div([attribute.class("space-y-4 text-sm")], [

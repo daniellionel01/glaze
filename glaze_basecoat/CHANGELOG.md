@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- **Breaking:** `dialog.dialog`, `dialog.dialog_with_description`, `alert_dialog.alert_dialog` and `alert_dialog.alert_dialog_with_text` take a new `panel_attrs` argument after `attrs`, applied to the visible panel. Sizing attributes like `dialog.max_width` previously had no effect.
+
+- Fixed `dialog.responsive_width` and `dialog.full_width`, which relied on Tailwind classes that weren't generated.
+
 ## [3.1.0] - 2026-03-25
 
 - Add correct variants for button sizes and styles (for example `button.outline_sm`, because `sm` combined with `outline` results in primary colored button). (https://github.com/daniellionel01/glaze/pull/12)<br />
@@ -22,11 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `register_css` has been renamed to `cdn_stylesheet`.
 
 - In the `glaze/basecoat/theme` module:
-  * The `tailwind_v4_bridge_style_tag` function has been renamed to `tailwind_bridge_style_tag`.
-  * The `tailwind_v4_bridge_css` function has been removed and merged with `tailwind_bridge_style_tag`.
+  - The `tailwind_v4_bridge_style_tag` function has been renamed to `tailwind_bridge_style_tag`.
+  - The `tailwind_v4_bridge_css` function has been removed and merged with `tailwind_bridge_style_tag`.
 
 - The `glaze/basecoat/toast` API has been almost completely revised.
-  * There is no utility function to construct javascript strings for the server. This logic should be implemented by the user of this library.
+  - There is no utility function to construct javascript strings for the server. This logic should be implemented by the user of this library.
 
 ## [2.1.0] - 2026-03-07
 
