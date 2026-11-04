@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-11-04
+
 - **Breaking:** Requires Basecoat v1.1.0 (previously v0.3.11). If you vendor the CSS, use `dist/basecoat.bundle.css`.
 - **Breaking:** `form.form` no longer styles plain inputs inside it, as Basecoat v1 removed `.form`. Use the `input`, `textarea` and `native_select` modules, or place controls directly inside a `field`.
 - **Breaking:** The `select` module is renamed to `native_select` (and `select.select` to `native_select.native_select`), matching Basecoat's naming. `select` is now Basecoat's JavaScript select.
