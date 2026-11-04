@@ -7,11 +7,15 @@
 ////
 //// A dialog flow usually includes a dialog container and a trigger that opens it.
 ////
+//// `attrs` go on the `<dialog>` element, `panel_attrs` on the visible panel
+//// inside it. Sizing helpers like [`max_width`](#max_width) belong in
+//// `panel_attrs`.
+////
 //// ## Recipe
 ////
 //// ```gleam
+//// import glaze/basecoat/button
 //// import glaze/basecoat/dialog
-//// import lustre/attribute
 //// import lustre/element/html
 ////
 //// fn edit_profile_dialog() {
@@ -19,12 +23,13 @@
 ////     "edit-profile",
 ////     "Edit profile",
 ////     "Make changes to your profile here.",
+////     [dialog.close_on_backdrop()],
 ////     [dialog.max_width("425px")],
 ////     [
-////     dialog.content([], [html.text("Dialog content here.")]),
-////     dialog.footer([], [
-////       button.button([], [html.text("Save")]),
-////     ]),
+////       dialog.content([], [html.text("Dialog content here.")]),
+////       dialog.footer([], [
+////         button.button([], [html.text("Save")]),
+////       ]),
 ////     ],
 ////   )
 //// }
@@ -44,6 +49,7 @@ pub fn dialog(
   id: String,
   title: String,
   attrs: List(Attribute(msg)),
+  panel_attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
   let title_id = id <> "-title"
@@ -55,7 +61,7 @@ pub fn dialog(
       ..attrs
     ],
     [
-      html.div([], [
+      html.div(panel_attrs, [
         header([], [
           html.h2([attribute.id(title_id)], [html.text(title)]),
         ]),
@@ -70,6 +76,7 @@ pub fn dialog_with_description(
   title: String,
   description: String,
   attrs: List(Attribute(msg)),
+  panel_attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
   let title_id = id <> "-title"
@@ -83,7 +90,7 @@ pub fn dialog_with_description(
       ..attrs
     ],
     [
-      html.div([], [
+      html.div(panel_attrs, [
         header([], [
           html.h2([attribute.id(title_id)], [html.text(title)]),
           html.p([attribute.id(desc_id)], [html.text(description)]),
@@ -164,11 +171,14 @@ pub fn max_height(height: String) -> Attribute(msg) {
 }
 
 pub fn full_width() -> Attribute(msg) {
-  attribute.class("w-full")
+  attribute.styles([#("width", "100%"), #("max-width", "calc(100% - 2rem)")])
 }
 
 pub fn responsive_width(width: String) -> Attribute(msg) {
-  attribute.class("w-full sm:max-w-[" <> width <> "]")
+  attribute.styles([
+    #("width", "100%"),
+    #("max-width", "min(100% - 2rem, " <> width <> ")"),
+  ])
 }
 
 pub fn close_on_backdrop() -> Attribute(msg) {

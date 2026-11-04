@@ -11,7 +11,7 @@
 //// import lustre/element/html
 ////
 //// fn delete_confirm_dialog() {
-////   alert_dialog.alert_dialog("delete-confirm", [
+////   alert_dialog.alert_dialog("delete-confirm", [], [], [
 ////     alert_dialog.title([], [html.text("Are you sure?")]),
 ////     alert_dialog.description([], [html.text("This action cannot be undone.")]),
 ////     alert_dialog.content([], [
@@ -36,6 +36,7 @@ import lustre/element/html
 pub fn alert_dialog(
   id: String,
   attrs: List(Attribute(msg)),
+  panel_attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
   let title_id = id <> "-title"
@@ -50,7 +51,7 @@ pub fn alert_dialog(
       ..attrs
     ],
     [
-      html.div([], [
+      html.div(panel_attrs, [
         header([], [
           html.h2([attribute.id(title_id)], []),
         ]),
@@ -66,6 +67,7 @@ pub fn alert_dialog_with_text(
   title: String,
   description: String,
   attrs: List(Attribute(msg)),
+  panel_attrs: List(Attribute(msg)),
   children: List(Element(msg)),
 ) -> Element(msg) {
   let title_id = id <> "-title"
@@ -80,7 +82,7 @@ pub fn alert_dialog_with_text(
       ..attrs
     ],
     [
-      html.div([], [
+      html.div(panel_attrs, [
         header([], [
           html.h2([attribute.id(title_id)], [html.text(title)]),
         ]),
