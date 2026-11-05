@@ -28,7 +28,7 @@
 //// - MDN `prefers-color-scheme`: <https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme>
 
 import lustre/attribute.{type Attribute, attribute}
-import lustre/element.{type Element, element}
+import lustre/element.{type Element}
 import lustre/element/html
 import lustre/element/svg
 
@@ -131,8 +131,7 @@ fn sun_icon() -> Element(msg) {
 }
 
 fn moon_icon() -> Element(msg) {
-  element(
-    "svg",
+  svg.svg(
     [
       attribute("xmlns", "http://www.w3.org/2000/svg"),
       attribute("width", "24"),
