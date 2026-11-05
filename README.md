@@ -1,8 +1,8 @@
 # 🍩 Glaze
 
 [Lustre](https://github.com/lustre-labs/lustre) bindings to framework-agnostic UI Component Libraries:
-- **glaze_oat:** [hexdocs](https://hexdocs.pm/glaze_oat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | [demo](https://daniellionel01.github.io/glaze/glaze_oat/)
-- **glaze_basecoat:** [hexdocs](https://hexdocs.pm/glaze_basecoat/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat) | [demo](https://daniellionel01.github.io/glaze/glaze_basecoat/)
+- **glaze_oat:** [hexdocs](https://glaze-oat.hexdocs.pm/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_oat) | [demo](https://daniellionel01.github.io/glaze/glaze_oat/)
+- **glaze_basecoat:** [hexdocs](https://glaze-basecoat.hexdocs.pm/) | [github](https://github.com/daniellionel01/glaze/tree/main/glaze_basecoat) | [demo](https://daniellionel01.github.io/glaze/glaze_basecoat/)
 
 <br />
 

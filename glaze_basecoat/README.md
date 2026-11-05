@@ -1,7 +1,7 @@
 # Glaze Basecoat
 
 [![Package Version](https://img.shields.io/hexpm/v/glaze_basecoat)](https://hex.pm/packages/glaze_basecoat)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_basecoat/)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://glaze-basecoat.hexdocs.pm/)
 
 > This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>
 
@@ -10,7 +10,7 @@ This is a collection of Lustre components mapped from [Basecoat UI](https://base
 Basecoat UI is a Tailwind CSS-based component library inspired by shadcn/ui that works with any web stack.
 
 For a full list of components, take a look at either:
-- <https://hexdocs.pm/glaze_basecoat>
+- <https://glaze-basecoat.hexdocs.pm/>
 - <https://basecoatui.com/components/>
 
 Latest supported version is [Basecoat v1.1.0](https://github.com/hunvreus/basecoat/releases/tag/1.1.0).
@@ -157,7 +157,7 @@ pub fn page() {
 }
 ```
 
-You can find the full documentation here: <https://hexdocs.pm/glaze_basecoat>.
+You can find the full documentation here: <https://glaze-basecoat.hexdocs.pm/>.
 
 Take a look at the [dev module](https://github.com/daniellionel01/glaze/blob/basecoat-v3.0.0/glaze_basecoat/dev/glaze_basecoat_dev.gleam) for a kitchen sink of all components and how you might use them!
 

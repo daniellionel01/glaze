@@ -1,7 +1,7 @@
 # 🍩 Glaze Oat
 
 [![Package Version](https://img.shields.io/hexpm/v/glaze_oat)](https://hex.pm/packages/glaze_oat)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/glaze_oat/)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://glaze-oat.hexdocs.pm/)
 
 > This package is part of a larger monorepository with other UI library bindings: <https://github.com/daniellionel01/glaze>
 
@@ -9,7 +9,7 @@ This is a collection of Lustre components mapped from [Oat UI](https://oat.ink/)
 
 It follows [Semantic HTML](https://www.w3schools.com/html/html5_semantic_elements.asp), is very small (~8KB CSS and JS) and themable.
 
-For a full list of components, take a look at <https://hexdocs.pm/glaze_oat> or <https://oat.ink/components/>
+For a full list of components, take a look at <https://glaze-oat.hexdocs.pm/> or <https://oat.ink/components/>
 
 Latest supported version is [Oat v1.1.0](https://github.com/knadh/oat/releases/tag/v1.1.0). This library will be updated for future versions when they get released.
 
